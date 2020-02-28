@@ -1,0 +1,15 @@
+export NUKE_INSTALL_PATH=/opt/nuke/Nuke12.1v1
+
+export NUKE_PATH=/net/nukai/nuke-ML-server/build/Plugins/Client/:$NUKE_PATH
+alias nuke=$NUKE_INSTALL_PATH/Nuke12.1
+
+
+export FOUNDRY_LICENSE_FILE='@licenseserver;'
+
+export RLM_LICENSE=2701@LICENSESERVER
+
+# other license to put in .bash_env
+
+export golaem_LICENSE=2375@licenseserver
+export redshift_LICENSE=6323@licenseserver
+export solidangle_LICENSE=5053@licenseserver

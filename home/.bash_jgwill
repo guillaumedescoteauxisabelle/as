@@ -1,0 +1,12 @@
+if [ -f ~/.bash_houdini ]; then
+    . ~/.bash_houdini
+fi
+
+
+#NUKE_INSTALL_PATH
+if [ -f ~/.bash_nuke ]; then
+    . ~/.bash_nuke
+fi
+
+
+
