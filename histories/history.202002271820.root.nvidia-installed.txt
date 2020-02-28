@@ -1,0 +1,129 @@
+    1  systemctl set-default multi-user.target
+    2  reboot
+    3  apt update
+    4  date
+    5  history
+    6  cd /
+    7  ls
+    8  mkdir -m 777 /net
+    9  mkdir -m 777 /net/downloads
+   10  cd /net/downloads/
+   11  ls
+   12  ./NVIDIA-Linux-x86_64-415.27.run 
+   13  init 3
+   14  ./NVIDIA-Linux-x86_64-415.27.run 
+   15  reboot
+   16  #--@STCGoal Installing Nvidia using apt-get
+   17  apt-get purge nvidia*
+   18  add-apt-repository ppa:graphics-drivers
+   19  date
+   20  history
+   21  time
+   22  zdump EEST
+   23  ntpdate
+   24  apt install ntpdate
+   25  ntpdate
+   26  timedatectl 
+   27  reboot
+   28  cd /net/downloads/
+   29  ls
+   30  ./NVIDIA-Linux-x86_64-415.27.run 
+   31  #--@STCGoal NVidia from PPA
+   32  sudo add-apt-repository ppa:graphics-drivers/ppa
+   33  date
+   34  phoronix-test-suite default-benchmark openarena xonotic tesseract gputest unigine-valley
+   35  ls -ltr
+   36  dpkg -i phoronix-test-suite_9.4.0_all.deb 
+   37  phoronix-test-suite --version
+   38  phoronix-test-suite default-benchmark openarena xonotic tesseract gputest unigine-valley
+   39  ls
+   40  history | grep ppa
+   41  sudo add-apt-repository ppa:graphics-drivers/ppa
+   42  date
+   43  apt update
+   44  apt list nvidia*
+   45  apt list nvidia-*
+   46  apt list nvidia-* > nvidia_package_list_apt.txt
+   47  cat nvidia_package_list_apt.txt 
+   48  cat nvidia_package_list_apt.txt  | more
+   49  cat nvidia_package_list_apt.txt  | grep cuda
+   50  sudo add-apt-repository ppa:graphics-drivers
+   51  date
+   52  date
+   53  timedatectl status
+   54  history
+   55  #--@STCGoal Time from Internet Server because apt REPO PPA failed I think because of that
+   56  apt install chrony
+   57  chronyd -q
+   58  chronyd -Q
+   59  timedatectl list-timezones
+   60  timedatectl list-timezones \| grep Montr
+   61  timedatectl list-timezones \| grep New
+   62  timedatectl list-timezones | grep New
+   63  timedatectl set-timezone America/New_York
+   64  date
+   65  timedatectl
+   66  timedatectl set-ntp on
+   67  apt-get install ntp
+   68  ntpq -p
+   69  date
+   70  date "17:00È
+   71  date "17:00"
+   72  date
+   73  date "Wed Feb 26 05:00:56 EST 2020"
+   74  date "Feb 26 05:00:56 EST 2020"
+   75  date "Feb 26 05:00:56 PM 2020"
+   76  date -d "2020-02-26T17:01"
+   77  date
+   78  TZ=UTC date -d "2020-02-26T17:01 -2 hours"
+   79  date
+   80  #@STCIssue not working Date TIme my ass
+   81  history > h.2020022617.datetime.txt
+   82  cd /net/downloads/
+   83  ls
+   84  #--@STCGoal Nvidia Drivers from PPA
+   85  apt install phoronix-test-suite
+   86  add-apt-repository ppa:graphics-drivers/ppa
+   87  timedatectl 
+   88  python -c 'import time;print(time.asctime(time.localtime()))' 
+   89  sntp pool.ntp.org 
+   90  date
+   91  nslookup google.com
+   92  tlsdate -nV ntp.org
+   93  sntp pool.ntp.org 
+   94  apt install vim
+   95  vi /etc/ntp.conf 
+   96  service ntp restart
+   97  service ntp status
+   98  date
+   99  ufw allow from any to any port 123 proto udp
+  100  apt-get install ntpdate
+  101  apt autoremove
+  102  date --set="Wed Feb 26 18:26 EDT 2020"
+  103  date --set="Wed Feb 26 18:26 EST 2020"
+  104  date
+  105  python -c 'import time;print(time.asctime(time.localtime()))' 
+  106  add-apt-repository ppa:graphics-drivers/ppa
+  107  lspci | grep NVIDIA
+  108  ls
+  109  ls -ltr
+  110  cat nvidia_package_list_apt.txt | grep 415
+  111  apt install nvidia-driver-415
+  112  ls -ltr
+  113  ls -ltrh
+  114  history >history_202002261833.nvidia_installed.txt
+  115  reboot
+  116  history
+  117  date --set="Thu Feb 27 17:38 EST 2020"
+  118  date
+  119  apt update
+  120  apt list nvidia*
+  121  apt install nvidia-driver-440/bionic
+  122  reboot
+  123  history
+  124  mkdir -m 777 /a
+  125  history | grep apt
+  126  cd /net/as
+  127  mkdir -m 777 histories
+  128  cd histories/
+  129  history > history.202002271820.root.nvidia-installed.txt
