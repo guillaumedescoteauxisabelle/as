@@ -26,15 +26,16 @@ sudo ufw default allow outgoing
 ```
 
 
-## DEV
+# DEV
 
 ```sh
 sudo apt install git
 
 ```
 
+# Containerized Infrastructure
 
-## Docker - Containerized Infrastructure
+## Docker 
 See : [SYSTEM.md](./SYSTEM.md)
 [install/linux/docker-ce/ubuntu/](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 ```sh

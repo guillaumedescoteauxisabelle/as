@@ -3,6 +3,8 @@
 
 sudo apt-get update
 sudo apt-get install ttf-ancient-fonts
+
+sudo apt install fonts-noto
 ```
 
 

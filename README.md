@@ -2,19 +2,9 @@
 
 
 ## INSTALL
-* After some tryout, I was able to install it using
 
-```sh
-
-
-# NVidia repo and driver install
-add-apt-repository ppa:graphics-drivers
-apt install nvidia-driver-440/bionic
-
-startx
-
-```
-
+## NVIDIA Drivers
+See: [DRIVERS.md](./DRIVERS.md)
 
 
 ## Houdini
