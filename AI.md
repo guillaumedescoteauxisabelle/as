@@ -5,6 +5,9 @@
 
 ### Python
 * Python 2.7 is deprecating
+```sh
+
+```
 
 ### TensorFlow
 * TensorFlow with GPU
