@@ -35,6 +35,7 @@ sudo ./Nuke12.1
 # then quit
 
 ```
+See: [NUKE.md](./NUKE.md)
 
 ## Machine Learning/AI Framework
 

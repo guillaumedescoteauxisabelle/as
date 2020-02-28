@@ -4,7 +4,7 @@
 * Python 2.7 is deprecating
 * --@STCIssue Houdini has python 3.7.4
 ```sh
-
+sudo apt-get update && sudo apt-get install python3
 ```
 
 ## TensorFlow
