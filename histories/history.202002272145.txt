@@ -1,0 +1,179 @@
+    1  top
+    2  startx
+    3  ps -aef | grep x
+    4  reboot
+    5  sudo apt update && sudo apt upgrade
+    6  sudo apt update 
+    7  sudo date -s "26 FEB 2020 15:45"
+    8  sudo apt update && sudo apt upgrade
+    9  sudo systemctl disable lightdm.service
+   10  sudo systemctl disable lightdm
+   11  sudo passwd
+   12  su
+   13  su -
+   14  ls
+   15  ls -l
+   16  history
+   17  sudo date -s "26 FEB 2020 15:45"
+   18  date
+   19  apt update
+   20  sudo apt update
+   21  sudo apt upgrade
+   22  sudo apt update
+   23  startx
+   24  sudo apt install pixman
+   25  sudo apt install openssh-server
+   26  sudo systemctl status ssh
+   27  sudo ufw allow ssh
+   28  ip addr
+   29  su -
+   30  date
+   31  cd /net/downloads/
+   32  sudo ./NVIDIA-Linux-x86_64-415.27.run 
+   33  top
+   34  cd /net/downloads/
+   35  cat history_202002261833.nvidia_installed.txt | grep date
+   36  startx
+   37  reboot
+   38  date
+   39  history
+   40  su -
+   41  lbs_release
+   42  cd /etc
+   43  ls
+   44  sudo apt install lbs_release
+   45  cat issue
+   46  startkde 
+   47  export DISPLAY=:0.0
+   48  startkde 
+   49  export DISPLAY=:0
+   50  startkde 
+   51  reboot
+   52  startkde 
+   53  startx
+   54  su -
+   55  git --version
+   56  mkdir /net/as
+   57  cd /net/as
+   58  telnet licenseserver 4101
+   59  telnet licenseserver 1001
+   60  telnet licenseserver 1002
+   61  telnet licenseserver 4102
+   62  nslookup licenseserver.nad.ca
+   63  ping licenseserver.nad.ca
+   64  git status
+   65  git status .
+   66  vi README.md
+   67  ls
+   68  ./houdini.install 
+   69  sudo ./houdini.install 
+   70  vi tmp.md
+   71  git commit AI.md -m "tensorflow
+   72  "
+   73  git push
+   74  cd /net/downloads/
+   75  ls
+   76  sudo ./Nuke-12.1v1-linux-x86-64-installer.run
+   77  mv Nuke-12.1v1-linux-x86-64-installer.run  /opt/
+   78  sudo mv Nuke-12.1v1-linux-x86-64-installer.run  /opt/
+   79  cd /opt
+   80  ls
+   81  mkdir nuke
+   82  sudo mkdir /opt/nuke
+   83  sudo mv Nuke-12.1v1-linux-x86-64-installer.run /opt/nuke/
+   84  cd /opt/nuke/
+   85  sudo ./Nuke-12.1v1-linux-x86-64-installer.run 
+   86  ls
+   87  sudo rm Nuke-12.1v1-linux-x86-64-installer.run
+   88  vi SYSTEM.md
+   89  sudo apt install ufw
+   90  sudo apt autoremove
+   91  sudo apt install ufw
+   92  sudo ufw status verbose
+   93  sudo ufw allow ssh
+   94  sudo ufw default allow outgoing
+   95  sudo ufw allow ssh
+   96  cd ..
+   97  ls
+   98  git clone git@github.com:GuillaumeVFX/nuke-ML-server.git
+   99  ssh-keygen 
+  100  cat ~/.ssh/id_rsa.pub 
+  101  git clone git@github.com:GuillaumeVFX/nuke-ML-server.git
+  102  mkdir tmp
+  103  cd tmp
+  104  git clone git@github.com:guillaumedescoteauxisabelle/as.git
+  105  ls
+  106  mv as/.git ../as/
+  107  mv as/.gitignore ../as/
+  108  rmdir as/
+  109  cd ..
+  110  ls
+  111  chmod 777 tmp
+  112  cd as
+  113  git add README.md AI.md  SYSTEM.md histories/
+  114  git commit . -m "import current doc"
+  115  git config --global user.email "jgi@jgwill.com"
+  116  git config --global user.name "JGWill"
+  117  git commit . -m "import current doc"
+  118  git push
+  119  VI ISSUE.md
+  120  vi ISSUES.md
+  121  sudo apt-get update
+  122  sudo apt-get remove docker docker-engine docker.io containerd runc
+  123  sudo apt-get update
+  124  sudo apt-get install     apt-transport-https     ca-certificates     curl     gnupg-agent \
+  125  # nstall packages to allow apt to use a repository over HTTPS:
+  126  sudo apt-get install     apt-transport-https     ca-certificates     curl     gnupg-agent     software-properties-common
+  127  # Add Docker’s official GPG key:
+  128  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  129  sudo apt-key fingerprint 0EBFCD88
+  130  sudo apt-get update
+  131  #Install the latest version of Docker Engine - Community and containerd, or go to the next step to install a specific version:
+  132  sudo apt-get install docker-ce docker-ce-cli containerd.io
+  133  lsb_release -cs
+  134  sudo add-apt-repository    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+  135     $(lsb_release -cs) \
+  136     stable"
+  137  #Install the latest version of Docker Engine - Community and containerd, or go to the next step to install a specific version:
+  138  sudo apt-get update
+  139  sudo apt-get install docker-ce docker-ce-cli containerd.io
+  140  sudo docker run hello-world
+  141  docker --version
+  142  docker run hello-world
+  143  sudo docker run hello-world
+  144  docker container ls --all
+  145  sudo docker container ls --all
+  146  git add *
+  147  history > histories/history.202002271930.root.docker-installed.txt 
+  148  git add histories/history.202002271930.root.docker-installed.txt 
+  149  git commit . -m "Docker installed"
+  150  git push
+  151  make -V
+  152  make --version
+  153  top
+  154  top -h
+  155  top
+  156  cat .git/config 
+  157  ls
+  158  cd ..
+  159  cd as
+  160  git submodule add https://github.com/TheFoundryVisionmongers/nuke-ML-server.git nuke-ML-server
+  161  cd nuke-ML-server/
+  162  ls
+  163  mkdir build && cd build
+  164  cmake -DNUKE_INSTALL_PATH=/path/to/Nuke11.3v1/ ..
+  165  /opt/nuke/Nuke12.1v1/Nuke12.1 --version
+  166  sudo apt install opencolorio
+  167  ls /opt/nuke/Nuke12.1v1/lib/python2.7/
+  168  nuke
+  169  set | grep lice
+  170  nuke
+  171  python3 --version
+  172  pip3 --version
+  173  sudo apt install python3-pip
+  174  bash
+  175  python -c; import keras;print(keras.__version__)
+  176  history
+  177  cd /net/as
+  178  ls
+  179  history > histories/history.202002272145.txt

@@ -1,5 +1,10 @@
 # NUke and Machine Learning
 
+## STATUS:  STALLED
+
+
+# Install
+
 ```sh
 cd /net
 mkdir nukai && cd $_
@@ -13,4 +18,8 @@ cd nuke-ML
 
 cat INSTALL.md
 # Follow INSTALL.md content
+
+# on this system
+cmake -DNUKE_INSTALL_PATH=/opt/nuke/Nuke12.1v1/ ..
+
 ```

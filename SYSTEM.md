@@ -29,7 +29,12 @@ sudo ufw default allow outgoing
 # DEV
 
 ```sh
+#GIT
 sudo apt install git
+
+# CMAKE
+sudo apt  install cmake
+
 
 ```
 
