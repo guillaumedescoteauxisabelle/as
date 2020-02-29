@@ -31,6 +31,18 @@ virtualenv --system-site-packages -p python3 ./venv
 
 ```
 
+
+## NST Dependencies
+```sh
+pip install ipython
+pip install matplotlib
+pip install tensorflow_hub
+```
+
+
+
+
+
 ### Docker
 ```sh
 # Run a TensorFlow container
