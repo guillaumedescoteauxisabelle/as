@@ -38,6 +38,20 @@ sudo apt  install cmake
 
 ```
 
+----
+
+# Node
+```sh
+sudo apt install npm -y
+sudo npm install npm --g
+sudo npm install ginol --g
+
+ginol -s "test"
+
+```
+
+----
+
 # Containerized Infrastructure
 
 ## Docker 
