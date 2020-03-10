@@ -2,6 +2,9 @@
 
 ## STATUS: Many Library are not loading 
 
+## AI Image Synthesizing Framework
+SEE: [AIISF.md](./ISF.md) (Like [SPADE](http://guillaumeisabelle.com/r/aif/SPADE/code))
+
 
 ----
 
