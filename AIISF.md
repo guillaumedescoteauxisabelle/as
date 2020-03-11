@@ -55,5 +55,13 @@ sudo apt install torch-trepl
 luarocks install https://raw.githubusercontent.com/szym/display/master/display-scm-0.rockspec
 ```
 
+```sh
+#failed stuff
+ 949  sudo luarocks install https://raw.githubusercontent.com/szym/display/master/display-scm-0.rockspec
+  950  th -ldisplay.start 4000
+  951  th --help
+  952  man th
+  953  th -ldisplay.start 8000 0.0.0.0
+```
 
 
