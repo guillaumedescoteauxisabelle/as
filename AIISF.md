@@ -64,4 +64,22 @@ luarocks install https://raw.githubusercontent.com/szym/display/master/display-s
   953  th -ldisplay.start 8000 0.0.0.0
 ```
 
+```sh
+# tried more stuff 
+## Atempting to solve the luarocks install issue of missing package...
+sudo pip install torch image luasocket lua-cjson async
+#... did some stuff but
+>>ERROR: Could not find a version that satisfies the requirement luasocket (from versions: none)
+ERROR: No matching distribution found for luasocket
+<<<
+
+```
+
+## Well, is there a Docker container ready for that ??
+
+
+
+
+
+
 
