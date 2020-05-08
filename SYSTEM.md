@@ -32,6 +32,9 @@ sudo ufw default allow outgoing
 #GIT
 sudo apt install git
 
+#GIT Large File System Support : git lfs...
+sudo apt-get install git-lfs
+
 # CMAKE
 sudo apt  install cmake
 
