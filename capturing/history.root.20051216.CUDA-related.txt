@@ -1,0 +1,19 @@
+   49  cat nvidia_package_list_apt.txt  | grep cuda
+  287  git clone https://github.com/NVIDIA/cuda-samples.git
+  319  /usr/local/cuda-10.2/bin/nvcc --version
+  324  apt install nvidia-cuda-toolkit
+  328  apt install nvidia-cuda-toolkit
+  331  apt install nvidia-cuda-toolkit
+  333  apt list nvidia-cuda-toolkit
+  334  apt list nvidia-cuda-toolkit*
+  335  apt list nvidia-cuda*
+  340  mkdir cuda
+  341  cd cuda/
+  343  wget http://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda_10.2.89_440.33.01_linux.run
+  344  sh cuda_10.2.89_440.33.01_linux.run
+  362  /usr/local/cuda-10.2/bin/nvcc --version
+  405  cd cuda/
+  407  ./cuda_10.2.89_440.33.01_linux.run
+  408  sh cuda_10.2.89_440.33.01_linux.run
+  420  history |grep cuda
+  421  history |grep cuda  > capturing/history.root.20051216.CUDA-related.txt 
