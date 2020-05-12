@@ -33,7 +33,18 @@ nvcc test_nvcc.cu -o test_nvcc -run
 ```
 #### GPU says hello. echo was working only after the right driver was installed
 
-
+### .bashrc - Config / Install
+```.bash
+# Install necessary variable
+cat <<EOF >> ~/.bashrc
+export LD_LIBRARY_PATH=/usr/local/cuda-10.2/lib64
+export PATH=$PATH:/usr/local/cuda-10.2/bin
+EOF 
+```
+```.bash
+# Desactivate old version of nvcc
+mv /usr/bin/nvcc /usr/bin/nvcc.old
+```
 
 
 ----
