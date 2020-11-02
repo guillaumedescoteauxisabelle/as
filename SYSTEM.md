@@ -89,9 +89,14 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 sudo docker run hello-world
 ```
 
-# Anaconda (to install Magenta)
+
+# Magenta
+
+## Anaconda (to install Magenta)
 
 ```sh
+apt install python3-testresources
+
 apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
 
 apt-get install libjack-dev
