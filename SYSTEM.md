@@ -47,6 +47,11 @@ sudo apt  install cmake
 ```sh
 sudo apt install npm -y
 sudo npm install npm --g
+
+npm cache clean -f
+npm install -g n
+
+
 sudo npm install ginol --g
 
 ginol -s "test"
