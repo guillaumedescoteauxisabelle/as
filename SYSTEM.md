@@ -94,16 +94,42 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 sudo docker run hello-world
 ```
 
+## Docker login
 
-# Magenta
+* To save docker login
+```sh
+apt install gnupg2 pass
 
-## Anaconda (to install Magenta)
+docker login
+```
+
+
+# SCI Data / etc
+
+## Anaconda (to install Magenta and other)
 
 ```sh
-apt install python3-testresources
+apt-get install -y libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
 
-apt-get install libgl1-mesa-glx libegl1-mesa libxrandr2 libxrandr2 libxss1 libxcursor1 libxcomposite1 libasound2 libxi6 libxtst6
+curl -O https://repo.anaconda.com/archive/Anaconda3-2020.07-Linux-x86_64.sh 
+bash Anaconda3-2020.07-Linux-x86_64.sh -b
+rm Anaconda3-2020.07-Linux-x86_64.sh
+conda update -y conda
 
-apt-get install libjack-dev
+conda config --set auto_activate_base false
+```
+### Anaconda cross dev
+
+* A docker image was created  : See repos :  
+https://github.com/jgwill/ubunpy-conda  
+https://github.com/GuillaumeAI/sci-dev
+
+```sh
+docker pull jgwill/ubunpy-conda
+```
+
+```Dockerfile
+FROM jgwill/ubunpy-conda
+RUN apt-get update
 ```
 
