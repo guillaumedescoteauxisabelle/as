@@ -1,0 +1,5 @@
+#!/bin/bash
+p=$1
+suf=$2
+
+for f in *$p ; do ft=${f%.*};ext="${f##*.}" ;cmd="mv $f $ft$suf.$ext" ; echo "$cmd" ; $cmd ; done

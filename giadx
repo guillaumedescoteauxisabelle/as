@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for f in * ; do echo '![]('$f')'>> index.md ; done
+md2html index.md
+
