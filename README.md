@@ -19,9 +19,10 @@ decrypt.sh myfile.cpt
 ```sh
 sudo apt install ccrypt -y
 
-cd;vi .bashrc
-echo "export k=mycryptingkey >> .bashrc"
-echo "alias sfc=/a/bin/crypt.sh >> .bashrc"
-echo "alias sfd=/a/bin/decrypt.sh >> .bashrc"
+cd
+#vi .bashrc
+echo "export sfcdk=mycryptingkey" >> .bashrc
+echo "alias sfc=/a/bin/crypt.sh "  >> .bash_aliases
+echo "alias sfd=/a/bin/decrypt.sh "  >> .bash_aliases
 
 ```

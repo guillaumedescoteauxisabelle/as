@@ -12,7 +12,7 @@ if [ "$k" == "" ]; then
 "
 	echo "CRYPTING ENV VAR NOT FOUND"
 	echo "Please define your crypt key using such thing as .bashrc"
-	echo "export k=mykey"
+	echo "export sfcdk=mykey"
 	echo "--------------------"
 	exit 1
 fi
@@ -21,5 +21,5 @@ if [ "$1" == "" ] ;then
 	exit 1
 fi
 echo "SFCD is Crypting $1"
-ccrypt -E k $1
+ccrypt -E sfcdk $1
 echo "done Crypting $1"

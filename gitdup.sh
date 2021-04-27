@@ -3,7 +3,11 @@
 
 dupsrc=$1
 newname=$2
-branchname="dup-$dupsrc-$newname"
+#branchname="dup-$dupsrc-$newname"
+branchname=dup-$(echo $dupsrc| tr "/" "_" | tr ".." "_")-$(echo $newname | tr "/" "_" | tr ".." "_")
+
+
+
 
 git checkout -b $branchname
 

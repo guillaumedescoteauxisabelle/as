@@ -19,6 +19,6 @@ echo Current IP is : $currentip
 urlfullcall="$urlcall$currentip"
 
 
-(cd /tmp;wget "$urlfullcall")
+(cd /tmp;wget "$urlfullcall" > "/var/log/as/dns-update-$(date).log")
 
 
