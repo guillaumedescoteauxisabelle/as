@@ -1,6 +1,6 @@
 cdir=$(pwd)
 p=83
-label=pierre_to_jg_st_-young-picasso-v03-201216_225m
+label=pierre_to_jg_pikwill-v03-201216_225m
 odir=$HOME/Dropbox/Downloads__2101/7ART806
 rdir=$odir/samples-vue-des-artistes-210606
 tdir=$rdir'/stylized_'$p'_'$label
