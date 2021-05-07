@@ -15,9 +15,10 @@ for f in $2*$3; do
 	pattern=$1
 	#for f in *php ; do r=$(cat $f | grep $pattern);if [ "$r" != "" ]; then echo "----- $f" ; fi; done
 	
-	r=$(cat $f | grep $pattern)
+	r=$(cat $f | grep -n $pattern)
 	if [ "$r" != "" ]; then 
 		echo "----- $f"  
+		echo "$r"
 	fi
 
 	#cat $f | grep $1
