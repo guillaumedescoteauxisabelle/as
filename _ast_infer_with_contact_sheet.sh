@@ -16,7 +16,7 @@ mv *__stylize*.jpg $tdir
 # make the contact sheet
 cd $tdir
 pwd
-gis-csm -d --label &
+gis-csm -d &
 sleep 2
 echo "Waiting a bit for the contact sheet to generate"
 pwd
