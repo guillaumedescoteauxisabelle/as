@@ -28,10 +28,12 @@ exitifnoval "$appusage" $1
 	#exit
 #fi
 
-pattern=$1
-for f in $3*$2; do
-
-	pattern=$1
+pattern="$1"
+#ls $3*$2
+#exit
+for f in $(ls -fd $3*$2); do
+	#echo $f
+	pattern="$1"
 
 	grepsearcher "$pattern" "$f"
 

@@ -117,81 +117,64 @@ grepsearcher()
 {
 	#echo $1 $2
 	f=$2
-	pattern=$1
+	pattern="$1"
 
 	if [ -d "${f}" ] ; then
 		d "$f is a directory"
 	else
-		if [ -f "${f}" ]; then
+		if [ -f "${f}" ]; then #echo $f is a file
 
-			#echo $f is a file
-			#pwd
-			r=$(cat "$f" | grep -n $pattern )
-			lines=$(cat "$f" | grep -n $pattern | tr ":" " " | awk '// { print $1 }')
-			readarray -t larr <<<"$lines"
+			
+			r=$(cat "$f" | grep -n "$pattern" )
+			lines=$(cat "$f" | grep -n "$pattern" | tr ":" " " | awk '// { print $1 }') # Get the line number of the grepped
+			readarray -t larr <<<"$lines" # Transform variable into array
 			readarray -t y <<<"$r"
 
 			if [ "$r" != "" ]; then 			
 				# echo -n "${red} -----   ${green} vi +$l $f ${reset}" | tr "\n" " "
 				headlines="-----" 
+				headlines=">" 
 				cla=0
 				for la in "${larr[@]}"; do
 					#echo  "$f ${reset}" 
-					red=`tput setaf 1`
-					green=`tput setaf 2`
-					reset=`tput sgr0`
+					red=`tput setaf 1` #red var for terminal color change
+					green=`tput setaf 2` #green var for terminal color change
+					reset=`tput sgr0` #reset var for terminal color change
 					pl=4
-					lapadded=`printf %0${pl}d $la`
+					lapadded=`printf %0${pl}d $la` #pad var from a number var
 					clen=${#la}
 					clenm=$(expr $pl - $clen)
-					#echo $clenm
-					#lapspaced=$la`printf 'p%.0s' 1 ${clenm}`
-					lapspaced=$la`printf ' %.0s' $(seq 1 $clenm)`
 					
-					cout=" $headlines  vi +$lapspaced $f$"
 
-					#echo -n $lapadded	
-					txtout=$(echo "${red} $headlines ${green} vi +$lapspaced $f${reset}" | tr "$rpl" " " | tr "$rpl2" " ")
-					coutl=${#cout}
-					coutspaced=`printf ' %.0s' $(seq 1 $coutl)`
+					lapspaced=$la`printf ' %.0s' $(seq 1 $clenm)` # create a padding with x nb of spaces before a string
+					
+						
+					cout="$headlines vi +$lapspaced $f"
+					coutl=${#cout} #counting char
+					coutspaced=`printf ' %.0s' $(seq 1 $coutl)` #repeat a char in a line
+
+
+					txtout=$(echo "${red} $headlines ${green} vi +$lapspaced $f${reset}"  )
 					echo -n $txtout
-					#echo -n 
-					clr=${y[cla]}
-					# echo "$coutl:$coutspaced $y"
-					echo "  $y"
+					
+					clr=${y[cla]} # get array val of current line
+					
+					
+					mod=$(echo $y | sed -e 's/  / /g')
+					
+					#mod=${mod/"\t"/" "}
+					#mod=${mod/"  "/" "}
+					#mod=${mod//[\t]/ }
+					echo $'\t'"  $mod"  
+					#| sed -r 's/[\ \ ]+/\ /g'
+					#| awk '// { for v in $@; do printf $v; done }'
+					#readarray -t yy <<< $(echo "  $y" | awk '/ / {  print $1')
 
 					#
 					cla=$(expr $cla + 1)
 				done
 
-				cl="0"
-				for l in $lines; do
-					#echo $cl
-					red=`tput setaf 1`
-					green=`tput setaf 2`
-					reset=`tput sgr0`
-					echocmd="echo "
-					echocmd2="echo "
-					rpl=" "
-					rpl2=" "
-					#if [ "$cl" != "0" ]; then echocmd2="echo "; headlines=" ; ";rpl="\n" ;rpl2="\r";fi
-					# $echocmd "${red} $headlines ${green} vi +$l " | tr "$rpl" " " | tr "$rpl2" " "
-					# $echocmd2  "$f ${reset}" | tr "$rpl" " " | tr "$rpl2" " "
-					
-					
-					#echo -n "${red} $headlines ${green} vi +$l " | tr "$rpl" " " | tr "$rpl2" " "
-					#echo  "$f ${reset}" | tr "$rpl" " " | tr "$rpl2" " "
-					
-					#echo "------hl:$headlines ########echocmd1:$echocmd, echocmd2:$echocmd2##"
-					#echo "-----l:$l----------------"
-					#echo "-----r:$r----------------"
-					#echo '>>>'$''$r'<<<'
-					cl=$(expr $cl + 1)
 				
-				done
-				#echo $'\n'"Y:$y"
-				# 	#if [ "$RES" == "" ]; then RES=" "; fi
-				# fi
 				RES+=' '$f
 			  fi
 
