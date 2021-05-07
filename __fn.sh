@@ -133,7 +133,7 @@ grepsearcher()
 
 			if [ "$r" != "" ]; then 			
 				# echo -n "${red} -----   ${green} vi +$l $f ${reset}" | tr "\n" " "
-					headlines="-----" 
+				headlines="-----" 
 				cla=0
 				for la in "${larr[@]}"; do
 					#echo  "$f ${reset}" 
@@ -145,11 +145,20 @@ grepsearcher()
 					clen=${#la}
 					clenm=$(expr $pl - $clen)
 					#echo $clenm
-					lapspaced=$la`printf 'p%.0s' 1 ${clenm}`
+					#lapspaced=$la`printf 'p%.0s' 1 ${clenm}`
 					lapspaced=$la`printf ' %.0s' $(seq 1 $clenm)`
-					echo -n $lapadded	
-					echo "${red} $headlines ${green} vi +$lapspaced $f${reset}" | tr "$rpl" " " | tr "$rpl2" " "
+					
+					cout=" $headlines  vi +$lapspaced $f$"
 
+					#echo -n $lapadded	
+					txtout=$(echo "${red} $headlines ${green} vi +$lapspaced $f${reset}" | tr "$rpl" " " | tr "$rpl2" " ")
+					coutl=${#cout}
+					coutspaced=`printf ' %.0s' $(seq 1 $coutl)`
+					echo -n $txtout
+					#echo -n 
+					clr=${y[cla]}
+					# echo "$coutl:$coutspaced $y"
+					echo "  $y"
 
 					#
 					cla=$(expr $cla + 1)

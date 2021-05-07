@@ -15,7 +15,7 @@ startapp "Search in folder a pattern and learn where it is" \
         "Guillaume Descoteaux-Isabelle" \
         2021 \
         " 
-Usage greps <pattern> [filePrefix] [fileSuffix]
+Usage greps <pattern>  [fileSuffix] [filePrefix]
         Stop and remove a container" \
         $3 #--quiet watch 
 
@@ -29,7 +29,7 @@ exitifnoval "$appusage" $1
 #fi
 
 pattern=$1
-for f in $2*$3; do
+for f in $3*$2; do
 
 	pattern=$1
 
