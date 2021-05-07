@@ -12,14 +12,33 @@ pattern=$1
 for f in $2*$3; do
 #	echo "################################################################"
 #	echo "###################################### $f ######################"
-	pattern=$1
 	#for f in *php ; do r=$(cat $f | grep $pattern);if [ "$r" != "" ]; then echo "----- $f" ; fi; done
+	PASSED=$f
+
+	if [ -d "${PASSED}" ] ; then
+		echo "$PASSED is a directory - WE SKIP";
+	else
+		if [ -f "${PASSED}" ]; then
+		
+		else
+			echo "${PASSED} is not valid";
+			exit 1
+		fi
+	fi	
+
+	pattern=$1
 	
 	r=$(cat $f | grep -n $pattern)
 	if [ "$r" != "" ]; then 
-		echo "----- $f"  
-		echo "$r"
+		for p in $r ; do
+			line=$(echo $p | tr ":" " "|awk '// { print $1 }')
+			echo "-----vi +$line $f"  
+			echo "$r"
+			
+		done
+		RES+=' '$f
 	fi
+	return $RES
 
 	#cat $f | grep $1
 done
