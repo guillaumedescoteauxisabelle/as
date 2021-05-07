@@ -126,21 +126,30 @@ grepsearcher()
 
 			#echo $f is a file
 			#pwd
-			r=$(cat "$f" | grep -n $pattern)
-			echo "---$r---"
+			r=$(cat "$f" | grep -n $pattern )
+			l=$(cat "$f" | grep -n $pattern | tr ":" " " | awk '// { print $1 }')
 			if [ "$r" != "" ]; then 			
+				red=`tput setaf 1`
+				green=`tput setaf 2`
+				reset=`tput sgr0`
+				echo -n "${red} -----   ${green} vi +$l " | tr "\n" " "
+				echo "$f ${reset}" 
+				echo ">>>$r<<<"
+				# echo -n "${red} -----   ${green} vi +$l $f ${reset}" | tr "\n" " "
 				
-				for p in "$r"; do
-					echo "p:$p"
-					line=$(echo "$p" | tr ":" " "|awk '// { print $1 }')
-					echo "$p" | tr ":" " "|awk '// { print $1 }' 
-					echo "----- vi +$line $f"  
-					#echo "$r"
 					
-				done
-				#if [ "$RES" == "" ]; then RES=" "; fi
+				# 	for p in "$r"; do
+				# 		echo "p:$p"
+				# 		line=$(echo "$p" | tr ":" " "|awk '// { print $1 }')
+				# 		echo "$p" | tr ":" " "|awk '// { print $1 }' 
+				# 		#echo "$r"
+						
+				# 	done
+				# 	#if [ "$RES" == "" ]; then RES=" "; fi
+				# fi
 				RES+=' '$f
-			fi
+			  fi
+
 			#if [ "$RES" != "" ]; then return $RES; fi
 		
 
