@@ -127,24 +127,60 @@ grepsearcher()
 			#echo $f is a file
 			#pwd
 			r=$(cat "$f" | grep -n $pattern )
-			l=$(cat "$f" | grep -n $pattern | tr ":" " " | awk '// { print $1 }')
+			lines=$(cat "$f" | grep -n $pattern | tr ":" " " | awk '// { print $1 }')
+			readarray -t larr <<<"$lines"
+			readarray -t y <<<"$r"
+
 			if [ "$r" != "" ]; then 			
-				red=`tput setaf 1`
-				green=`tput setaf 2`
-				reset=`tput sgr0`
-				echo -n "${red} -----   ${green} vi +$l " | tr "\n" " "
-				echo "$f ${reset}" 
-				echo ">>>$r<<<"
 				# echo -n "${red} -----   ${green} vi +$l $f ${reset}" | tr "\n" " "
-				
+					headlines="-----" 
+				cla=0
+				for la in "${larr[@]}"; do
+					#echo  "$f ${reset}" 
+					red=`tput setaf 1`
+					green=`tput setaf 2`
+					reset=`tput sgr0`
+					pl=4
+					lapadded=`printf %0${pl}d $la`
+					clen=${#la}
+					clenm=$(expr $pl - $clen)
+					#echo $clenm
+					lapspaced=$la`printf 'p%.0s' 1 ${clenm}`
+					lapspaced=$la`printf ' %.0s' $(seq 1 $clenm)`
+					echo -n $lapadded	
+					echo "${red} $headlines ${green} vi +$lapspaced $f${reset}" | tr "$rpl" " " | tr "$rpl2" " "
+
+
+					#
+					cla=$(expr $cla + 1)
+				done
+
+				cl="0"
+				for l in $lines; do
+					#echo $cl
+					red=`tput setaf 1`
+					green=`tput setaf 2`
+					reset=`tput sgr0`
+					echocmd="echo "
+					echocmd2="echo "
+					rpl=" "
+					rpl2=" "
+					#if [ "$cl" != "0" ]; then echocmd2="echo "; headlines=" ; ";rpl="\n" ;rpl2="\r";fi
+					# $echocmd "${red} $headlines ${green} vi +$l " | tr "$rpl" " " | tr "$rpl2" " "
+					# $echocmd2  "$f ${reset}" | tr "$rpl" " " | tr "$rpl2" " "
 					
-				# 	for p in "$r"; do
-				# 		echo "p:$p"
-				# 		line=$(echo "$p" | tr ":" " "|awk '// { print $1 }')
-				# 		echo "$p" | tr ":" " "|awk '// { print $1 }' 
-				# 		#echo "$r"
-						
-				# 	done
+					
+					#echo -n "${red} $headlines ${green} vi +$l " | tr "$rpl" " " | tr "$rpl2" " "
+					#echo  "$f ${reset}" | tr "$rpl" " " | tr "$rpl2" " "
+					
+					#echo "------hl:$headlines ########echocmd1:$echocmd, echocmd2:$echocmd2##"
+					#echo "-----l:$l----------------"
+					#echo "-----r:$r----------------"
+					#echo '>>>'$''$r'<<<'
+					cl=$(expr $cl + 1)
+				
+				done
+				#echo $'\n'"Y:$y"
 				# 	#if [ "$RES" == "" ]; then RES=" "; fi
 				# fi
 				RES+=' '$f
