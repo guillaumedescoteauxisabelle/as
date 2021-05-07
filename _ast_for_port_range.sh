@@ -1,4 +1,5 @@
 #!/bin/bash
+sleep 1
 
 f=$1
 fnb=${f%.*}
@@ -6,7 +7,7 @@ startport=$2
 endport=$3
 cdir=$(pwd)
 
-label=pierre_to_jg_pikwill-v03-201216_ALL_LR2
+label=PT_to_jg_compos51_56
 labelprefix=PT__
 label=$labelprefix'__'$fnb
 lpath=Downloads__2101/7ART806
@@ -38,6 +39,8 @@ cp -f $f $tctargetpath
 # Make the sheet
 (cd $tdir; gis-csm -d --label --verbose) &
 sleep 2
+. /a/bin/gallery_html_maker.sh $tdir 'gal_'$tdir
+
 echo "See in $tdir"
 # make a little HTML presenter
 idx=index.html
