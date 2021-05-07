@@ -1,15 +1,15 @@
 #!/bin/bash
 
 #@STCGoal 
-#source _env.sh
 
-if [ "$1" == "" ]  ; then
-        echo "Usage $0 <> "
-          
-        "
-        exit
+if [ -e $binroot/__fn.sh ]; then source $binroot/__fn.sh ; fi
 
-fi
+envif
+exitifnoval "Usage $0 <> 
+
+        " $1
+
+
 
 
 
