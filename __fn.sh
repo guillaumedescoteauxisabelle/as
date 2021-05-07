@@ -120,27 +120,33 @@ grepsearcher()
 	pattern=$1
 
 	if [ -d "${f}" ] ; then
-		d "$f is a directory";
+		d "$f is a directory"
 	else
 		if [ -f "${f}" ]; then
 
 			#echo $f is a file
 			#pwd
 			r=$(cat "$f" | grep -n $pattern)
+			echo "---$r---"
 			if [ "$r" != "" ]; then 			
-				for p in $r ; do
+				
+				for p in "$r"; do
+					echo "p:$p"
 					line=$(echo "$p" | tr ":" " "|awk '// { print $1 }')
-					echo "-----vi +$line $f"  
-					echo "$r"
+					echo "$p" | tr ":" " "|awk '// { print $1 }' 
+					echo "----- vi +$line $f"  
+					#echo "$r"
 					
 				done
+				#if [ "$RES" == "" ]; then RES=" "; fi
 				RES+=' '$f
 			fi
-			return $RES
+			#if [ "$RES" != "" ]; then return $RES; fi
+		
 
 				
-		# else
-		# 	echo "${f} is not valid";
+		 else
+			echo "${f} is not valid";
 		# 	exit 1
 		fi
 	fi
