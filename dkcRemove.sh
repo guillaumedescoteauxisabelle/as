@@ -2,20 +2,41 @@
 
 #@STCGoal 
 
-if [ -e $binroot/__fn.sh ]; then source $binroot/__fn.sh ; fi
+if [ -e $binroot/__fn.sh ]; then 
+        source $binroot/__fn.sh $@
+fi
 
-envif
-exitifnoval "Usage $0 <container name> 
-	Stop and remove a container
-        " $1
+envif $@
 
-#
+DEBUG=0
+lookquiet $@
+startapp "Docker Utilities - Container remover" \
+        "Guillaume Descoteaux-Isabelle" \
+        2021 \
+        " 
+Usage dkcrm <container name> 
+	Stop and remove a container" \
+        $2 #--quiet watch 
 
-echo "Stopping and deleting $1"
-docker stop $1 && docker rm $1
+exitifnoval "$appusage" $1
 
 
+dowork $2 "Stopping and deleting $1" 
 
 
+if [ "$QUIET" == "1" ]; then
+docker stop -t 1 $1  > /dev/null 2>&1 && \
+        docker rm $1   > /dev/null 2>&1 && \
+        donework "SUCCESS" "$2" "$3" && exit 0 || \
+        einq "FAILED" $2 && exit 1
+else
+docker stop -t 1 $1    && \
+        docker rm $1    && \
+        donework "SUCCESS" "$2" "$3" && exit 0 || \
+        einq "FAILED" $2 && exit 1
+fi
+
+#echo $QUIET
+exit
 
 
