@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+#complete -W "$(lpd)" dkcrm
+_dkcrm_completions()
+{
+	dockernames=$(cd $rwroot;./_adm__stopRemove_Containers__210502.sh --list | tr "\n" " " )
+	COMPREPLY=($(compgen -W "$dockernames" "${COMP_WORDS[1]}"))
+  #echo " "
+}
+
+complete -F _dkcrm_completions dkcrm
+
