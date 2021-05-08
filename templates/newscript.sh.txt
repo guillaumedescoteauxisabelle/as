@@ -3,12 +3,12 @@
 #@STCGoal What is the final result for this
 #@STCIssue What is it transcending ? What is reality, the starting point.
 
+#Loading functions
 if [ -e $binroot/__fn.sh ]; then
 	        source $binroot/__fn.sh $@
 fi
 
-envif $@
-
+###########DEbug
 DEBUG=1
 d "Debug is Active"
 
@@ -28,13 +28,11 @@ startapp "XYZ Utilities - " \
 	 "Guillaume Descoteaux-Isabelle" \
 	  2021 \
 	  "
-####
 Usage $0 <arg1> <arg2> [argOptionel]
         MORE"
 #@TODO set usage  ABOVE
 ################################
 
-exitifnoval "$appusage" $LASTREQUIREDARG 
 
 
 dowork "MSG_WHEN_WE_GO"
