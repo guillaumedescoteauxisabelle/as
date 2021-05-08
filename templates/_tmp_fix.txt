@@ -1,0 +1,14 @@
+startapp "XYZ Utilities - " \
+                "Guillaume Descoteaux-Isabelle" \
+                2021 \
+                                "
+
+envif
+exitifnoval "Usage $0 <>
+
+" $1
+
+####
+Usage dkcrm <arg1> <arg2> [argOptionel]
+        MORE" \
+                        $2 #--quiet watch
