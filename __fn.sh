@@ -18,13 +18,11 @@ fnusage() {
 	
 	fi
 }
-d() {
-	if [ "$DEBUG" == "1" ];then 
-		echo "$1"
-	fi
-}
+
 envif() {
-	if [ -e "_env.sh" ];then source _env.sh; fi
+	if [ -e "_env.sh" ];then 
+	source _env.sh $@
+	fi
 }
 lookquiet() {
 
@@ -52,6 +50,12 @@ lookquiet() {
 	fi
 	return $QUIET
 }
+
+d() {
+	if [ "$DEBUG" == "1" ];then 
+		echo "$1"
+	fi
+}
 echoifnoval() {
 	d "1:$1,2:$2"
 	if [ "$2" == "" ]; then
@@ -63,24 +67,29 @@ echoifnoval() {
 	fi
 	return $RES
 }
+
 echoifnotquiet() {
-	lookquiet "$@"
+	# lookquiet "$@"
 
 	if  [ "$QUIET" == "0" ]  ; then 
-		echoifnoval "$1" "$2" 
+		echoifnoval "$1" "DOIT" 
 	fi
 }
+
 einq() {
-	echoifnotquiet  "$1" "$2" 
+	echoifnotquiet  "$1" "DOIT" 
+}
+q() {
+	echoifnotquiet  "$1" "DOIT" 
 }
 
 dowork() {	
-	echoifnotquiet "$2" "$1"	
+	echoifnotquiet  "$1" "DOIT" 
 }
 
 donework() {	
-	echoifnotquiet "$2" "$1"
-	exit $3
+	echoifnotquiet "$1" "DOIT"
+	exit $2
 }
 exitifnoval(){
 	d "entering exitifnoval(){ $1 $2"
