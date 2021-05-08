@@ -1,4 +1,14 @@
+#!/bin/bash 
 
-dkcrm.autocomplete
-gia.autocomplete
-load-all.sh
+
+cdir=$(pwd)
+cd $binroot/etc/autocompletion
+
+for f in *.autocomplete 
+do
+	. $f
+done
+
+
+
+cd $cdir
