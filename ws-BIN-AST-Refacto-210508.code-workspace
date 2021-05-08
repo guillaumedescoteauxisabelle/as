@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "../src/gis-make-contact-sheet/gis-csm"
+		},
+		{
+			"path": "../src/x__etch-a-sketch__210224/gia-ast"
+		},
+		{
+			"path": "../src/x__etch-a-sketch__210224/gia-ast-util/gia-lib-encoding-base64"
+		},
+		{
+			"path": "../src/x__etch-a-sketch__210224/gia-ast-util/gia-ast-util"
+		},
+		{
+			"path": "../../home/jgi/Dropbox/Downloads__2101/7ART806/samples-vue-des-artistes-210606"
+		},
+		{
+			"path": "../../home/jgi/ETCH"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {}
+}
