@@ -91,29 +91,41 @@ donework() {
 	echoifnotquiet "$1" "DOIT"
 	exit $2
 }
+
 exitifnoval(){
 	d "entering exitifnoval(){ $1 $2"
-	echoifnoval "$1" "$2"
-	d "--$RES--"
-	if [ "$RES" == "1" ] ; then 
-		echo $3
-		exit $4
+	# echoifnoval "$1" "$2"
+	# d "--$RES--"
+	if [ "$2" == "" ] ; then 
+		echo  "$1"
+		exit 
 	else
 		d RES was not 1
 	fi
 }
 
 
+setappheader() {
+	export appheader="------------------------------------------
+-- $appname -
+-- by $appauthor, $appyear
+-----------------------------------------"
+}
+showusageexitifnoval() {
+	#echo "$appheader"
+	#fulltext=$appheader$appusage
+	echoifnoval "$appheader" $LASTREQUIREDARG
+	exitifnoval "$appusage" $LASTREQUIREDARG
+}
 startapp() {
 	export appname="$1"
 	export appauthor="$2"
 	export appyear="$3"
 	export appusage="$4"
-	echoifnotquiet "------------------------------------------
--- $appname -
--- by $appauthor, $appyear
------------------------------------------" $5
-
+	setappheader
+	showusageexitifnoval
+	echoifnotquiet $appheader $5
+	 
 }
 
 
@@ -133,13 +145,13 @@ grepsearcher()
 	else
 		if [ -f "${f}" ]; then #echo $f is a file
 
-			
+
 			r=$(cat "$f" | grep -n "$pattern" )
 			lines=$(cat "$f" | grep -n "$pattern" | tr ":" " " | awk '// { print $1 }') # Get the line number of the grepped
 			readarray -t larr <<<"$lines" # Transform variable into array
 			readarray -t y <<<"$r"
 
-			if [ "$r" != "" ]; then 			
+			if [ "$r" != "" ]; then 
 				# echo -n "${red} -----   ${green} vi +$l $f ${reset}" | tr "\n" " "
 				headlines="-----" 
 				headlines=">" 
