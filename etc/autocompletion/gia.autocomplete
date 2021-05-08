@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+#complete -W "$(lpd)" dkcrm
+_giaast_completions()
+{
+	#todo get currently running containers on the $asthostname
+	astcontainers=$(curl http://$asthostname:$infoport/running --output list.txt && cat list .txt)
+	COMPREPLY=($(compgen -W "$astcontainers" "${COMP_WORDS[1]}"))
+  #echo " "
+}
+return
+echo tst
+complete -F _giaast_completions gia-ast
+
+

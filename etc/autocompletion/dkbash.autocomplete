@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
+#@STCGoal Autocomplete the Docker Container Execution of Bash for active containers
+
 #complete -W "$(lpd)" dkcrm
-_dkcrm_completions()
+_dkbash_completions()
 {
 	dockernames=$(cd $rwroot;./_adm__stopRemove_Containers__210502.sh --list | tr "\n" " " )
 	COMPREPLY=($(compgen -W "$dockernames" "${COMP_WORDS[1]}"))
   #echo " "
 }
 
-complete -F _dkcrm_completions dkcrm
+complete -F _dkbash_completions dkbash
 
