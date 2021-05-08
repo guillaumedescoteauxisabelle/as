@@ -1,5 +1,17 @@
 #!/bin/bash
 sleep 1
+#@a PARAM TO UPDATE IN CONTEXT and integrate in arguments or in environment variables.
+# Dropbox related path to $HOMEDIR
+lpath=Downloads__2101/7ART806
+#Label and prefix to created folders and files
+label=PT_to_jg_compos51_56
+labelprefix=PT__
+#Subdir
+xdir=samples-vue-des-artistes-210606
+echo "
+#@STCGoal One file is stylized with each port within range of specified port and 
+USAGE: $0 <file> <startport> <endport>
+";
 
 f=$1
 fnb=${f%.*}
@@ -7,12 +19,9 @@ startport=$2
 endport=$3
 cdir=$(pwd)
 
-label=PT_to_jg_compos51_56
-labelprefix=PT__
 label=$labelprefix'__'$fnb
-lpath=Downloads__2101/7ART806
-odir=$HOME/Dropbox/$lpath
-xdir=samples-vue-des-artistes-210606
+dropboxlocalpath=$HOME/Dropbox
+odir=$dropboxlocalpath/$lpath
 rdir=$odir/$xdir
 fp='s_'$label
 tdir=$rdir/$fp
