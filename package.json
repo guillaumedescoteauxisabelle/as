@@ -1,0 +1,29 @@
+{
+  "name": "giabin",
+  "version": "0.1.0",
+  "description": "Bin script of Guillaume's M.A. AI",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guillaumedescoteauxisabelle/as.git"
+  },
+  "keywords": [
+    "gia",
+    "script"
+  ],
+  "author": "Guillaume Descoteaux-Isabelle",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/guillaumedescoteauxisabelle/as/issues"
+  },
+  "homepage": "https://github.com/guillaumedescoteauxisabelle/as#readme",
+  "dependencies": {
+    "tlid": "^1.0.9"
+  }
+}
