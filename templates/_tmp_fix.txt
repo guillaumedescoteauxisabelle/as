@@ -1,14 +1,15 @@
 startapp "XYZ Utilities - " \
                 "Guillaume Descoteaux-Isabelle" \
                 2021 \
-                                "
-
-envif
-exitifnoval "Usage $0 <>
-
-" $1
-
+"
 ####
-Usage dkcrm <arg1> <arg2> [argOptionel]
+Usage $0 <arg1> <arg2> [argOptionel]
         MORE" \
                         $2 #--quiet watch
+
+exitifnoval "$appusage" $1
+
+#@TODO Set the last ARG to the one required so it will exit if its not there
+LASTREQUIREDARG=$1
+
+#
