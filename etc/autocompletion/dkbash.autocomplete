@@ -5,8 +5,9 @@
 #complete -W "$(lpd)" dkcrm
 _dkbash_completions()
 {
-	dockernames=$(cd $rwroot;./_adm__stopRemove_Containers__210502.sh --list | tr "\n" " " )
-	COMPREPLY=($(compgen -W "$dockernames" "${COMP_WORDS[1]}"))
+	#. $binroot/fndkRefreshRunningContainers.sh
+	dkrunningcontainers=$(cd $rwroot;./_adm__stopRemove_Containers__210502.sh --list | tr "\n" " " )
+	COMPREPLY=($(compgen -W "$dkrunningcontainers" "${COMP_WORDS[1]}"))
   #echo " "
 }
 
