@@ -41,10 +41,7 @@ $0 \"__mysuffix\" myprefix\*.jpg
 #@TODO set usage  ABOVE
 ################################
 
-#exitifnoval "$appusage" $LASTREQUIREDARG 
 
-
-#p=$1
 suf=$1
 shift
 dowork "Adding suffixes $suf"
