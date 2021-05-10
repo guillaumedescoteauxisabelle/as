@@ -122,6 +122,7 @@ startapp() {
 	export appauthor="$2"
 	export appyear="$3"
 	export appusage="$4"
+	export LASTREQUIREDARG="$5"
 	setappheader
 	showusageexitifnoval
 	echoifnotquiet $appheader $5
