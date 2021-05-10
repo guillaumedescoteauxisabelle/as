@@ -2,15 +2,20 @@
 
 # this copy to a Host
 
-localdir=$libroot/gia-ds-fpolsonwill_v02_210424
-remotedir=$libroot/gia-ds-fpolsonwill_v02_210424
+localdir=$libroot/results/gia-ds-fpolsonwill_v02_210424
+remotedir='/a/lib/results/gia-ds-fpolsonwill_v02_210424'
 sshcall=jgi@orko
 
-remotecmd='mkdir -p'$remotedir';cd '$remotedir' && echo "We are in" && tar xf - && echo DONE REMOTELY || echo REMOTE FAILED'
+remotecmd='mkdir -p '$remotedir';cd '$remotedir' && echo "We are in" && tar xf - && echo DONE REMOTELY || echo REMOTE FAILED'
+
 echo $remotecmd
-exit
+#ssh $sshcall 'echo $@' $remotedir andmore
+
+
+#exit
+
 cd $localdir &&\
-	tar cf - |\
+	tar cf - .|\
 	ssh $sshcall "$remotecmd" &&\
 	echo "Entirely DONE" ||\
 	echo "Something when wrong in the process"
