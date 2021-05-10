@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/guillaumedescoteauxisabelle/as#readme",
   "dependencies": {
-    "tlid": "^1.0.9"
+    "tlid": "^1.0.9",
+    "yargs": "^17.0.1"
   }
 }
