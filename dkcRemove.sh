@@ -16,12 +16,12 @@ startapp "Docker Utilities - Container remover" \
         " 
 Usage dkcrm <container name> 
 	Stop and remove a container" \
-        $2 #--quiet watch 
+        $1 #--quiet watch 
 
 exitifnoval "$appusage" $1
 
 
-dowork $2 "Stopping and deleting $1" 
+dowork $1 "Stopping and deleting $1" 
 
 
 if [ "$QUIET" == "1" ]; then
