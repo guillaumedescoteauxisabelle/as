@@ -2,8 +2,8 @@
 
 # this copy to a Host
 
-localdir=$libroot/results/gia-ds-fpolsonwill_v02_210424
-remotedir='/a/lib/results/gia-ds-fpolsonwill_v02_210424'
+localdir=$1
+remotedir=$2
 sshcall=jgi@orko
 
 remotecmd='mkdir -p '$remotedir';cd '$remotedir' && echo "We are in" && tar xf - && echo DONE REMOTELY || echo REMOTE FAILED'
