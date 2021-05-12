@@ -1,5 +1,8 @@
 # AS/bin
 
+[See Inventory in STC.md](STC.md#Inventory)
+
+
 * This is the /a/bin dir I am using on the prototyping/dev AI at Nad (2019-20xx)
 * Git duplicate (branching an history)
 * File Crypting

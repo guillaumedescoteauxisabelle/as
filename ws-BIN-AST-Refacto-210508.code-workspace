@@ -20,6 +20,9 @@
 		},
 		{
 			"path": "."
+		},
+		{
+			"path": "../src/gix-adaptive-style-transfer"
 		}
 	],
 	"settings": {}

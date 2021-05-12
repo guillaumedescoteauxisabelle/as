@@ -25,11 +25,11 @@ dowork $1 "Stopping  $1"
 
 
 if [ "$QUIET" == "1" ]; then
-docker stop -t 1 $1  > /dev/null 2>&1 && \ 
+docker stop -t 1 $1  > /dev/null 2>&1 && \
         donework "SUCCESS" "$2" "$3" && exit 0 || \
         einq "FAILED" $2 && exit 1
 else
-docker stop -t 1 $1    && \ 
+docker stop -t 1 $1    && \
         donework "SUCCESS" "$2" "$3" && exit 0 || \
         einq "FAILED" $2 && exit 1
 fi
