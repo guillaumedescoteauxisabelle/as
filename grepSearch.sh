@@ -17,9 +17,9 @@ startapp "Search in folder a pattern and learn where it is" \
         " 
 Usage greps <pattern>  [fileSuffix] [filePrefix]
         Stop and remove a container" \
-        $3 #--quiet watch 
+        $1 #--quiet watch 
 
-exitifnoval "$appusage" $1
+#exitifnoval "$appusage" $1
 #if [ "$1" == "" ]; then
 	#echo "Usage : greps <Pattern to search in> [<Prefix pattern to search from> <Suffix ...> ]
 	#* greps bash_env .bash sh

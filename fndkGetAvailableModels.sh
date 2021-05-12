@@ -8,7 +8,7 @@ mkdir -p $webdatafolder
 webdatafile=$webdatafolder/dkrunningcontainerports.txt
 
 if [ "$rwroot" != "" ]; then
-	export dkrunningcontainerports=$(cd $rwroot;./_adm__stopRemove_Containers__210502.sh --list --port | grep $cfilter)
+	export dkrunningcontainerports=$(cd $rwroot;./_adm__stopRemove_Containers__210502.sh --list --port | grep $cfilter | sort)
 	#| tr " " "\n"  )
 	echo $dkrunningcontainerports > $webdatafile
 else
