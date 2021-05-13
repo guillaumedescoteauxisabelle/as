@@ -262,15 +262,19 @@ setappheader() {
 showusageexitifnoval() {
 	#echo "$appheader"
 	#fulltext=$appheader$appusage
-	echoifnoval "$appheader" $LASTREQUIREDARG
-	exitifnoval "$appusage" $LASTREQUIREDARG
+	
+	#if [ "$LASTREQUIREDARG" != "NONE" ] ||  [ "$LASTREQUIREDARG" == "--help" ]; then 
+		echoifnoval "$appheader" $LASTREQUIREDARG
+		 exitifnoval "$appusage" $LASTREQUIREDARG
+	#fi
+
 }
 startapp() {
 	export appname="$1"
 	export appauthor="$2"
 	export appyear="$3"
 	export appusage="$4"
-	export LASTREQUIREDARG="$5"
+	export LASTREQUIREDARG="$5" 
 	setappheader
 	showusageexitifnoval
 	echoifnotquiet $appheader $5

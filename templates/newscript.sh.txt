@@ -17,7 +17,9 @@ envif $@
 
 
 #@TODO Set the last ARG to the one required so it will exit if its not there
+## Set to: NONE 	# if no args
 LASTREQUIREDARG=$1
+#LASTREQUIREDARG=NONE
 
 #Looks if we used a quiet mode :  
 lookquiet $@
@@ -29,7 +31,8 @@ startapp "XYZ Utilities - " \
 	  2021 \
 	  "
 Usage $0 <arg1> <arg2> [argOptionel]
-        MORE"
+        MORE" \
+	$LASTREQUIREDARG
 #@TODO set usage  ABOVE
 ################################
 
