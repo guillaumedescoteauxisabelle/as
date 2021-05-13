@@ -40,7 +40,7 @@ stripof () {
 	local r="$src"
 	for a in "${arr[@]}"; do
 		#echo "Testing $a  --> in: $r"
-		if [ "$a" != "$src" ] ;then # we do process
+		if [ "$a" != "$src" ] && [ "$a" != "" ] ;then # we do process
 			r=$(sed -e 's/'"$a"'//'<<<$r)
 		fi
 	done
