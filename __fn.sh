@@ -32,30 +32,55 @@ envif() {
 #@STCGoal Generate a namespace to use from a given directory composed of multiple specified levels
 # make_dirns /c/tmp/mydir 2 = tmp__mydir
 # make_dirns /c/tmp/mydir 2 "--" = tmp--mydir
-# make_dirns /c/tmp/mydir 3 "--" = c-tmp--mydir
-function make_dirns (){
+# make_dirns /c/tmp/mydir 3 f "--" = c-tmp--mydir
+# make_dirns /c/tmp/mydir 3 r "--" = mydir-tmp--c
+function mkdirns () {
 	local topdir="$1"
-	local levelup1="1"
+	local levelup1=2 #default
+	 #clean negative val
 	local separator="$3"
+
+	local order=$(
+		if [ "$2" != "" ] && [ "$2" -lt "0" ];then echo "r";else echo "f";fi 
+		)
+
+	#echo "levelup1=$levelup1"
+	#support more levels with a second optional args
+	if [ "$2" != "" ]; then 	levelup1="$2"; fi #@state we have a number of level up to do
+	
+	#echo "order=$order"
+	#echo "BFORE:levelup1=$levelup1"
+
+	if [ "$order" != "f" ]; 
+					then 
+					levelup1=$(echo $levelup1 | cut -c 2)
+					#echo "ORder is NOT f"
+					#else echo "ORder is f"
+					fi
+	#echo "AFTER:levelup1=$levelup1"
 
 	#setup default or specified separator
 	if [ "$3" == "" ]; then separator="$GIADEFAULTFILENAMESEPARATOR"; fi #@a we have a default separator
 	
 
-	#support more levels with a second optional args
-	if [ "$2" != "" ]; then 	levelup1="$2"; fi #@state we have a number of level up to do
 
 	local cdir=$(pwd)
 	
 	export outdirns=$(basename $topdir)
-	
 	if [ "$levelup1" != "0" ]; then # so we can ask for just one level (ya know myvar=$(basename $blabla) is not so fun)
 		cd $topdir  
 		for i in $(seq 0 $levelup1); do
 			if [ "$i" != "$levelup1" ]; then
 				cd ..
 				bn=$(basename $(pwd))
-				outtmp="$bn$separator$outdirns"
+				#@a Which order ?
+				outtmp=""
+				if [ "$order" == "f" ]; 
+					then 
+					outtmp="$bn$separator$outdirns"				
+					else 
+					outtmp="$outdirns$separator$bn"
+					fi
 				outdirns="$outtmp"
 			fi
 		done
