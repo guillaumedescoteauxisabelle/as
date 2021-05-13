@@ -1,0 +1,6 @@
+stripof gia-ds-fpolsonwill_v02_210424__fp_s02-v02___loved  "v02" "gia-ds" "s02"
+
+
+. $binroot/__fn.sh && mkdirnstrippedof "/c/Users/jeang/Dropbox/lib/results/gia-ds-fpolsonwill_v02_210424/fp_s02-v02/_loved" "2" "gia-ds" && echo "STRIPPEDOF=$STRIPPEDOF && GIAOUTDIRNSSTRIPPED=$GIAOUTDIRNSSTRIPPED"
+
+
