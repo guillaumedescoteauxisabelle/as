@@ -29,6 +29,67 @@ envif() {
 	fi
 }
 
+
+#start echo colored
+ecn () {
+	local color="$1"
+	if [ "$2" == "" ];then echo "Must specify a color and content" ; return ; fi
+	shift
+	local arr=("$@")
+	local red=`tput setaf 1` #red var for terminal color change
+	local green=`tput setaf 2` #green var for terminal color change
+	local blue=`tput setaf 3` #green var for terminal color change
+	local reset=`tput sgr0` #reset var for terminal color change
+	local dcolor=reset
+	case $color in
+		red)
+		dcolor=`tput setaf 1` #red
+		;;
+		r)
+		dcolor=`tput setaf 1` #red
+		;;
+		green)
+		dcolor=`tput setaf 2`
+		;;
+		g)
+		dcolor=`tput setaf 2`
+		;;
+		yellow)
+		dcolor=`tput setaf 3`
+		;;
+		y)
+		dcolor=`tput setaf 3`
+		;;
+		blue)
+		dcolor=`tput setaf 4`
+		;;
+		b)
+		dcolor=`tput setaf 4`
+		;;
+		magenta)
+		dcolor=`tput setaf 5` # Magenta
+		;;
+		m)
+		dcolor=`tput setaf 5` # Magenta
+		;;
+		cyan)
+		dcolor=`tput setaf 6`
+		;;
+		c)
+		dcolor=`tput setaf 6`
+		;;
+		*)
+		dcolor=`tput sgr0` #reset 
+		;;
+	esac
+
+	echo -n "${dcolor} ${arr[@]} ${reset}"
+
+}
+ec () {
+	ecn "$@" $'\n'
+	 
+}
 #Strip an input of all other args input
 stripof () {
 	#echo "Stripping"
