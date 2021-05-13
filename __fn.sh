@@ -154,7 +154,7 @@ mkdirnstrippedof () {
 	#&> /dev/null
 	#echo "-----------------"
 	#echo "$GIAOUTDIRNS"
-	echo	stripof "$GIAOUTDIRNS" $stripofcharlist
+	#echo	stripof "$GIAOUTDIRNS" $stripofcharlist
 	stripof "$GIAOUTDIRNS" "$stripofcharlist"
 	# echo "v=$v"
 	unset GIAOUTDIRNSSTRIPPED

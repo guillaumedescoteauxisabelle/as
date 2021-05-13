@@ -2,8 +2,8 @@
 
 #@STCGoal 
 
-if [ -e $binroot/__fn.sh ]; then 
-        source $binroot/__fn.sh $@
+if [ -e "$binroot/__fn.sh" ]; then 
+        . $binroot/__fn.sh $@
 fi
 
 envif $@
