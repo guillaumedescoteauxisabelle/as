@@ -32,8 +32,8 @@ envif() {
 #Strip an input of all other args input
 stripof () {
 	#echo "Stripping"
-	arr=("$@")
-	src="${arr[0]}"
+	local arr=("$@")
+	local src="${arr[0]}"
 	#echo "src=$src"
 	#shift
 	#for c in "${arr[@]}"; do echo "$c" ;done
@@ -42,7 +42,8 @@ stripof () {
 	for a in "${arr[@]}"; do
 		#echo "Testing $a  --> in: $r"
 		if [ "$a" != "$src" ] && [ "$a" != "" ] && [ "$r" != "" ] ;then # we do process
-			r=$(sed -e 's/'"$a"'//'<<<$r)
+			r=$(sed -e 's/'"$a"'//g'<<<$r) || echo " " &> /dev/null
+			#r=${r/a//}
 		fi
 	done
 	echo "$r"
@@ -89,7 +90,7 @@ function mkdirns () {
 
 
 	local cdir=$(pwd)
-	
+	unset outdirns
 	export outdirns=$(basename $topdir)
 	if [ "$levelup1" != "0" ]; then # so we can ask for just one level (ya know myvar=$(basename $blabla) is not so fun)
 		cd $topdir  || (echo "cd topdir($topdir) FAILED" && return -1)
@@ -112,8 +113,9 @@ function mkdirns () {
 	cd $cdir &> /dev/null #@state Back where we are
 	#@a Exporting
 	unset GIAOUTDIRNS
-	outdirns=$(sed -e 's/\//_/' <<<$outdirns | sed -e 's/"/_/')
+	outdirns=$(sed -e 's/\//_/g' <<<$outdirns | sed -e 's/"/_/g') || #echo " " &> /dev/null
 	# &> /dev/null)
+	unset GIAOUTDIRNS
 	export GIAOUTDIRNS="$outdirns"
 	echo "$GIAOUTDIRNS"
 	unset outdirns
@@ -121,26 +123,45 @@ function mkdirns () {
 
 mkdirnstrippedof () {
 	
-	arr=("$@")
-	# echo "${arr[@]}"
-	# echo "0:${arr[0]}"
-	# echo "1:${arr[1]}"
-	# echo "2:${arr[2]}"
+	local arr=("$@")
+	#  echo "${arr[@]}"
+	#  echo "0:${arr[0]}"
+	#  echo "1:${arr[1]}"
+	#  echo "2:${arr[2]}"
 
-	src="${arr[0]}"
+	local src="${arr[0]}"
 	#echo "src=$src"
 	#shift
-	levelup1="${arr[1]}"
-	echo "src=$src"
-	echo "levelup1=$levelup1"
+	local levelup1="${arr[1]}"
+	# echo "src=$src"
+	# echo "levelup1=$levelup1"
 	#shift
 	#echo mkdirns "$src" $levelup1
-	echo mkdirns "$src" $levelup1
-	echo stripof "$v" "${arr[@]}"
+	local stripofcharlist=""
+	local max=${#arr[@]}
+	max=$(expr $max - 1)
+	for a in $(seq 2 $max); do 
+		#echo "$a:${arr[a]},"
+		stripofcharlist+="\"${arr[a]}\" "
+		done
+	#echo "stripofcharlist+=$stripofcharlist"
+	#shift 1
+	#for a in "${arr[@]}"; do echo "a:$a,"; done
+
+
+
+	mkdirns "$src" $levelup1 
+	#&> /dev/null
+	#echo "-----------------"
+	#echo "$GIAOUTDIRNS"
+	echo	stripof "$GIAOUTDIRNS" $stripofcharlist
+	stripof "$GIAOUTDIRNS" "$stripofcharlist"
 	# echo "v=$v"
-	# echo "t=$t"
-	return 1
+	unset GIAOUTDIRNSSTRIPPED
+	echo "$t"
 	export GIAOUTDIRNSSTRIPPED="$t"
+#	export GIAOUTDIRNSSTRIPPED="$STRIPPEDOF"
+	return 1
 
 }
 
