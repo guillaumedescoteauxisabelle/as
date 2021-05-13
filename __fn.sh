@@ -157,8 +157,7 @@ mkdirnstrippedof () {
 
 
 
-	mkdirns "$src" $levelup1 
-	#&> /dev/null
+	mkdirns "$src" $levelup1 &> /dev/null
 	#echo "-----------------"
 	#echo "$GIAOUTDIRNS"
 	#echo	stripof "$GIAOUTDIRNS" $stripofcharlist
