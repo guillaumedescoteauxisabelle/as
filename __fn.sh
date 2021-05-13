@@ -29,6 +29,24 @@ envif() {
 	fi
 }
 
+#Strip an input of all other args input
+stripof () {
+	arr=("$@")
+	src="${arr[0]}"
+	#echo "src=$src"
+	shift
+	#for c in "${arr[@]}"; do echo "$c" ;done
+	#echo "-------"
+	local r="$src"
+	for a in "${arr[@]}"; do
+		#echo "Testing $a  --> in: $r"
+		if [ "$a" != "$src" ] ;then # we do process
+			r=$(sed -e 's/'"$a"'//'<<<$r)
+		fi
+	done
+	echo "$r"
+
+}
 #@STCGoal Generate a namespace to use from a given directory composed of multiple specified levels
 # make_dirns /c/tmp/mydir 2 = tmp__mydir
 # make_dirns /c/tmp/mydir 2 "--" = tmp--mydir
