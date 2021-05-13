@@ -3,6 +3,10 @@
 # done
 QUIET=""
 DEBUG=""
+if [ -e "$binroot/_env.sh" ]; then 
+        . $binroot/_env.sh $@
+fi
+
 fnusage() {
 	echo "GIASH Function Usage 
 	by Guillaume Descoteaux-Isabelle, 2020-2021
@@ -24,6 +28,48 @@ envif() {
 	source _env.sh $@
 	fi
 }
+
+#@STCGoal Generate a namespace to use from a given directory composed of multiple specified levels
+# make_dirns /c/tmp/mydir 2 = tmp__mydir
+# make_dirns /c/tmp/mydir 2 "--" = tmp--mydir
+# make_dirns /c/tmp/mydir 3 "--" = c-tmp--mydir
+function make_dirns (){
+	local topdir="$1"
+	local levelup1="1"
+	local separator="$3"
+
+	#setup default or specified separator
+	if [ "$3" == "" ]; then separator="$GIADEFAULTFILENAMESEPARATOR"; fi #@a we have a default separator
+	
+
+	#support more levels with a second optional args
+	if [ "$2" != "" ]; then 	levelup1="$2"; fi #@state we have a number of level up to do
+
+	local cdir=$(pwd)
+	
+	export outdirns=$(basename $topdir)
+	
+	if [ "$levelup1" != "0" ]; then # so we can ask for just one level (ya know myvar=$(basename $blabla) is not so fun)
+		cd $topdir  
+		for i in $(seq 0 $levelup1); do
+			if [ "$i" != "$levelup1" ]; then
+				cd ..
+				bn=$(basename $(pwd))
+				outtmp="$bn$separator$outdirns"
+				outdirns="$outtmp"
+			fi
+		done
+	fi
+	cd $cdir &> /dev/null #@state Back where we are
+	#@a Exporting
+	unset GIAOUTDIRNS
+	outdirns=$(sed -e 's/\//_/' <<< $outdirns)
+	# &> /dev/null)
+	export GIAOUTDIRNS=$outdirns
+	echo "$GIAOUTDIRNS"
+	unset outdirns
+}
+
 lookquiet() {
 
 	if [ "$QUIET" == "" ]; then
