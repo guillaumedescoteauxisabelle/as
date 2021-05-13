@@ -19,7 +19,7 @@ make_album()
       --small-size 380 \
       --large-size 1536 \
       --photo-quality 97 \
-      --theme flow \
+      --theme cards \
       --title "$title" \
       --footer "$footer" \
       --home-album-name  "$toplevelsitename" \

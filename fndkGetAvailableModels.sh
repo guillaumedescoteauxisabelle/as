@@ -11,6 +11,7 @@ if [ "$rwroot" != "" ]; then
 	export dkrunningcontainerports=$(cd $rwroot;./_adm__stopRemove_Containers__210502.sh --list --port | grep $cfilter | sort)
 	#| tr " " "\n"  )
 	echo $dkrunningcontainerports > $webdatafile
+	echo $dkrunningcontainerports
 else
 	#dkrunningcontainers
 	export dkrunningcontainers=SOMEISSUES

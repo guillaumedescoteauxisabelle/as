@@ -9,7 +9,7 @@ if [ -e $binroot/__fn.sh ]; then
 fi
 
 ###########DEbug
-DEBUG=1
+DEBUG=0
 d "Debug is Active"
 
 #Loads env if one in current dir (_env.sh)
@@ -17,7 +17,7 @@ envif $@
 
 
 #@TODO Set the last ARG to the one required so it will exit if its not there
-LASTREQUIREDARG=$0
+LASTREQUIREDARG=NONE
 
 #Looks if we used a quiet mode :  
 #lookquiet $@
@@ -29,7 +29,9 @@ startapp "AST Containerization - List Port datasets" \
 	  2021 \
 	  "
 Usage $0 [portCheck]
-        portCheck will look if specified port is available, otherwise it list all of them"
+        portCheck will look if specified port is available, otherwise it list all of them" \
+	$LASTREQUIREDARG
+
 #@TODO set usage  ABOVE
 ################################
 
@@ -39,12 +41,18 @@ dowork "MSG_WHEN_WE_GO"
 
 #Here is what it does codified
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
-local cdir=$(pwd)
+cdir=$(pwd)
+mainpattern="export serverhostport="
+d "Entering $rwroot"
 cd $rwroot
+TAKEN_LIST=$($binroot/grepSearch.sh "$mainpattern" sh | grep "custom-start-docker-ast-"| sed -e 's/custom-start-docker-ast-//g' | sed -e 's/export serverhostport=/ /g' | awk '// { print $8" "$6}' | sort)
 if [ "$1" == "" ]; then
-greps "export serverhostport=" sh | grep custom-start-docker-ast-| sed -e 's/custom-start-docker-ast-//g' | sed -e 's/export serverhostport=/ /g' | awk '// { print $8" "$6}' | sort
+	d "Grepping $mainpattern" 
+	#$binroot/grepSearch.sh "$mainpattern" sh | grep "custom-start-docker-ast-"| sed -e 's/custom-start-docker-ast-//g' | sed -e 's/export serverhostport=/ /g' | awk '// { print $8" "$6}' | sort
+	echo "$TAKEN_LIST"
 else 
 	echo "Looking if $1 port is free..."
+	echo "$TAKEN_LIST" | grep "$1" && echo "$1 Taken" || echo "$1 seems free"
 fi
 cd $cdir
 ##############END CODING HERE and define EXIT CODE somehow
