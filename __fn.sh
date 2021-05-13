@@ -85,7 +85,14 @@ function mkdirns () {
 	#echo "AFTER:levelup1=$levelup1"
 
 	#setup default or specified separator
-	if [ "$3" == "" ]; then separator="$GIADEFAULTFILENAMESEPARATOR"; fi #@a we have a default separator
+	if [ "$3" == "" ]; then 
+		if [ "$GIADEFAULTFILENAMESEPARATOR" == "" ]; then 
+			separator="__"
+		else
+			separator="$GIADEFAULTFILENAMESEPARATOR"
+		fi
+
+	fi #@a we have a default separator
 	
 
 
