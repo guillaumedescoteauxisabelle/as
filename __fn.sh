@@ -35,7 +35,7 @@ envif() {
 # make_dirns /c/tmp/mydir 3 f "--" = c-tmp--mydir
 # make_dirns /c/tmp/mydir 3 r "--" = mydir-tmp--c
 function mkdirns () {
-	local topdir="$1"
+	local topdir="$(pwd $1)"
 	local levelup1=2 #default
 	 #clean negative val
 	local separator="$3"
