@@ -2,41 +2,7 @@
 if [ -e "$binroot/__fn.sh" ]; then 
         . "$binroot/__fn.sh" $@
 fi
-#@STCGoal TODO Revise and move to common_fn
-function make_dirnsMOVEDTOFN (){
-	local topdir="$1"
-	local levelup1="1"
-	local separator="$3"
-	if [ "$3" == "" ]; then separator="$GIADEFAULTFILENAMESEPARATOR"; fi #@a we have a default separator
-	
 
-	#support more levels with a second optional args
-	if [ "$2" != "" ]; then 	levelup1="$2"; fi #@state we have a number of level up to do
-
-	local cdir=$(pwd)
-	
-	export outdirns=$(basename $topdir)
-	#echo $outdirns
-	if [ "$levelup1" != "0" ]; then # so we can ask for just one level (ya know myvar=$(basename $blabla) is not so fun)
-		cd $topdir  
-		for i in $(seq 0 $levelup1); do
-			if [ "$i" != "$levelup1" ]; then
-				cd ..
-				bn=$(basename $(pwd))
-				outtmp="$bn$separator$outdirns"
-				outdirns="$outtmp"
-			fi
-		done
-	fi
-	cd $cdir &> /dev/null #@state Back where we are
-	#@a Exporting
-	unset GIAOUTDIRNS
-	outdirns=$(sed -e 's/\//_/' <<< $outdirns)
-	# &> /dev/null)
-	export GIAOUTDIRNS=$outdirns
-	echo "$GIAOUTDIRNS"
-	unset outdirns
-}
 
 
 v=$(make_dirns "$1" "$2" "$3")
