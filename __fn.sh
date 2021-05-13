@@ -31,7 +31,7 @@ envif() {
 
 #Strip an input of all other args input
 stripof () {
-	echo "Stripping"
+	#echo "Stripping"
 	arr=("$@")
 	src="${arr[0]}"
 	#echo "src=$src"
@@ -46,7 +46,7 @@ stripof () {
 		fi
 	done
 	echo "$r"
-
+	export STRIPPEDOF="$r"
 }
 
 
@@ -92,7 +92,7 @@ function mkdirns () {
 	
 	export outdirns=$(basename $topdir)
 	if [ "$levelup1" != "0" ]; then # so we can ask for just one level (ya know myvar=$(basename $blabla) is not so fun)
-		cd $topdir  || return -1
+		cd $topdir  || (echo "cd topdir($topdir) FAILED" && return -1)
 		for i in $(seq 0 $levelup1); do
 			if [ "$i" != "$levelup1" ]; then
 				cd ..
@@ -114,7 +114,7 @@ function mkdirns () {
 	unset GIAOUTDIRNS
 	outdirns=$(sed -e 's/\//_/' <<<$outdirns | sed -e 's/"/_/')
 	# &> /dev/null)
-	export GIAOUTDIRNS=$outdirns
+	export GIAOUTDIRNS="$outdirns"
 	echo "$GIAOUTDIRNS"
 	unset outdirns
 }
@@ -135,10 +135,10 @@ mkdirnstrippedof () {
 	echo "levelup1=$levelup1"
 	#shift
 	#echo mkdirns "$src" $levelup1
-	v=$(mkdirns "$src" $levelup1)
-	t=$(stripof "$v" "${arr[@]}")
-	echo "v=$v"
-	echo "t=$v"
+	echo mkdirns "$src" $levelup1
+	echo stripof "$v" "${arr[@]}"
+	# echo "v=$v"
+	# echo "t=$t"
 	return 1
 	export GIAOUTDIRNSSTRIPPED="$t"
 
