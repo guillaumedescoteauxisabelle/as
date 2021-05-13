@@ -31,36 +31,42 @@ envif() {
 
 #Strip an input of all other args input
 stripof () {
+	echo "Stripping"
 	arr=("$@")
 	src="${arr[0]}"
 	#echo "src=$src"
-	shift
+	#shift
 	#for c in "${arr[@]}"; do echo "$c" ;done
 	#echo "-------"
 	local r="$src"
 	for a in "${arr[@]}"; do
 		#echo "Testing $a  --> in: $r"
-		if [ "$a" != "$src" ] && [ "$a" != "" ] ;then # we do process
+		if [ "$a" != "$src" ] && [ "$a" != "" ] && [ "$r" != "" ] ;then # we do process
 			r=$(sed -e 's/'"$a"'//'<<<$r)
 		fi
 	done
 	echo "$r"
 
 }
+
+
 #@STCGoal Generate a namespace to use from a given directory composed of multiple specified levels
 # make_dirns /c/tmp/mydir 2 = tmp__mydir
 # make_dirns /c/tmp/mydir 2 "--" = tmp--mydir
 # make_dirns /c/tmp/mydir 3 f "--" = c-tmp--mydir
 # make_dirns /c/tmp/mydir 3 r "--" = mydir-tmp--c
 function mkdirns () {
-	local topdir="$(pwd $1)"
+	local topdir="$1"
+	if [ "$1" == "." ]; then 	topdir="$(pwd $1)" ; fi
+	
 	local levelup1=2 #default
 	 #clean negative val
 	local separator="$3"
-
-	local order=$(
-		if [ "$2" != "" ] && [ "$2" -lt "0" ];then echo "r";else echo "f";fi 
-		)
+	#echo "2:$2, 3:$3" >> $binroot/../tst.txt
+	#if (( "$2" < "0" )) ;
+	local order=$(		
+		if [ "$2" != "" ] && [ "$2" -lt "0" ];then echo "r";else echo "f";fi 	
+			)
 
 	#echo "levelup1=$levelup1"
 	#support more levels with a second optional args
@@ -86,7 +92,7 @@ function mkdirns () {
 	
 	export outdirns=$(basename $topdir)
 	if [ "$levelup1" != "0" ]; then # so we can ask for just one level (ya know myvar=$(basename $blabla) is not so fun)
-		cd $topdir  
+		cd $topdir  || return -1
 		for i in $(seq 0 $levelup1); do
 			if [ "$i" != "$levelup1" ]; then
 				cd ..
@@ -106,11 +112,36 @@ function mkdirns () {
 	cd $cdir &> /dev/null #@state Back where we are
 	#@a Exporting
 	unset GIAOUTDIRNS
-	outdirns=$(sed -e 's/\//_/' <<< $outdirns)
+	outdirns=$(sed -e 's/\//_/' <<<$outdirns | sed -e 's/"/_/')
 	# &> /dev/null)
 	export GIAOUTDIRNS=$outdirns
 	echo "$GIAOUTDIRNS"
 	unset outdirns
+}
+
+mkdirnstrippedof () {
+	
+	arr=("$@")
+	# echo "${arr[@]}"
+	# echo "0:${arr[0]}"
+	# echo "1:${arr[1]}"
+	# echo "2:${arr[2]}"
+
+	src="${arr[0]}"
+	#echo "src=$src"
+	#shift
+	levelup1="${arr[1]}"
+	echo "src=$src"
+	echo "levelup1=$levelup1"
+	#shift
+	#echo mkdirns "$src" $levelup1
+	v=$(mkdirns "$src" $levelup1)
+	t=$(stripof "$v" "${arr[@]}")
+	echo "v=$v"
+	echo "t=$v"
+	return 1
+	export GIAOUTDIRNSSTRIPPED="$t"
+
 }
 
 lookquiet() {
