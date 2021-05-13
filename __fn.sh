@@ -164,9 +164,10 @@ mkdirnstrippedof () {
 	stripof "$GIAOUTDIRNS" "$stripofcharlist"
 	# echo "v=$v"
 	unset GIAOUTDIRNSSTRIPPED
-	echo "$t"
+	#echo "$t"
 	export GIAOUTDIRNSSTRIPPED="$t"
-#	export GIAOUTDIRNSSTRIPPED="$STRIPPEDOF"
+	export GIAOUTDIRNSSTRIPPED="$STRIPPEDOF"
+	echo $GIAOUTDIRNSSTRIPPED
 	return 1
 
 }
