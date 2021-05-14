@@ -1,0 +1,67 @@
+#!/bin/bash
+
+#@STCGoal Pretty Gallery Infrastructurelss
+#@STCIssue Many dependencies required
+
+#Loading functions
+if [ -e $binroot/__fn.sh ]; then
+	        source $binroot/__fn.sh $@
+fi
+
+###########DEbug
+DEBUG=0
+d "Debug is Active"
+
+#Loads env if one in current dir (_env.sh)
+envif $@
+
+
+#@TODO Set the last ARG to the one required so it will exit if its not there
+## Set to: NONE 	# if no args
+LASTREQUIREDARG=$2
+#LASTREQUIREDARG=NONE
+
+#Looks if we used a quiet mode :  
+lookquiet $@
+
+#########################################
+#Displays the application usage and startup info
+startapp "GIA Gallery Maker - Create using Docker" \
+	 "Guillaume Descoteaux-Isabelle" \
+	  2021 \
+	  "
+Usage $0 <INPUTDIR> <OUTPUTDIR> [title] [footer] [toplevelsitename] 
+        " \
+	$LASTREQUIREDARG
+#@TODO set usage  ABOVE
+################################
+
+
+
+dowork "We are creating the gallery"
+
+#Here is what it does codified
+#@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
+containertag=guillaumeai/server:gal
+runscript=/a/bin/gallery_html_maker2.sh
+indir=$1
+
+#inbase=$(basename $indir)
+outdir=$2
+if [ -d "$indir" ] ; then
+	
+	mkdir -p $outdir
+	#outbase=$(basename $outdir)
+	#docker run -it --rm -v $(pwd $outdir):/output $(pwd $indir):/input $(pwd):/work $containertag $runscript /input /output
+	docker run -it --rm -v $(pwd $outdir):/output $(pwd $indir):/input  $containertag $runscript /input /output
+else
+	donework "Input dir not existent" -1
+	exit -1
+fi
+
+##############END CODING HERE and define EXIT CODE somehow
+EXIT_CODE=0 #Define exit code
+MSG_WHEN_DONE="We are done fine"
+########################################
+donework "$MSG_WHEN_DONE" $EXIT_CODE 
+
