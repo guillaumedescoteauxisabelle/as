@@ -53,7 +53,8 @@ if [ -d "$indir" ] ; then
 	mkdir -p $outdir
 	#outbase=$(basename $outdir)
 	#docker run -it --rm -v $(pwd $outdir):/output $(pwd $indir):/input $(pwd):/work $containertag $runscript /input /output
-	docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $indir:/input  $containertag $runscript /input /output
+	docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $indir:/input  $containertag bash
+      # 	$runscript /input /output
 else
 	donework "Input dir not existent" -1
 	exit -1

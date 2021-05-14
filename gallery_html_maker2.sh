@@ -13,16 +13,17 @@ make_album()
     footer="$4"
     toplevelsitename="$5"
 
-
+    #echo "with exif"
     thumbsup --input $1 --output $2 \
       --thumb-size 140 \
       --small-size 380 \
       --large-size 1536 \
       --photo-quality 97 \
-      --theme cards \
+      --theme classic \
       --title "$title" \
       --footer "$footer" \
       --home-album-name  "$toplevelsitename" \
+      --embed-exif \
       --cleanup
 
 }
