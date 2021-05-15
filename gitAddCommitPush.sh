@@ -50,7 +50,7 @@ if [ ! -f "$last" ] && [ ! -d "$last" ]; then # We spec a commit message
 	arr=( "${arr[@]/$last}" )
 
 	arr[$arrl-1]=" "  #removing out message from the array
-	commtype=" -m \"$last\""
+	#commtype=" $last"
 fi
 
 echo "$arrl:$last"
@@ -64,8 +64,12 @@ echo "${arr[@]}"
 #       	|| ((echo "tying to pull"; git pull && git push && echo "Pulled and pushed was right") \
 #       	|| ec r "might require your attention :(" )
 ec r git add  "${arr[@]}"
-ec b git commit  "${arr[@]}" $commtype
+git add  "${arr[@]}"
+files="${arr[@]}"
+ec b git commit  "$files -m $last"
+git commit  $files -m "$last"
 ec y git push
+git push
 
 
 ##############END CODING HERE and define EXIT CODE somehow
