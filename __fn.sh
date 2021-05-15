@@ -30,6 +30,12 @@ envif() {
 }
 
 
+d() {
+	if [ "$DEBUG" == "1" ];then 
+		echo "$1"
+	fi
+}
+
 #start echo colored
 ecn () {
 	local color="$1"
@@ -90,6 +96,22 @@ ec () {
 	ecn "$@" $'\n'
 	 
 }
+ecd ()
+{
+	
+	if [ "$DEBUG" == "1" ];then 
+		ec "$@" $'\n'
+	fi
+}
+
+ecnd ()
+{
+	
+	if [ "$DEBUG" == "1" ];then 
+		ecn "$@"
+	fi
+}
+
 #Strip an input of all other args input
 stripof () {
 	#echo "Stripping"
@@ -260,11 +282,6 @@ lookquiet() {
 	return $QUIET
 }
 
-d() {
-	if [ "$DEBUG" == "1" ];then 
-		echo "$1"
-	fi
-}
 echoifnoval() {
 	d "1:$1,2:$2"
 	if [ "$2" == "" ]; then
