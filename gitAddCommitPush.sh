@@ -65,8 +65,8 @@ echo "${arr[@]}"
 #       	|| ec r "might require your attention :(" )
 files="${arr[@]}"
 
-ec r git add  "$files"
-git add  "$files"
+ec r git add  $files
+git add  $files
 
 ec b git commit  "$files -m $last"
 git commit  $files -m "$last"
