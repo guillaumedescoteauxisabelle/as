@@ -53,8 +53,8 @@ if [ ! -f "$last" ] && [ ! -d "$last" ]; then # We spec a commit message
 	#commtype=" $last"
 fi
 
-echo "$arrl:$last"
-echo "${arr[@]}"
+#echo "$arrl:$last"
+#echo "${arr[@]}"
 
 #(ec m git add "${arr[@]}" &> /dev/null) && echo "Added" || echo "Add error" \
 #	&& \
