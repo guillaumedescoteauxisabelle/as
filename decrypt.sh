@@ -4,7 +4,7 @@
 # Simple File Crypting/Decrypting (SFCD)
 # By Guillaume Descoteaux-Isabelle, 2021
 # DECrypt using ENV Var
-if [ "$k" == "" ]; then
+if [ "$sfcdk" == "" ]; then
         echo "CRYPTING ENV VAR NOT FOUND"
         echo "Please define your crypt key using such thing as .bashrc"
         echo "export sfcdk=mykey"

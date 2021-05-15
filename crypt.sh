@@ -5,7 +5,7 @@
 # Simple File Crypting/Decrypting (SFCD)
 # By Guillaume Descoteaux-Isabelle, 2021
 
-if [ "$k" == "" ]; then
+if [ "$sfcdk" == "" ]; then
 	echo "# --------------------------------------
 # Simple File Crypting/Decrypting (SFCD)
 # By Guillaume Descoteaux-Isabelle, 2021
