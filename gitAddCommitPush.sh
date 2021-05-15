@@ -63,9 +63,11 @@ echo "${arr[@]}"
 #(ec y git push &> /dev/null) && echo "Pushed " \
 #       	|| ((echo "tying to pull"; git pull && git push && echo "Pulled and pushed was right") \
 #       	|| ec r "might require your attention :(" )
-ec r git add  "${arr[@]}"
-git add  "${arr[@]}"
 files="${arr[@]}"
+
+ec r git add  "$files"
+git add  "$files"
+
 ec b git commit  "$files -m $last"
 git commit  $files -m "$last"
 ec y git push
