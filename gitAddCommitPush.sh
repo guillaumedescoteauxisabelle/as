@@ -42,10 +42,31 @@ dowork "Starting the git flow.... easy does it"
 
 #Here is what it does codified
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
-arr="($@)"
-arrl=${arr[#]}
-last=${arr[arrl]}
+arr=("$@")
+arrl=${#arr[@]}
+last=${arr[arrl-1]}
+commtype=" "  #optinal commit message opening vim etc
+if [ ! -f "$last" ] && [ ! -d "$last" ]; then # We spec a commit message 
+	arr=( "${arr[@]/$last}" )
+
+	arr[$arrl-1]=" "  #removing out message from the array
+	commtype=" -m \"$last\""
+fi
+
 echo "$arrl:$last"
+echo "${arr[@]}"
+
+#(ec m git add "${arr[@]}" &> /dev/null) && echo "Added" || echo "Add error" \
+#	&& \
+#(ec g git commit "${arr[@]}" $commtype  &> /dev/null) && echo "Committed " || echo "Commit error" && \
+#	&& \
+#(ec y git push &> /dev/null) && echo "Pushed " \
+#       	|| ((echo "tying to pull"; git pull && git push && echo "Pulled and pushed was right") \
+#       	|| ec r "might require your attention :(" )
+ec r git add  "${arr[@]}"
+ec b git commit  "${arr[@]}" $commtype
+ec y git push
+
 
 ##############END CODING HERE and define EXIT CODE somehow
 EXIT_CODE=0 #Define exit code
