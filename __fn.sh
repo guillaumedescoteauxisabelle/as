@@ -367,7 +367,8 @@ xparam() {
 	
 grepsearcher()
 {
-	#echo $1 $2
+	#echo "1:$1  2:$2"
+
 	f=$2
 	pattern="$1"
 

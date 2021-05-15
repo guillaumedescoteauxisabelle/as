@@ -27,19 +27,38 @@ Usage greps <pattern>  [fileSuffix] [filePrefix]
 	#"
 	#exit
 #fi
-
 pattern="$1"
+shift
+files=( "$@" )
+files=( "${files[@]/$pattern}" )
+
 #ls $3*$2
 #exit
-for f in $(ls -fd $3*$2); do
-	#echo $f
-	pattern="$1"
+#for f in $(ls -fd ${files[@]}); do
+
+#if [ "$3" != "" ] &&  [ "$3" != "." ]; then
+#       srch=$(ls -fd $2*$3) ; 
+#else
+
+#	if [ "$3" == "." ]; then
+#        	srch=$(ls -fd $2*) ;
+#	else
+#		srch=$(ls -fd *$2)
+#	fi
+#fi
+
+#echo "srch:$srch"
+c=0
+for f in "${files[@]}"; do
+	d echo f:$f
+	
 
 	grepsearcher "$pattern" "$f"
 
 
 	
-	
+	d $c
+	c=$(expr $c + 1 )	
 
 	#cat $f | grep $1
 done

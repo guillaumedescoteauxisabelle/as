@@ -8,17 +8,23 @@
 
 
 source /a/bin/_env.sh
+asdnstoken="2ac6e31108282aaa24de43d4f45213ef76e566f563bf5649eac74c9be07dde3f"
 
 urlcall="https://directnic.com/dns/gateway/$asdnstoken/?data="
 currentip="10.10.22.255"
 
-currentip=$(ip addr | grep enp3 | awk '/inet/ { print $4 }')
+
+# inet 10.10.22.255/23 brd 10.10.23.255 scope global dynamic noprefixroute enp3s0
+#currentip=$(ip addr | grep enp3 | awk '/inet/ { print $4 }')
+currentip=$(ip addr | grep enp3 | sed -e 's/\// /'| awk '/inet/ { print $2 }')
+
 
 echo Current IP is : $currentip
 
 urlfullcall="$urlcall$currentip"
 
-
-(cd /tmp;wget "$urlfullcall" > "/var/log/as/dns-update-$(date).log")
+logfile="/var/log/as/dns-update-$(date +"%y-%m-%d").log"
+(cd /tmp;wget "$urlfullcall" > "$logfile")
+chown jgi.jgi "$logfile"
 
 
