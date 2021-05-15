@@ -5,8 +5,12 @@
 localdir=$1
 remotedir=$2
 sshcall=jgi@orko
+if [ "$3" != "" ]; then # We have another host connection specified
+	sshcall=$3
+	echo "Target Host is : $sshcall"
+fi
 
-remotecmd='mkdir -p '$remotedir';cd '$remotedir' && echo "We are in" && tar xf - && echo DONE REMOTELY || echo REMOTE FAILED'
+remotecmd='mkdir -p '$remotedir';cd '$remotedir' && echo "We are in '$sshcall' and we created or made sure '$remotedir' was created" && tar xf - && echo DONE REMOTELY || ( echo REMOTE FAILED && exit 1)'
 
 echo $remotecmd
 #ssh $sshcall 'echo $@' $remotedir andmore

@@ -45,9 +45,20 @@ dowork "We are creating the gallery"
 containertag=guillaumeai/server:gal
 runscript=/a/bin/gallery_html_maker2.sh
 indir=$1
+if [ "$1" == "." ]; then # we use current dir path
+	indir=$(pwd)
+fi	
 
 #inbase=$(basename $indir)
 outdir=$2
+if [ "$2" == "--suffix" ] || [ "$2" == "--s" ] || [ "$2" == "--gal" ]; then # We use same dir with suffix
+	sufix='__gal'
+	if [ "$3" != "" ]; then # we have a suffix supplied
+		sufix=$3 ; fi
+	
+	outdir=$(cd $indir;pwd)$sufix
+fi
+
 if [ -d "$indir" ] ; then
 	
 	mkdir -p $outdir
