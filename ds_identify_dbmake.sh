@@ -8,8 +8,8 @@ rfile="_resolutions.txt"
 rm -f $tfile &> /dev/null
 rm -f $rfile &> /dev/null
 
-
-for f in *.jpg *.png 
+shopt -s nullglob # Sets nullglob
+for f in *.{jpg,jpeg,png,tif,tiff}
 do
 	echo $f
 	id=$(identify $f)
@@ -19,6 +19,8 @@ do
 	echo "$id" | sed -e 's/JPEG/JPG/'|  awk '// { print $2" "$3"    "$1 }'  >>$rfile
 	
 done
+shopt -u nullglob # Unsets nullglob
+
 exit 10
 # get only res and filename and formal
 #ref
