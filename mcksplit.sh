@@ -13,13 +13,24 @@ fi
 
 ################AUTOCOMPLETION
 if [ "$1" == "--get-completions" ]; then #echo completion
-        if [ "$2" == "" ]; then #no second args, showing models
-					getmodellist
-				else
-					modelname=$1
-					getmodelcheckpoints $modelname
+								
+				if [ ! -d "checkpoint_long" ] ; then 
+				exit 5
+				#must be in a model folder to run this
+					echo "Mush run in a root folder of a model to run this."
+					echo "cd $modelroot;ls"
+					exit 0
 				fi
+				modelname=$(basename $(pwd))
+				getmodelcheckpoints $modelname
 
+        # if [ "$2" == "" ]; then #no second args, showing models
+				# 	getmodellist
+				# else
+				# 	modelname=$1
+				# 	getmodelcheckpoints $modelname
+				# fi
+				# echo "good"
         exit 0
 fi
 
