@@ -9,7 +9,7 @@ if [ -e $binroot/__fn.sh ]; then
 fi
 
 ###########DEbug
-DEBUG=1
+DEBUG=0
 d "Debug is Active"
 
 #Loads env if one in current dir (_env.sh)
@@ -26,11 +26,11 @@ lookquiet $@
 
 #########################################
 #Displays the application usage and startup info
-startapp "XYZ Utilities - " \
+startapp "Workdir  -  Nav" \
 	 "Guillaume Descoteaux-Isabelle" \
 	  2021 \
 	  "
-Usage $0 <arg1> <arg2> [argOptionel]
+Usage $0 <save|cd> [argOptionel]
         MORE" \
 	$LASTREQUIREDARG
 #@TODO set usage  ABOVE
@@ -42,6 +42,24 @@ dowork "MSG_WHEN_WE_GO"
 
 #Here is what it does codified
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
+case "$1" in
+	save)
+		echo "Saving $1"
+		if [ "$wdir" != "" ] ;then echo "$wdir" >> /tmp/wdir.txt ; fi
+		export wdir=$(pwd)
+		pwd > /tmp/wdir__
+		;;
+	cd)
+		echo "Changing back to workdir $wdir"
+		#cat /tmp/wdir__
+		if [ -e "/tmp/wdir__" ]; then echo "Reading";wdir=$(cat /tmp/wdir__);if ( (  "$?" == 0 ) ) ;then msg_success "Read wdir"; else msg_error "Reading wdir failed"; fi;fi
+		if [ "$wdir" != "" ] ;then cd "$wdir" && msg_success "Going in"|| msg_failed "Could not cd the dir";fi
+		;;
+	*)
+		echo "Usage: $0  save | cd"
+		
+esac
+
 
 
 ##############END CODING HERE and define EXIT CODE somehow

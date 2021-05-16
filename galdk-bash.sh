@@ -60,8 +60,10 @@ if [ "$2" == "--suffix" ] || [ "$2" == "--s" ] || [ "$2" == "--gal" ]; then # We
 fi
 
 if [ -d "$indir" ] ; then
-	
+	indir=$(cd $indir;pwd)	
 	mkdir -p $outdir
+	outdir=$(cd $outdir;pwd)
+
 	#outbase=$(basename $outdir)
 	#docker run -it --rm -v $(pwd $outdir):/output $(pwd $indir):/input $(pwd):/work $containertag $runscript /input /output
 	docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $indir:/input  $containertag bash
