@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+###-begin-mcksplit-completions-###
+#
+alias mcksplit="$binroot/mcksplit.sh "
+
+_mcksplit_completions()
+{
+    local cur_word args type_list
+
+    cur_word="${COMP_WORDS[COMP_CWORD]}"
+    args=("${COMP_WORDS[@]}")
+
+    # ask yargs to generate completions.
+    type_list=$(mcksplit --get-completions "${args[@]}")
+    if [ "$?" == "5" ]; then
+    
+      ec r "Please be in the root of a model"
+    else #all good
+      #echo "$type_list"
+      COMPREPLY=( $(compgen -W "${type_list}" -- ${cur_word}) )
+
+      # if no match was found, fall back to filename completion
+      if [ ${#COMPREPLY[@]} -eq 0 ]; then
+        COMPREPLY=()
+      fi
+    fi
+
+    return 0
+}
+
+complete -o default -F _mcksplit_completions mcksplit
+complete -o default -F _mcksplit_completions $binroot/mcksplit.sh
+
+###-end-mcksplit-completions-###
+
