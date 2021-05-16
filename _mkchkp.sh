@@ -6,19 +6,22 @@
 if [ -e $binroot/__fn.sh ]; then
                 source $binroot/__fn.sh $@
 fi
-if [ ! -d "checkpoint_long" ] ; then #must be in a model folder to run this
-
-	msg_alert "Mush run in a root folder of a model"
+if [ ! -d "checkpoint_long" ] || [ "$1" == "" ] ; then #must be in a model folder to run this
+	msg_not_ok "Mush run in a root folder of a model."
+  echo "Usage $0 <checkpoint number>"
 	exit 2
 fi
-
+re='^[0-9]+$'
+if ! [[ $1 =~ $re ]] ; then
+   msg_not_ok "error: Argument Not a number (checkpoints are numbers)" >&2; exit 1
+fi
 
 ## tODO : run from tpour model root folder (where ./checkpoint_long is seen in the ls)
 export cdir=$(pwd)
 export modelname=$(basename $cdir)
 
 
-export ik=$1
+export ik=$(echo "$1" | sed -e 's/000//g') #@a Support both 15 and 15000
 export d=$(pwd)-$1ik
 if [ -d "$d" ] ; then #It already exist, quitting
 	msg_warning "Already Exist"
