@@ -2,7 +2,10 @@ _env.sh
 *.old
 **.old
 **/**.old
-
+*.swp
+**/*.swp
+**/**/*.swp
+**/**/**/*.swp
 # Logs
 logs
 *.log
