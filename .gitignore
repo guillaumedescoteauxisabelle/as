@@ -1,4 +1,7 @@
 _env.sh
+*.old
+**.old
+**/**.old
 
 # Logs
 logs

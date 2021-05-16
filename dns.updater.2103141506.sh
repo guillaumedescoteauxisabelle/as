@@ -16,7 +16,7 @@ currentip="10.10.22.255"
 
 # inet 10.10.22.255/23 brd 10.10.23.255 scope global dynamic noprefixroute enp3s0
 #currentip=$(ip addr | grep enp3 | awk '/inet/ { print $4 }')
-currentip=$(ip addr | grep enp3 | sed -e 's/\// /'| awk '/inet/ { print $2 }')
+currentip=$(ip addr | grep enp3 | sed -e 's/\// /g'| awk '/inet/ { print $2 }')
 
 
 echo Current IP is : $currentip
