@@ -41,6 +41,14 @@ d() {
 	fi
 }
 
+getff() {
+	local f="$1"
+	local ff="${f%.*}"
+	export FF="$ff"
+	echo "$FF"
+	return 1
+}
+
 #start echo colored
 ecn () {
 	local color="$1"
@@ -453,6 +461,10 @@ getmodellist()
 	 for d in $(cd $modelroot;ls -d *| grep model_); do (cd $modelroot;if [ -d "$d" ];then echo $d ; fi) ; done
 }
 
+getmodelcheckpoints() {
+	modelname=$1
+	$binroot/mckinfo.sh $modelname
+}
 
 
 
