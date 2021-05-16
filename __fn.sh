@@ -45,15 +45,8 @@ declare -rx GIAB_VERSION="0.1.0"
 ## @defgroup variable Variable
 
 
-## @fn fun()
-## @ingroup fun
-## @brief Fun and fun
-## @see <a href="http://google.com/?s=fun"
-fun() {
-	echo "fun"
-}
 
-##
+
 
 
 ## @var QUIET
