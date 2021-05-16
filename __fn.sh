@@ -446,3 +446,9 @@ grepsearcher()
 		fi
 	fi
 }
+
+
+getmodellist()
+{
+	 for d in $(cd $modelroot;ls -d *| grep model_); do (cd $modelroot;if [ -d "$d" ];then echo $d ; fi) ; done
+}
