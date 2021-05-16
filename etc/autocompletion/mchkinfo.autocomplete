@@ -2,7 +2,7 @@
 
 ###-begin-mchkinfo-completions-###
 #
-alias mchkinfo="$binroot/mchkinfo.sh "
+alias mckinfo="$binroot/mckinfo.sh "
 
 _mchkinfo_completions()
 {
@@ -12,7 +12,7 @@ _mchkinfo_completions()
     args=("${COMP_WORDS[@]}")
 
     # ask yargs to generate completions.
-    type_list=$(mchkinfo --get-completions "${args[@]}")
+    type_list=$(mckinfo --get-completions "${args[@]}")
     #echo "$type_list"
     COMPREPLY=( $(compgen -W "${type_list}" -- ${cur_word}) )
 
@@ -24,8 +24,8 @@ _mchkinfo_completions()
     return 0
 }
 
-complete -o default -F _mchkinfo_completions mchkinfo
-complete -o default -F _mchkinfo_completions $binroot/mchkinfo.sh
+complete -o default -F _mchkinfo_completions mckinfo
+complete -o default -F _mchkinfo_completions $binroot/mckinfo.sh
 
 ###-end-mchkinfo-completions-###
 
