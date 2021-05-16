@@ -44,11 +44,16 @@ dowork "MSG_WHEN_WE_GO"
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
 case "$1" in
 	save)
+		echo "Saving $1"
 		if [ "$wdir" != "" ] ;then echo "$wdir" >> /tmp/wdir.txt ; fi
 		export wdir=$(pwd)
+		pwd > /tmp/wdir__
 		;;
 	cd)
-		if [ "$wdir" != "" ] ;then cd $wdir;fi
+		echo "Changing back to workdir $wdir"
+		#cat /tmp/wdir__
+		if [ -e "/tmp/wdir__" ]; then echo "Reading";wdir=$(cat /tmp/wdir__);if ( (  "$?" == 0 ) ) ;then msg_success "Read wdir"; else msg_error "Reading wdir failed"; fi;fi
+		if [ "$wdir" != "" ] ;then cd "$wdir" && msg_success "Going in"|| msg_failed "Could not cd the dir";fi
 		;;
 	*)
 		echo "Usage: $0  save | cd"
