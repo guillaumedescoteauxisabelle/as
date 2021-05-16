@@ -2,7 +2,7 @@
 
 # Create / edit / commit / push
 
-if [ -e $binroot/__fn.sh ]; then source $binroot/__fn.sh ; fi
+if [ -e $binroot/__fn.sh ]; then source $binroot/__fn.sh ;else msg_warning "__fn not loaded"; fi
 envif
 
 # we will be ask for commit msg
@@ -20,8 +20,11 @@ fi
 
 cdir=$(pwd)
 
-fn=$1
-getff $f
+fn="$1"
+f="$1"
+fp="$binroot/$f"
+#echo getff "$f"
+getff "$f"
 #cimsg=$2
 
 
@@ -39,7 +42,7 @@ else
 	echo "-- Does $fn require COMPLETION ?? (Y/N)"
 	read hascompletion
 	if [ "$(to_lower $hascompletion)" == "y" ]; then # We will setup completion
-		msg_alert "Auto completion will be active for this script" 
+		msg_warning "Auto completion will be active for this script" 
 		
 		btdir=$binroot/templates
 		replacer=$binroot/tools/pattern-replacer-awk.sh
@@ -48,9 +51,11 @@ else
 		export PATTERN="__REPLACEMENTHEAD__"
 		contenttemplate=$btdir/autocomplete_header.sh
 		scripttemplate=$btdir/newscript.sh.txt
-		$replacer $contenttemplate $scripttemplate  > $binroot/$f \
+		$replacer $contenttemplate $scripttemplate  > $fp \
 										&& msg_success "We just created $f with the autocomplete args header" \
-										|| msg_failed "replacing header in $f"
+										|| msg_failed "replacing header in $f" 
+		msg_info "Fixing new file REPLACEMENT"
+		sed -i 's/SCRIPTALIASNAME/'"$FF"'/g' $fp  &&  sed -i 's/SCRIPTFILENAME/'"$f"'/g' $fp  && msg_success "$f templatized"  || msg_failed "Initializing the $ff file using template FAILED"
 ####################
 
 		#an autocomplete cmd.autocomplete.txt
@@ -65,9 +70,9 @@ else
 		fi
 	fi
 fi
-msg_alert "working on"
+msg_status "working on"
 msg_debug "Should have created a dummy script plus its auto replace, try source its autocomplete to see if that works out"
-exit
+#exit
 
 
 

@@ -56,7 +56,7 @@ startapp "Model CheckPoint Splitter " \
 	 "Guillaume Descoteaux-Isabelle" \
 	  2021 \
 	  "
-Usage $0 <checkpoint number> 
+Usage $0 <checkpoint number>  [-m (commit)]
         MORE" \
 	$LASTREQUIREDARG
 #@TODO set usage  ABOVE
@@ -68,7 +68,52 @@ dowork "Doing it"
 
 #Here is what it does codified
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
+#@STate do we have a number
+re='^[0-9]+$'
+if ! [[ $1 =~ $re ]] ; then
+   msg_critical "error: Argument Not a number (checkpoints are numbers)" >&2; exit 1
+fi
 
+
+export ik=$(echo "$1" | sed -e 's/000//g') #@a Support both 15 and 15000
+export d=$(pwd)-$1ik
+if [ -d "$d" ] ; then #It already exist, quitting
+	msg_warning "Already Exist"
+	exit 3
+fi
+
+
+mkdir -p $d/checkpoint_long
+
+ckpuniquepattern='_'$1'000.'
+cp ./checkpoint_long/*$ckpuniquepattern* $d/checkpoint_long && \
+		msg_info "Checkpoints file $1ik were copied"  || \
+		(msg_failed "Copy of checkpoints files ($ckpuniquepattern)" && \
+		exit 3)
+ 
+sleep 1
+
+# cp ./checkpoint_long/checkpoint $d/checkpoint_long
+
+d "Editing your new checkpoint file...:"
+
+makecheckpointfile $modelname $1
+
+cp -f $MCHECKPOINTFILEPATH $d/checkpoint_long/checkpoint \
+		&& msg_success "Created checkpoint file" \
+		||( msg_failed "Creating checkpoint file" && exit 4)
+
+
+
+
+if [ "$2" == "-m" ] || [ "$3" == "-m" ] ; then #Commit now an option 
+	echo "Comitting model..."
+	cd $d/checkpoint_long/ && git add . -f && git commit . -m "feat:$d" && git push
+else
+	d "Model was not comitted. (use -m next time)"
+fi
+cd $cdir
+msg_info "$d created."
 
 
 
