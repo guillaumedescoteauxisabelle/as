@@ -1,0 +1,3 @@
+[submodule "lib/bashsimplecurses"]
+	path = lib/bashsimplecurses
+	url = git@github.com:GuillaumeIsabelleX/gix-bashsimplecurses.git
