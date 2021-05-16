@@ -57,7 +57,11 @@ if [ "$2" == "--suffix" ] || [ "$2" == "--s" ] || [ "$2" == "--gal" ]; then # We
         if [ "$3" != "" ]; then # we have a suffix supplied
                 sufix=$3 ; fi
 
-        outdir=$(cd $indir;pwd)$sufix
+		outdir=$(cd $indir ; pwd)$sufix
+		mkdir -p $outdir
+		echo "Outdir made : $outdir"
+
+
 fi
 
 if [ -d "$indir" ] ; then
