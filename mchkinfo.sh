@@ -12,6 +12,10 @@ if [ "$1" == "--get-completions" ]; then #echo completion
 	exit 0
 fi
 
+if [ "$1" == "" ]; then 
+	echo "Usage:   $0 <model name> [--full]"
+	exit 1
+fi
 
 
 export model_basename="$1"
