@@ -28,9 +28,9 @@ Usage greps <pattern>  [fileSuffix] [filePrefix]
 	#exit
 #fi
 pattern="$1"
-shift
-files=( "$@" )
-files=( "${files[@]/$pattern}" )
+#shift
+#files=( "$@" )
+#files=( "${files[@]/$pattern}" )
 
 #ls $3*$2
 #exit
@@ -46,6 +46,22 @@ files=( "${files[@]/$pattern}" )
 #		srch=$(ls -fd *$2)
 #	fi
 #fi
+if [ "$2" == "" ]; then # we will create the array from a list
+	i=0
+	while read line
+	do
+    		files[ $i ]="$line"
+    		(( i++ ))
+	done < <(ls -a)
+
+#	echo ${files[1]}
+else # a filespec was given
+	shift
+	files=( "$@" )
+	files=( "${files[@]/$pattern}" )
+fi
+#echo ${files[@]}
+
 
 #echo "srch:$srch"
 c=0
