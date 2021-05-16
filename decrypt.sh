@@ -18,5 +18,11 @@ if [ "$1" == "" ] ;then
 fi
 
 echo "SFCD is Decrypting $1"
-ccdecrypt -E sfcdk $1
+ccdecrypt -E sfcdk $1 
+a=$?
+if [ "$a" == "0" ]; then
 echo "done Decrypting $1"
+else 
+ if [ "$a" == "4" ]; then echo "Crypting key does not match";exit 4 ; fi
+ exit $a
+fi

@@ -11,7 +11,8 @@ rm -f $rfile &> /dev/null
 shopt -s nullglob # Sets nullglob
 for f in *.{jpg,jpeg,png,tif,tiff}
 do
-	echo $f
+	#echo $f
+	echo -n "."
 	id=$(identify $f)
        #	>> $tfile
 	echo $id >> $tfile
@@ -21,7 +22,9 @@ do
 done
 shopt -u nullglob # Unsets nullglob
 
-exit 10
+cat $rfile
+
+exit
 # get only res and filename and formal
 #ref
 #Sigvald.png PNG 1142x800 1142x800+0+0 8-bit sRGB 253KB 0.000u 0:00.000
