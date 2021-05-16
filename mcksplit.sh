@@ -2,6 +2,11 @@
 
 # Make a unique checkpoint folder from a models with many
 
+if [ "$1" == "--get-completions" ]; then #echo completion
+        getmodellist
+        exit 0
+fi
+
 #Loading functions
 if [ -e $binroot/__fn.sh ]; then
                 source $binroot/__fn.sh $@
