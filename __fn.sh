@@ -548,10 +548,10 @@ makecheckpointfile(){
 	export modellocalpointindex=$modellocalpoint/$mindexfile
 	export modellocalpointdata=$modellocalpoint/$mdatafile
 
-	echo "------------------------------------"
-	echo "-- File created :  cat $mcheckpointfilepath"
+	d "------------------------------------"
+	d "-- File created :  cat $mcheckpointfilepath"
 	export MCHECKPOINTFILEPATH=$mcheckpointfilepath
 	export MCHECKPOINTCONTENT=$filecontent
-	echo "------------ or use : \$MCHECKPOINTFILEPATH"
-	echo "------------ or use : \$MCHECKPOINTCONTENT"
+	d "------------ or use : \$MCHECKPOINTFILEPATH"
+	d "------------ or use : \$MCHECKPOINTCONTENT"
 }
