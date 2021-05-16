@@ -2,7 +2,7 @@
 
 ###-begin-mchkinfo-completions-###
 #
-alias mckinfo="$binroot/mchkinfo.sh "
+alias mckinfo="$binroot/mckinfo.sh "
 
 _mchkinfo_completions()
 {
