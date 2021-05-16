@@ -44,13 +44,13 @@ else
 		btdir=$binroot/templates
 		replacer=$binroot/tools/pattern-replacer-awk.sh
 
-		#@a Make replacement using an awk script taking an env var PATTERN, a content and a template file
-		export PATTERN="__REPLACEMENTHEAD__"
+                #@a Make replacement using an awk script taking an env var PATTERN, a content and a template file
+                export PATTERN="__REPLACEMENTHEAD__"
 		contenttemplate=$btdir/autocomplete_header.sh
 		scripttemplate=$btdir/newscript.sh.txt
-		$replacer $contenttemplate $scripttemplate  > $binroot/$f \
-										&& msg_success "We just created $f with the autocomplete args header" \
-										|| msg_failed "replacing header in $f"
+                $replacer $contenttemplate $scripttemplate  > $binroot/$f \
+                                && msg_success "We just created $f with the autocomplete args header" \
+                                || msg_failed "replacing header in $f"
 ####################
 
 		#an autocomplete cmd.autocomplete.txt
