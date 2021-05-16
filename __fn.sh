@@ -6,6 +6,11 @@ DEBUG=""
 if [ -e "$binroot/_env.sh" ]; then 
         . $binroot/_env.sh $@
 fi
+declare -r DIR=$(cd "$(dirname "$0"  &> /dev/null)" && pwd) &> /dev/null
+if [ -e "$DIR/lib/giabsfl/lib/bsfl.sh" ]; then 
+	source $DIR/lib/giabsfl/lib/bsfl.sh  &> /dev/null
+else source $binroot/lib/giabsfl/lib/bsfl.sh  &> /dev/null
+fi
 
 fnusage() {
 	echo "GIASH Function Usage 
@@ -126,7 +131,7 @@ stripof () {
 		#echo "Testing $a  --> in: $r"
 		if [ "$a" != "$src" ] && [ "$a" != "" ] && [ "$r" != "" ] ;then # we do process
 			r=$(sed -e 's/'"$a"'//g'<<<$r) || echo " " &> /dev/null
-			#r=${r/a//}
+			
 		fi
 	done
 	echo "$r"
