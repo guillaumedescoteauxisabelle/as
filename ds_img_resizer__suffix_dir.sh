@@ -24,7 +24,7 @@ for f in *.jpg *.png ; do
 		convert -quality $tqual -resize $res $f $tdir/$ff.jpg && echo -n "." || echo "Error with $f"
 	fi
 done
-echo "done"
+echo "done.  cd $tdir"
 
 
 #OLD
