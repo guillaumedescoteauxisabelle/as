@@ -28,7 +28,9 @@
 
 ## @var GIAB_VERSION
 ## @brief BSFL version number.
-declare -rx GIAB_VERSION="0.1.0"
+if [ "$GIAB_VERSION" == "" ]; then
+	declare -rx GIAB_VERSION="0.1.0"
+fi
 
 
 
@@ -119,11 +121,12 @@ envif() {
 }
 
 
- d() {
+d() {
  	if [ "$DEBUG" == "1" ];then 
  		echo "$1"
  	fi
  }
+
 
 
  isnotnumberexit() {
