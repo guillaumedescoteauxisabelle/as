@@ -144,7 +144,9 @@ dvar () {
         done
 fi	
 }
-
+dcfile () {
+	dvar $0
+}
 
 ## @example replacetextbypath l=$(replacetextbypath "SAVEDIRBASE" "/a/lib/results/mypath" "ls SAVEDIRBASE")
 replacetextbypath() {
