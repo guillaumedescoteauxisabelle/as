@@ -71,8 +71,13 @@ if [ -d "$indir" ] ; then
         mkdir -p $outdir
         outdir=$(cd $outdir;pwd)
 	reldir=$(echo "$outdir" | sed -e 's/\/a\/lib\/results\///g')
-	wwwurl="http://as.guillaumeisabelle.com/$reldir"
-        #outbase=$(basename $outdir)
+	
+	if [ "$wwwurllibresultbase" =! "" ]; then
+			wwwurl="$wwwurllibresultbase/$reldir"
+	else
+			wwwurl="http://as.guillaumeisabelle.com/$reldir"
+
+	fi
 
 	#docker run -it --rm -v $(pwd $outdir):/output $(pwd $indir):/input $(pwd):/work $containertag $runscript /input /output
 	docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $indir:/input  $containertag $runscript /input /output && \
