@@ -70,7 +70,7 @@ dowork "Doing it"
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
 #@STate do we have a number
 re='^[0-9]+$'
-if ! [[ $1 =~ $re ]] ; then
+if ! [[ $1 =~ $re ]] ; then # expression checking if the supplied value is a number
    msg_critical "error: Argument Not a number (checkpoints are numbers)" >&2; exit 1
 fi
 

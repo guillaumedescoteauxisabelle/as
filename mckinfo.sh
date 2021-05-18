@@ -62,7 +62,7 @@ if [ "$1" == "" ]; then
 fi
 
 chkdir=checkpoint_long
-if [ "$2" == "--p" ]; then
+if [ "$2" == "--p" ] || [ "$2" == "-p" ] ; then
 	chkdir=checkpoint
 fi
 
