@@ -176,7 +176,7 @@ isnotnumberexit() {
 	if ! [[ $1 =~ $re ]] ; then
 		local msgtxt="error: Argument Not a number "
    		if [ "$2" != "" ] ;then 
-			msgtxt="$2"
+			msgtxt="$2 ($1)"
 		fi
 		msg_critical "error: $msgtxt" >&2
 		if [ "$2" != "" ] ;then
