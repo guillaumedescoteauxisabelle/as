@@ -14,11 +14,19 @@ fi
 
 if [ "$1" == "" ]; then 
 	echo "Usage:   $0 <model name> [--full]"
+	echo "--last --p #last model current checkpoint (used when training)"
 	exit 1
+fi
+export model_basename="$1"
+#(cd $modelroot;ls -dtr *)
+if [ "$1" == "--last" ]; then
+	for d in $(cd $modelroot;ls -dtr *) ; do
+		#lazy way to get the last
+		model_basename="$d"
+	done
 fi
 
 
-export model_basename="$1"
 if [ "$1" == "" ]; then
 	#echo "Must specify model folder as argument"
 	cdir="$(pwd)"
@@ -28,7 +36,12 @@ if [ "$1" == "" ]; then
 	#exit 1
 fi
 
-chklist=$(cd $modelroot;cd $model_basename/checkpoint_long;du -a | grep data | tr "/" " " | tr "." " " | awk '// { print $3 }' |tr "-" " " | awk '// { print $2}'| sort --numeric-sort)
+chkdir=checkpoint_long
+if [ "$2" == "--p" ]; then
+	chkdir=checkpoint
+fi
+
+chklist=$(cd $modelroot;cd $model_basename/$chkdir;du -a | grep data | tr "/" " " | tr "." " " | awk '// { print $3 }' |tr "-" " " | awk '// { print $2}'| sort --numeric-sort)
 if [ "$2" != "" ]; then #we dont filter
 	echo $chklist
 else #we remove zeros
