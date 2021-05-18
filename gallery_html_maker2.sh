@@ -24,7 +24,8 @@ make_album()
       --footer "$footer" \
       --home-album-name  "$toplevelsitename" \
       --embed-exif \
-      --cleanup
+      --cleanup && \
+      chown -R 1000.1000 $2
 
 }
 
