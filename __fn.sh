@@ -127,7 +127,24 @@ d() {
  	fi
  }
 
+## @example replacetextbypath l=$(replacetextbypath "SAVEDIRBASE" "/a/lib/results/mypath" "ls SAVEDIRBASE")
+ replacetextbypath() {
 
+	local lpattern="$1"
+	local ltdir="$2"
+	#shift
+	#shift
+	local lcontent="$3"
+d "p:$lpattern"
+d "ltdir:$ltdir"
+d "lcontent: $lcontent"
+	#prep the path for regex (escaping)
+	local lregfix=$(echo "$ltdir" | sed -e 's/\//\\\//g')
+	#create the new string replaced
+	local lres=$(echo "$lcontent" | sed "s/$lpattern/$lregfix/")
+	export REPLACETEXBYPATH="$lres"
+	echo "$REPLACETEXBYPATH"
+ }
 
  isnotnumberexit() {
 	re='^[0-9]+$'
