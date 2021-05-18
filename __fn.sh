@@ -145,26 +145,30 @@ dvar () {
 fi	
 }
 
+
 ## @example replacetextbypath l=$(replacetextbypath "SAVEDIRBASE" "/a/lib/results/mypath" "ls SAVEDIRBASE")
- replacetextbypath() {
+replacetextbypath() {
 
 	local lpattern="$1"
 	local ltdir="$2"
 	#shift
 	#shift
 	local lcontent="$3"
-d "p:$lpattern"
-d "ltdir:$ltdir"
-d "lcontent: $lcontent"
+	d "p:$lpattern"
+	d "ltdir:$ltdir"
+	d "lcontent: $lcontent"
+	
 	#prep the path for regex (escaping)
 	local lregfix=$(echo "$ltdir" | sed -e 's/\//\\\//g')
+	
 	#create the new string replaced
 	local lres=$(echo "$lcontent" | sed "s/$lpattern/$lregfix/")
 	export REPLACETEXBYPATH="$lres"
 	echo "$REPLACETEXBYPATH"
  }
 
- isnotnumberexit() {
+
+isnotnumberexit() {
 	re='^[0-9]+$'
 	local showmsg="$2"
 	if ! [[ $1 =~ $re ]] ; then
@@ -179,6 +183,7 @@ d "lcontent: $lcontent"
 		exit 1;
 	fi
 }
+
 
 ## @fn getff()
 ## @ingroup fs FS
