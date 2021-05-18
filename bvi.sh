@@ -37,12 +37,12 @@ lookquiet $@
 
 #########################################
 #Displays the application usage and startup info
-startapp "Bin VI from anywhere " \
+startapp "Bin VI from anywhere + optional commit" \
 	 "Guillaume Descoteaux-Isabelle" \
 	  2021 \
 	  "
-Usage $0 <arg1>
-        MORE" \
+Usage $0 <arg1> [line number]
+        bvi __fn.sh 444" \
 	$LASTREQUIREDARG
 #@TODO set usage  ABOVE
 ################################
@@ -54,7 +54,13 @@ dowork "MSG_WHEN_WE_GO"
 #Here is what it does codified
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
 #(cd $binroot;git pull)
-vi $binroot/$1
+if [ "$2" != "" ] ; then
+	lcmf=$(echo "$2" | tr "+" " ")
+		#sed -e 's/\+//')
+	vi +$lcmf $binroot/$1
+else 
+	vi $binroot/$1
+fi
 echo -n "Commit message (enter to skip):"
 read cimsg
 if [ "$cimsg" != "" ] || [ "$cimsg" != "\n" ]; then # We commit
