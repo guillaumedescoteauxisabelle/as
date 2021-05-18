@@ -156,9 +156,11 @@ replacetextbypath() {
 	#shift
 	#shift
 	local lcontent="$3"
+	d "---__fn.sh::replacetextbypath --"
 	d "p:$lpattern"
 	d "ltdir:$ltdir"
 	d "lcontent: $lcontent"
+	d "--------------------------------"
 	
 	#prep the path for regex (escaping)
 	local lregfix=$(echo "$ltdir" | sed -e 's/\//\\\//g')
