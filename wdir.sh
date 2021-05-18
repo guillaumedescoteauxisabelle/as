@@ -44,15 +44,31 @@ dowork "MSG_WHEN_WE_GO"
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
 case "$1" in
 	save)
-		echo "Saving $1"
-		if [ "$wdir" != "" ] ;then echo "$wdir" >> /tmp/wdir.txt ; fi
+		ecn r "Saving $1"
+		if [ "$wdir" != "" ] ;then 
+			echo "$wdir" >> /tmp/wdirs.txt  
+		fi
+
 		export wdir=$(pwd)
+		ec g "$wdir as current project dir"
+
 		pwd > /tmp/wdir__
 		;;
 	cd)
-		echo "Changing back to workdir $wdir"
+		#echo "Changing back to workdir $wdir"
 		#cat /tmp/wdir__
-		if [ -e "/tmp/wdir__" ]; then echo "Reading";wdir=$(cat /tmp/wdir__);if ( (  "$?" == 0 ) ) ;then msg_success "Read wdir"; else msg_error "Reading wdir failed"; fi;fi
+		#if [ -e "/tmp/wdir__" ]; then 
+		#	ec g "Reading";
+		#	wdir="$(cat /tmp/wdir__)"
+		#	. $binroot/_cd.sh "$wdir" && \ 
+		#	ec b "Back in : $wdir" || echo "could not cd"
+			#if [  "$?" == "0" ] ;then 
+			#	msg_success "Read wdir"; 
+			#else msg_error "Reading wdir failed" 
+			#	
+			#fi
+		#fi
+
 		if [ "$wdir" != "" ] ;then cd "$wdir" && msg_success "Going in"|| msg_failed "Could not cd the dir";fi
 		;;
 	*)
@@ -66,5 +82,5 @@ esac
 EXIT_CODE=0 #Define exit code
 MSG_WHEN_DONE=""
 ########################################
-donework "$MSG_WHEN_DONE" $EXIT_CODE 
+#donework "$MSG_WHEN_DONE" $EXIT_CODE 
 
