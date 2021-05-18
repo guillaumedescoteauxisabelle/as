@@ -6,6 +6,7 @@ if [ -e $binroot/__fn.sh ]; then
 fi
 envif $@
 
+if [ "$2" == "" ]; then echo "Usage : <remotedir> <localdir> [sshhostCSstring]";exit 1;fi
 
 remotedir=$1
 locdir=$2

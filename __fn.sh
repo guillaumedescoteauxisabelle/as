@@ -28,7 +28,9 @@
 
 ## @var GIAB_VERSION
 ## @brief BSFL version number.
-declare -rx GIAB_VERSION="0.1.0"
+if [ "$GIAB_VERSION" == "" ]; then
+	declare -rx GIAB_VERSION="0.1.0"
+fi
 
 
 
@@ -119,12 +121,63 @@ envif() {
 }
 
 
-# d() {
-# 	if [ "$DEBUG" == "1" ];then 
-# 		echo "$1"
-# 	fi
-# }
+d() {
+ 	if [ "$DEBUG" == "1" ];then 
+ 		echo "$1"
+ 	fi
+ }
 
+ echovar () {
+	for i in $@ ; do 
+		echo "$i = ${!i}"
+	done
+	#var_name=(${!foo@})
+	#echo $var_name" = "$foo
+	#foo = bar
+ }
+
+ dvar () {
+	if [ "$DEBUG" == "1" ]; then 
+		for i in $@ ; do
+                	msg_debug "$i = ${!i}"
+        done
+fi	
+ }
+
+## @example replacetextbypath l=$(replacetextbypath "SAVEDIRBASE" "/a/lib/results/mypath" "ls SAVEDIRBASE")
+ replacetextbypath() {
+
+	local lpattern="$1"
+	local ltdir="$2"
+	#shift
+	#shift
+	local lcontent="$3"
+d "p:$lpattern"
+d "ltdir:$ltdir"
+d "lcontent: $lcontent"
+	#prep the path for regex (escaping)
+	local lregfix=$(echo "$ltdir" | sed -e 's/\//\\\//g')
+	#create the new string replaced
+	local lres=$(echo "$lcontent" | sed "s/$lpattern/$lregfix/")
+	export REPLACETEXBYPATH="$lres"
+	echo "$REPLACETEXBYPATH"
+ }
+
+ isnotnumberexit() {
+	re='^[0-9]+$'
+	local showmsg="$2"
+	if ! [[ $1 =~ $re ]] ; then
+		local msgtxt="error: Argument Not a number "
+   		if [ "$2" != "" ] ;then 
+			msgtxt="$2"
+		fi
+		msg_critical "error: $msgtxt" >&2
+		if [ "$2" != "" ] ;then
+			msg_info "$3"
+		fi
+		exit 1;
+	fi
+}
 
 ## @fn getff()
 ## @ingroup fs FS
