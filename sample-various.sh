@@ -13,3 +13,11 @@ y=(${TORENDER//$';'/ }) #semicolor
 y=(${x//$'\n'/ }) #newline
 y=(${x//$' '/ }) #space
 
+
+#STCgoal ASsing a value from multiple lines
+read -r -d '' VAR << EOM
+This is line 1.
+This is line 2.
+Line 3.
+EOM
+
