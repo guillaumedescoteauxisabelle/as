@@ -42,7 +42,7 @@ dowork "We are creating the gallery"
 
 #Here is what it does codified
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
-containertag=guillaumeai/server:gal
+containertag=guillaumeai/server:gal-jgi
 runscript=/a/bin/gallery_html_maker2.sh
 indir=$1
 if [ "$1" == "." ]; then # we use current dir path
@@ -70,7 +70,7 @@ if [ -d "$indir" ] ; then
 	indir=$(cd $indir;pwd)
         mkdir -p $outdir
         outdir=$(cd $outdir;pwd)
-	reldir=$(echo "$outdir" | sed -e 's/\/a\/lib\/results//g')
+	reldir=$(echo "$outdir" | sed -e 's/\/a\/lib\/results\///g')
 	wwwurl="http://as.guillaumeisabelle.com/$reldir"
         #outbase=$(basename $outdir)
 
