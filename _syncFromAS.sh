@@ -7,7 +7,7 @@ if [ "$1" == " " ]; then # Need an arg
 fi
 
 echo "executing"
-echo rsync -aP "jgi@as:/a/model/models/$modelname/checkpoint_long" "/mnt/a/model/$modelname"
+echo rsync -aP "jgi@as:/a/model/models/$modelname/checkpoint_long" "/mnt/a/model/models/$modelname"
 sleep 1
-rsync -aP "jgi@as:/a/model/models/$modelname/checkpoint_long" "/mnt/a/model/$modelname"
+rsync -aP "jgi@as:/a/model/models/$modelname/checkpoint_long" "/mnt/a/model/models/$modelname"
 
