@@ -70,11 +70,13 @@ if [ -d "$indir" ] ; then
 	indir=$(cd $indir;pwd)
         mkdir -p $outdir
         outdir=$(cd $outdir;pwd)
-
+	reldir=$(echo "$outdir" | sed -e 's/\/a\/lib\/results//g')
+	wwwurl="http://as.guillaumeisabelle.com/$reldir"
         #outbase=$(basename $outdir)
 
 	#docker run -it --rm -v $(pwd $outdir):/output $(pwd $indir):/input $(pwd):/work $containertag $runscript /input /output
-	docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $indir:/input  $containertag $runscript /input /output
+	docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $indir:/input  $containertag $runscript /input /output && \
+		echo "$wwwurl"
 else
 	donework "Input dir not existent" -1
 	exit -1
