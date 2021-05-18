@@ -127,22 +127,23 @@ d() {
  	fi
  }
 
- echovar () {
+
+echovar () {
 	for i in $@ ; do 
 		echo "$i = ${!i}"
 	done
 	#var_name=(${!foo@})
 	#echo $var_name" = "$foo
 	#foo = bar
- }
+}
 
- dvar () {
-	if [ "$DEBUG" == "1" ]; then 
+dvar () {
+	if [ "$DEBUG" == "1" ] || [ "$DEBUG" == "true" ]; then 
 		for i in $@ ; do
                 	msg_debug "$i = ${!i}"
         done
 fi	
- }
+}
 
 ## @example replacetextbypath l=$(replacetextbypath "SAVEDIRBASE" "/a/lib/results/mypath" "ls SAVEDIRBASE")
  replacetextbypath() {
