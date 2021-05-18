@@ -8,8 +8,10 @@ if [ -e $binroot/__fn.sh ]; then
 	        source $binroot/__fn.sh $@
 fi
 
+#__REPLACEMENTHEAD__
+
 ###########DEbug
-DEBUG=1
+DEBUG=0
 d "Debug is Active"
 
 #Loads env if one in current dir (_env.sh)
