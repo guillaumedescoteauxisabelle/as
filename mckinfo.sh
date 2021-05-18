@@ -25,8 +25,33 @@ if [ "$1" == "--last" ]; then
 		model_basename="$d"
 	done
 fi
-
-
+if [ "$1" == "--modeltag" ] || [ "$1" == "--context" ]  || [ "$1" == "--c" ]  || [ "$1" == "-c" ]  || [ "$1" == "-mt" ]   ; then
+	if [ "$modeltag" != "" ]; then model_basename="$modeltag" ; 
+	else
+		 if [ "$modelname" != "" ]; then modelname="$modeltag" ;
+		 else
+			echo "you must source a file that defines modeltag or modelname"
+			arr=(*_env*.sh)
+			#for f in $(ls *_env*.sh); do
+			c=0
+			echo "Possible choice in the current dir:"
+			for f in ${arr[@]}; do
+				echo "$c : source $f"
+				c=$(expr $c + 1 )
+			done
+			echo "Choose which to load (number) ?"
+			read choice
+			v="${arr[choice]}"
+			echo -n "using  $v as source.  Re-running ..."
+			sleep 1
+			source $v
+			echo "......"
+			echo "-----------------------------------------"
+			$0 --context
+			exit 2
+		fi			
+	fi
+fi
 if [ "$1" == "" ]; then
 	#echo "Must specify model folder as argument"
 	cdir="$(pwd)"

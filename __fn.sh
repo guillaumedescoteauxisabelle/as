@@ -119,11 +119,11 @@ envif() {
 }
 
 
-# d() {
-# 	if [ "$DEBUG" == "1" ];then 
-# 		echo "$1"
-# 	fi
-# }
+ d() {
+ 	if [ "$DEBUG" == "1" ];then 
+ 		echo "$1"
+ 	fi
+ }
 
 
 ## @fn getff()
