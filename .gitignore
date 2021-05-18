@@ -1,4 +1,8 @@
 _env.sh
+zold
+yarn.lock
+dummy*
+
 *.old
 **.old
 **/**.old
