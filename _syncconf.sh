@@ -1,0 +1,2 @@
+modelname="$1"
+
