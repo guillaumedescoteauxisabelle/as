@@ -126,6 +126,22 @@ envif() {
  }
 
 
+ isnotnumberexit() {
+	re='^[0-9]+$'
+	local showmsg="$2"
+	if ! [[ $1 =~ $re ]] ; then
+		local msgtxt="error: Argument Not a number "
+   		if [ "$2" != "" ] ;then 
+			msgtxt="$2"
+		fi
+		msg_critical "error: $msgtxt" >&2
+		if [ "$2" != "" ] ;then
+			msg_info "$3"
+		fi
+		exit 1;
+	fi
+}
+
 ## @fn getff()
 ## @ingroup fs FS
 ## @brief Get filename no extension
