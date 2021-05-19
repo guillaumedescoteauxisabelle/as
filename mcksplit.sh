@@ -82,12 +82,13 @@ if [ -d "$d" ] ; then #It already exist, quitting
 	exit 3
 fi
 chnum=$1
+ckpuniquepattern='_'$chnum'000.'
 dvar chnum d ckpuniquepattern
 
 mkdir -p $d/checkpoint_long
 sleep 3
 
-ckpuniquepattern='_'$chnum'000.'
+
 cp ./checkpoint_long/*$ckpuniquepattern* $d/checkpoint_long && \
 		msg_info "Checkpoints file $chnumik were copied"  || \
 		(msg_failed "Copy of checkpoints files ($ckpuniquepattern)" && \
