@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-###-begin-SCRIPTALIASNAME-completions-###
+###-begin-bvi-completions-###
 #
-alias SCRIPTALIASNAME="$binroot/SCRIPTFILENAME "
+alias bvi="$binroot/bvi.sh "
 
-_SCRIPTALIASNAME_completions()
+_bvi_completions()
 {
     local cur_word args type_list
 
@@ -12,7 +12,7 @@ _SCRIPTALIASNAME_completions()
     args=("${COMP_WORDS[@]}")
 
     # ask yargs to generate completions.
-    type_list=$(SCRIPTALIASNAME --get-completions "${args[@]}")
+    type_list=$(bvi --get-completions "${args[@]}")
     #echo "$type_list"
     COMPREPLY=( $(compgen -W "${type_list}" -- ${cur_word}) )
 
@@ -24,8 +24,8 @@ _SCRIPTALIASNAME_completions()
     return 0
 }
 
-complete -o default -F _SCRIPTALIASNAME_completions SCRIPTALIASNAME
-complete -o default -F _SCRIPTALIASNAME_completions $binroot/SCRIPTFILENAME
+complete -o default -F _bvi_completions bvi
+complete -o default -F _bvi_completions $binroot/bvi.sh
 
-###-end-SCRIPTALIASNAME-completions-###
+###-end-bvi-completions-###
 

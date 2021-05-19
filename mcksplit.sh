@@ -39,7 +39,7 @@ DEBUG=0
 d "Debug is Active"
 
 #Loads env if one in current dir (_env.sh)
-envif $@
+#envif $@
 
 
 #@TODO Set the last ARG to the one required so it will exit if its not there
@@ -61,33 +61,42 @@ Usage $0 <checkpoint number>  [-m (commit)]
 	$LASTREQUIREDARG
 #@TODO set usage  ABOVE
 ################################
-
+DEBUG=0
 
 
 dowork "Doing it"
+cdir=$(pwd)
 
 #Here is what it does codified
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
 #@STate do we have a number
+chnum=$1
+dvar chnum
+
 re='^[0-9]+$'
-if ! [[ $1 =~ $re ]] ; then # expression checking if the supplied value is a number
+if ! [[ $chnum =~ $re ]] ; then # expression checking if the supplied value is a number
    msg_critical "error: Argument Not a number (checkpoints are numbers)" >&2; exit 1
 fi
 
+modelname=$(basename $(pwd))
 
-export ik=$(echo "$1" | sed -e 's/000//g') #@a Support both 15 and 15000
-export d=$(pwd)-$1ik
+
+export ik=$(echo "$chnum" | sed -e 's/000//g') #@a Support both 15 and 15000
+export d=$(pwd)-$chnum'ik'
 if [ -d "$d" ] ; then #It already exist, quitting
 	msg_warning "Already Exist"
 	exit 3
 fi
 
+ckpuniquepattern='_'$chnum'000.'
+dvar chnum d ckpuniquepattern
 
 mkdir -p $d/checkpoint_long
+sleep 3
 
-ckpuniquepattern='_'$1'000.'
+
 cp ./checkpoint_long/*$ckpuniquepattern* $d/checkpoint_long && \
-		msg_info "Checkpoints file $1ik were copied"  || \
+		msg_info "Checkpoints file $chnumik were copied"  || \
 		(msg_failed "Copy of checkpoints files ($ckpuniquepattern)" && \
 		exit 3)
  
@@ -96,15 +105,19 @@ sleep 1
 # cp ./checkpoint_long/checkpoint $d/checkpoint_long
 
 d "Editing your new checkpoint file...:"
+dvar modelname chnum
+sleep 3
+cd $rwroot;makecheckpointfile $modelname $chnum
 
-makecheckpointfile $modelname $1
-
-cp -f $MCHECKPOINTFILEPATH $d/checkpoint_long/checkpoint \
+dvar MCHECKPOINTFILEPATH 
+ecd r cat $MCHECKPOINTFILEPATH \> $d/checkpoint_long/checkpoint 
+sleep 4
+cat $MCHECKPOINTFILEPATH > $d/checkpoint_long/checkpoint \
 		&& msg_success "Created checkpoint file" \
 		||( msg_failed "Creating checkpoint file" && exit 4)
 
 
-
+cd $cdir
 
 if [ "$2" == "-m" ] || [ "$3" == "-m" ] ; then #Commit now an option 
 	echo "Comitting model..."
