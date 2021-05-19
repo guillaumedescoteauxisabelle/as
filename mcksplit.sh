@@ -69,19 +69,22 @@ dowork "Doing it"
 #Here is what it does codified
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
 #@STate do we have a number
+chnum=$1
+dvar chnum
+
 re='^[0-9]+$'
-if ! [[ $1 =~ $re ]] ; then # expression checking if the supplied value is a number
+if ! [[ $chnum =~ $re ]] ; then # expression checking if the supplied value is a number
    msg_critical "error: Argument Not a number (checkpoints are numbers)" >&2; exit 1
 fi
 
 
-export ik=$(echo "$1" | sed -e 's/000//g') #@a Support both 15 and 15000
-export d=$(pwd)-$1ik
+export ik=$(echo "$chnum" | sed -e 's/000//g') #@a Support both 15 and 15000
+export d=$(pwd)-$chnum'ik'
 if [ -d "$d" ] ; then #It already exist, quitting
 	msg_warning "Already Exist"
 	exit 3
 fi
-chnum=$1
+
 ckpuniquepattern='_'$chnum'000.'
 dvar chnum d ckpuniquepattern
 
