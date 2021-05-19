@@ -61,7 +61,7 @@ Usage $0 <checkpoint number>  [-m (commit)]
 	$LASTREQUIREDARG
 #@TODO set usage  ABOVE
 ################################
-
+DEBUG=1
 
 
 dowork "Doing it"
@@ -81,13 +81,15 @@ if [ -d "$d" ] ; then #It already exist, quitting
 	msg_warning "Already Exist"
 	exit 3
 fi
-
+chnum=$1
+dvar chnum d ckpuniquepattern
 
 mkdir -p $d/checkpoint_long
+sleep 3
 
-ckpuniquepattern='_'$1'000.'
+ckpuniquepattern='_'$chnum'000.'
 cp ./checkpoint_long/*$ckpuniquepattern* $d/checkpoint_long && \
-		msg_info "Checkpoints file $1ik were copied"  || \
+		msg_info "Checkpoints file $chnumik were copied"  || \
 		(msg_failed "Copy of checkpoints files ($ckpuniquepattern)" && \
 		exit 3)
  
@@ -96,9 +98,10 @@ sleep 1
 # cp ./checkpoint_long/checkpoint $d/checkpoint_long
 
 d "Editing your new checkpoint file...:"
-
-makecheckpointfile $modelname $1
-
+dvar modelname 
+makecheckpointfile $modelname $chnum
+dvar MCHECKPOINTFILEPATH 
+sleep 4
 cp -f $MCHECKPOINTFILEPATH $d/checkpoint_long/checkpoint \
 		&& msg_success "Created checkpoint file" \
 		||( msg_failed "Creating checkpoint file" && exit 4)
