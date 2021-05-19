@@ -39,7 +39,7 @@ DEBUG=0
 d "Debug is Active"
 
 #Loads env if one in current dir (_env.sh)
-envif $@
+#envif $@
 
 
 #@TODO Set the last ARG to the one required so it will exit if its not there
@@ -65,6 +65,7 @@ DEBUG=1
 
 
 dowork "Doing it"
+cdir=$(pwd)
 
 #Here is what it does codified
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
@@ -76,6 +77,8 @@ re='^[0-9]+$'
 if ! [[ $chnum =~ $re ]] ; then # expression checking if the supplied value is a number
    msg_critical "error: Argument Not a number (checkpoints are numbers)" >&2; exit 1
 fi
+
+modelname=$(basename $(pwd))
 
 
 export ik=$(echo "$chnum" | sed -e 's/000//g') #@a Support both 15 and 15000
@@ -104,17 +107,17 @@ sleep 1
 d "Editing your new checkpoint file...:"
 dvar modelname chnum
 sleep 3
-(cd $rwroot;makecheckpointfile $modelname $chnum)
+cd $rwroot;makecheckpointfile $modelname $chnum
 
 dvar MCHECKPOINTFILEPATH 
-
+ecd r cat $MCHECKPOINTFILEPATH \> $d/checkpoint_long/checkpoint 
 sleep 4
-cp -f $MCHECKPOINTFILEPATH $d/checkpoint_long/checkpoint \
+cat $MCHECKPOINTFILEPATH > $d/checkpoint_long/checkpoint \
 		&& msg_success "Created checkpoint file" \
 		||( msg_failed "Creating checkpoint file" && exit 4)
 
 
-
+cd $cdir
 
 if [ "$2" == "-m" ] || [ "$3" == "-m" ] ; then #Commit now an option 
 	echo "Comitting model..."
