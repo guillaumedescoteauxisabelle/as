@@ -70,8 +70,8 @@ else
 		fi
 	fi
 fi
-msg_status "working on"
-msg_debug "Should have created a dummy script plus its auto replace, try source its autocomplete to see if that works out"
+#msg_status "working on"
+#msg_debug "Should have created a dummy script plus its auto replace, try source its autocomplete to see if that works out"
 #exit
 
 
