@@ -61,7 +61,7 @@ Usage $0 <checkpoint number>  [-m (commit)]
 	$LASTREQUIREDARG
 #@TODO set usage  ABOVE
 ################################
-DEBUG=1
+DEBUG=0
 
 
 dowork "Doing it"
