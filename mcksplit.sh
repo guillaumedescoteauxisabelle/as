@@ -99,9 +99,12 @@ sleep 1
 # cp ./checkpoint_long/checkpoint $d/checkpoint_long
 
 d "Editing your new checkpoint file...:"
-dvar modelname 
-makecheckpointfile $modelname $chnum
+dvar modelname chnum
+sleep 3
+(cd $rwroot;makecheckpointfile $modelname $chnum)
+
 dvar MCHECKPOINTFILEPATH 
+
 sleep 4
 cp -f $MCHECKPOINTFILEPATH $d/checkpoint_long/checkpoint \
 		&& msg_success "Created checkpoint file" \
