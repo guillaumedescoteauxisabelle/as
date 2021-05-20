@@ -12,7 +12,13 @@ if [ "$1" == "--get-completions" ]; then #echo completion
 	#ls -d $libroot/results/*
 	shift
 	subpath=""
-	if [ "$2" != "" ] ; then for sp in ("$@"); do subpath+=/$sp ; done ;fi
+	if [ "$3" != "" ] ; then 
+		echo "2:$2,3:$3" >> /var/log/gia/cdr.txt
+		arr=("$@")
+		for sp in ${arr[@]}; do 
+			subpath="$subpath/$sp" 
+		done 
+	fi
 
 	(cd $libroot/results/$subpath; ls -dr */)
 	exit 0
