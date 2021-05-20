@@ -78,7 +78,7 @@ declare -r DIR=$(cd "$(dirname "$0"  &> /dev/null)" && pwd) &> /dev/null
 
 
 
-declare -r FNLOADED=1 &> /dev/null
+declare -r FNLOADED="1" &> /dev/null
 
 
 
