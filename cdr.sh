@@ -19,7 +19,7 @@ flag=0
 	subpath="$libroot/results"
 	ppath=$subpath
 	echo " 1:$1,2:$2,3:$3" >> /var/log/gia/cdr.txt
-	if ( [ "$1" != "" ] || [ "$autocompleting" != "1" ] ) &&  ( [ -e "$libroot/results/$1/$2" ] || [ -e "$libroot/results/$1" ] ); then 
+	if ( [ "$1" != "" ] || [ "$autocompleting" != "1" ] ) &&  ( [ -e "$libroot/results/$1/$2/$3" ] || [ -e "$libroot/results/$1/$2" ]   || [ -e "$libroot/results/$1" ] ); then 
 		echo "We have a : 1:$1,2:$2,3:$3" >> /var/log/gia/cdr.txt
 		arr=("$@")
 		for sp in ${arr[@]}; do 
