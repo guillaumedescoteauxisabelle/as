@@ -32,24 +32,24 @@ DEBUG=0
 #@TODO Set the last ARG to the one required so it will exit if its not there
 ## Set to: NONE 	# if no args
 #LASTREQUIREDARG=$1
-LASTREQUIREDARG=NONE
+#LASTREQUIREDARG=NONE
 
 #Looks if we used a quiet mode :  
 #lookquiet $@
 
 #########################################
 #Displays the application usage and startup info
-startapp "XYZ Utilities - " \
-	 "Guillaume Descoteaux-Isabelle" \
-	  2021 \
-	  "
-Usage $0 [result sub dir] 
-        " \
-	$LASTREQUIREDARG
+#startapp "XYZ Utilities - " \
+#	 "Guillaume Descoteaux-Isabelle" \
+#	  2021 \
+#	  "
+#Usage $0 [result sub dir] 
+#        " \
+#	$LASTREQUIREDARG
 #@TODO set usage  ABOVE
 ################################
 
-dowork "MSG_WHEN_WE_GO"
+#dowork "MSG_WHEN_WE_GO"
 
 if [ $flag == 0 ] ; then
 	echo cd $libroot/results/$1
@@ -58,8 +58,8 @@ fi
 
 
 ##############END CODING HERE and define EXIT CODE somehow
-EXIT_CODE=0 #Define exit code
-MSG_WHEN_DONE=""
+#EXIT_CODE=0 #Define exit code
+#MSG_WHEN_DONE=""
 ########################################
-donework "$MSG_WHEN_DONE" $EXIT_CODE 
+#donework "$MSG_WHEN_DONE" $EXIT_CODE 
 
