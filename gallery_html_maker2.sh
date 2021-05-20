@@ -14,7 +14,8 @@ make_album()
     toplevelsitename="$5"
 
     #echo "with exif"
-    thumbsup --input $1 --output $2 \
+    #which thumbsup
+    /usr/local/bin/thumbsup --input $1 --output $2 \
       --thumb-size 140 \
       --small-size 380 \
       --large-size 1536 \
@@ -45,9 +46,28 @@ if [ "$3" == "v1" ] ; then
 		echo "$2 Failed to create"
 		
 else	
-	make_album "$1" "$2" "$3" "$4" "$5"
+#	make_album "$1" "$2" "$3" "$4" "$5"
+  indir="$1"
+    outdir="$2"
+    title="$3"
+    footer="$4"
+    toplevelsitename="$5"
+
+    #echo "with exif"
+    #which thumbsup
+    thumbsup --input $1 --output $2 \
+      --thumb-size 140 \
+      --small-size 380 \
+      --large-size 1536 \
+      --photo-quality 97 \
+      --theme classic \
+      --title "$title" \
+      --footer "$footer" \
+      --home-album-name  "$toplevelsitename" \
+      --cleanup && \
+      if [ "$2" != "" ]; then chown -R 1000.1000 $2/*;fi
 fi
 
 
-echo "Juste pour créer de la tension structurante : $PLAN"
+#echo "Juste pour créer de la tension structurante : $PLAN"
 
