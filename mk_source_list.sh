@@ -1,6 +1,6 @@
 # source list is make that we can use for processing
 cdir=$(pwd)
-rm $cdir/_srcfiles.txt
+rm $cdir/_srcfiles.txt &> /dev/null
 for d in *; do 
 	
 	if [ -d "$d" ] ; then 

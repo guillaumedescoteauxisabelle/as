@@ -87,7 +87,7 @@ if [ "$GIABLOADED" == "" ]; then
 
 	else 
 		source $binroot/lib/giabsfl/lib/bsfl.sh  &> /dev/null
-	fi
+	fi 
 fi
 
 

@@ -5,7 +5,7 @@
 
 #cdr
 #cdr.sh
-#log"$1"
+#log "$1"
 flag=0
 
 
@@ -27,16 +27,16 @@ log "--------------------------------"
 #if [ "$1" == "--get-completions" ]; then #logcompletion
 	logtype="running"
 	#ls -d $libroot/results/*
-	 log"--------------------------------"  >> $LOG_FILE
+	 log "--------------------------------"  
 	if [ "$1" == "--get-completions" ]; then logtype="autocompleting"; autocompleting="1"; shift;shift;fi #twice because we source this and once if we autocomplete
-	log"-----$(date)------[ $logtype ]------"  >> $LOG_FILE
+	log "-----$(date)------[ $logtype ]------"  
 	
 
 	subpath="$libroot/results"
 	ppath=$subpath
-	log" 1:$1,2:$2,3:$3" >> $LOG_FILE
+	log " 1:$1,2:$2,3:$3" 
 	if ( [ "$1" != "" ] || [ "$autocompleting" != "1" ] ) &&  ( [ -e "$libroot/results/$1/$2/$3" ] || [ -e "$libroot/results/$1/$2" ]   || [ -e "$libroot/results/$1" ] ); then 
-		log"We have a : 1:$1,2:$2,3:$3" >> $LOG_FILE
+		log "We have a : 1:$1,2:$2,3:$3" 
 		arr=("$@")
 		for sp in ${arr[@]}; do 
 			#if [ "$sp" != "$0" ]; then
@@ -46,26 +46,26 @@ log "--------------------------------"
 			#fi
 			
 		done 
-		#log"Subpath: $subpath">> $LOG_FILE
+		#log "Subpath: $subpath"
 
 		subpath=${subpath//\/\//\/}
 		ppath=${ppath//\/\//\/}
-		log"Subpath: $subpath">> $LOG_FILE
+		log "Subpath: $subpath"
 	fi
 
 ################AUTOCOMPLETION
 if [ "$1" == "--get-completions" ] || [ "$autocompleting" == "1" ]; then #logcompletion
-	log"Ppath: $ppath, subdir: $subdir"  >> $LOG_FILE
-	log"--Trying to list --"  >> $LOG_FILE
+	log "Ppath: $ppath, subdir: $subdir"  
+	log "--Trying to list --"  
 	
-	(cd $ppath &> /dev/null && ls -dr $subdir* && log"1" >> $LOG_FILE )   \
-		|| (if [ -d "$subpath" ];then pwd  >> $LOG_FILE ; cd $subpath  &> /dev/null && pwd  >> $LOG_FILE  && ls -dr */ && log"2" >> $LOG_FILE ;else exit ; fi )  \
-		||  (cd $ppath  &> /dev/null && ls -dr */ && log"3" >> $LOG_FILE )    
+	cd $ppath &> /dev/null && ls -dr $subdir* && log "1"     \
+		|| if [ -d "$subpath" ];then pwd   ; cd $subpath  &> /dev/null && pwd  log_info "ls -dr \*/"   && ls -dr */ && log "2"  ;else exit ; fi   \
+		||  cd $ppath  &> /dev/null && ls -dr */ && log "3"    
 
 	exit 0
 	flag=1
 fi
-	log"Subpath: $subpath"
+	log "Subpath: $subpath"
 	cd $subpath
 
 #Loading functions
