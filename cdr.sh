@@ -25,8 +25,8 @@ flag=0
 		for sp in ${arr[@]}; do 
 			#if [ "$sp" != "$0" ]; then
 				subpath="$subpath/$sp" 
-				subdir=$sp
-				if [ -d "$subpath" ] && [ ! -d "$subpath/$subdir" ] ; then ppath=$subpath ; fi #if dir exist, we enter in for listing
+				
+				if [ -d "$subpath" ] && [ ! -d "$subpath/$sp" ] ; then subdir=$sp; ppath=$subpath ; fi #if dir exist, we enter in for listing
 			#fi
 			
 		done 
@@ -41,9 +41,9 @@ flag=0
 if [ "$1" == "--get-completions" ] || [ "$autocompleting" == "1" ]; then #echo completion
 	echo "Ppath: $ppath, subdir: $subdir"  >> /var/log/gia/cdr.txt
 	echo "--Trying to list --"  >> /var/log/gia/cdr.txt
-	(cd $ppath &> /dev/null && ls -dr $subdir* && echo "2" >> /var/log/gia/cdr.txt ) \
-		|| (cd $subpath  &> /dev/null && ls -dr */ && echo "1" >> /var/log/gia/cdr.txt ) \
-	       	||  (cd $ppath  &> /dev/null && ls -dr */ && echo "3" >> /var/log/gia/cdr.txt ) 
+	(cd $ppath &> /dev/null && ls -dr $subdir* && echo "1" >> /var/log/gia/cdr.txt ) \
+		|| (if [ -d "$subpath" ];then pwd  >> /var/log/gia/cdr.txt ; cd $subpath  &> /dev/null && pwd  >> /var/log/gia/cdr.txt  && ls -dr */ && echo "2" >> /var/log/gia/cdr.txt ;else exit ; fi ) \
+	       	||  (cd $ppath  &> /dev/null && ls -dr */ && echo "3" >> /var/log/gia/cdr.txt )    &> /dev/null
 
 	exit 0
 	flag=1
