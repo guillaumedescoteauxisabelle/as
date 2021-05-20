@@ -8,8 +8,9 @@
 #going where we should work
 wdir=/a/src/rwml__adaptive_style_transfer/tests
 cd $wdir
-
+ns=catter
 source _env.sh $ns
+mkdir -p /tmp/catter
 
 #log_info "callurl:$callurl"
 requestFileContentImage=/tmp/catter/catter.json
@@ -35,8 +36,15 @@ echo -n "$req_p1" > $requestFile
 cat $requestFileContentImage | tr "{" " " >> $requestFile
 rm $requestFileContentImage
 
+#dttag=$(date +'%y%m%d%H%M%S')
+#echo $dttag
+
+
+#(cd /tmp/catter;gia-ast-response-stylizedImage2file  $requestFile "content-$dttag.jpg" contentImage) &
 
 echo curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl >> /var/log/gia/catter.txt 
 
 
 curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl | sed -e 's/data:image\/jpeg;base64,//g'
+
+
