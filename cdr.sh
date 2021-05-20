@@ -8,22 +8,43 @@
 #echo "$1"
 flag=0
 ################AUTOCOMPLETION
-if [ "$1" == "--get-completions" ]; then #echo completion
+#if [ "$1" == "--get-completions" ]; then #echo completion
+	logtype="running"
 	#ls -d $libroot/results/*
-	shift
-	subpath=""
-	if [ "$3" != "" ] ; then 
-		echo "2:$2,3:$3" >> /var/log/gia/cdr.txt
+	 echo "--------------------------------"  >> /var/log/gia/cdr.txt
+	if [ "$1" == "--get-completions" ]; then logtype="autocompleting"; autocompleting="1"; shift;shift;fi #twice because we source this and once if we autocomplete
+	echo "-----$(date)------[ $logtype ]------"  >> /var/log/gia/cdr.txt
+	
+
+	subpath="$libroot/results"
+	ppath=$subpath
+	echo " 1:$1,2:$2,3:$3" >> /var/log/gia/cdr.txt
+	if ( [ "$1" != "" ] || [ "$autocompleting" != "1" ] ) &&  ( [ -e "$libroot/results/$1/$2" ] || [ -e "$libroot/results/$1" ] ); then 
+		echo "We have a : 1:$1,2:$2,3:$3" >> /var/log/gia/cdr.txt
 		arr=("$@")
 		for sp in ${arr[@]}; do 
-			subpath="$subpath/$sp" 
+			#if [ "$sp" != "$0" ]; then
+				subpath="$subpath/$sp" 
+				subdir=$sp
+				if [ -d "$subpath" ]; then ppath=$subpath ; fi #if dir exist, we enter in for listing
+			#fi
+			
 		done 
+		#echo "Subpath: $subpath">> /var/log/gia/cdr.txt
+
+		subpath=${subpath//\/\//\/}
+		echo "Subpath: $subpath">> /var/log/gia/cdr.txt
 	fi
 
-	(cd $libroot/results/$subpath; ls -dr */)
+################AUTOCOMPLETION
+if [ "$1" == "--get-completions" ] || [ "$autocompleting" == "1" ]; then #echo completion
+	echo "Listing : $subpath"  >> /var/log/gia/cdr.txt
+	(cd $subpath; ls -dr */) || (cd $ppath ; ls -dr $subdir*/) ||  (cd $ppath ; ls -dr */)
 	exit 0
 	flag=1
 fi
+	echo "Subpath: $subpath"
+	cd $subpath
 
 #Loading functions
 #if [ -e $binroot/__fn.sh ]; then
@@ -62,8 +83,8 @@ LASTREQUIREDARG=NONE
 #dowork "MSG_WHEN_WE_GO"
 
 #if [ $flag == 0 ] ; then
-	echo cd $libroot/results/$1
-	cd $libroot/results/$1
+	#echo cd $libroot/results/$1
+	#cd $libroot/results/$1
 #fi
 
 
