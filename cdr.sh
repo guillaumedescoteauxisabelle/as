@@ -16,8 +16,7 @@ flag=0
 if [ -e $binroot/__fn.sh ] && [ "$FNLOADED" != "1" ]; then
    source $binroot/__fn.sh $@ 
 fi
-LOG_FILE=/var/log/gia/cdr.txt
-LOG_ENABLED=y
+LOG_FILE=/var/log/gia/cdr.txt; LOG_ENABLED=y
 
 
 log "--------------------------------"
@@ -50,45 +49,43 @@ log "--------------------------------"
 
 		subpath=${subpath//\/\//\/}
 		ppath=${ppath//\/\//\/}
-		log "Subpath: $subpath"
+		log_status "Subpath: $subpath" 3
 	fi
 
 ################AUTOCOMPLETION
 if [ "$1" == "--get-completions" ] || [ "$autocompleting" == "1" ]; then #logcompletion
 	log "Ppath: $ppath, subdir: $subdir"  
-	log "--Trying to list --"  
+	log_status "--Trying to list $@--" 1
+	ppathbase=$(basename $ppath)
 	
-	cd $ppath &> /dev/null && ls -dr $subdir* && log "1"     \
-		|| if [ -d "$subpath" ];then pwd   ; cd $subpath  &> /dev/null && pwd  log_info "ls -dr \*/"   && ls -dr */ && log "2"  ;else exit ; fi   \
-		||  cd $ppath  &> /dev/null && ls -dr */ && log "3"    
+	#if [ "$subdir" == "$ppathbase" ]; then
+	#	(cd $ppath && ls * 2> /dev/null )
+	#else
+	(LOG_FILE=/var/log/gia/cdr.txt; LOG_ENABLED=y;\
+		if [ "$ppathbase" != "$subdir" ] ; then cd $ppath &> /dev/null && (ls -dr $subdir* 2> /dev/null|| exit 1)  && log_success "1" || log_failed "1" && exit 1 ;else log_alert "1 skipped";exit 1 ; fi )    \
+		|| \
+		(LOG_FILE=/var/log/gia/cdr.txt; LOG_ENABLED=y;log "entering 2";if [ -d "$subpath" ];then log_info "$(pwd)";cd $subpath  &> /dev/null && log_info $(pwd) && log_info "ls -dr *"   &&  (ls -dr *  2> /dev/null || exit 1 ) && log "2" || log_failed "2"  ;else log_alert "2" ;exit 1; fi  ) \
+		|| \
+		(LOG_FILE=/var/log/gia/cdr.txt; LOG_ENABLED=y;log "entering 3";log_info "$(pwd)";\
+		cd $ppath  &> /dev/null && log_info "$(pwd)" && ls -dr * 2> /dev/null    \
+		&& log "3"  )
+	#fi
 
 	exit 0
 	flag=1
 fi
-	log "Subpath: $subpath"
-	cd $subpath
-
-#Loading functions
-#if [ -e $binroot/__fn.sh ]; then
-#                source $binroot/__fn.sh $@
-#fi
 
 
-###########DEbug
-DEBUG=0
-#d "Debug is Active"
 
-#Loads env if one in current dir (_env.sh)
-#envif $@
+log "Subpath: $subpath"
+cd $subpath
 
 
-#@TODO Set the last ARG to the one required so it will exit if its not there
-## Set to: NONE 	# if no args
-#LASTREQUIREDARG=$1
+
+
+
+
 LASTREQUIREDARG=NONE
-
-#Looks if we used a quiet mode :  
-#lookquiet $@
 
 #########################################
 #Displays the application usage and startup info
