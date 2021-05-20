@@ -44,8 +44,8 @@ startapp "CD Result util " \
 	  2021 \
 	  "
 Usage $0 [result sub dir] 
-        " \
-	$LASTREQUIREDARG
+        " 
+	
 #@TODO set usage  ABOVE
 ################################
 
