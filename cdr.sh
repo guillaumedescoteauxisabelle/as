@@ -47,12 +47,10 @@ Usage $0 <arg1> <arg2> [argOptionel]
 #@TODO set usage  ABOVE
 ################################
 
-cd $libroot/results/$1
-
 dowork "MSG_WHEN_WE_GO"
 
-#Here is what it does codified
-#@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
+echo cd $libroot/results/$1
+cd $libroot/results/$1
 
 
 ##############END CODING HERE and define EXIT CODE somehow
