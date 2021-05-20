@@ -5,12 +5,14 @@
 
 #cdr
 #cdr.sh
-echo "$1"
+#echo "$1"
+flag=0
 ################AUTOCOMPLETION
 if [ "$1" == "--get-completions" ]; then #echo completion
 	#ls -d $libroot/results/*
 	(cd $libroot/results; ls -dr */)
-	exit 0
+	#exit 0
+	flag=1
 fi
 
 #Loading functions
@@ -33,7 +35,7 @@ DEBUG=0
 LASTREQUIREDARG=NONE
 
 #Looks if we used a quiet mode :  
-lookquiet $@
+#lookquiet $@
 
 #########################################
 #Displays the application usage and startup info
@@ -49,8 +51,10 @@ Usage $0 [result sub dir]
 
 dowork "MSG_WHEN_WE_GO"
 
-echo cd $libroot/results/$1
-cd $libroot/results/$1
+if [ $flag == 0 ] ; then
+	echo cd $libroot/results/$1
+	cd $libroot/results/$1
+fi
 
 
 ##############END CODING HERE and define EXIT CODE somehow
