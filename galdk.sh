@@ -42,7 +42,7 @@ dowork "We are creating the gallery"
 
 #Here is what it does codified
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
-containertag=guillaumeai/server:gal-jgi
+containertag=guillaumeai/server:gal
 runscript=/a/bin/gallery_html_maker2.sh
 indir=$1
 if [ "$1" == "." ]; then # we use current dir path
@@ -75,7 +75,7 @@ if [ -d "$indir" ] ; then
         #outbase=$(basename $outdir)
 
 	#docker run -it --rm -v $(pwd $outdir):/output $(pwd $indir):/input $(pwd):/work $containertag $runscript /input /output
-	docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $indir:/input  $containertag $runscript /input /output && \
+	docker run -it --rm -v /a/bin:/a/bin -v $(pwd):/work  -v $outdir:/output -v $indir:/input  $containertag $runscript /input /output && \
 		echo "$wwwurl"
 else
 	donework "Input dir not existent" -1
