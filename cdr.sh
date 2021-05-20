@@ -10,7 +10,11 @@ flag=0
 ################AUTOCOMPLETION
 if [ "$1" == "--get-completions" ]; then #echo completion
 	#ls -d $libroot/results/*
-	(cd $libroot/results; ls -dr */)
+	shift
+	subpath=""
+	if [ "$2" != "" ] ; then for sp in ("$@"); do subpath+=/$sp ; done ;fi
+
+	(cd $libroot/results/$subpath; ls -dr */)
 	exit 0
 	flag=1
 fi
