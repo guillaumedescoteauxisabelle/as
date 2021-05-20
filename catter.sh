@@ -8,8 +8,9 @@
 #going where we should work
 wdir=/a/src/rwml__adaptive_style_transfer/tests
 cd $wdir
-
+ns=catter
 source _env.sh $ns
+mkdir -p /tmp/catter
 
 #log_info "callurl:$callurl"
 requestFileContentImage=/tmp/catter/catter.json
