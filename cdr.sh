@@ -5,7 +5,7 @@
 
 #cdr
 #cdr.sh
-
+echo "$1"
 ################AUTOCOMPLETION
 if [ "$1" == "--get-completions" ]; then #echo completion
 	#ls -d $libroot/results/*
