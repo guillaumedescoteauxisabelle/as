@@ -77,14 +77,17 @@ fi
 declare -r DIR=$(cd "$(dirname "$0"  &> /dev/null)" && pwd) &> /dev/null
 
 
-
-declare -r FNLOADED="1" &> /dev/null
-
+if [ "$FNLOADED" == "" ]; then declare -r FNLOADED="1" &> /dev/null; fi
 
 
-if [ -e "$DIR/lib/giabsfl/lib/bsfl.sh" ]; then 
-	source $DIR/lib/giabsfl/lib/bsfl.sh  &> /dev/null
-else source $binroot/lib/giabsfl/lib/bsfl.sh  &> /dev/null
+if [ "$GIABLOADED" == "" ]; then
+        declare -r GIABLOADED="1" &> /dev/null
+	if [ -e "$DIR/lib/giabsfl/lib/bsfl.sh" ]; then 
+		source $DIR/lib/giabsfl/lib/bsfl.sh  &> /dev/null
+
+	else 
+		source $binroot/lib/giabsfl/lib/bsfl.sh  &> /dev/null
+	fi
 fi
 
 

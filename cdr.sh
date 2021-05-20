@@ -5,22 +5,38 @@
 
 #cdr
 #cdr.sh
-#echo "$1"
+#log"$1"
 flag=0
+
+
+
+#Loading functions
+
+
+if [ -e $binroot/__fn.sh ] && [ "$FNLOADED" != "1" ]; then
+   source $binroot/__fn.sh $@ 
+fi
+LOG_FILE=/var/log/gia/cdr.txt
+LOG_ENABLED=y
+
+
+log "--------------------------------"
+
+
 ################AUTOCOMPLETION
-#if [ "$1" == "--get-completions" ]; then #echo completion
+#if [ "$1" == "--get-completions" ]; then #logcompletion
 	logtype="running"
 	#ls -d $libroot/results/*
-	 echo "--------------------------------"  >> /var/log/gia/cdr.txt
+	 log"--------------------------------"  >> $LOG_FILE
 	if [ "$1" == "--get-completions" ]; then logtype="autocompleting"; autocompleting="1"; shift;shift;fi #twice because we source this and once if we autocomplete
-	echo "-----$(date)------[ $logtype ]------"  >> /var/log/gia/cdr.txt
+	log"-----$(date)------[ $logtype ]------"  >> $LOG_FILE
 	
 
 	subpath="$libroot/results"
 	ppath=$subpath
-	echo " 1:$1,2:$2,3:$3" >> /var/log/gia/cdr.txt
+	log" 1:$1,2:$2,3:$3" >> $LOG_FILE
 	if ( [ "$1" != "" ] || [ "$autocompleting" != "1" ] ) &&  ( [ -e "$libroot/results/$1/$2/$3" ] || [ -e "$libroot/results/$1/$2" ]   || [ -e "$libroot/results/$1" ] ); then 
-		echo "We have a : 1:$1,2:$2,3:$3" >> /var/log/gia/cdr.txt
+		log"We have a : 1:$1,2:$2,3:$3" >> $LOG_FILE
 		arr=("$@")
 		for sp in ${arr[@]}; do 
 			#if [ "$sp" != "$0" ]; then
@@ -30,25 +46,26 @@ flag=0
 			#fi
 			
 		done 
-		#echo "Subpath: $subpath">> /var/log/gia/cdr.txt
+		#log"Subpath: $subpath">> $LOG_FILE
 
 		subpath=${subpath//\/\//\/}
 		ppath=${ppath//\/\//\/}
-		echo "Subpath: $subpath">> /var/log/gia/cdr.txt
+		log"Subpath: $subpath">> $LOG_FILE
 	fi
 
 ################AUTOCOMPLETION
-if [ "$1" == "--get-completions" ] || [ "$autocompleting" == "1" ]; then #echo completion
-	echo "Ppath: $ppath, subdir: $subdir"  >> /var/log/gia/cdr.txt
-	echo "--Trying to list --"  >> /var/log/gia/cdr.txt
-	(cd $ppath &> /dev/null && ls -dr $subdir* && echo "1" >> /var/log/gia/cdr.txt ) \
-		|| (if [ -d "$subpath" ];then pwd  >> /var/log/gia/cdr.txt ; cd $subpath  &> /dev/null && pwd  >> /var/log/gia/cdr.txt  && ls -dr */ && echo "2" >> /var/log/gia/cdr.txt ;else exit ; fi ) \
-	       	||  (cd $ppath  &> /dev/null && ls -dr */ && echo "3" >> /var/log/gia/cdr.txt )    &> /dev/null
+if [ "$1" == "--get-completions" ] || [ "$autocompleting" == "1" ]; then #logcompletion
+	log"Ppath: $ppath, subdir: $subdir"  >> $LOG_FILE
+	log"--Trying to list --"  >> $LOG_FILE
+	
+	(cd $ppath &> /dev/null && ls -dr $subdir* && log"1" >> $LOG_FILE )   \
+		|| (if [ -d "$subpath" ];then pwd  >> $LOG_FILE ; cd $subpath  &> /dev/null && pwd  >> $LOG_FILE  && ls -dr */ && log"2" >> $LOG_FILE ;else exit ; fi )  \
+		||  (cd $ppath  &> /dev/null && ls -dr */ && log"3" >> $LOG_FILE )    
 
 	exit 0
 	flag=1
 fi
-	echo "Subpath: $subpath"
+	log"Subpath: $subpath"
 	cd $subpath
 
 #Loading functions
@@ -88,7 +105,7 @@ LASTREQUIREDARG=NONE
 #dowork "MSG_WHEN_WE_GO"
 
 #if [ $flag == 0 ] ; then
-	#echo cd $libroot/results/$1
+	#logcd $libroot/results/$1
 	#cd $libroot/results/$1
 #fi
 
