@@ -1,0 +1,15 @@
+#globally loaded
+
+if [ "$GIABLOADED" == "" ]; then
+        declare -r GIABLOADED="1" &> /dev/null
+        if [ -e "/a/bin/lib/giabsfl/lib/bsfl.sh" ]; then
+                source /a/bin/lib/giabsfl/lib/bsfl.sh  &> /dev/null
+
+        else
+                if [ -e "/usr/local/lib/giabsfl/lib/bsfl.sh" ]; then
+                        source "/usr/local/lib/giabsfl/lib/bsfl.sh"  &> /dev/null
+                fi
+        fi
+fi
+
+
