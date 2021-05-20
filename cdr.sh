@@ -3,19 +3,21 @@
 #@STCGoal What is the final result for this
 #@STCIssue What is it transcending ? What is reality, the starting point.
 
-#Loading functions
-if [ -e $binroot/__fn.sh ]; then
-	        source $binroot/__fn.sh $@
-fi
-
 #cdr
 #cdr.sh
 
 ################AUTOCOMPLETION
 if [ "$1" == "--get-completions" ]; then #echo completion
-	ls -d $libroot/results/*
+	#ls -d $libroot/results/*
+	(cd $libroot/results; ls -dr */)
 	exit 0
 fi
+
+#Loading functions
+if [ -e $binroot/__fn.sh ]; then
+                source $binroot/__fn.sh $@
+fi
+
 
 ###########DEbug
 DEBUG=0
