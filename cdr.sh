@@ -33,13 +33,18 @@ flag=0
 		#echo "Subpath: $subpath">> /var/log/gia/cdr.txt
 
 		subpath=${subpath//\/\//\/}
+		ppath=${ppath//\/\//\/}
 		echo "Subpath: $subpath">> /var/log/gia/cdr.txt
 	fi
 
 ################AUTOCOMPLETION
 if [ "$1" == "--get-completions" ] || [ "$autocompleting" == "1" ]; then #echo completion
-	echo "Listing : $subpath"  >> /var/log/gia/cdr.txt
-	(cd $subpath; ls -dr */) || (cd $ppath ; ls -dr $subdir*/) ||  (cd $ppath ; ls -dr */)
+	echo "Ppath: $ppath, subdir: $subdir"  >> /var/log/gia/cdr.txt
+	echo "--Trying to list --"  >> /var/log/gia/cdr.txt
+	(cd $ppath && ls -dr $subdir* && echo "2" >> /var/log/gia/cdr.txt ) \
+		|| (cd $subpath && ls -dr */ && echo "1" >> /var/log/gia/cdr.txt ) \
+	       	||  (cd $ppath && ls -dr */ && echo "3" >> /var/log/gia/cdr.txt ) 
+
 	exit 0
 	flag=1
 fi
