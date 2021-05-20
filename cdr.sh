@@ -16,9 +16,9 @@ if [ "$1" == "--get-completions" ]; then #echo completion
 fi
 
 #Loading functions
-if [ -e $binroot/__fn.sh ]; then
-                source $binroot/__fn.sh $@
-fi
+#if [ -e $binroot/__fn.sh ]; then
+#                source $binroot/__fn.sh $@
+#fi
 
 
 ###########DEbug
@@ -39,17 +39,17 @@ LASTREQUIREDARG=NONE
 
 #########################################
 #Displays the application usage and startup info
-startapp "CD Result util " \
-	 "Guillaume Descoteaux-Isabelle" \
-	  2021 \
-	  "
-Usage $0 [result sub dir] 
-        " 
+#startapp "CD Result util " \
+#	 "Guillaume Descoteaux-Isabelle" \
+#	  2021 \
+#	  "
+#Usage $0 [result sub dir] 
+#        " $
 	
 #@TODO set usage  ABOVE
 ################################
 
-dowork "MSG_WHEN_WE_GO"
+#dowork "MSG_WHEN_WE_GO"
 
 #if [ $flag == 0 ] ; then
 	echo cd $libroot/results/$1
@@ -58,8 +58,8 @@ dowork "MSG_WHEN_WE_GO"
 
 
 ##############END CODING HERE and define EXIT CODE somehow
-EXIT_CODE=0 #Define exit code
-MSG_WHEN_DONE=""
+#EXIT_CODE=0 #Define exit code
+#MSG_WHEN_DONE=""
 ########################################
-donework "$MSG_WHEN_DONE" $EXIT_CODE 
+#donework "$MSG_WHEN_DONE" $EXIT_CODE 
 
