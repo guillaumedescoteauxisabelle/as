@@ -14,23 +14,23 @@ if [ "$1" == "--get-completions" ]; then #echo completion
 fi
 
 #Loading functions
-if [ -e $binroot/__fn.sh ]; then
-                source $binroot/__fn.sh $@
-fi
+#if [ -e $binroot/__fn.sh ]; then
+#                source $binroot/__fn.sh $@
+#fi
 
 
 ###########DEbug
 DEBUG=0
-d "Debug is Active"
+#d "Debug is Active"
 
 #Loads env if one in current dir (_env.sh)
-envif $@
+#envif $@
 
 
 #@TODO Set the last ARG to the one required so it will exit if its not there
 ## Set to: NONE 	# if no args
-LASTREQUIREDARG=$1
-#LASTREQUIREDARG=NONE
+#LASTREQUIREDARG=$1
+LASTREQUIREDARG=NONE
 
 #Looks if we used a quiet mode :  
 lookquiet $@
@@ -41,8 +41,8 @@ startapp "XYZ Utilities - " \
 	 "Guillaume Descoteaux-Isabelle" \
 	  2021 \
 	  "
-Usage $0 <arg1> <arg2> [argOptionel]
-        MORE" \
+Usage $0 [result sub dir] 
+        " \
 	$LASTREQUIREDARG
 #@TODO set usage  ABOVE
 ################################
