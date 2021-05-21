@@ -77,7 +77,7 @@ if [ -d "$indir" ] ; then
 	#docker run -it --rm -v $(pwd $outdir):/output $(pwd $indir):/input $(pwd):/work $containertag $runscript /input /output
 	echo docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $indir:/input  $containertag $runscript /input /output  "$3" "$4" "$5" 
 	sleep 1
-	docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $binroot:$binroot -v $HOME:$HOME -v $indir:/input  $containertag $runscript /input /output "$3" "$4" "$5" && \
+	docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $binroot:/a/bin -v $HOME:/home/jgi -v $indir:/input  $containertag $runscript /input /output "$3" "$4" "$5" && \
 		echo "$wwwurl"
 else
 	donework "Input dir not existent" -1
