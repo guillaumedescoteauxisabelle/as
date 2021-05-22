@@ -80,7 +80,7 @@ fi
 vi $fn && chmod +x $_ && git add $_ && git commit $_  $ci_args && git push &&\
 echo "$1 Created/edited and committed" ||
 echo "$1 creation failed or something else was wrong"
-if [ -f "$tcompletefile" ] ; then git add $tcompletefile  && git commit $_  $ci_args && git push 
+if [ -f "$tcompletefile" ] ; then git add $tcompletefile  && git commit $_ -m "add:$fn autocomplete" && git push 
 fi
 
 #cmd.autocomplete.txt
