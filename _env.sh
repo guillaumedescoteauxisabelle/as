@@ -18,7 +18,7 @@ dnstoken="2ac6e31108282aaa24de43d4f45213ef76e566f563bf5649eac74c9be07dde3f"
 
 # Loads an ENV for the current host if exist
 hostbinenvfile=$BINROOT'/_env_'$HOSTNAME'.sh'
-echo $hostbinenvfile
+#echo $hostbinenvfile
 if [ -e $hostbinenvfile ]; then
     . $hostbinenvfile
 else
