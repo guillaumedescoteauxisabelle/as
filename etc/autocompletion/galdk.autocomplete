@@ -24,8 +24,10 @@ _galdk_completions()
     return 0
 }
 
-complete -o default -F _galdk_completions galdk
-complete -o default -F _galdk_completions $binroot/galdk.sh
+#complete -o default -F _galdk_completions galdk
+#complete -o default 
+#complete -o default -F _galdk_completions $binroot/galdk.sh
+#complete -o default
 
 ###-end-galdk-completions-###
 
