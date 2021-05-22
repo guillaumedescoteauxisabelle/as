@@ -19,6 +19,8 @@ if [ -e $binroot/__fn.sh ]; then
 fi
 
 source $SDIR/_env.sh
+source /home/jgi/.bash_env_$HOSTNAME &> /dev/null
+
 
 LOG_FILE="$logdir/dns-update-$(date +"%y-%m").log"
 LOG_ENABLED=y
@@ -29,7 +31,7 @@ mkdir -p $logdir || (echo "Logdir ($logdir) could not be created " && exit 1)
 
 
 
-#asdnstoken="2ac6e31108282aaa24de43d4f45213ef76e566f563bf5649eac74c9be07dde3f"
+
 
 urlcall="https://directnic.com/dns/gateway/$dnstoken/?data="
 log_debug "$urlcall"
