@@ -3,21 +3,30 @@
 ###-begin-cdr-completions-###
 #
 alias cdr="source $binroot/cdr.sh $1"
+ctx_dir=$libroot/results
 
 _cdr_completions()
 {	
 
-	  echo "------$0---------------"  >> /var/log/gia/cdr.autocomplete.txt
+    #echo "------$0---------------"  >> /var/log/gia/cdr.autocomplete.txt
     local cur_word args type_list
 
     cur_word="${COMP_WORDS[COMP_CWORD]}"
-    echo "cur_word:$cur_work" >> /var/log/gia/cdr.autocomplete.txt
+    #echo "cur_word:$cur_work" >> /var/log/gia/cdr.autocomplete.txt
     args=("${COMP_WORDS[@]}")
-    echo "args:$args" >> /var/log/gia/cdr.autocomplete.txt
-
+    #echo "args:$args" >> /var/log/gia/cdr.autocomplete.txt
+    #dlist=$($binroot/cdr.sh --get-completions "${args[@]}")
+    
+    #@STCIssue Nice try but it bugs subdir completion
+    #for i in $($binroot/cdr.sh --get-completions "${args[@]}") ; do
+#	    if [ -d "$ctx_dir/$i" ] ;then # We keep it, its a directory
+#		    type_list+="$i "
+ #   		fi
+#	done
+#	cat $type_list >> /var/log/gia/cdr.autocomplete.txt
     # ask yargs to generate completions.
     type_list=$($binroot/cdr.sh --get-completions "${args[@]}")
-    echo "tipe_list: $type_list" | tr "\n" ";"  >> /var/log/gia/cdr.autocomplete.txt
+    #echo "tipe_list: $type_list" | tr "\n" ";"  >> /var/log/gia/cdr.autocomplete.txt
     #echo "$type_list"
     COMPREPLY=( $(compgen -W "${type_list}" -- ${cur_word}) )
 	  echo "COMPREPLY: $COMPREPLY "  >> /var/log/gia/cdr.autocomplete.txt
