@@ -17,4 +17,23 @@ sudo chmod 775 $loggia
 sudo chown -R 1000.1000 $loggia 
 echo "init $loggia done"
 
-
+#Init ability to use cron with current user
+cuser=$(whoami)
+if [ -e /etc/cron.allow ] ; then
+	bypass="1"
+	for u in $(sudo cat /etc/cron.allow) ; do
+		if [ "$u" == "$cuser" ] ; then #already init
+			bypass="0"
+		fi
+	done
+			
+	if [ "$bypass" == "1" ] ; then 
+		echo "Initializing crontab -e for user $cuser"
+		sudo touch /etc/cron.allow
+		echo  "$cuser"  > /tmp/cuser.txt
+		sudo cat /tmp/cuser.txt | sudo tee -a /etc/cron.allow  &> /dev/null
+	fi
+else 
+	echo "Initializing crontag -e for user $cuser"
+	sudo echo "$cuser" >> /etc/cron.allow
+fi	
