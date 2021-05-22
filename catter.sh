@@ -1,19 +1,23 @@
 #!/bin/bash
 #Loading functions
- if [ -e $binroot/__fn.sh ]; then
-                 source $binroot/__fn.sh $@
- fi
- LOG_ENABLED=y
- LOG_FILE=/var/log/gia/catter.txt
+if [ -e $binroot/__fn.sh ]; then
+       source $binroot/__fn.sh $@
+fi
+LOG_ENABLED=y
+LOG_FILE=/var/log/gia/catter.txt
 
 #DEBUG=1
 cdir=$(pwd)
+log_debug "cdir=$cdir"
+
 #going where we should work
 wdir=/a/src/rwml__adaptive_style_transfer/tests
 cd $wdir
 ns=catter
 source _env.sh $ns
 savedir=/a/catter
+log_info "-------------------------------------------"
+log_status "-------Starting inferences at --$(date)----" 0
 
 mkdir -p $savedir
 
@@ -55,10 +59,15 @@ fi
 
 
 echo -n "$req_p1" > $requestFile
-cat $requestFileContentImage | tr "{" " " >> $requestFile
+cat $requestFileContentImage | tr "{" " " >> $requestFile \
+	&& log_success "Partially made request with content image" \
+	|| log_failed "Making partial request with content image"
+
 rm $requestFileContentImage
 
 dttag=$(date +'%y%m%d%H%M%S')
+log_info "dttag made : $dttag"
+
 #echo $dttag
 
 
@@ -68,7 +77,16 @@ dttag=$(date +'%y%m%d%H%M%S')
 
 
 # Curl PIPE
-curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl | sed -e 's/data:image\/jpeg;base64,//g'
+savebase="$savedir/cf_$dttag"
+log_info "Saving base: $savebase"
+saveresponsefile="$savebase.response.json"
+log_info "Save response file in : $saveresponsefile"
+
+log_status "Calling the service" 10
+curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl | sed -e 's/data:image\/jpeg;base64,//g' | tee "$saveresponsefile" \
+	&& log_success "Succesfully called the service" \
+	|| log_failed "Calling the service failed"
+
 #Curl to an output file will cat later
 #curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl --output $responseFile --silent | sed -e 's/data:image\/jpeg;base64,//g'
 #ref   --output $responseFile --silent  responseFile=
@@ -81,7 +99,16 @@ cd $savedir
 mkdir -p $savedir/db &> /dev/null
 export req_db='{"x1":'$2',"x2":'$3',"x3":'$4',"modelid":"'$modelid'" }'
 echo "req_db"  >  'cf_'"$dttag.json"
-cd $savedir ; gia-ast-response-stylizedImage2file  $requestFile 'cf_'"$dttag.jpg" "contentImage" &> /dev/null &
+cd $savedir 
+log_status "Decoding files in images" 15
+targetcontentfile="$savebase"'__'"content.jpg"
+gia-ast-response-stylizedImage2file  $requestFile "$targetcontentfile" "contentImage" &> /dev/null \
+	&& log_success "Restored $targetcontentfile created" \
+        || log_failed "Restored $targetcontentfile failed" &
+targetstylizedfile="$savebase"'__'"stylized.jpg"
+gia-ast-response-stylizedImage2file $saveresponsefile "$targetstylizedfile" \
+	&& log_success "response-stylizedImage2file $targetstylizedfile created" \
+	|| log_failed "response-stylizedImage2file $targetstylizedfile failed" &
 sleep 1
 #cp $requestFile 
 
