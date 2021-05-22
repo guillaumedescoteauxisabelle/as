@@ -17,8 +17,7 @@ if [ -e $binroot/__fn.sh ]; then
 		echo source $SDIR/__fn.sh
 		source $SDIR/__fn.sh
 fi
-msg_info "tst"
-exit
+
 source $SDIR/_env.sh
 
 LOG_FILE="$logdir/dns-update-$(date +"%y-%m").log"
@@ -51,6 +50,7 @@ msg_debug "$urlfullcall"
 #(cd /tmp;wget "$urlfullcall" > "$logfile")
 log_info $"(cd /tmp;wget "$urlfullcall")" && msg_success "IP updated to $currentip" || msg_failed "IP Failed to update to $currentip"
 #> "$logfile")
-chown 1000.1000 "$logfile"
+
+chown 1000.1000 "$logfile" &> /dev/null
 
 
