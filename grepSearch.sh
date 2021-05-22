@@ -46,6 +46,7 @@ pattern="$1"
 #		srch=$(ls -fd *$2)
 #	fi
 #fi
+shopt -s nullglob # Sets nullglob
 if [ "$2" == "" ]; then # we will create the array from a list
 	i=0
 	while read line
@@ -65,6 +66,7 @@ fi
 
 #echo "srch:$srch"
 c=0
+#shopt -s nullglob # Sets nullglob
 for f in "${files[@]}"; do
 	d echo f:$f
 	
@@ -78,4 +80,5 @@ for f in "${files[@]}"; do
 
 	#cat $f | grep $1
 done
+shopt -u nullglob # Unsets nullglob
 

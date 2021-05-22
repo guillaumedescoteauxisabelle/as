@@ -603,6 +603,9 @@ grepsearcher()
 				headlines="-----" 
 				headlines=">" 
 				cla=0
+				curtxt=" "
+				prevtxt="-"
+				pf=" "
 				for la in "${larr[@]}"; do
 					#echo  "$f ${reset}" 
 					red=`tput setaf 1` #red var for terminal color change
@@ -621,19 +624,31 @@ grepsearcher()
 					coutl=${#cout} #counting char
 					coutspaced=`printf ' %.0s' $(seq 1 $coutl)` #repeat a char in a line
 
-
+					tw=$(tput cols)
+					#echo "tput cols: $tw"
+				
 					txtout=$(echo "${red} $headlines ${green} vi +$lapspaced $f${reset}"  )
-					echo -n $txtout
+					
+					#echo -n "$txtout" 
+					#| cut -c1-$tw 2> /dev/null || echo " " &> /dev/null
 					
 					clr=${y[cla]} # get array val of current line
-					
-					
-					mod=$(echo $y | sed -e 's/  / /g')
+					curtxt="$clr"
+					#echo "clr: $clr"
+					#if [ "$clr" == "$prevtxt" ] ; then #we clean our text its the same
+					#	clr=" "
+					#fi
+
+					mod=$(echo "$clr" | sed -e 's/  / /g')
 					
 					#mod=${mod/"\t"/" "}
 					#mod=${mod/"  "/" "}
 					#mod=${mod//[\t]/ }
-					echo $'\t'"  $mod"  
+					if [ "$pf" != "$f" ]; then #a return, we changed files
+						echo " "
+					fi
+					pf=$f
+					echo "$txtout" $'\t'"  $mod"  | cut -c1-$tw 2> /dev/null || echo " " &> /dev/null
 					#| sed -r 's/[\ \ ]+/\ /g'
 					#| awk '// { for v in $@; do printf $v; done }'
 					#readarray -t yy <<< $(echo "  $y" | awk '/ / {  print $1')
