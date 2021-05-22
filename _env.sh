@@ -10,7 +10,7 @@ export GIADEFAULTFILENAMESEPARATOR="__"
 
 export logdir=/var/log/gia/net
 export loggia=/var/log/gia
-dnstoken="2ac6e31108282aaa24de43d4f45213ef76e566f563bf5649eac74c9be07dde3f"
+
 
 
 ############################ENDING###############
