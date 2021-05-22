@@ -682,6 +682,9 @@ getmodelcheckpoints() {
 	$binroot/mckinfo.sh $modelname
 }
 
+cleanbase64string() {
+	sed -e 's/data:image\/jpeg;base64,//g'<<<"$1"
+}
 
 
 makecheckpointfile(){
