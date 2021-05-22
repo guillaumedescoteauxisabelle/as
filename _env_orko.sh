@@ -1,2 +1,2 @@
-dnstoken="2ac6e31108282aaa24de43d4f45213ef76e566f563bf5649eac74c9be07dde3f"
-
+dnstoken="2fd82b399ab4f006dfd7a89be37c166aad06bb4bd734db6f6eb0ecc54c7725bb"
+#https://directnic.com/dns/gateway/2fd82b399ab4f006dfd7a89be37c166aad06bb4bd734db6f6eb0ecc54c7725bb/?data=192.168.2.104
