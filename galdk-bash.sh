@@ -66,7 +66,9 @@ if [ -d "$indir" ] ; then
 
 	#outbase=$(basename $outdir)
 	#docker run -it --rm -v $(pwd $outdir):/output $(pwd $indir):/input $(pwd):/work $containertag $runscript /input /output
-	docker run -it --rm  -v $(pwd):/work  -v $outdir:/output -v $binroot:$binroot -v $HOME:$HOME -v $indir:/input  $containertag  bash
+	echo docker run -it --rm  -v $(pwd):/work  -v $outdir:/output -v $binroot:$binroot -v $HOME:$HOME -v $indir:/input  $containertag  bash
+	sleep 1
+	docker run -it --rm  -v $(pwd):/work  -v $outdir:/output -v $binroot:/a/bin -v $HOME:/home/jgi -v $indir:/input  $containertag  bash
       # 	$runscript /input /output
 else
 	donework "Input dir not existent" -1

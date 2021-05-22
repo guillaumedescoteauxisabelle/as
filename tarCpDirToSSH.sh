@@ -1,10 +1,17 @@
 #!/bin/bash
 
+sshcall=jgi@orko
 # this copy to a Host
+if [ "$1" == "" ] || [ "$2" == "" ] ; then
+	echo "Usage: $0 <localdir> <targetdir> [myuser@mysshhost]"
+	echo "Default sshcall is : $sshcall"
+	exit 1
+fi
 
 localdir=$1
 remotedir=$2
-sshcall=jgi@orko
+
+
 if [ "$3" != "" ]; then # We have another host connection specified
 	sshcall=$3
 	echo "Target Host is : $sshcall"
