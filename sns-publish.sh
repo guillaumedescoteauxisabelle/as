@@ -12,9 +12,32 @@ fi
 #sns-publish.sh
 
 ################AUTOCOMPLETION
-if [ "$3" == "--get-completions" ]; then #echo completion
-        echo "@TODO List topic ARN"
-      
+if [ "$1" == "--get-completions" ] || [ "$2" == "--get-completions" ] ||[ "$3" == "--get-completions" ]   || [ "$4" == "--get-completions" ]  || [ "$5" == "--get-completions" ] ; then #echo completion
+	echo "---------------------------------------$5"
+	shift
+        #echo "@TODO List topic ARN"
+     	if [ "$1" == "" ] ; then #tell it to spec a subject
+	       echo "#######ENTER_SUBJECT######"
+	       exit
+       else 
+	       
+	       if  [ "$3" == "" ] ; then #tell it to spec a message
+	        echo "#######ENTER_MESSAGE######"
+		exit
+	else
+	       echo "list"	
+		#echo "astia dummy6"
+aws sns list-topics | sed -e 's/{//g'  | sed -e 's/}//g' | sed -e 's/\[//g' | sed -e 's/\]//g' | sed -e 's/,//g' | sed -e 's/"TopicArn"://g' | sed -e 's/ //g'  | sed -e 's/"Topics"://g' 
+exit
+	
+
+
+       fi
+	fi
+	aws sns list-topics | sed -e 's/{//g'  | sed -e 's/}//g' | sed -e 's/\[//g' | sed -e 's/\]//g' | sed -e 's/,//g' | sed -e 's/"TopicArn"://g' | sed -e 's/ //g'  | sed -e 's/"Topics"://g'
+exit
+
+	       #$binroot/galdk.sh gia-ds-daliwill-210123-v02 /www/www/datasets/gia-ds-daliwill-210123-v02 && sns-publish	       
        
         #getmodellist
         #getmodelcheckpoints $2
