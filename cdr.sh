@@ -62,9 +62,13 @@ if [ "$1" == "--get-completions" ] || [ "$autocompleting" == "1" ]; then #logcom
 	#	(cd $ppath && ls * 2> /dev/null )
 	#else
 	(LOG_FILE=/var/log/gia/cdr.txt; LOG_ENABLED=y;\
-		if [ "$ppathbase" != "$subdir" ] ; then cd $ppath &> /dev/null && (ls -dr $subdir* 2> /dev/null|| exit 1)  && log_success "1" || log_failed "1" && exit 1 ;else log_alert "1 skipped";exit 1 ; fi )    \
+		if [ "$ppathbase" != "$subdir" ] ; then \
+			cd $ppath &> /dev/null && (ls -dr $subdir* 2> /dev/null || exit 1)  && log_success "1" || log_failed "1" && exit 1 ;else log_alert "1 skipped";exit 1 ; fi )    \
 		|| \
-		(LOG_FILE=/var/log/gia/cdr.txt; LOG_ENABLED=y;log "entering 2";if [ -d "$subpath" ];then log_info "$(pwd)";cd $subpath  &> /dev/null && log_info $(pwd) && log_info "ls -dr *"   &&  (ls -dr *  2> /dev/null || exit 1 ) && log "2" || log_failed "2"  ;else log_alert "2" ;exit 1; fi  ) \
+		(LOG_FILE=/var/log/gia/cdr.txt; LOG_ENABLED=y;log "entering 2";\
+		if [ -d "$subpath" ];then \
+			log_info "$(pwd)";cd $subpath  &> /dev/null && log_info $(pwd) && log_info "ls -dr *" \
+		      	&&  (ls -dr *  2> /dev/null || exit 1 ) && log "2" || log_failed "2"  ;else log_alert "2" ;exit 1; fi  ) \
 		|| \
 		(LOG_FILE=/var/log/gia/cdr.txt; LOG_ENABLED=y;log "entering 3";log_info "$(pwd)";\
 		cd $ppath  &> /dev/null && log_info "$(pwd)" && ls -dr * 2> /dev/null    \
