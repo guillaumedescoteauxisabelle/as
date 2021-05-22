@@ -13,22 +13,34 @@ fi
 #echo "$@"
 ################AUTOCOMPLETION
 if [ "$1" == "--get-completions" ] || [ "$2" == "--get-completions" ] ||[ "$3" == "--get-completions" ]   || [ "$4" == "--get-completions" ]  || [ "$5" == "--get-completions" ] || [ "$6" == "--get-completions" ] ; then #echo completio
-	#echo "---------------------------------------$4"
+	dttag=$(date +'%y%m%d%H%M%S')
+	#echo "------$dttag----1$1=--2$2=--3$3=--4$4=--5$5=---6$6=--"
 	
         #echo "@TODO List topic ARN"
-     	if [ "$2" == "" ] ; then #tell it to spec a subject
+     	if [ "$3" == "" ] ; then #tell it to spec a subject
 	       echo "#######ENTER_SUBJECT###### -"
 	       exit
        else 
 	       
-	       if  [ "$3" == "" ] ; then #tell it to spec a message
+	       if  [ "$4" == "" ] ; then #tell it to spec a message
 	        echo "#######ENTER_MESSAGE###### -"
 		exit
 	       fi
 	fi
 	       #echo "list"	
 		#echo "astia dummy6"
-aws sns list-topics | sed -e 's/{//g'  | sed -e 's/}//g' | sed -e 's/\[//g' | sed -e 's/\]//g' | sed -e 's/,//g' | sed -e 's/"TopicArn"://g' | sed -e 's/ //g'  | sed -e 's/"Topics"://g'  | sed -e 's/"//g' 
+	#if [ "$5" == "" ] ; then
+	 #      echo "Raw list"
+       #else
+	#       echo "non raw list-$5"
+	#fi	       
+
+	topics=$(aws sns list-topics | sed -e 's/{//g'  | sed -e 's/}//g' | sed -e 's/\[//g' | sed -e 's/\]//g' | sed -e 's/,//g' | sed -e 's/"TopicArn"://g' | sed -e 's/ //g'  | sed -e 's/"Topics"://g')
+      
+	for t in $topics ; do 
+      		echo "\"$t\""
+	done      
+	#| sed -e 's/"//g' 
 exit
 	
 
