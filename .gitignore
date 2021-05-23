@@ -1,4 +1,10 @@
 _env.sh
+*.bak
+*.backup
+tmp*
+tst*
+*.back
+*.code-workspace
 zold
 yarn.lock
 dummy*
