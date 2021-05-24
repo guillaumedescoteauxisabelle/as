@@ -1,6 +1,4 @@
 [submodule "lib/bashsimplecurses"]
 	path = lib/bashsimplecurses
 	url = git@github.com:GuillaumeIsabelleX/gix-bashsimplecurses.git
-[submodule "lib/giabsfl"]
-	path = lib/giabsfl
-	url = git@github.com:GuillaumeAI/giabsfl.git
+
