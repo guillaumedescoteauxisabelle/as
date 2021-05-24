@@ -47,7 +47,8 @@ dowork "We are creating the gallery"
 
 #Here is what it does codified
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
-containertag=guillaumeai/server:gal
+containertag=guillaumeai/server:gal-jgi
+
 runscript=/a/bin/gallery_html_maker2.sh
 indir=$1
 if [ "$1" == "." ]; then # we use current dir path
