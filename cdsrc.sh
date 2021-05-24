@@ -25,16 +25,16 @@ log "--------------------------------"
 ################AUTOCOMPLETION
 #if [ "$1" == "--get-completions" ]; then #logcompletion
 	logtype="running"
-	#ls -d $srcroot/results/*
+	#ls -d $srcroot/*
 	 log "--------------------------------"  
 	if [ "$1" == "--get-completions" ]; then logtype="autocompleting"; autocompleting="1"; shift;shift;fi #twice because we source this and once if we autocomplete
 	log "-----$(date)------[ $logtype ]------"  
 	
 
-	subpath="$srcroot/results"
+	subpath="$srcroot"
 	ppath=$subpath
 	log " 1:$1,2:$2,3:$3" 
-	if ( [ "$1" != "" ] || [ "$autocompleting" != "1" ] ) &&  ( [ -e "$srcroot/results/$1/$2/$3" ] || [ -e "$srcroot/results/$1/$2" ]   || [ -e "$srcroot/results/$1" ] ); then 
+	if ( [ "$1" != "" ] || [ "$autocompleting" != "1" ] ) &&  ( [ -e "$srcroot/$1/$2/$3" ] || [ -e "$srcroot/$1/$2" ]   || [ -e "$srcroot/$1" ] ); then 
 		log "We have a : 1:$1,2:$2,3:$3" 
 		arr=("$@")
 		for sp in ${arr[@]}; do 
@@ -106,8 +106,8 @@ LASTREQUIREDARG=NONE
 #dowork "MSG_WHEN_WE_GO"
 
 #if [ $flag == 0 ] ; then
-	#logcd $srcroot/results/$1
-	#cd $srcroot/results/$1
+	#logcd $srcroot/$1
+	#cd $srcroot/$1
 #fi
 
 
