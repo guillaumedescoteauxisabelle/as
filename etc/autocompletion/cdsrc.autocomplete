@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+###-begin-cdsrc-completions-###
+#
+alias cdsrc="source $binroot/cdsrc.sh $1"
+ctx_dir=$srcroot
+
+_cdsrc_completions()
+{	
+
+    #echo "------$0---------------"  >> /var/log/gia/cdsrc.autocomplete.txt
+    local cur_word args type_list
+
+    cur_word="${COMP_WORDS[COMP_CWORD]}"
+    #echo "cur_word:$cur_work" >> /var/log/gia/cdsrc.autocomplete.txt
+    args=("${COMP_WORDS[@]}")
+    #echo "args:$args" >> /var/log/gia/cdsrc.autocomplete.txt
+    #dlist=$($binroot/cdsrc.sh --get-completions "${args[@]}")
+    
+    #@STCIssue Nice try but it bugs subdir completion
+    echo "($binroot/cdsrc.sh --get-completions ${args[@]}"  >> /var/log/gia/cdsrc.autocomplete.txt
+    for i in $($binroot/cdsrc.sh --get-completions "${args[@]}") ; do
+	    if [ ! -f "$ctx_dir/$i" ] ;then # We keep it, its a directory
+		    type_list+=$i$'\n'
+   		fi
+	done
+    #cat "$type_list" >> /var/log/gia/cdsrc.autocomplete.txt
+    # ask yargs to generate completions.
+    #/
+    #type_list=$($binroot/cdsrc.sh --get-completions "${args[@]}")
+    #echo "tipe_list: $type_list" | tr "\n" ";"  >> /var/log/gia/cdsrc.autocomplete.txt
+    #echo "$type_list"
+    COMPREPLY=( $(compgen -W "${type_list}" -- ${cur_word}) )
+	  echo "COMPREPLY: $COMPREPLY "  >> /var/log/gia/cdsrc.autocomplete.txt
+
+    # if no match was found, fall back to filename completion
+    if [ ${#COMPREPLY[@]} -eq 0 ]; then
+      COMPREPLY=()
+    fi
+
+    return 0
+}
+
+complete -o default -F _cdsrc_completions cdsrc
+complete -o default -F _cdsrc_completions $binroot/cdsrc.sh
+
+###-end-cdsrc-completions-###
+
