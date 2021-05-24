@@ -91,6 +91,7 @@ if [ -d "$indir" ] ; then
 	sleep 1
 
 	mkdir -p $outdir && \
+	#(cd $outdir; 
 	outdir=$(cd $outdir && pwd ) && \
 	indir=$(cd $indir && pwd  ) || !
 	(echo "Error with input or output"; exit 1 )
