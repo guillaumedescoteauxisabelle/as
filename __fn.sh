@@ -67,7 +67,7 @@ declare -x DEBUG="0"
 
 
 
-if [ -e "$binroot/_env.sh" ]; then 
+if [ -e "$binroot/_env.sh" ] && [ "$BINENVLOADED" == "" ]; then 
         . $binroot/_env.sh $@
 fi
 
@@ -153,6 +153,16 @@ dvar () {
         done
 fi	
 }
+
+lvar() {
+        if [ "$DEBUG" == "1" ] || [ "$DEBUG" == "true" ]; then
+                for i in $@ ; do
+                        log_debug "$i = ${!i}"
+        done
+fi
+}
+
+
 dcfile () {
 	d $0
 }
