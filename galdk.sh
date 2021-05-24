@@ -89,6 +89,10 @@ if [ -d "$indir" ] ; then
 	#docker run -it --rm -v $(pwd $outdir):/output $(pwd $indir):/input $(pwd):/work $containertag $runscript /input /output
 	echo docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $binroot:/a/bin -v $HOME:/home/jgi -v $indir:/input  $containertag $runscript /input /output "$3" "$4" "$5"
 	sleep 1
+	mkdir -p $outdir
+	outdir=$(cd $outdir && pwd || (echo "error with outputdir" && exit 1))
+	indir=$(cd $indir && pwd || (echo "error with inputdir" && exit 1) )
+	sleep 1
 	docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $binroot:/a/bin -v $HOME:/home/jgi -v $indir:/input  $containertag $runscript /input /output "$3" "$4" "$5" && \
 		echo "$wwwurl"
 else
