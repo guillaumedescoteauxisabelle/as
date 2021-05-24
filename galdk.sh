@@ -75,12 +75,18 @@ if [ -d "$indir" ] ; then
 	indir=$(cd $indir;pwd)
         mkdir -p $outdir
         outdir=$(cd $outdir;pwd)
+
+	#Making www link to use as output pipe
 	reldir=$(echo "$outdir" | sed -e 's/\/a\/lib\/results\///g')
-	wwwurl="http://as.guillaumeisabelle.com/$reldir"
+	wwwbaseurl="http://$HOSTNAME"
+	if [ "$wwwurllibresultbase" != "" ] ; then
+		wwwbaseurl=$wwwurllibresultbase ; fi
+
+	wwwurl="$wwwurllibresultbase/$reldir"
         #outbase=$(basename $outdir)
 
 	#docker run -it --rm -v $(pwd $outdir):/output $(pwd $indir):/input $(pwd):/work $containertag $runscript /input /output
-	echo docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $indir:/input  $containertag $runscript /input /output  "$3" "$4" "$5" 
+	echo docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $binroot:/a/bin -v $HOME:/home/jgi -v $indir:/input  $containertag $runscript /input /output "$3" "$4" "$5"
 	sleep 1
 	docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $binroot:/a/bin -v $HOME:/home/jgi -v $indir:/input  $containertag $runscript /input /output "$3" "$4" "$5" && \
 		echo "$wwwurl"
