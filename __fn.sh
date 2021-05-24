@@ -45,6 +45,7 @@ fi
 ## @defgroup usage Usage
 ## @defgroup fun Fun
 ## @defgroup variable Variable
+## @defgroup giafn
 
 
 
@@ -800,4 +801,19 @@ makecheckpointfile(){
 	export MCHECKPOINTCONTENT=$filecontent
 	d "------------ or use : \$MCHECKPOINTFILEPATH"
 	d "------------ or use : \$MCHECKPOINTCONTENT"
+}
+
+
+## @fn dst()
+## @ingroup giafl
+## @brief Diplay status if any
+dst() {
+	if [ "$STATUS" ];then display_status $STATUS;fi
+}
+
+## @fn dstm()
+## @ingroup giafl
+## @brief Diplay status message if any
+dstm() {
+	if [ "$MESSAGE" ];then echo "$MESSAGE";fi
 }
