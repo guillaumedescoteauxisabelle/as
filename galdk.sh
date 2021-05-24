@@ -89,15 +89,19 @@ if [ -d "$indir" ] ; then
 	#docker run -it --rm -v $(pwd $outdir):/output $(pwd $indir):/input $(pwd):/work $containertag $runscript /input /output
 	echo docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $binroot:/a/bin -v $HOME:/home/jgi -v $indir:/input  $containertag $runscript /input /output "$3" "$4" "$5"
 	sleep 1
-	mkdir -p $outdir
-	outdir=$(cd $outdir && pwd || (echo "error with outputdir" && exit 1))
-	indir=$(cd $indir && pwd || (echo "error with inputdir" && exit 1) )
+
+	mkdir -p $outdir && \
+	#(cd $outdir; 
+	outdir=$(cd $outdir && pwd ) && \
+	indir=$(cd $indir && pwd  ) || !
+	(echo "Error with input or output"; exit 1 )
 	sleep 1
 	docker run -it --rm -v $(pwd):/work  -v $outdir:/output -v $binroot:/a/bin -v $HOME:/home/jgi -v $indir:/input  $containertag $runscript /input /output "$3" "$4" "$5" && \
 		echo "$wwwurl"
 else
+	echo "Error with input"
 	donework "Input dir not existent" -1
-	exit -1
+	exit 1
 fi
 
 ##############END CODING HERE and define EXIT CODE somehow
