@@ -56,11 +56,11 @@ for d in *x; do
 		dvar f 	fn fl r
 		#dvar tmptran tmplabeled2
 		out=$tmplabeled2/$f
-	dvar out	
+		dvar out	
 
 	
 		echo "-geometry $r $f $out"
-echo 		montage -label "$fl"  -pointsize 48 -geometry $r -font Helvetica $f $out
+ 		montage -label "$fl"  -pointsize 48 -geometry $r -font Helvetica $f $out && msg_ok "Montage $f done" || msg_warning "montage failed $f"
 
 		#@state We have a montage with label in a tempdir tmplabeled2
 		
