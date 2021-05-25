@@ -83,9 +83,10 @@ saveresponsefile="$savebase.response.json"
 log_info "Save response file in : $saveresponsefile"
 
 log_status "Calling the service" 10
-curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl | sed -e 's/data:image\/jpeg;base64,//g' | tee "$saveresponsefile" \
-	&& log_success "Succesfully called the service" \
-	|| log_failed "Calling the service failed"
+curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl  --silent | sed -e 's/data:image\/jpeg;base64,//g' 
+#curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl  --silent | sed -e 's/data:image\/jpeg;base64,//g' | tee "$saveresponsefile" \
+#	&& log_success "Succesfully called the service" \
+#	|| log_failed "Calling the service failed"
 
 #Curl to an output file will cat later
 #curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl --output $responseFile --silent | sed -e 's/data:image\/jpeg;base64,//g'
