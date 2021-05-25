@@ -14,32 +14,44 @@ DEBUG=1
 fr=8
 cdir=$(pwd)
 tdir=$(cd ..;pwd)
+echo "Target output for video: $tdir"
 
+sleep 3
 
 
 
 for d in *x; do
 	dn=$(echo "$d" | tr "/" "_")
 
-	export tmplabeled2=/tmp/fflabeled
+	export tmplabeled2=$d'-labeled'
 	mkdir -p $tmplabeled2 #|| exit 1
 
-	tmptran=$tmplabeled2/outputdir
+	tmptran=$tmplabeled2/_jpegtran
 	mkdir -p $tmptran
 
-	echo $d  
+	msg_info "Wer are in :$d"  
 	 
 	cd $d
-	pwd
+	msg_status "Moved in $d" INFO
+
+	msg_info "$(pwd)"
+	
 	sleep 1
 
 	for f in *.jpg; do 
 		cddir=$(pwd)
-		#echo "$fl"
+		
 		#montage
 		fn=${f%.*}
+		#out file label
 		fl=$(echo "$fn" | sed -e 's/___/   /g'|sed -e 's/__/  /g'|sed -e 's/_/ /g'); 
- 		r=$($binroot/imgGetResolution.sh "$f")
+ 		#our file resolution
+		rx=$($binroot/imgGetResolution.sh "$f" x)
+		ry=$($binroot/imgGetResolution.sh "$f" y)
+		labelingheight=50
+		ryfixed=$(expr $ry + $labelingheight)
+		r=$rx'x'$ryfixed
+		msg_debug "$r adjusted from $rx X $ry"
 
 		dvar f 	fn fl r
 		#dvar tmptran tmplabeled2
@@ -69,5 +81,8 @@ echo 		montage -label "$fl"  -pointsize 48 -geometry $r -font Helvetica $f $out
 		 ffmpeg   -framerate $fr -i %05d.jpg -codec copy  $tmontagevideofile && msg_success "Done montage of $d" || msg_failed "montage of $d failed"
 
 	cd $cdir
-	rm -rf $tmplabeled2
+#	rm -rf $tmplabeled2
 done
+
+echo "might be ok in $tdir"
+
