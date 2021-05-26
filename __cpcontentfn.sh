@@ -30,6 +30,7 @@ cpcontent() {
 			 cd $d && \
 			 (cp $c.jpg $tdir &> /dev/null || \
 			 cp $c.png $tdir &> /dev/null || \
+			 cp $c.JPG $tdir &> /dev/null || \
 			 cp $c $tdir &> /dev/null )
 		fi
 		 cd $libroot/samples
@@ -39,6 +40,7 @@ cpcontent() {
 		if [ -d "$d" ] ; then 
 			cd $d && \
 			(cp $c.jpg $tdir &> /dev/null  || \
+			cp $c.JPG $tdir &> /dev/null || \
 			cp $c.png $tdir &> /dev/null  || \
 			cp $c $tdir &> /dev/null )
 		fi 
