@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 cdir=$(pwd)
 bdir=$(basename $cdir)

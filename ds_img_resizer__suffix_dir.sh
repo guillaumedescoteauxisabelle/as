@@ -1,3 +1,4 @@
+#!/bin/bash
 
 
 # Resize in a subdir created with above res suffix
