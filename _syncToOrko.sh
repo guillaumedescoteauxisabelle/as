@@ -8,9 +8,9 @@ else
 fi
 
 if [ -e _syncconf.sh ]; then #source local
-	source _syncconf.sh $1
+	source _syncconf.sh "$1"
 else
-	source $binroot/_syncconf.sh $1
+	source $binroot/_syncconf.sh "$1"
 fi
 
 if [ "$1" == " " ]; then # Need an argi

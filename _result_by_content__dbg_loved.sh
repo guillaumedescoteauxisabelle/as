@@ -5,7 +5,7 @@ sleep 1
 tdir=$cdir'_by_content'
 . $binroot/__cpcontentfn.sh
 
-loopcpcontent() {
+OLDloopcpcontent() {
 
 	srcfile="$1"
 	tdir="$2"
@@ -23,7 +23,7 @@ loopcpcontent() {
         done
 
 }
-cpcontent() {
+OLDcpcontent() {
 	c=$1
 	tdir=$2
 	cd $libroot/samples
@@ -66,7 +66,10 @@ for d in $(ls -d *); do
 			fi
 
 			cp "$c"_"$ftag"*jpg "$tcdir" &> /dev/null  && \
-                                 echo -n "."
+                                 echo -n "." && \
+				 cpcontent $c $tcdir &
+
+			
 
 		done 
 
@@ -81,7 +84,7 @@ for d in $(ls -d *); do
 
 			#copy out file pattern matching out ftag and content name
                         cp "$c"_"$ftag"*jpg "$tcdir" &> /dev/null && \
-				 echo -n "."
+				 echo -n "." &&  cpcontent $c $tcdir &
                 done
 		
 
@@ -92,7 +95,7 @@ for d in $(ls -d *); do
                         tcdir="$tdir/$c"
                         if [ ! -d "$tcdir" ] ; then
                                 mkdir -p "$tcdir"
-                                echo -n "."
+                                echo -n "." 
                         fi
 
                         #copy out file pattern matching out ftag and content name
