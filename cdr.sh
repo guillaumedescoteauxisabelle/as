@@ -13,7 +13,7 @@ flag=0
 #Loading functions
 
 
-if [ -e $binroot/__fn.sh ] && [ "$FNLOADED" != "1" ]; then
+if [ -e $binroot/__fn.sh ] && [ "$FNLOADED" == "" ]; then
    source $binroot/__fn.sh $@ 
 fi
 LOG_FILE=/var/log/gia/cdr.txt; LOG_ENABLED=y

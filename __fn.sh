@@ -149,17 +149,17 @@ echovar () {
 dvar () {
 	if [ "$DEBUG" == "1" ] || [ "$DEBUG" == "true" ]; then 
 		for i in $@ ; do
-                	msg_debug "$i = ${!i}"
-        done
-fi	
+			msg_debug "$i = ${!i}" || (msg_warning "$i is an invalid variable" )
+        	done
+	fi	
 }
 
 lvar() {
         if [ "$DEBUG" == "1" ] || [ "$DEBUG" == "true" ]; then
                 for i in $@ ; do
-                        log_debug "$i = ${!i}"
-        done
-fi
+                        log_debug "$i = ${!i}"  || (msg_warning "$i is an invalid variable" )
+        	done
+	fi
 }
 
 
