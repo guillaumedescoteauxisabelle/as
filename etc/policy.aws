@@ -1,0 +1,53 @@
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1621369831521",
+    "Statement": [
+        {
+            "Sid": "Stmt1621369825747",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject",
+                "s3:GetObjectVersion"
+            ],
+            "Resource": "arn:aws:s3:::astiagal/*"
+        }
+    ]
+}
+
+{
+  "Id": "Policy1621370533111",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1621370530493",
+      "Action": [
+        "s3:GetObject",
+        "s3:GetObjectVersion"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::astiagal/*",
+      "Principal": "*"
+    }
+  ]
+}
+
+
+
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1622250182312",
+    "Statement": [
+        {
+            "Sid": "Stmt1622250178893",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": [
+                "s3:GetObject",
+                "s3:GetObjectVersion"
+            ],
+            "Resource": "arn:aws:s3:::astiapreviz/*"
+        }
+    ]
+}
+

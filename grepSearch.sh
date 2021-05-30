@@ -46,8 +46,16 @@ pattern="$1"
 #		srch=$(ls -fd *$2)
 #	fi
 #fi
+
+export skipbashhistory=0
+
+if [ "$2" == "--nohistory" ] ||  [ "$3" == "--nohistory" ] ||  [ "$4" == "--nohistory" ] ;then
+       skipbashhistory=1
+fi
+
+
 shopt -s nullglob # Sets nullglob
-if [ "$2" == "" ]; then # we will create the array from a list
+if [ "$2" == "" ] || [ "$skipbashhistory" == "1" ] ; then # we will create the array from a list
 	i=0
 	while read line
 	do
@@ -63,7 +71,6 @@ else # a filespec was given
 fi
 #echo ${files[@]}
 
-
 #echo "srch:$srch"
 c=0
 #shopt -s nullglob # Sets nullglob
@@ -71,8 +78,11 @@ for f in "${files[@]}"; do
 	d echo f:$f
 	
 
-	grepsearcher "$pattern" "$f"
-
+	if [ "$skipbashhistory" == "1" ] && [ "$f" == ".bash_history" ] ; then
+		echo "Bash history skipped"
+	else
+		grepsearcher "$pattern" "$f"
+	fi
 
 	
 	d $c
