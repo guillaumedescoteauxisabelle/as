@@ -1,19 +1,23 @@
 #!/bin/bash
 #@STCGoal A folder where each jpg are slide showing on the web
 if [ "$1" == "--help" ]; then 
-	echo "usage: $0 [prefix jpg pattern] [--manual]"
-	echo "$0 anim_something --manual"
-	echo "$0  --manual"
-	echo "$0  --manual"
+	echo "usage: $0 [prefix jpg pattern] [--auto]"
+	echo "$0 anim_something --auto"
+	echo "$0  --auto"
 	echo "$0  (no args works too)"
 	exit 1
 fi
+. $binroot/__fn.sh
 
 cdir=$(pwd)
+cdirbasename=$(basename $cdir)
+dirns=$(mkdirns . -3)
 #source dir - might be different later
 sdir=$binroot/templates/jsslideshow
 c=0
 wdir=$TMP/build_astia_autosliding
+rm -rf $wdir &> /dev/null
+
 ddir=$cdir/dist
 rm -rf $wdir $ddir &>/dev/null
 mkdir -p $wdir $ddir &>/dev/null
@@ -59,10 +63,14 @@ body=$(cat blocks.html )
 cp $sdir/htmlindex.html .
 export PATTERN=BODYSLIDE
 $binroot/tools/pattern-replacer-awk.sh blocks.html htmlindex.html  > result.html
+#@a file title
+export PATTERN=DOCTITLE
+sed -i 's/DOCTITLE/'"$dirns"'/g' result.html
 
 #@a Auto or Manual Code block (any args will set to manual)
+
 export codefile=$sdir/jscodemanual.js
-if [ "$1" == "--manual" ] ||  [ "$2" == "--manual" ]; then #@state Default to auto
+if [ "$1" == "--auto" ] ||  [ "$2" == "--auto" ]; then #@state Default to auto
   export codefile=$sdir/jscodeauto.js
 fi
 
