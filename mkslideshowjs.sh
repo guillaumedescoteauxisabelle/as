@@ -33,16 +33,17 @@ for f in *.jpg
 do 
     #cap=${f%.*}
     cap=$(sed -e 's/_/ /g'<<<${f%.*})
-    cp $f $wdir/$c.jpg
-    echo "$cap"
-    cp $sdir/htmlblock.html $wdir/$c.html
-    cd $wdir
-    sed -i 's/MYIMAGE/'"$c.jpg"'/g' $wdir/$c.html
-    sed -i 's/MYCAPTION/'"$cap"'/g' $wdir/$c.html
-    sed -i 's/CIMG/'"$c"'/g' $wdir/$c.html
-    cat $c.html >> $wdir/blocks.html
-    cd $cdir
-    c=$(expr $c + 1)
+    cp $f $wdir/$c.jpg && \
+    echo "$cap" && \
+    cp $sdir/htmlblock.html $wdir/$c.html && \
+    cd $wdir && \
+    sed -i 's/MYIMAGE/'"$c.jpg"'/g' $wdir/$c.html && \
+    sed -i 's/MYCAPTION/'"$cap"'/g' $wdir/$c.html && \
+    sed -i 's/CIMG/'"$c"'/g' $wdir/$c.html && \
+    cat $c.html >> $wdir/blocks.html && \
+    cd $cdir  && \
+    c=$(expr $c + 1) || (echo "Something did not worked when processing files... exiting" ; exit 2)
+
 done
 
 # Exit if we had no file
