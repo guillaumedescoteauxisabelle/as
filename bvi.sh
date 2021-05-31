@@ -64,7 +64,7 @@ fi
 echo -n "Commit message (enter to skip):"
 read cimsg
 if [ "$cimsg" != "" ] || [ "$cimsg" != "\n" ]; then # We commit
-	(cd $binroot ;git commit $1 -m "$cimsg" &> /dev/null && echo " " && msg_info "Commit and push is done in background..." && git push &> /dev/null) &
+	(cd $binroot ;git commit $1 -m "$cimsg" &> /dev/null && echo " " && msg_info "Commit and push is done in background..." && echo " " && git push &> /dev/null) &
 fi
 
 
