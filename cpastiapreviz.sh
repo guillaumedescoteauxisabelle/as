@@ -1,3 +1,5 @@
+#!/bin/bash
+#@STCGoal A File is available online
 
 if [ ! -e "$1" ] || [ "$2" == "" ] ; then 
 	echo "------------possible location-----"
