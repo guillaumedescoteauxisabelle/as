@@ -61,11 +61,14 @@ if [ "$2" != "" ] ; then
 else 
 	vi $binroot/$1
 fi
-echo -n "Commit message (enter to skip):"
+echo "-----------@a-------------------------------"
+echo "Commit message (enter to skip)"
+echo -n "                    >>>>> "
 read cimsg
 if [ "$cimsg" != "" ] || [ "$cimsg" != "\n" ]; then # We commit
-	(cd $binroot ;git commit $1 -m "$cimsg" &> /dev/null && echo " " && msg_info "Commit and push is done in background..." && git push &> /dev/null) &
+	(cd $binroot ;git add $1 &> /dev/null ; git commit $1 -m "$cimsg" &> /dev/null && echo " " && msg_info "GIA BVI has just Commited changes and is pushing in background silently..." && git push &> /dev/null || msg_failed "Comitting or pushing, sorry") &
 fi
+
 
 
 ##############END CODING HERE and define EXIT CODE somehow

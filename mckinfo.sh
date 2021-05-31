@@ -21,9 +21,14 @@ export model_basename="$1"
 #(cd $modelroot;ls -dtr *)
 if [ "$1" == "--last" ]; then
 	for d in $(cd $modelroot;ls -dtr *) ; do
-		#lazy way to get the last
+		#lazy way to get the last modified file hehe
 		model_basename="$d"
 	done
+	echo "-----------MCKInfo Latest Model----------------------"
+	echo "--"
+	echo "---is : $model_basename ---"
+	echo "--"
+	echo "--------------------------------------------"
 fi
 if [ "$1" == "--modeltag" ] || [ "$1" == "--context" ]  || [ "$1" == "--c" ]  || [ "$1" == "-c" ]  || [ "$1" == "-mt" ]   ; then
 	if [ "$modeltag" != "" ]; then model_basename="$modeltag" ; 
