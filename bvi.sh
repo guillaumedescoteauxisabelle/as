@@ -66,6 +66,8 @@ read cimsg
 if [ "$cimsg" != "" ] || [ "$cimsg" != "\n" ]; then # We commit
 	(cd $binroot ;git commit $1 -m "$cimsg" &> /dev/null && echo " " && msg_info "Commit and push is done in background..." && echo " " && git push &> /dev/null) &
 fi
+sleep 1 
+echo " "
 
 
 ##############END CODING HERE and define EXIT CODE somehow
