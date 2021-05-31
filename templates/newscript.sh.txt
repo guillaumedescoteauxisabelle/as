@@ -1,7 +1,7 @@
 #!/bin/bash
 
-#@STCGoal What is the final result for this
-#@STCIssue What is it transcending ? What is reality, the starting point.
+#@STCGoal STCGOALLINE
+#@STCIssue STCISSUELINE
 
 #Loading functions
 if [ -e $binroot/__fn.sh ]; then
