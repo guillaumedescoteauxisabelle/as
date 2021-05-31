@@ -57,12 +57,15 @@ if [ "$c" == "0" ] ; then echo "sounds like we have nothing to process " ; exit 
 cd $wdir
 #echo "Waiting for phoking dropbox..."
 #sleep 3
-sed -i 's/TIMG/'"$c"'/g' blocks.html
+
 #@a Integrating Blocks in the final HTML
+cp $sdir/*.html .
+sed -i 's/TIMG/'"$c"'/g' blocks.html
 body=$(cat blocks.html )
-cp $sdir/htmlindex.html .
 export PATTERN=BODYSLIDE
 $binroot/tools/pattern-replacer-awk.sh blocks.html htmlindex.html  > result.html
+
+
 #@a file title
 export PATTERN=DOCTITLE
 sed -i 's/DOCTITLE/'"$dirns"'/g' result.html
@@ -72,6 +75,12 @@ sed -i 's/DOCTITLE/'"$dirns"'/g' result.html
 export codefile=$sdir/jscodemanual.js
 if [ "$1" == "--auto" ] ||  [ "$2" == "--auto" ]; then #@state Default to auto
   export codefile=$sdir/jscodeauto.js
+  sed -i 's/MANUALNAV//g' result.html
+else 
+	#@a Manual Nav
+	export PATTERN=MANUALNAV
+	$binroot/tools/pattern-replacer-awk.sh htmlnav.html result.html  > result2.html
+  mv result2.html result.html
 fi
 
 export PATTERN=JSCODEBLOCK
