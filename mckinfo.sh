@@ -24,7 +24,9 @@ if [ "$1" == "--last" ]; then
 		#lazy way to get the last modified file hehe
 		model_basename="$d"
 	done
-	echo "---Latest model is : $model_basename ---"
+	echo "-----------MCKInfo Latest Model----------------------"
+	echo "---is : $model_basename ---"
+	echo "--------------------------------------------"
 fi
 if [ "$1" == "--modeltag" ] || [ "$1" == "--context" ]  || [ "$1" == "--c" ]  || [ "$1" == "-c" ]  || [ "$1" == "-mt" ]   ; then
 	if [ "$modeltag" != "" ]; then model_basename="$modeltag" ; 
