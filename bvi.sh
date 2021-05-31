@@ -61,7 +61,9 @@ if [ "$2" != "" ] ; then
 else 
 	vi $binroot/$1
 fi
+echo "-----------@a-------------------------------"
 echo -n "Commit message (enter to skip):"
+echo " "
 read cimsg
 if [ "$cimsg" != "" ] || [ "$cimsg" != "\n" ]; then # We commit
 	(cd $binroot ;git commit $1 -m "$cimsg" &> /dev/null && echo " " && msg_info "GIA BVI is Commiting and pushing in background..." && echo " " && git push &> /dev/null || msg_failed "Comitting or pushing, sorry") &
