@@ -25,7 +25,9 @@ if [ "$1" == "--last" ]; then
 		model_basename="$d"
 	done
 	echo "-----------MCKInfo Latest Model----------------------"
+	echo "--"
 	echo "---is : $model_basename ---"
+	echo "--"
 	echo "--------------------------------------------"
 fi
 if [ "$1" == "--modeltag" ] || [ "$1" == "--context" ]  || [ "$1" == "--c" ]  || [ "$1" == "-c" ]  || [ "$1" == "-mt" ]   ; then
