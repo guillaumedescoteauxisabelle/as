@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+#@STCGoal STCGOALLINE
+#@STCIssue STCISSUELINE
+# Echoing the goal and issue it transcend
+alias SCRIPTALIASNAME_goal='echo "@STCGoal STCGOALLINE\n"@STCIssue STCISSUELINE'
+
 ###-begin-SCRIPTALIASNAME-completions-###
 #
 alias SCRIPTALIASNAME="$binroot/SCRIPTFILENAME "
