@@ -25,7 +25,9 @@ dowork $1 "Stopping and deleting $1"
 
 #@STCGoal Registered service available
 #@a Removing it
-port=$(lp | grep $1 | tr ":" " " | awk '// {print $1}')
+port=$($binroot/dkcList.sh | grep $1 | tr ":" " " | awk '// {print $1}')
+echo "Deregistering $port"
+
 
 #TMP
 
@@ -38,7 +40,7 @@ if [ -e "$gtpath/$port.json" ] ; then
 
 	(cd $gtpath && ls *json > list.txt) &
 else
-        echo "No file to cleanup for $port in :$gtpath"
+        echo "No registration found for port:$port in registry path:$gtpath"
 fi
 
 #@a do the work
