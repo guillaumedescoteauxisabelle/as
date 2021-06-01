@@ -17,6 +17,9 @@ if [ "$1" == "" ]; then
 	echo "--last --p #last model current checkpoint (used when training)"
 	exit 1
 fi
+if [ "$1" == "--quiet" ] || [ "$2" == "--quiet" ] ||[ "$3" == "--quiet" ] ; then
+	export QUIET=1
+fi
 export model_basename="$1"
 #(cd $modelroot;ls -dtr *)
 if [ "$1" == "--last" ]; then
@@ -24,11 +27,14 @@ if [ "$1" == "--last" ]; then
 		#lazy way to get the last modified file hehe
 		model_basename="$d"
 	done
-	echo "-----------MCKInfo Latest Model----------------------"
-	echo "--"
-	echo "---is : $model_basename ---"
-	echo "--"
-	echo "--------------------------------------------"
+	if [ "$QUIET" != "1" ] ; then
+		echo "-----------MCKInfo Latest Model----------------------"
+		echo "--"
+		echo "---is : $model_basename ---"
+		echo "--"
+		echo "--------------------------------------------"
+	fi
+
 fi
 if [ "$1" == "--modeltag" ] || [ "$1" == "--context" ]  || [ "$1" == "--c" ]  || [ "$1" == "-c" ]  || [ "$1" == "-mt" ]   ; then
 	if [ "$modeltag" != "" ]; then model_basename="$modeltag" ; 
@@ -72,8 +78,12 @@ if [ "$2" == "--p" ] || [ "$2" == "-p" ] ; then
 fi
 
 chklist=$(cd $modelroot;cd $model_basename/$chkdir;du -a | grep data | tr "/" " " | tr "." " " | awk '// { print $3 }' |tr "-" " " | awk '// { print $2}'| sort --numeric-sort)
-if [ "$2" != "" ]; then #we dont filter
-	echo $chklist
+if [ "$2" == "--no-filter" ]; then #we dont filter
+	export CHKLIST="$chklist"
+
 else #we remove zeros
-	echo $chklist | sed -e 's/000//g'
+	export CHKLIST="$(echo $chklist | sed -e 's/000//g')"
 fi
+echo $CHKLIST
+
+
