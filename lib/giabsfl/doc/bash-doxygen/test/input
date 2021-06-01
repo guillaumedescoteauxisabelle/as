@@ -1,0 +1,57 @@
+#!/bin/bash
+# -*- tab-width: 4; encoding: utf-8 -*-
+#
+## @file
+## @author Damien Nadé <bash-argsparse@livna.org>
+## @brief Bash Doxgen Unit Test
+## @copyright WTFPLv2
+## @version 1
+##
+
+declare -r readonly
+declare -r assigned_readonly=readonly-value
+declare -a array
+declare -a assigned_array=(1 2)
+declare -A associative_array
+declare -A assigned_associative_array=([x]=1 [y]=2)
+declare -i integer
+declare -i assigned_integer=2
+declare -x declared_exported
+declare -x assigned_declared_exported=1
+
+declare -ri readonly_integer
+declare -ri assigned_readonly_integer=2
+
+declare -rix readonly_exported_integer
+declare -rix assigned_readonly_exported_integer=3
+
+declare -rA readonly_associative_array
+declare -rA assigned_readonly_associative_array=([a]=2 [b]=3)
+
+declare -l lowercase
+declare -l assigned_lowercase=l
+
+declare -u uppercase
+declare -u assigned_uppercase=U
+
+export exported
+export assigned_exported=1
+
+## @fn function_1()
+## @brief 1st function
+## @param param1 first parameter
+##
+## Don't skip empty line above
+function_1() {
+	bogus
+	bogus2;
+}
+
+## @fn function_2()
+## @brief 2nd function
+## @param param1 first parameter
+## @param param2 second parameter
+function function_2() {
+	bogus
+	bogus2;
+}
