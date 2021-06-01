@@ -3,7 +3,7 @@
 #@STCGoal STCGOALLINE
 #@STCIssue STCISSUELINE
 # Echoing the goal and issue it transcend
-alias SCRIPTALIASNAME_goal='echo "@STCGoal STCGOALLINE\n"@STCIssue STCISSUELINE'
+alias stcgoal_SCRIPTALIASNAME='echo @STCGoal STCGOALLINE\necho @STCIssue STCISSUELINE'
 
 ###-begin-SCRIPTALIASNAME-completions-###
 #

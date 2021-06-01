@@ -10,12 +10,15 @@ fi
 
 #dkrunit
 #dkrunit.sh
+. $binroot/etc/docker-autocomplete.sh
 
 ################AUTOCOMPLETION
 if [ "$1" == "--get-completions" ]; then #echo completion
         #echo "Autocompletion_UNDEFINED"
         #echo 'vi_$binroot/etc/autocompletion/dkrunit.autocomplete'
-	__docker_complete_images --cur $2 --repo --tag
+	#__docker_complete_images --cur $2 --repo --tag
+docker images
+
         #echo "FILL_OUT_THIS_Section_in:$0:--get-completions"
         #getmodellist
         #getmodelcheckpoints $2

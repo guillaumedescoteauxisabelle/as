@@ -84,11 +84,13 @@ else
 		echo "replacing in :$fp"
 		sleep 1
 		msg_info "Fixing new file REPLACEMENT"
-		sed -i 's/STCGOALLINE/'"$stcgoalline"'/g' $fp
-		sed -i 's/STCISSUELINE/'"$stcissueline"'/g' $fp 
-		sed -i 's/SCRIPTALIASNAME/'"$FF"'/g' $fp 
-		sed -i 's/SCRIPTFILENAME/'"$f"'/g' $fp 
 		
+	
+		sedescaping "$FF" SCRIPTALIASNAME $fp  
+		sedescaping "$stcgoalline" STCGOALLINE $fp 
+		sedescaping "$stcissueline" STCISSUELINE $fp 
+		sedescaping "$f" SCRIPTFILENAME $fp  
+
 		msg_success "$f templatized" \
 		        || msg_failed "Initializing the $ff file using template FAILED"
 ####################
@@ -101,10 +103,11 @@ else
 			
 			autocompletetemplatefile=$binroot/templates/cmd.autocomplete.txt
 			cp $autocompletetemplatefile $tcompletefile 
-			sed -i 's/SCRIPTALIASNAME/'"$FF"'/g' $tcompletefile  
-			sed -i 's/STCGOALLINE/'"$stcgoalline"'/g' $tcompletefile 
-			sed -i 's/STCISSUELINE/'"$stcissueline"'/g' $tcompletefile 
-			sed -i 's/SCRIPTFILENAME/'"$f"'/g' $tcompletefile  
+			
+			sedescaping "$FF" SCRIPTALIASNAME $tcompletefile  
+			sedescaping "$stcgoalline" STCGOALLINE $tcompletefile 
+			sedescaping "$stcissueline" STCISSUELINE $tcompletefile 
+			sedescaping "$f" SCRIPTFILENAME $tcompletefile  
 
 			msg_success "$tcompletefile created"  || msg_failed "Initializing the autocomplete file using template $autocompletetemplatefile"
 		

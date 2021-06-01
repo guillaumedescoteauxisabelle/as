@@ -28,7 +28,7 @@ lookquiet $@
 
 #########################################
 #Displays the application usage and startup info
-startapp "XYZ Utilities - " \
+startapp "SCRIPTALIASNAME - Script" \
 	 "Guillaume Descoteaux-Isabelle" \
 	  2021 \
 	  "
@@ -44,6 +44,10 @@ dowork "MSG_WHEN_WE_GO"
 
 #Here is what it does codified
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
+
+#@STCGoal STCGOALLINE
+#@STCIssue STCISSUELINE
+###################################
 
 
 ##############END CODING HERE and define EXIT CODE somehow
