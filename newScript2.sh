@@ -68,24 +68,28 @@ else
 		#@a Make replacement using an awk script taking an env var PATTERN, a content and a template file
 		export PATTERN="STCGOALLINE"
 		contenttemplate=$btdir/autocomplete_header.sh
-		tmpautocomplete_header=$TMP/autocomplete_header.sh
-		cp $contenttemplate $tmpautocomplete_header
+		# tmpautocomplete_header=$TMP/autocomplete_header.sh
+		# cp $contenttemplate $tmpautocomplete_header
 
-		sed -i 's/STCGOALLINE/'"$stcgoalline"'/g' $tmpautocomplete_header
-		sed -i 's/STCISSUELINE/'"$stcissueline"'/g' $tmpautocomplete_header
+		# sed -i 's/STCGOALLINE/'"$stcgoalline"'/g' $tmpautocomplete_header
+		# sed -i 's/STCISSUELINE/'"$stcissueline"'/g' $tmpautocomplete_header
 
 		export PATTERN="__REPLACEMENTHEAD__"
 		scripttemplate=$btdir/newscript.sh.txt
-		$replacer $tmpautocomplete_header $scripttemplate  > $fp \
+		$replacer $contenttemplate $scripttemplate  > $fp \
 										&& msg_success "We just created $f with the autocomplete args header" \
 										|| msg_failed "replacing header in $f" 
 		#@a...
+		#outputvar="${inputvar//"$txt2replace"/"$txt2replacewith"}"
+		echo "replacing in :$fp"
+		sleep 1
 		msg_info "Fixing new file REPLACEMENT"
-		sed -i 's/STCGOALLINE/'"$stcgoalline"'/g' $fp && \
-			sed -i 's/STCISSUELINE/'"$stcissueline"'/g' $fp && \
-			sed -i 's/SCRIPTALIASNAME/'"$FF"'/g' $fp  && \
-		       	sed -i 's/SCRIPTFILENAME/'"$f"'/g' $fp  && \
-			msg_success "$f templatized" \
+		sed -i 's/STCGOALLINE/'"$stcgoalline"'/g' $fp
+		sed -i 's/STCISSUELINE/'"$stcissueline"'/g' $fp 
+		sed -i 's/SCRIPTALIASNAME/'"$FF"'/g' $fp 
+		sed -i 's/SCRIPTFILENAME/'"$f"'/g' $fp 
+		
+		msg_success "$f templatized" \
 		        || msg_failed "Initializing the $ff file using template FAILED"
 ####################
 
@@ -96,12 +100,13 @@ else
 		else
 			
 			autocompletetemplatefile=$binroot/templates/cmd.autocomplete.txt
-			cp $autocompletetemplatefile $tcompletefile && \
-				sed -i 's/SCRIPTALIASNAME/'"$FF"'/g' $tcompletefile  &&  \
-			 sed -i 's/STCGOALLINE/'"$stcgoalline"'/g' $tcompletefile && \
-                        sed -i 's/STCISSUELINE/'"$stcissueline"'/g' $tcompletefile && \
-			sed -i 's/SCRIPTFILENAME/'"$f"'/g' $tcompletefile  \
-				&& msg_success "$tcompletefile created"  || msg_failed "Initializing the autocomplete file using template $autocompletetemplatefile"
+			cp $autocompletetemplatefile $tcompletefile 
+			sed -i 's/SCRIPTALIASNAME/'"$FF"'/g' $tcompletefile  
+			sed -i 's/STCGOALLINE/'"$stcgoalline"'/g' $tcompletefile 
+			sed -i 's/STCISSUELINE/'"$stcissueline"'/g' $tcompletefile 
+			sed -i 's/SCRIPTFILENAME/'"$f"'/g' $tcompletefile  
+
+			msg_success "$tcompletefile created"  || msg_failed "Initializing the autocomplete file using template $autocompletetemplatefile"
 		
 		fi
 	fi
