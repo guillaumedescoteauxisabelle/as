@@ -725,16 +725,22 @@ makecheckpointfile(){
 
 	# 
 
-
+	#backup the serverhostport
+	export serverhostport_=$serverhostport
 	source $rwroot/_env.sh
+	export serverhostport=$serverhostport_
+	unset serverhostport_
+
 	modelname=$1
 	checkpointno=$2
 	modelmountpath=$modelroot
-
+	
+	DEBUG=0
 
 	# local path and container mount path : modelmountpoint modellocalpoint
 	export modelmountpoint="$containermodelroot/$modelname/checkpoint_long"
 	export modellocalpoint="$modelmountpath/$modelname/checkpoint_long"
+	dvar modelmountpoint modellocalpoint
 
 	####@TODO MAke the 3 model file and checkpoint specific file
 	# $modelmountpath  = /a/model/models/$modelname/checkpoint_long
@@ -811,6 +817,7 @@ makecheckpointfile(){
 	export MCHECKPOINTCONTENT=$filecontent
 	d "------------ or use : \$MCHECKPOINTFILEPATH"
 	d "------------ or use : \$MCHECKPOINTCONTENT"
+	DEBUG=0
 }
 
 
