@@ -27,6 +27,10 @@ dowork $1 "Stopping and deleting $1"
 #@a Removing it
 port=$(lp | grep $1 | tr ":" " " | awk '// {print $1}')
 
+#TMP
+
+export globallocationpath=/home/jgi/astiapreviz
+export gtpath=$globallocationpath/svr/$HOSTNAME
 
 if [ -e "$gtpath/$port.json" ] ; then
         echo -n "Cleaning up $port in $gtpath"
