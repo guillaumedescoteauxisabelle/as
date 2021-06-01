@@ -78,5 +78,5 @@ if [ "$2" != "" ]; then #we dont filter
 else #we remove zeros
 	export CHKLIST="$(echo $chklist | sed -e 's/000//g')"
 fi
-echo $chklist
+echo $CHKLIST
 
