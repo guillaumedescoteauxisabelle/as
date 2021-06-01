@@ -73,7 +73,10 @@ fi
 
 chklist=$(cd $modelroot;cd $model_basename/$chkdir;du -a | grep data | tr "/" " " | tr "." " " | awk '// { print $3 }' |tr "-" " " | awk '// { print $2}'| sort --numeric-sort)
 if [ "$2" != "" ]; then #we dont filter
-	echo $chklist
+	export CHKLIST="$chklist"
+
 else #we remove zeros
-	echo $chklist | sed -e 's/000//g'
+	export CHKLIST="$(echo $chklist | sed -e 's/000//g')"
 fi
+echo $chklist
+
