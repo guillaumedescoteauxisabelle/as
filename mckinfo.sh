@@ -17,6 +17,9 @@ if [ "$1" == "" ]; then
 	echo "--last --p #last model current checkpoint (used when training)"
 	exit 1
 fi
+if [ "$1" == "--quiet" ] || [ "$2" == "--quiet" ] ||[ "$3" == "--quiet" ] ; then
+	export QUIET=1
+fi
 export model_basename="$1"
 #(cd $modelroot;ls -dtr *)
 if [ "$1" == "--last" ]; then
