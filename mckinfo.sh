@@ -78,7 +78,7 @@ if [ "$2" == "--p" ] || [ "$2" == "-p" ] ; then
 fi
 
 chklist=$(cd $modelroot;cd $model_basename/$chkdir;du -a | grep data | tr "/" " " | tr "." " " | awk '// { print $3 }' |tr "-" " " | awk '// { print $2}'| sort --numeric-sort)
-if [ "$2" != "" ]; then #we dont filter
+if [ "$2" == "--no-filter" ]; then #we dont filter
 	export CHKLIST="$chklist"
 
 else #we remove zeros
