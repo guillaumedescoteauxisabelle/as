@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+#@STCGoal Run docker interactively with args we desire
+#@STCIssue STCISSUELINE
+# Echoing the goal and issue it transcend
+alias dkrunit_goal='echo "@STCGoal Run docker interactively with args we desire\n"@STCIssue STCISSUELINE'
+
+###-begin-dkrunit-completions-###
+#
+alias dkrunit="$binroot/SCRIPTFILENAME "
+
+_dkrunit_completions()
+{
+    local cur_word args type_list
+
+    cur_word="${COMP_WORDS[COMP_CWORD]}"
+    args=("${COMP_WORDS[@]}")
+
+    # ask yargs to generate completions.
+    type_list=$(dkrunit --get-completions "${args[@]}")
+    #echo "$type_list"
+    COMPREPLY=( $(compgen -W "${type_list}" -- ${cur_word}) )
+
+    # if no match was found, fall back to filename completion
+    if [ ${#COMPREPLY[@]} -eq 0 ]; then
+      COMPREPLY=()
+    fi
+
+    return 0
+}
+
+complete -o default -F _dkrunit_completions dkrunit
+complete -o default -F _dkrunit_completions $binroot/SCRIPTFILENAME
+
+###-end-dkrunit-completions-###
+
