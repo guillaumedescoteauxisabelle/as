@@ -727,7 +727,7 @@ makecheckpointfile(){
 
 	#backup the serverhostport
 	export serverhostport_=$serverhostport
-#	source $rwroot/_env.sh
+	source $rwroot/_env.sh
 	export serverhostport=$serverhostport_
 	unset serverhostport_
 
