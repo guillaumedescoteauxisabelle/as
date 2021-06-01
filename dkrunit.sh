@@ -1,20 +1,21 @@
 #!/bin/bash
 
-#@STCGoal Run docker interactively with args we desire
-#@STCIssue STCISSUELINE
+#@STCGoal Simply run Docker interactively with desired params
+#@STCIssue Bunch of stuff to write docker run -it --rm -v /a:/a -v /home/jgi:/home/jgi ...
 
 #Loading functions
 if [ -e $binroot/__fn.sh ]; then
 	        source $binroot/__fn.sh $@
 fi
 
-#SCRIPTALIASNAME
-#SCRIPTFILENAME
+#dkrunit
+#dkrunit.sh
 
 ################AUTOCOMPLETION
 if [ "$1" == "--get-completions" ]; then #echo completion
         #echo "Autocompletion_UNDEFINED"
-        echo 'vi_$binroot/etc/autocompletion/SCRIPTALIASNAME.autocomplete'
+        #echo 'vi_$binroot/etc/autocompletion/dkrunit.autocomplete'
+	__docker_complete_images --cur $2 --repo --tag
         #echo "FILL_OUT_THIS_Section_in:$0:--get-completions"
         #getmodellist
         #getmodelcheckpoints $2
@@ -39,12 +40,12 @@ lookquiet $@
 
 #########################################
 #Displays the application usage and startup info
-startapp "XYZ Utilities - " \
+startapp "dkrunit " \
 	 "Guillaume Descoteaux-Isabelle" \
 	  2021 \
 	  "
-Usage $0 <arg1> <arg2> [argOptionel]
-        MORE" \
+Usage $0 <containertag>  [Optionel other docker args]
+        " \
 	$LASTREQUIREDARG
 #@TODO set usage  ABOVE
 ################################
@@ -54,7 +55,13 @@ Usage $0 <arg1> <arg2> [argOptionel]
 dowork "MSG_WHEN_WE_GO"
 
 #Here is what it does codified
-#@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
+
+docker run -it --rm \
+	-v /a:/a \
+	-v /home/jgi:/home/jgi \
+	-v /home/jgi/.dropbox_uploader:/etc/.dropbox_uploader \
+	-v /home/jgi/.dropbox_uploader:/root/.dropbox_uploader \
+	$@ || msg_failed "Starting docker"
 
 
 ##############END CODING HERE and define EXIT CODE somehow

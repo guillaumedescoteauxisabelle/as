@@ -40,6 +40,7 @@ fi
 ## @defgroup command Command
 ## @defgroup astutil Ast Util
 ## @defgroup output Output
+## @defgroup parser Parser
 ## @defgroup fs File and Directory
 ## @defgroup logdebug Log and debug
 ## @defgroup usage Usage
@@ -162,6 +163,33 @@ lvar() {
 	fi
 }
 
+## @fn sedescaping() 
+## @ingroup parser
+## @brief Espace a string and sed seplace
+## @param string To Espace - the replacer
+## @param string keyword - the replaced
+## @param string (opt) file
+sedescaping() {
+
+	local REPLACE="$1"
+
+	local KEYWORD="$2"
+
+	local FILE="$3"
+	
+	ESCAPED_REPLACE=$(printf '%s\n' "$REPLACE" | sed -e 's/[\/&]/\\&/g')
+	echo "$ESCAPED_REPLACE"
+	# Now you can use ESCAPED_REPLACE in the original sed statement
+	if [ -e "$FILE" ] ; then 
+		echo "Working on file"
+		echo sed -i 's/KEYWORD/'"$ESCAPED_REPLACE"'/g' $FILE
+		sed -i 's/'"$KEYWORD"'/'"$ESCAPED_REPLACE"'/g' $FILE
+	else #normal replace
+		echo "Regular work"
+		sed "s/KEYWORD/$ESCAPED_REPLACE/g"
+	fi
+
+}
 
 dcfile () {
 	d $0
