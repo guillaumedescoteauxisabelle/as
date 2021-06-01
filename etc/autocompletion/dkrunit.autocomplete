@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-#@STCGoal Run docker interactively with args we desire
+#@STCGoal Simply run Docker interactively with desired params
 #@STCIssue STCISSUELINE
 # Echoing the goal and issue it transcend
-alias dkrunit_goal='echo "@STCGoal Run docker interactively with args we desire\n"@STCIssue STCISSUELINE'
+alias dkrunit_goal='echo "@STCGoal Simply run Docker interactively with desired params\n"@STCIssue STCISSUELINE'
 
 ###-begin-dkrunit-completions-###
 #
-alias dkrunit="$binroot/SCRIPTFILENAME "
+alias dkrunit="$binroot/dkrunit.sh "
 
 _dkrunit_completions()
 {
@@ -30,7 +30,7 @@ _dkrunit_completions()
 }
 
 complete -o default -F _dkrunit_completions dkrunit
-complete -o default -F _dkrunit_completions $binroot/SCRIPTFILENAME
+complete -o default -F _dkrunit_completions $binroot/dkrunit.sh
 
 ###-end-dkrunit-completions-###
 
