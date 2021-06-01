@@ -80,3 +80,4 @@ else #we remove zeros
 fi
 echo $CHKLIST
 
+
