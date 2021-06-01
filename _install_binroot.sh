@@ -34,6 +34,6 @@ if [ -e /etc/cron.allow ] ; then
 		sudo cat /tmp/cuser.txt | sudo tee -a /etc/cron.allow  &> /dev/null
 	fi
 else 
-	echo "Initializing crontag -e for user $cuser"
+	echo "Initializing crontab -e for user $cuser"
 	sudo echo "$cuser"  | sudo tee -a /etc/cron.allow  &> /dev/null
 fi	
