@@ -60,8 +60,14 @@ dowork "MSG_WHEN_WE_GO"
 #@STCGoal Optimal capture setup to create pretty stylistic art
 #@STCIssue No camera on my Ubuntu :(
 ###################################
-ssh pi@ueo ffmpeg -an -f video4linux2 -s 640x480 -i /dev/video0 -r 10 -b:v 500k -f matroska - | mplayer - -idle -demuxer matroska
-
+ssh pi@ueo ffmpeg \
+	-an -f video4linux2 \
+	-s 640x480 \
+	-i /dev/video0 \
+	-r 10 -b:v 500k \
+	-f matroska - | \
+	mplayer - -idle -demuxer matroska
+#@state The ffmpeg gets a stream from dev and do something with matroska
 
 ##############END CODING HERE and define EXIT CODE somehow
 EXIT_CODE=0 #Define exit code
