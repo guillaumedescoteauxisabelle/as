@@ -30,7 +30,7 @@ port=$(lp | grep $1 | tr ":" " " | awk '// {print $1}')
 
 if [ -e "$gtpath/$port.json" ] ; then
         echo -n "Cleaning up $port in $gtpath"
-        rm $gtpath/$port.json && echo "..done" && || echo "failed to cleanup :( "
+        rm $gtpath/$port.json && echo "..done" || echo "failed to cleanup :( "
 
 	(cd $gtpath && ls *json > list.txt) &
 else
