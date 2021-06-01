@@ -23,7 +23,19 @@ Usage dkcrm <container name>
 
 dowork $1 "Stopping and deleting $1" 
 
+#@STCGoal Registered service available
+#@a Removing it
+port=$(lp | grep $1 | tr ":" " " | awk '// {print $1}'
 
+if [ -e "$gtpath/$port.json" ] ; then
+        echo -n "Cleaning up $port in $gtpath"
+        rm $gtpath/$port.json && echo "..done" || echo "fail
+ed to cleanup :( "
+else
+        echo "No file to cleanup for $port in :$gtpath"
+fi
+
+#@a do the work
 if [ "$QUIET" == "1" ]; then
 docker stop -t 1 $1  > /dev/null 2>&1 && \
         docker rm $1   > /dev/null 2>&1 && \
@@ -35,6 +47,7 @@ docker stop -t 1 $1    && \
         donework "SUCCESS" "$2" "$3" && exit 0 || \
         einq "FAILED" $2 && exit 1
 fi
+
 
 #echo $QUIET
 exit
