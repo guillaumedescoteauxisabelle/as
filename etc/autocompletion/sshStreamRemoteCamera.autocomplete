@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+#@STCGoal Optimal capture setup to create pretty stylistic art
+#@STCIssue No camera on my Ubuntu :(
+# Echoing the goal and issue it transcend
+alias stcgoal_sshStreamRemoteCamera='echo @STCGoal Optimal capture setup to create pretty stylistic art\necho @STCIssue No camera on my Ubuntu :('
+
+###-begin-sshStreamRemoteCamera-completions-###
+#
+alias sshStreamRemoteCamera="$binroot/sshStreamRemoteCamera.sh "
+
+_sshStreamRemoteCamera_completions()
+{
+    local cur_word args type_list
+
+    cur_word="${COMP_WORDS[COMP_CWORD]}"
+    args=("${COMP_WORDS[@]}")
+
+    # ask yargs to generate completions.
+    type_list=$(sshStreamRemoteCamera --get-completions "${args[@]}")
+    #echo "$type_list"
+    COMPREPLY=( $(compgen -W "${type_list}" -- ${cur_word}) )
+
+    # if no match was found, fall back to filename completion
+    if [ ${#COMPREPLY[@]} -eq 0 ]; then
+      COMPREPLY=()
+    fi
+
+    return 0
+}
+
+complete -o default -F _sshStreamRemoteCamera_completions sshStreamRemoteCamera
+complete -o default -F _sshStreamRemoteCamera_completions $binroot/sshStreamRemoteCamera.sh
+
+###-end-sshStreamRemoteCamera-completions-###
+
