@@ -25,12 +25,14 @@ dowork $1 "Stopping and deleting $1"
 
 #@STCGoal Registered service available
 #@a Removing it
-port=$(lp | grep $1 | tr ":" " " | awk '// {print $1}'
+port=$(lp | grep $1 | tr ":" " " | awk '// {print $1}')
+
 
 if [ -e "$gtpath/$port.json" ] ; then
         echo -n "Cleaning up $port in $gtpath"
         rm $gtpath/$port.json && echo "..done" && || echo "failed to cleanup :( "
-	(cd $gtpath && ls *json> list.txt) &
+
+	(cd $gtpath && ls *json > list.txt) &
 else
         echo "No file to cleanup for $port in :$gtpath"
 fi
