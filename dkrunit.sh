@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#@STCGoal Run docker interactively with args we desire
+#@STCGoal Simply run Docker interactively with desired params
 #@STCIssue STCISSUELINE
 
 #Loading functions
@@ -8,13 +8,13 @@ if [ -e $binroot/__fn.sh ]; then
 	        source $binroot/__fn.sh $@
 fi
 
-#SCRIPTALIASNAME
-#SCRIPTFILENAME
+#dkrunit
+#dkrunit.sh
 
 ################AUTOCOMPLETION
 if [ "$1" == "--get-completions" ]; then #echo completion
         #echo "Autocompletion_UNDEFINED"
-        echo 'vi_$binroot/etc/autocompletion/SCRIPTALIASNAME.autocomplete'
+        echo 'vi_$binroot/etc/autocompletion/dkrunit.autocomplete'
         #echo "FILL_OUT_THIS_Section_in:$0:--get-completions"
         #getmodellist
         #getmodelcheckpoints $2
