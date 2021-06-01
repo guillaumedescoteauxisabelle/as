@@ -65,7 +65,7 @@ echo "-----------@a-------------------------------"
 echo "Commit message (enter to skip)"
 echo -n "                    >>>>> "
 read cimsg
-if [ "$cimsg" != "" ] || [ "$cimsg" != "\n" ]; then # We commit
+if [ "$cimsg" != "" ] && [ "$cimsg" != "\n" ]; then # We commit
 	(cd $binroot ;git add $1 &> /dev/null ; git commit $1 -m "$cimsg" &> /dev/null && echo " " && msg_info "GIA BVI has just Commited changes and is pushing in background silently..." && git push &> /dev/null || msg_failed "Comitting or pushing, sorry") &
 fi
 
