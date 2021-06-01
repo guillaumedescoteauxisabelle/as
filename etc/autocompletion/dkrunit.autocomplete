@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 #@STCGoal Simply run Docker interactively with desired params
-#@STCIssue STCISSUELINE
+#@STCIssue Bunch of stuff to write docker run -it --rm -v /a:/a -v /home/jgi:/home/jgi ...
 # Echoing the goal and issue it transcend
-alias dkrunit_goal='echo "@STCGoal Simply run Docker interactively with desired params\n"@STCIssue STCISSUELINE'
+alias stcgoal_dkrunit='echo @STCGoal Simply run Docker interactively with desired params\necho @STCIssue Bunch of stuff to write docker run -it --rm -v /a:/a -v /home/jgi:/home/jgi ...'
 
 ###-begin-dkrunit-completions-###
 #
