@@ -29,15 +29,18 @@
 if [ -e $binroot/__fn.sh ] && [ "$FNLOADED" == "" ] || [ "$FNLOADED" == "-1" ]; then # If we have access to our functions, was never loaded or we do have to reload, we load, ya !!! go on.....
    source $binroot/__fn.sh $@
 fi
+
+###############################################
+##     Logging and Debugging                  #
 LOG_FILE=/var/log/gia/SCRIPTALIASNAME.log; 
 LOG_ENABLED=y
 DEBUG=1
+##############################################
 
-if [ -e $binroot/__fn.sh ]; then
-	        source $binroot/__fn.sh $@
-fi
+
 
 #__REPLACEMENTHEAD__
+
 
 ###########DEbug
 DEBUG=0
