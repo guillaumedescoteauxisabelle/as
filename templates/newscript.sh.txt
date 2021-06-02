@@ -1,9 +1,38 @@
 #!/bin/bash
+###############SCRIPTALIASNAME################
+## 
+## @STCGoal STCGOALLINE
+## @STCIssue STCISSUELINE
+##
+## \mainpage
+## \section Introduction
+##   is a small Bash script that acts  ...
+##  It provides...
+##
 
-#@STCGoal STCGOALLINE
-#@STCIssue STCISSUELINE
+## @file
+## @author Guillaume Descoteaux-Isabelle <coding@guillaumeisabelle.com>
+## @author Ethen Weader <Ethen.Weader@mentalos.com>
+## @brief Script STCGOALLINE - STCISSUELINE
+## @copyright New BSD
+## @version 0.1.0
+## @par URL
+## https://github.com/MentalOS
+## https://github.com/GuillaumeIsabelle
+## @par Purpose
+## ...
+##
 
+##################################
+# This part you wont touch UNTILHERE
 #Loading functions
+if [ -e $binroot/__fn.sh ] && [ "$FNLOADED" == "" ] || [ "$FNLOADED" == "-1" ]; then # If we have access to our functions, was never loaded or we do have to reload, we load, ya !!! go on.....
+   source $binroot/__fn.sh $@
+fi
+LOG_FILE=/var/log/gia/SCRIPTALIASNAME.log; 
+LOG_ENABLED=y
+DEBUG=1
+
 if [ -e $binroot/__fn.sh ]; then
 	        source $binroot/__fn.sh $@
 fi
@@ -33,26 +62,26 @@ startapp "SCRIPTALIASNAME - Script" \
 	  2021 \
 	  "
 Usage $0 <arg1> <arg2> [argOptionel]
-        MORE" \
+        STCGOALLINE  \
+	STCISSUELINE	" \
 	$LASTREQUIREDARG
 #@TODO set usage  ABOVE
 ################################
 
 
 
-dowork "MSG_WHEN_WE_GO"
+dowork "MSGWHENWEGO"
 
 #Here is what it does codified
 #@TODO BE CREATIVE ABOVE, ALL THE PREP IS DONE ;)
-
-#@STCGoal STCGOALLINE
-#@STCIssue STCISSUELINE
+log_info "#@STCGoal STCGOALLINE"
+log_info "#@STCIssue STCISSUELINE"
 ###################################
+#@a##>>>>>######################################CODE HERE >>>>>
 
-
-##############END CODING HERE and define EXIT CODE somehow
+#@end##<<<<##########END CODING HERE and define EXIT CODE <<<<<<<
 EXIT_CODE=0 #Define exit code
 MSG_WHEN_DONE=""
 ########################################
-donework "$MSG_WHEN_DONE" $EXIT_CODE 
+donework "$MSGWHENDONE" $EXIT_CODE 
 
