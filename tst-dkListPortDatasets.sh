@@ -92,7 +92,7 @@ log_info "#@STCGoal Test looping foreach available port in the farm host"
 log_info "#@STCIssue We need to use what is hydrated, what best than read it at the source and be able to dynamically modify that"
 ###################################
 #@a##>>>>>######################################CODE HERE >>>>>
-for p in $($binroot/fndkGetAvailableModelsAstPort.sh); do #@a Loop thru available port on the asthost
+for p in $($binroot/fndkGetAvailableModelsAstPort.sh); do #@a Loop thru available port on the asthost for inference
 	echo "gia-ast somefile.jpg $p"
 done
 echo "That was quick and simple"
