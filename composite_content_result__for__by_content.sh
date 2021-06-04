@@ -15,13 +15,20 @@ for d in * ; do
 		echo $d
 	
 		cd $d 
+		#Get out content file which _result_by_content.sh should have put in ..
+                fcontentname=$(basename $(pwd))'.'$ext
+                fcontentpath=../$fcontentname
 		for f in *.$ext ; do
-			#Get out content file which _result_by_content.sh should have put in ..
-			fcontentname=$(basename $(pwd))'.'$ext
-			fcontentpath=$fcontentname
-			$composite_content_result_script $fcontentpath $f $tdir
+	
+			# We make a copy to the same level to fix some unknown issue
+			if [ ! -e "$fcontentname" ] ; then cp $fcontentpath $fcontentname; fi
+
+			$composite_content_result_script $fcontentname $f $tdir
+
 			
 		done
+		#clean
+		rm $fontentname
 		cd $cdir
 	fi
 done
