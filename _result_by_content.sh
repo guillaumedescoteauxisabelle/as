@@ -40,7 +40,7 @@ $binroot/mk_source_list.sh &
 for d in $(ls -d *x); do 
 	echo "Processing $d..."
 	
-	if [ -d "$d" ] ;then 
+#	if [ -d "$d" ] ;then 
 		
 		cd "$d"
 		for c in $(cat $libroot/samples/_srcfiles.txt); do 
@@ -93,9 +93,9 @@ for d in $(ls -d *x); do
 
 
 
-	else 
-		echo "skipping $d, not a directory ;)"
-	fi
+#	else 
+#		echo "skipping $d, not a directory ;)"
+#	fi
 	cd $cdir
 	echo "...done $d"
 done
