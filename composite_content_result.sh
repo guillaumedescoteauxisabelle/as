@@ -38,9 +38,8 @@ tqual=99
 res=$(expr $rx '/' $contentscalefactor)
 tmpcontent=$TMP/$f2
 convert -quality $tqual -resize $res $f $tmpcontent && \
-montage -label "$fl" -font $tfont -pointsize $pointsize -geometry +0+$pointsize -background "$bgcolor" -fill "$fillcolor" $tmpcontent $out && \
-montage -label "$fl2" -font $tfont -pointsize $pointsize -geometry +0+$pointsize -background "$bgcolor" -fill "$fillcolor" $f2 $out2 && \
-montage $tmpcontent $out2  -geometry +100+0  -background "$bgcolor" -fill "$fillcolor" $outm && \
+montage $tmpcontent $f2  -geometry +100+0  -background "$bgcolor" -fill "$fillcolor" $out && \
+montage -label "$fl2" -font $tfont -pointsize $pointsize -geometry +0+$pointsize -background "$bgcolor" -fill "$fillcolor" $out $outm && \
 	echo "Suceeded creating $outm" || \
 	echo "Failed creating $outm"
 rm $tmpcontent
