@@ -108,4 +108,6 @@ cd $tdir
 #@state We have a folder called by out content name
 #@state we have /a/lib samples+datasets where content are
 #@states we have results in $cdir that might have been reused in rendering
+echo "----$0 done---------"
+echo "-- cd $tdir ---"
 
