@@ -1,6 +1,6 @@
 
-
-#@example  tdir=../_montage;mkdir -p $tdir;cdir=$(pwd);for d in * ; do echo $d; cd $d; $binroot/composite_content_result.sh * $tdir  ;cd $cdir ; done
+#@STCIssue I could not make that work - Might be nice to write where it was used and why ??
+#@example cdir=$(pwd);ttdir=$cdir/_montage;mkdir -p $ttdir;for d in * ; do echo $d; cd $d; $binroot/composite_content_result.sh * $ttdir  ;cd $cdir ; done
 
 f="$1"
 f2="$2"
@@ -20,8 +20,12 @@ fn=${f%.*}
 fn2=${f2%.*}
 fl=$(echo "$fn" | sed -e 's/___/   /g' |sed -e 's/__/  /g'|sed -e 's/_/ /g');
 fl2=$(echo "$fn2" | sed -e 's/___/   /g' |sed -e 's/__/  /g'|sed -e 's/_/ /g');
-out=$tdir/L/$fn'__L.jpg'
-out2=$tdir/L/$fn2'__L.jpg'
+outL=$tdir/L
+mkdir -p $outL
+out=$outL/$fn'__L.jpg'
+out2L=$tdir/L
+mkdir -p $out2L
+out2=$out2L/$fn2'__L.jpg'
 outm=$tdir/$fn'__M.jpg'
 rx=$($binroot/imgGetResolution.sh $f x)
 ry=$($binroot/imgGetResolution.sh $f y)
