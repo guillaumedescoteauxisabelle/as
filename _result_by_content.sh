@@ -90,6 +90,8 @@ for d in $(ls -d *x); do
 	cd $cdir
 	echo "...done $d"
 done
+
+#Cleanup directory we wont need
 rmdir $tdir/* &> /dev/null
 
 #@TODO Copy the original content to the target content dir
