@@ -70,6 +70,7 @@ for d in $(ls -d *x); do
 
 			#copy out file pattern matching out ftag and content name
                         cp "$c"_"$ftag"*jpg "$tcdir" &> /dev/null && \
+				cpcontent $c $tcdir/.. && \
 				 echo -n "."
                 done
 		
