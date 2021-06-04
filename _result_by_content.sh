@@ -9,26 +9,30 @@ echo "$cdir"
 sleep 1
 tdir=$cdir'_by_content'
 
+
+#@STCIssue A new file with function was created
+. $binroot/__cpcontentfn.sh
+
 ## @fn loopcpcontent()
 ## @brief Relate content source and result related
-loopcpcontent() {
+#loopcpcontent() {
 
-	srcfile="$1"
-	tdir="$2"
-	ftag="$3"
-	for c in $(cat "$srcfile"); do 
-		tcdir="$tdir/$c" 
-		if [ ! -d "$tcdir" ] ; then 
-			mkdir -p "$tcdir" 
-			echo -n "."
-                fi
+#	srcfile="$1"
+#	tdir="$2"
+#	ftag="$3"
+#	for c in $(cat "$srcfile"); do 
+#		tcdir="$tdir/$c" 
+#		if [ ! -d "$tcdir" ] ; then 
+#			mkdir -p "$tcdir" 
+#			echo -n "."
+ #               fi
+#
+ #               cp "$c"_"$ftag"*jpg "$tcdir" &> /dev/null  && \
+ #                     echo -n "."
 
-                cp "$c"_"$ftag"*jpg "$tcdir" &> /dev/null  && \
-                      echo -n "."
+ #       done
 
-        done
-
-}
+#}
 #refreshing the local src liste
 $binroot/refresh_source_list.sh
 $binroot/mk_source_list.sh &
