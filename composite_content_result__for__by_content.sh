@@ -3,15 +3,28 @@
 
 # Run this in the directory where you have your by_content files created by _result_by_content.sh
 #@Prerequisite _result_by_content.sh
+composite_content_result_script=$binroot/composite_content_result.sh
 #@TODO _result_by_content.sh will require Upgrade
-
-
-for d in * ; do echo $d; cdir=$(pwd);cd $d; $binroot/composite_content_result.sh * ../_montage  ;cd $cdir ; done
-
-
-
-
-
+cdir=$(pwd)
+tdir=$cdir/../_montage
+mkdir -p $tdir
+ext=jpg
+for d in * ; do 
+	if  [ -d "$d" ]; then #a dir
+		
+		echo $d
+	
+		cd $d 
+		for f in *.$ext ; do
+			#Get out content file which _result_by_content.sh should have put in ..
+			fcontentname=$(basename $(pwd))'.'$ext
+			fcontentpath=../$fcontentname
+			$composite_content_result_script $fcontentpath $f $tdir
+			
+		done
+		cd $cdir
+	fi
+done
 
 
 
