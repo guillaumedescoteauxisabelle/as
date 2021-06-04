@@ -8,6 +8,9 @@ ftag=$(basename $cdir)
 echo "$cdir"
 sleep 1
 tdir=$cdir'_by_content'
+
+## @fn loopcpcontent()
+## @brief Relate content source and result related
 loopcpcontent() {
 
 	srcfile="$1"
