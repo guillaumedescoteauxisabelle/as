@@ -1,3 +1,4 @@
+#@STCGoal A Montage that I love is made of the original content and the result
 
 #@STCIssue I could not make that work - Might be nice to write where it was used and why ??
 #@example cdir=$(pwd);ttdir=$cdir/_montage;mkdir -p $ttdir;for d in * ; do echo $d; cd $d; $binroot/composite_content_result.sh * $ttdir  ;cd $cdir ; done
