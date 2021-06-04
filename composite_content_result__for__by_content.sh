@@ -18,7 +18,7 @@ for d in * ; do
 		for f in *.$ext ; do
 			#Get out content file which _result_by_content.sh should have put in ..
 			fcontentname=$(basename $(pwd))'.'$ext
-			fcontentpath=../$fcontentname
+			fcontentpath=$fcontentname
 			$composite_content_result_script $fcontentpath $f $tdir
 			
 		done
