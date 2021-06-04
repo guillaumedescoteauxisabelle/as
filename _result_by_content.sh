@@ -1,3 +1,8 @@
+
+#@STGoal A folder where rendering are classified according to their original content.
+#Used by : composite_content_result__for__by_content.sh
+
+
 cdir=$(pwd)
 ftag=$(basename $cdir)
 echo "$cdir"
@@ -30,7 +35,7 @@ for d in $(ls -d *x); do
 	if [ -d "$d" ] ;then 
 		
 		cd "$d"
-		for c in $(cat /a/lib/samples/_srcfiles.txt); do 
+		for c in $(cat $libroot/samples/_srcfiles.txt); do 
 			tcdir="$tdir/$c" 
 
 			if [ ! -d "$tcdir" ] ; then
@@ -43,7 +48,7 @@ for d in $(ls -d *x); do
 
 		done 
 
-                for c in $(cat /a/lib/datasets/_srcfiles.txt); do
+                for c in $(cat $libroot/datasets/_srcfiles.txt); do
 
 			#make a dir named as the content without ext
                         tcdir="$tdir/$c"
