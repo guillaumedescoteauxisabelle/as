@@ -30,6 +30,7 @@ loopcpcontent() {
 
 }
 #refreshing the local src liste
+$binroot/refresh_source_list.sh
 $binroot/mk_source_list.sh &
 
 for d in $(ls -d *x); do 
