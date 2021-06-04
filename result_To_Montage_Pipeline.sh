@@ -1,3 +1,5 @@
+#!/bin/bash
+
 $binroot/_result_by_content.sh 
 cd $(pwd)'_by_content' && \
 	echo "now in $(pwd)" && sleep 2 && \

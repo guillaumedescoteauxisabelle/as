@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # Get size X or Y of an image
 imggetinfousage () {

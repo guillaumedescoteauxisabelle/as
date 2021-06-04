@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cdir=$(pwd)
 p=83
 label=pierre_to_jg_st_-young-picasso-v03-201216_225m

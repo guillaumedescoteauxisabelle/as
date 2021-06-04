@@ -1,3 +1,4 @@
+#!/bin/bash
 # That all names are ok
 
 

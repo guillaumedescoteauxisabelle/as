@@ -1,3 +1,4 @@
+#!/bin/bash
 if [ -e _env.sh ]; then #local or binroot
         source _env.sh
 else

@@ -1,3 +1,4 @@
+#!/bin/bash
 
 #@STGoal A folder where rendering are classified according to their original content.
 #Used by : composite_content_result__for__by_content.sh

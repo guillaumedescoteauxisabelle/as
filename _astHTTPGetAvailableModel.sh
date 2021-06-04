@@ -1,3 +1,4 @@
+#!/bin/bash
 
 
 #@STCGoal Available list of model service available from network commands

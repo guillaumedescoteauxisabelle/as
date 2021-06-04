@@ -1,3 +1,4 @@
+#!/bin/bash
 mypath=$srcpath/gix-adaptive-style-transfer/bin-gpu/__context.sh
 if [ -e $mypath ]; then
 	source $srcpath/gix-adaptive-style-transfer/bin-gpu/__context.sh

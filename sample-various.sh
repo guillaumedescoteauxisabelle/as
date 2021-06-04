@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 
 #@STCGoal detect if a variable is a number

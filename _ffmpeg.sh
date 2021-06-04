@@ -1,4 +1,4 @@
-#ffmpeg -framerate 25 -i %05d.jpg out.mp4
+#!/bin/bash#ffmpeg -framerate 25 -i %05d.jpg out.mp4
 
 
  fr=10

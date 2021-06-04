@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cdir=$(pwd)
 ftag=$(basename $cdir)
 echo "$cdir"

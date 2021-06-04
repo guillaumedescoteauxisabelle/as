@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #@STCGoal A Montage that I love is made of the original content and the result
 
 #@STCIssue I could not make that work - Might be nice to write where it was used and why ??

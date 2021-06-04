@@ -1,3 +1,5 @@
+#!/bin/bash
+
 pattern="jgi__SC__2104"
 pattern="$1"
 mport=97

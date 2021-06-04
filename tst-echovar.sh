@@ -1,3 +1,4 @@
+#!/bin/bash
 
 varin=$1
 echo \$1

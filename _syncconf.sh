@@ -1,3 +1,4 @@
+#!/bin/bash
 modelname="$1"
 modelroot="/a/model/models"
 remotemodelpath="/a/model/models"

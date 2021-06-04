@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 f="$1"
 export tmpdir=$(tempfile)
