@@ -1,5 +1,6 @@
 
-#@example for d in * ; do echo $d; cdir=$(pwd);cd $d; $binroot/composite_content_result.sh * ../_montage  ;cd $cdir ; done
+
+#@example  tdir=../_montage;mkdir -p $tdir;cdir=$(pwd);for d in * ; do echo $d; cd $d; $binroot/composite_content_result.sh * $tdir  ;cd $cdir ; done
 
 f="$1"
 f2="$2"
