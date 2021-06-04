@@ -8,6 +8,8 @@ composite_content_result_script=$binroot/composite_content_result.sh
 cdir=$(pwd)
 tdir=$cdir/../_montage
 mkdir -p $tdir
+tdir=$(cd $tdir;pwd)
+
 ext=jpg
 for d in * ; do 
 	if  [ -d "$d" ]; then #a dir
@@ -21,14 +23,14 @@ for d in * ; do
 		for f in *.$ext ; do
 	
 			# We make a copy to the same level to fix some unknown issue
-			if [ ! -e "$fcontentname" ] ; then cp $fcontentpath $fcontentname; fi
+			#if [ ! -e "$fcontentname" ] ; then cp $fcontentpath $fcontentname; fi
 
-			$composite_content_result_script $fcontentname $f $tdir
+			$composite_content_result_script $fcontentpath $f $tdir
 
 			
 		done
 		#clean
-		rm $fontentname
+		#rm $fontentname
 		cd $cdir
 	fi
 done
