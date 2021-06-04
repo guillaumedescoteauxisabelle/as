@@ -50,8 +50,11 @@ for d in $(ls -d *x); do
 				mkdir -p "$tcdir"
 				echo -n "."
 			fi
-
+			
+			#@a Copy our content with the ftag pattern into the target names
+			#@STCGoal If any, we will want the original content available in ../
 			cp "$c"_"$ftag"*jpg "$tcdir" &> /dev/null  && \
+				cpcontent $c $tcdir/.. && \
                                  echo -n "."
 
 		done 
