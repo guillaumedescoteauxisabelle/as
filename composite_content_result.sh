@@ -43,6 +43,7 @@ tmpcontent=$TMP/$f2
 convert -quality $tqual -resize $res $f $tmpcontent && \
 montage $tmpcontent $f2  -geometry +100+0  -background "$bgcolor" -fill "$fillcolor" $out && \
 montage -label "$fl2" -font $tfont -pointsize $pointsize -geometry +0+$labelheight -background "$bgcolor" -fill "$fillcolor" $out $outm && \
+ exiftool -overwrite_original -copyright="Guillaume Descoteaux-Isabelle &copy;2021" -E $outm && \
 	echo "Suceeded creating $outm" || \
 	echo "Failed creating $outm"
 rm $tmpcontent
