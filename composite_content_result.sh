@@ -47,6 +47,7 @@ if [ "$rx" -lt 1100 ] ; then loweringfactor=8 ;fi
 if [ "$rx" -lt 900 ] ; then loweringfactor=10 ;fi
 if [ "$rx" -lt 800 ] ; then loweringfactor=14 ;fi
 if [ "$rx" -lt 700 ] ; then loweringfactor=18 ;fi
+if [ "$rx" -lt 600 ] ; then loweringfactor=22 ;fi
 tmppointsize=$(expr $pointsize - $loweringfactor)
 pointsize=$tmppointsize
 #@state Our pointsize got adjusted, hopefully more pleasant
