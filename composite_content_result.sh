@@ -17,6 +17,7 @@ outL=$tdir/L
 mkdir -p $outL
 
 pointsize=42
+labelheight=$(expr $pointsize + 25)
 tfont=Helvetica
 bgcolor='#000000'
 fillcolor='gray'
@@ -41,7 +42,7 @@ res=$(expr $rx '/' $contentscalefactor)
 tmpcontent=$TMP/$f2
 convert -quality $tqual -resize $res $f $tmpcontent && \
 montage $tmpcontent $f2  -geometry +100+0  -background "$bgcolor" -fill "$fillcolor" $out && \
-montage -label "$fl2" -font $tfont -pointsize $pointsize -geometry +0+$pointsize -background "$bgcolor" -fill "$fillcolor" $out $outm && \
+montage -label "$fl2" -font $tfont -pointsize $pointsize -geometry +0+$labelheight -background "$bgcolor" -fill "$fillcolor" $out $outm && \
 	echo "Suceeded creating $outm" || \
 	echo "Failed creating $outm"
 rm $tmpcontent
