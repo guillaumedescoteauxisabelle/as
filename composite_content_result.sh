@@ -55,7 +55,7 @@ copyright="Guillaume Descoteaux-Isabelle &copy;2021"
 tmpcontent=$TMP/$f2
 #@a The original is resized by a  factor, then a montage with the result image is then receiving an underlying label.
 convert -quality $tqual -resize $res $f $tmpcontent && \
-montage $tmpcontent $f2  -geometry +100+0  -background "$bgcolor" -fill "$fillcolor" $out && \
+montage $tmpcontent $f2  -geometry +$pointsize+$pointsize  -background "$bgcolor" -fill "$fillcolor" $out && \
 montage -label "$fl2" -font $tfont -pointsize $pointsize -geometry +0+$labelheight -background "$bgcolor" -fill "$fillcolor" $out $outm && \
  exiftool -overwrite_original -copyright="$copyright" -E $outm && \
 	echo "Suceeded creating $outm" || \
