@@ -10,9 +10,8 @@ contentscalefactor=2
 f="$1"
 f2="$2"
 tdir="$3"
-mkdir -p $tdir
 
-tdir=$(cd $tdir;pwd) || exit 1
+tdir=$(mkdir -p $tdir;cd $tdir;pwd) || (echo "Could not create or access $tdir" ;exit 1)
 outL=$tdir/L
 mkdir -p $outL
 
