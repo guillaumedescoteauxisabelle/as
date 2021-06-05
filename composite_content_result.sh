@@ -16,7 +16,7 @@ tdir=$(cd $tdir;pwd) || exit 1
 outL=$tdir/L
 mkdir -p $outL
 
-pointsize=42
+pointsize=48
 labelheight=$(expr $pointsize + 25)
 tfont=Helvetica
 bgcolor='#000000'
@@ -39,7 +39,20 @@ outm=$tdir/$fn2'__M.jpg'
 rx=$($binroot/imgGetResolution.sh $f2 x)
 tqual=99
 res=$(expr $rx '/' $contentscalefactor)
+
+#@STCIssue Point size too big for smaller size image
+loweringfactor=0
+if [ "$rx" -lt 1400 ] ; then loweringfactor=6 ;fi
+if [ "$rx" -lt 1100 ] ; then loweringfactor=8 ;fi
+if [ "$rx" -lt 900 ] ; then loweringfactor=10 ;fi
+if [ "$rx" -lt 800 ] ; then loweringfactor=14 ;fi
+if [ "$rx" -lt 700 ] ; then loweringfactor=18 ;fi
+tmppointsize=$(expr $pointsize - $loweringfactor)
+pointsize=$tmppointsize
+#@state Our pointsize got adjusted, hopefully more pleasant
+
 tmpcontent=$TMP/$f2
+#@a The original is resized by a  factor, then a montage with the result image is then receiving an underlying label.
 convert -quality $tqual -resize $res $f $tmpcontent && \
 montage $tmpcontent $f2  -geometry +100+0  -background "$bgcolor" -fill "$fillcolor" $out && \
 montage -label "$fl2" -font $tfont -pointsize $pointsize -geometry +0+$labelheight -background "$bgcolor" -fill "$fillcolor" $out $outm && \
