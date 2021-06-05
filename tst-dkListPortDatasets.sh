@@ -93,7 +93,7 @@ log_info "#@STCIssue We need to use what is hydrated, what best than read it at 
 ###################################
 #@a##>>>>>######################################CODE HERE >>>>>
 for p in $($binroot/fndkGetAvailableModelsAstPort.sh); do #@a Loop thru available port on the asthost for inference
-	echo "gia-ast somefile.jpg $p"
+	echo "gia-ast $1 $p"
 done
 echo "That was quick and simple"
 

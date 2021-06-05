@@ -827,6 +827,9 @@ makecheckpointfile(){
 	fi
 	# Making the local checkpoint we will mount
 	filecontent="$mcheckpointfilecontentline1"$'\n'"$mcheckpointfilecontentline2"
+	if [ -d $mcheckpointfilepath ] ; then #@bug fixing directory got created
+		rmdir $mcheckpointfilepath
+	fi
 	echo "$mcheckpointfilecontentline1" > $mcheckpointfilepath
 	echo "$mcheckpointfilecontentline2" >> $mcheckpointfilepath
 	# Making path to mount from local to the docker host foreach of the 3 files
