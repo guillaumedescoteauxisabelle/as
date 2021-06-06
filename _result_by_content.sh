@@ -15,26 +15,7 @@ sleep 1
 #@STCIssue A new file with function was created
 . $binroot/__cpcontentfn.sh
 
-## @fn loopcpcontent()
-## @brief Relate content source and result related
-#loopcpcontent() {
 
-#	srcfile="$1"
-#	tdir="$2"
-#	ftag="$3"
-#	for c in $(cat "$srcfile"); do 
-#		tcdir="$tdir/$c" 
-#		if [ ! -d "$tcdir" ] ; then 
-#			mkdir -p "$tcdir" 
-#			echo -n "."
- #               fi
-#
- #               cp "$c"_"$ftag"*jpg "$tcdir" &> /dev/null  && \
- #                     echo -n "."
-
- #       done
-
-#}
 if [ "$1" != "--no-refresh" ] ; then
 	echo "refreshing the local src liste"
 	$binroot/refresh_source_list.sh
