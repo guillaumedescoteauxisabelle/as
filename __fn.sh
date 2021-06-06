@@ -797,6 +797,7 @@ makecheckpointfile(){
 	mcheckpointfilecontentline1='model_checkpoint_path: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
 	mcheckpointfilecontentline2='all_model_checkpoint_paths: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
 	astia_server_file_location='/tmp/astiatmp'
+	msg_info "Making $astia_server_file_location"
 	mkdir -p $astia_server_file_location || (msg_critical "creating temp failed ($astia_server_file_location)" && exit 1)
 
 	mcheckpointfilepath=$astia_server_file_location'/'$modelname'_checkpoint_'$checkpointno
@@ -828,8 +829,8 @@ makecheckpointfile(){
 	# Making the local checkpoint we will mount
 	filecontent="$mcheckpointfilecontentline1"$'\n'"$mcheckpointfilecontentline2"
 	if [ -d $mcheckpointfilepath ] ; then #@bug fixing directory got created
-		ls $mcheckpointfilepath
-		rmdir $mcheckpointfilepath
+		#ls $mcheckpointfilepath
+		rmdir $mcheckpointfilepath || sudo $mcheckpointfilepath
 	fi
 	echo "$mcheckpointfilecontentline1" > $mcheckpointfilepath
 	echo "$mcheckpointfilecontentline2" >> $mcheckpointfilepath
