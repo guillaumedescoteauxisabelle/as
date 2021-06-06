@@ -35,7 +35,7 @@ outm=$tdir/$fn2'__M.jpg'
 #rval=$rx'x'$ry
 
 # Making a scaled content factor
-echo "rx=$binroot/imgGetResolution.sh $f2 x"
+echo -n "..."
 rx=$($binroot/imgGetResolution.sh $f2 x)
 tqual=99
 res=$(expr $rx '/' $contentscalefactor)

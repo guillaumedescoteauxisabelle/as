@@ -8,7 +8,7 @@ do
 		echo -n "$d..."
 		cd $d
 		gis-csm -d  &> /dev/null || echo "Failed to start gis-csm" & 
-		#sleep 1
+		sleep 1
 		cd $cdir
 		echo "...in progress"
 	fi

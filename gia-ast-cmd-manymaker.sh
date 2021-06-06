@@ -98,7 +98,8 @@ log_info "#@STCIssue We need to use what is hydrated, what best than read it at 
 for p in $($binroot/fndkGetAvailableModelsAstPort.sh); do #@a Loop thru available port on the asthost for inference
 	echo "gia-ast $1 $p"
 done
-echo "That was quick and simple"
+echo "##That was quick and simple"
+echo " "
 
 #@end##<<<<##########END CODING HERE and define EXIT CODE <<<<<<<
 EXIT_CODE=0 #Define exit code
