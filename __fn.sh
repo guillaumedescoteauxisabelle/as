@@ -828,6 +828,7 @@ makecheckpointfile(){
 	# Making the local checkpoint we will mount
 	filecontent="$mcheckpointfilecontentline1"$'\n'"$mcheckpointfilecontentline2"
 	if [ -d $mcheckpointfilepath ] ; then #@bug fixing directory got created
+		ls $mcheckpointfilepath
 		rmdir $mcheckpointfilepath
 	fi
 	echo "$mcheckpointfilecontentline1" > $mcheckpointfilepath
