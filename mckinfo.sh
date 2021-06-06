@@ -21,6 +21,11 @@ if [ "$1" == "--quiet" ] || [ "$2" == "--quiet" ] ||[ "$3" == "--quiet" ] ; then
 	export QUIET=1
 fi
 export model_basename="$1"
+
+#use of current dir as model to list
+if [ "$1" == "." ]; then export model_basename="$(basename $(pwd))" ; fi
+
+
 #(cd $modelroot;ls -dtr *)
 if [ "$1" == "--last" ]; then
 	for d in $(cd $modelroot;ls -dtr *) ; do
