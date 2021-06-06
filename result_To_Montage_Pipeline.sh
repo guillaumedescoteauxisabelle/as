@@ -1,4 +1,5 @@
 #!/bin/bash
+#@STCGoal From what is being generated to adequate view to analyze and stimulate discussion
 
 $binroot/_result_by_content.sh 
 cd $(pwd)'_by_content' && \
