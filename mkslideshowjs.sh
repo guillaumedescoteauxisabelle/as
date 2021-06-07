@@ -1,9 +1,10 @@
 #!/bin/bash
 #@STCGoal A folder where each jpg are slide showing on the web
 if [ "$1" == "--help" ]; then 
-	echo "usage: $0 [prefix jpg pattern] [--auto]"
+	echo "usage: $0 [prefix jpg pattern] [--auto] [timeout(ms)]"
 	echo "$0 anim_something --auto"
 	echo "$0  --auto"
+	echo "$0  --auto 1000"
 	echo "$0  (no args works too)"
 	exit 1
 fi
@@ -71,11 +72,14 @@ export PATTERN=DOCTITLE
 sed -i 's/DOCTITLE/'"$dirns"'/g' result.html
 
 #@a Auto or Manual Code block (any args will set to manual)
-
+export timeout=4000 #default
 export codefile=$sdir/jscodemanual.js
 if [ "$1" == "--auto" ] ||  [ "$2" == "--auto" ]; then #@state Default to auto
   export codefile=$sdir/jscodeauto.js
   sed -i 's/MANUALNAV//g' result.html
+  if [ "$1" == "--auto" ] ; then export timeout=$2; fi
+  if [ "$2" == "--auto" ] ; then export timeout=$3; fi
+
 else 
 	#@a Manual Nav
 	export PATTERN=MANUALNAV
@@ -84,7 +88,11 @@ else
 fi
 
 export PATTERN=JSCODEBLOCK
-$binroot/tools/pattern-replacer-awk.sh  $codefile result.html  > index.html
+
+cp $codefile $wdir/jsslidecode.js
+sed -i 's/TIMEOUTPLACEHOLDER/'"$timeout"'/g' $wdir/jsslidecode.js
+
+$binroot/tools/pattern-replacer-awk.sh  $wdir/jsslidecode.js result.html  > index.html
 
 #@a dist
 rm $wdir/blocks.html $wdir/htmlindex.html &>/dev/null
@@ -94,4 +102,5 @@ cd $ddir
 gixb index.html
 echo "results are in $(pwd)/dist"
 echo "x $(pwd)/dist"
+echo gixb ./dist/index.html
 

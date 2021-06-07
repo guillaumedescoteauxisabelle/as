@@ -7,7 +7,8 @@
 composite_content_result_script=$binroot/composite_content_result.sh
 #@TODO _result_by_content.sh will require Upgrade
 cdir=$(pwd)
-tdir=$cdir/../_montage
+cdirbasename=$(basename $cdir)
+tdir=$cdir'/../_montage-'$cdirbasename
 mkdir -p $tdir
 tdir=$(cd $tdir;pwd)
 
