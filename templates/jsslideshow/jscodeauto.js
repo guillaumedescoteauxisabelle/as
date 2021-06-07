@@ -1,4 +1,4 @@
-var timeout=4000;
+var timeout=TIMEOUTPLACEHOLDER;
 var slideIndex = 0;
 
 showSlides();
