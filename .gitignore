@@ -1,4 +1,6 @@
 _env.sh
+doc/html
+*.back*
 *.bak
 *.backup
 tmp*
