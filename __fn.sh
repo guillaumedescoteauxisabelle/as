@@ -830,7 +830,7 @@ makecheckpointfile(){
 	filecontent="$mcheckpointfilecontentline1"$'\n'"$mcheckpointfilecontentline2"
 	if [ -d $mcheckpointfilepath ] ; then #@bug fixing directory got created
 		#ls $mcheckpointfilepath
-		rmdir $mcheckpointfilepath || sudo $mcheckpointfilepath
+		rmdir $mcheckpointfilepath || sudo rmdir $mcheckpointfilepath
 	fi
 	echo "$mcheckpointfilecontentline1" > $mcheckpointfilepath
 	echo "$mcheckpointfilecontentline2" >> $mcheckpointfilepath
