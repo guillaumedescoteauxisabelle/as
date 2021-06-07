@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+#@STCGoal Stay in a Shell file creator
+#@STCIssue If VIM, I loose what I see in the shell
+# Echoing the goal and issue it transcend
+alias stcgoal_newfile='echo @STCGoal Stay in a Shell file creator\necho @STCIssue If VIM, I loose what I see in the shell'
+
+###-begin-newfile-completions-###
+#
+alias newfile="$binroot/newfile.sh "
+
+_newfile_completions()
+{
+    local cur_word args type_list
+
+    cur_word="${COMP_WORDS[COMP_CWORD]}"
+    args=("${COMP_WORDS[@]}")
+
+    # ask yargs to generate completions.
+    type_list=$(newfile --get-completions "${args[@]}")
+    #echo "$type_list"
+    COMPREPLY=( $(compgen -W "${type_list}" -- ${cur_word}) )
+
+    # if no match was found, fall back to filename completion
+    if [ ${#COMPREPLY[@]} -eq 0 ]; then
+      COMPREPLY=()
+    fi
+
+    return 0
+}
+
+complete -o default -F _newfile_completions newfile
+complete -o default -F _newfile_completions $binroot/newfile.sh
+
+###-end-newfile-completions-###
+
