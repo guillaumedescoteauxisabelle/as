@@ -1,6 +1,6 @@
  #!/bin/bash
 
-#@STCGoal 
+#@STCGoal Specified Checkpoints
  chk=$1
  outf=$2
 for f in $(du -a | grep $chk | awk '// { print $2 $3 $4 }')
