@@ -60,6 +60,7 @@ dowork "MSG_WHEN_WE_GO"
 #Here is what it does codified
 
 docker run -it --rm \
+	-v $(pwd):/work \
 	-v /a:/a \
 	-v /home/jgi:/home/jgi \
 	-v /home/jgi/.dropbox_uploader:/etc/.dropbox_uploader \
