@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+#@STCGoal My Files are appropriatly signed and copyrighted - I have the credit I have
+#@STCIssue Not sign, exiftool cli
+# Echoing the goal and issue it transcend
+alias stcgoal_exifadd='echo @STCGoal My Files are appropriatly signed and copyrighted - I have the credit I have\necho @STCIssue Not sign, exiftool cli'
+
+###-begin-exifadd-completions-###
+#
+alias exifadd="$binroot/exifadd.sh "
+
+_exifadd_completions()
+{
+    local cur_word args type_list
+
+    cur_word="${COMP_WORDS[COMP_CWORD]}"
+    args=("${COMP_WORDS[@]}")
+
+    # ask yargs to generate completions.
+    type_list=$(exifadd --get-completions "${args[@]}")
+    #echo "$type_list"
+    COMPREPLY=( $(compgen -W "${type_list}" -- ${cur_word}) )
+
+    # if no match was found, fall back to filename completion
+    if [ ${#COMPREPLY[@]} -eq 0 ]; then
+      COMPREPLY=()
+    fi
+
+    return 0
+}
+
+complete -o default -F _exifadd_completions exifadd
+complete -o default -F _exifadd_completions $binroot/exifadd.sh
+
+###-end-exifadd-completions-###
+
