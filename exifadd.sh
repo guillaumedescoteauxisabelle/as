@@ -33,8 +33,8 @@ fi
 ###############################################
 ##     Logging and Debugging                  #
 LOG_FILE=/var/log/gia/exifadd.log; 
-LOG_ENABLED=y
-DEBUG=1
+LOG_ENABLED=n
+DEBUG=0
 ##############################################
 
 
