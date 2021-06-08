@@ -81,9 +81,9 @@ Usage $0 <arg1> <arg2> [argOptionel]
 	$LASTREQUIREDARG
 #@TODO set usage  ABOVE
 ################################
-exiftool -artist="Guillaume Descoteaux-Isabelle"  $1
-exiftool -copyright="2021 Guillaume Descoteaux-Isabelle"  $1
-exiftool -title="Collaborative Art using AI" $1
+exiftool -artist="Guillaume Descoteaux-Isabelle"  $1 -overwrite_original
+exiftool -copyright="2021 Guillaume Descoteaux-Isabelle"  $1 -overwrite_original
+exiftool -title="Collaborative Art using AI" $1 -overwrite_original
 #exiftool -artist="Guillaume Descoteaux-Isabelle"
 
 
