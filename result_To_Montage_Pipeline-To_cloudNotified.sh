@@ -78,7 +78,7 @@ $reorderRenderByContentScript  && \
 	log_debug "Now in: $(pwd)" && \
 	log_status "Distributing" STARTING && \
 	log_status "$gtbasedir" INPUT && \
-	tar cf - $gtbasedir | (cd $tclouddir && tar xvf - && $tcloudgetaddress $gtbasedir --sns ) && \
+	tar cf - $gtbasedir | (cd $tclouddir && rm -rf $gtbasedir && tar xvf - && $tcloudgetaddress $gtbasedir --sns ) && \
 	log_status "Distributing" COMPLETED || \
 	log_status "Distributing or others" FAILED
 
