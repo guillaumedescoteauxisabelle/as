@@ -64,17 +64,17 @@ echo $reorderRenderByContentScript  && \
 	dvar montagebasedir tdirroot tdir gtbasedir gtdir && \
 	echo "Cleanup montage dir before albumming" && rm -rf $tdir/L && \
 	echo "------------TABARNAK -------------------__" && \
-	(echo $galleryMaker $tdir $gtdir "$cdirbasename" "$footertext" "$cdirbasenameo") && \
+	echo $galleryMaker $tdir $gtdir "$cdirbasename" "$footertext" "$cdirbasenameo" && \
 	echo "------------DE CALISSs------------------" && \
 	sleep 2 && \
-	(pwd && $binroot/gallery_html_maker2.sh $tdir $gtdir  "$cdirbasename" "$footertext" "$cdirbasenameo") && \
-	echo "-----------SACREMENT tu compute tu criss ------------ " && \ 
+	pwd && $binroot/gallery_html_maker2.sh $tdir $gtdir  "$cdirbasename" "$footertext" "$cdirbasenameo" && \
+	echo "-----------SACREMENT tu compute tu criss ------------ " && \
 	log_status "GalleryMaker" COMPLETED && \
-	log_info "Ready for distribution into out cloud storage" && \ 
+	log_info "Ready for distribution into out cloud storage" && \
 	log_debug "Now in: $(pwd)" && \
 	log_status "Distributing" STARTING && \
 	log_status "$gtbasedir" INPUT && \
-	tar cf - $gtbasedir | (cd $tclouddir && tar xf - && $tcloudgetaddress $gtbasedir --sns ) && \
+	tar cf - $gtbasedir | (cd $tclouddir && tar xvf - && $tcloudgetaddress $gtbasedir --sns ) && \
 	log_status "Distributing" COMPLETED || \
 	log_status "Distributing or others" FAILED
 
