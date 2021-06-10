@@ -56,21 +56,22 @@ echo $reorderRenderByContentScript  && \
 	log_status "$tdir" OUTPUT && \
 	echo $compositeContentFromResultByContent && \
 	log_status "compositeContentFromResultByContent" COMPLETED && \
+	cd .. && \
+	log_info "cd to $(pwd)" && \
 	log_status "GalleryMaker" STARTING && \ 
 	log_status "$tdir" INPUT && \
 	log_status "$gtbasedir" OUTPUT && \
 	dvar montagebasedir tdirroot tdir gtbasedir gtdir && \
+	echo "Cleanup montage dir before albumming" && rm -rf $tdir/L && \
 	echo "------------TABARNAK -------------------__" && \
 	(echo $galleryMaker $tdir $gtdir "$cdirbasename" "$footertext" "$cdirbasenameo") && \
 	echo "------------DE CALISSs------------------" && \
 	sleep 2 && \
 	(pwd && $binroot/gallery_html_maker2.sh $tdir $gtdir  "$cdirbasename" "$footertext" "$cdirbasenameo") && \
-	echo "-----------SACREMENT tu compute tu criss ------------ " && \
-	exit && \
+	echo "-----------SACREMENT tu compute tu criss ------------ " && \ 
 	log_status "GalleryMaker" COMPLETED && \
-	log_info "Ready for distribution into out cloud storage" && \
-	cd $tdirroot && \
-	log_info "Now in: $tdirroot" && \
+	log_info "Ready for distribution into out cloud storage" && \ 
+	log_debug "Now in: $(pwd)" && \
 	log_status "Distributing" STARTING && \
 	log_status "$gtbasedir" INPUT && \
 	tar cf - $gtbasedir | (cd $tclouddir && tar xf - && $tcloudgetaddress $gtbasedir --sns ) && \
