@@ -5,16 +5,21 @@
  #@a A View of Each checkpoints for a content in one resolution
  #@a An adequate Web view
  #Loading functions
+
 # Script as vars
+
 reorderRenderByContentScript=$binroot/_result_by_content.sh
 compositeContentFromResultByContent=$binroot/composite_content_result__for__by_content.sh
 galleryMaker=$binroot/gallery_html_maker2.sh
+
 tclouddir=/home/jgi/astiapreviz
 tcloudgetaddress=/home/jgi/astiapreviz/_getaddress.sh
+
 #$tclouddir $tcloudgetaddress
 if [ -e $binroot/__fn.sh ] && [ "$FNLOADED" == "" ]; then
    source $binroot/__fn.sh $@
 fi
+
 lvar reorderRenderByContentScript \
 	compositeContentFromResultByContent \
 	galleryMaker \
@@ -60,7 +65,7 @@ $reorderRenderByContentScript  && \
 	log_info "Now in: $tdirroot" && \
 	log_status "Distributing" STARTING && \
 	log_status "$gtbasedir" INPUT && \
-	tar cf - $gtbasedir | (cd $tclouddi; tar xf -; $tcloudgetaddress $gtbasedir --sns ) && \
+	tar cf - $gtbasedir | (cd $tclouddir && tar xf - && $tcloudgetaddress $gtbasedir --sns ) && \
 	log_status "Distributing" COMPLETED || \
 	log_status "Distributing or others" FAILED
 
