@@ -58,7 +58,7 @@ $reorderRenderByContentScript  && \
 	galoutput= $tdir'__gal' && \
 	log_status "$tdir" INPUT && \
 	log_status "$galoutput" OUTPUT && \
-	$galleryMaker $tdir $galoutput "$cdirbasename" "$footertext" "$cdirbasenameo" && \
+	$galleryMaker $tdir $gtdir "$cdirbasename" "$footertext" "$cdirbasenameo" && \
 	log_status "GalleryMaker" COMPLETED && \	
 	log_info "Ready for distribution into out cloud storage" && \
 	cd $tdirroot && \
