@@ -83,6 +83,7 @@ fi
 
 log "Subpath: $subpath"
 cd $subpath
+ls -ltr
 
 
 
