@@ -8,9 +8,9 @@
 
 # Script as vars
 
-reorderRenderByContentScript=$binroot/_result_by_content.sh
-compositeContentFromResultByContent=$binroot/composite_content_result__for__by_content.sh
-galleryMaker=$binroot/gallery_html_maker2.sh
+export reorderRenderByContentScript=$binroot/_result_by_content.sh
+export compositeContentFromResultByContent=$binroot/composite_content_result__for__by_content.sh
+export galleryMaker="$binroot/gallery_html_maker2.sh"
 
 tclouddir=/home/jgi/astiapreviz
 tcloudgetaddress=/home/jgi/astiapreviz/_getaddress.sh
@@ -19,7 +19,7 @@ tcloudgetaddress=/home/jgi/astiapreviz/_getaddress.sh
 if [ -e $binroot/__fn.sh ] && [ "$FNLOADED" == "" ]; then
    source $binroot/__fn.sh $@
 fi
-
+DEBUG=1
 lvar reorderRenderByContentScript \
 	compositeContentFromResultByContent \
 	galleryMaker \
@@ -29,7 +29,9 @@ lvar reorderRenderByContentScript \
 export LOG_FILE=/var/log/gia/result_To_Montage_Pipeline-To_cloudNotified.sh.txt
 dvar LOG_FILE
 export LOG_ENABLED=y
+log "-------------------------------------_"
 log_info "Starting $0"
+
 footertext="by Guillaume D.Isabelle, 2021"
 
 export cdiro=$(pwd)
@@ -40,7 +42,7 @@ export cdirbasenameo=$(basename $cdiro)
 export reorderRenderByContentReorderedTargetDir=$(pwd)'_by_content'
 #if [ "$1" == "--getargs" ] ; then return; fi
 gal_suffix='__gal'
-$reorderRenderByContentScript  && \
+echo $reorderRenderByContentScript  && \
 	log_success "Content reordered in : $reorderRenderByContentReorderedTargetDir" && \
 	cd $reorderRenderByContentReorderedTargetDir && \
 	cdir=$(pwd) && cdirbasename=$(basename $cdir) && \
@@ -52,14 +54,20 @@ $reorderRenderByContentScript  && \
 	log_info "now in $(pwd)" && sleep 2 && \
 	log_status "Montage" STARTING && \
 	log_status "$tdir" OUTPUT && \
-	$compositeContentFromResultByContent && \
+	echo $compositeContentFromResultByContent && \
 	log_status "compositeContentFromResultByContent" COMPLETED && \
-	log_status "GalleryMaker" STARTING && \
-	galoutput= $tdir'__gal' && \
+	log_status "GalleryMaker" STARTING && \ 
 	log_status "$tdir" INPUT && \
-	log_status "$galoutput" OUTPUT && \
-	$galleryMaker $tdir $gtdir "$cdirbasename" "$footertext" "$cdirbasenameo" && \
-	log_status "GalleryMaker" COMPLETED && \	
+	log_status "$gtbasedir" OUTPUT && \
+	dvar montagebasedir tdirroot tdir gtbasedir gtdir && \
+	echo "------------TABARNAK -------------------__" && \
+	(echo $galleryMaker $tdir $gtdir "$cdirbasename" "$footertext" "$cdirbasenameo") && \
+	echo "------------DE CALISSs------------------" && \
+	sleep 2 && \
+	(pwd && $binroot/gallery_html_maker2.sh $tdir $gtdir  "$cdirbasename" "$footertext" "$cdirbasenameo") && \
+	echo "-----------SACREMENT tu compute tu criss ------------ " && \
+	exit && \
+	log_status "GalleryMaker" COMPLETED && \
 	log_info "Ready for distribution into out cloud storage" && \
 	cd $tdirroot && \
 	log_info "Now in: $tdirroot" && \
