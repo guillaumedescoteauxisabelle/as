@@ -40,21 +40,25 @@ log_info "Processing $cdiro"
 export cdirbasenameo=$(basename $cdiro)
 #tdir=$cdir'/../_montage-'$cdirbasename
 export reorderRenderByContentReorderedTargetDir=$(pwd)'_by_content'
+rm -rf $reorderRenderByContentReorderedTargetDir
+
 #if [ "$1" == "--getargs" ] ; then return; fi
 gal_suffix='__gal'
-echo $reorderRenderByContentScript  && \
+$reorderRenderByContentScript  && \
 	log_success "Content reordered in : $reorderRenderByContentReorderedTargetDir" && \
 	cd $reorderRenderByContentReorderedTargetDir && \
 	cdir=$(pwd) && cdirbasename=$(basename $cdir) && \
-	montagebasedir='_montage-'$cdirbasename && \
+	montagebasedir='_montage-'$cdirbasename && \ 
 	tdirroot=$(cd $cdir/..; pwd) && \
 	tdir=$tdirroot/$montagebasedir && \
+	rm -rf $tdir && \
 	gtbasedir=$montagebasedir$gal_suffix && \
 	gtdir=$tdirroot/$gtbasedir && \
+	rm -rf $gtdir && \
 	log_info "now in $(pwd)" && sleep 2 && \
 	log_status "Montage" STARTING && \
 	log_status "$tdir" OUTPUT && \
-	echo $compositeContentFromResultByContent && \
+	$compositeContentFromResultByContent && \
 	log_status "compositeContentFromResultByContent" COMPLETED && \
 	cd .. && \
 	log_info "cd to $(pwd)" && \
