@@ -19,7 +19,7 @@ savedir=/a/catter
 log_info "-------------------------------------------"
 log_status "-------Starting inferences at --$(date)----" 0
 
-mkdir -p $savedir
+mkdir -p $savedir || (echo "Could not make savedir=$savedir " ; exit 1)
 
 #log_info "callurl:$callurl"
 mkdir -p /tmp/catter
