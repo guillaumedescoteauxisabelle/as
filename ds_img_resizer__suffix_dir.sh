@@ -39,6 +39,11 @@ for f in *.jpg *.png ; do
 		if [ $rx -gt $resolution ]  ||  [ $ry -gt $resolution ]; then 
 			#convert -quality $tqual -resize $res $f $targetfilepath && echo -n "." || echo "Error with $f"
 			dsresizer $tqual $res "$f" "$targetfilepath" 
+		else
+			#a Plain copy as the resolution is ok how it is
+			#@STCIssue Might be interesting to enhance resolution to desired using neural net
+			
+			cp "$f" "$targetfilepath" && echo "Resolution of $f ok, simple copy done" || echo "ERROR while copying to $targetfilepath"
 		fi
 	fi
 done
