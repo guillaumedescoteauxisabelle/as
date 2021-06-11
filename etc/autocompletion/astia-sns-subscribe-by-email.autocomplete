@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+#@STCGoal Quick subscription by email for the ASTIA Notification
+#@STCIssue Takes unacceptable time to do
+# Echoing the goal and issue it transcend
+alias stcgoal_astia-sns-subscribe-by-email='echo @STCGoal Quick subscription by email for the ASTIA Notification\necho @STCIssue Takes unacceptable time to do'
+
+###-begin-astia-sns-subscribe-by-email-completions-###
+#
+alias astia-sns-subscribe-by-email="$binroot/astia-sns-subscribe-by-email.sh "
+
+_astia-sns-subscribe-by-email_completions()
+{
+    local cur_word args type_list
+
+    cur_word="${COMP_WORDS[COMP_CWORD]}"
+    args=("${COMP_WORDS[@]}")
+
+    # ask yargs to generate completions.
+    type_list=$(astia-sns-subscribe-by-email --get-completions "${args[@]}")
+    #echo "$type_list"
+    COMPREPLY=( $(compgen -W "${type_list}" -- ${cur_word}) )
+
+    # if no match was found, fall back to filename completion
+    if [ ${#COMPREPLY[@]} -eq 0 ]; then
+      COMPREPLY=()
+    fi
+
+    return 0
+}
+
+complete -o default -F _astia-sns-subscribe-by-email_completions astia-sns-subscribe-by-email
+complete -o default -F _astia-sns-subscribe-by-email_completions $binroot/astia-sns-subscribe-by-email.sh
+
+###-end-astia-sns-subscribe-by-email-completions-###
+
