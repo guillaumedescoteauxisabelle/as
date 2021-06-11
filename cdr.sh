@@ -16,7 +16,7 @@ flag=0
 if [ -e $binroot/__fn.sh ] && [ "$FNLOADED" == "" ]; then
    source $binroot/__fn.sh $@ 
 fi
-LOG_FILE=/var/log/gia/cdr.txt; LOG_ENABLED=y
+LOG_FILE=/var/log/gia/cdr.txt; LOG_ENABLED=n
 
 
 log "--------------------------------"
