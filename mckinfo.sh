@@ -30,7 +30,8 @@ if [ "$1" == "." ]; then export model_basename="$(basename $(pwd))" ; fi
 if [ "$1" == "--last" ]; then
 	for d in $(cd $modelroot;ls -dtr *) ; do
 		#lazy way to get the last modified file hehe
-		if [ -d "$d" ] ; then
+		if [ -d $d ] ; then
+			#echo $d
 			model_basename="$d"
 		fi
 	done
