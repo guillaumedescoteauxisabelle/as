@@ -30,7 +30,9 @@ if [ "$1" == "." ]; then export model_basename="$(basename $(pwd))" ; fi
 if [ "$1" == "--last" ]; then
 	for d in $(cd $modelroot;ls -dtr *) ; do
 		#lazy way to get the last modified file hehe
-		model_basename="$d"
+		if [ -d "$d" ] ; then
+			model_basename="$d"
+		fi
 	done
 	if [ "$QUIET" != "1" ] ; then
 		echo "-----------MCKInfo Latest Model----------------------"
