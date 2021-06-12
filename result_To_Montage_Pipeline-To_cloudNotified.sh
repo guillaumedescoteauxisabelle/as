@@ -62,7 +62,7 @@ $reorderRenderByContentScript  && \
 	log_status "compositeContentFromResultByContent" COMPLETED && \
 	cd .. && \
 	log_info "cd to $(pwd)" && \
-	log_status "GalleryMaker" STARTING && \ 
+	log_status "GalleryMaker" STARTING && \
 	log_status "$tdir" INPUT && \
 	log_status "$gtbasedir" OUTPUT && \
 	dvar montagebasedir tdirroot tdir gtbasedir gtdir && \
