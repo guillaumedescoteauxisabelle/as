@@ -105,7 +105,7 @@ read -r -d '' MSGCONTENT << MSG
 #
 MSG
 #@a Simplified version using --simple
-if [ "$3" == "--simple" ] ; then $MSGCONTENT="$2" ; fi
+if [ "$3" == "--simple" ] ; then MSGCONTENT="$2" ; fi
 
 
 aws sns publish --topic-arn  $tarn --subject "$1" --message "$MSGCONTENT" &> /dev/null && echo "Message sent" || (echo "Failed to send" && exit 1)
