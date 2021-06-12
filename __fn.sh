@@ -798,9 +798,13 @@ makecheckpointfile(){
 	mcheckpointfilecontentline2='all_model_checkpoint_paths: "'$checkpointbasefilename$mfilepresuffix$mfilesuffix'"'
 	astia_server_file_location='/tmp/astiatmp'
 	msg_info "Making $astia_server_file_location"
-	mkdir -p $astia_server_file_location || (msg_critical "creating temp failed ($astia_server_file_location)" && exit 1)
-
+	mkdir -p $astia_server_file_location \
+		&& msg_error "Created Dir: $astia_server_file_location, IS THAT WHAT FUCKS ???" \
+		|| (msg_critical "creating temp failed ($astia_server_file_location)" && exit 1)
+	sleep 1
 	mcheckpointfilepath=$astia_server_file_location'/'$modelname'_checkpoint_'$checkpointno
+	echo "mcheckpointfilepath=$mcheckpointfilepath"
+	sleep 1
 	mindexfile=$checkpointbasefilename$mfilepresuffix$mindex
 	mmetafile=$checkpointbasefilename$mfilepresuffix$mmeta
 	mdatafile=$checkpointbasefilename$mfilepresuffix$mdata
