@@ -397,7 +397,14 @@ fwp() { echo "$(pwd)/$1" ;}
 mkdirns () {
 	local topdir="$1"
 	if [ "$1" == "." ] || [ "$1" == "" ] ; then 	topdir="$(pwd $1)" ; fi
-	
+	tbn=""
+ 	if [ -f "$1" ]; then #@state We have a file
+		topdir=$(dirname "$1")
+		if [ "$topdir" == "." ] || [ "$topdir" == "" ] ; then     topdir="$(pwd)" ; fi
+		tbn=$(basename "$1")
+		tbnff=${tbn%.*}
+	fi
+
 	local levelup1=2 #default
 	 #clean negative val
 	local separator="$3"
@@ -453,7 +460,15 @@ mkdirns () {
 					fi
 				outdirns="$outtmp"
 			fi
-		done
+		done 
+	fi
+	#Append or prepend if we ask for a file NS
+	if [ "$tbn" != "" ]; then # We want a file NS
+		if [ "$order" == "f" ];then
+			outdirns="$outdirns$separator$tbnff"
+		else
+			outdirns="$tbnff$separator$outdirns" 
+		fi
 	fi
 	cd $cdir &> /dev/null #@state Back where we are
 	#@a Exporting
