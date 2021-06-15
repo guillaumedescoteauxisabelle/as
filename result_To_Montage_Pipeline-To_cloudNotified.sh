@@ -40,7 +40,8 @@ log_info "Processing $cdiro"
 export cdirbasenameo=$(basename $cdiro)
 #tdir=$cdir'/../_montage-'$cdirbasename
 export reorderRenderByContentReorderedTargetDir=$(pwd)'_by_content'
-rm -rf $reorderRenderByContentReorderedTargetDir
+if [ "$reorderRenderByContentReorderedTargetDir" != "/" ] ; then rm -rf $reorderRenderByContentReorderedTargetDir ; fi
+
 
 #if [ "$1" == "--getargs" ] ; then return; fi
 gal_suffix='__gal'
@@ -51,10 +52,10 @@ $reorderRenderByContentScript  && \
 	montagebasedir='_montage-'$cdirbasename && \ 
 	tdirroot=$(cd $cdir/..; pwd) && \
 	tdir=$tdirroot/$montagebasedir && \
-	rm -rf $tdir && \
+	if [ "$tdir" != "/" ]; then rm -rf $tdir;fi && \
 	gtbasedir=$montagebasedir$gal_suffix && \
 	gtdir=$tdirroot/$gtbasedir && \
-	rm -rf $gtdir && \
+	if [ "$gtdir" != "/" ]; then rm -rf $gtdir; fi && \
 	log_info "now in $(pwd)" && sleep 2 && \
 	log_status "Montage" STARTING && \
 	log_status "$tdir" OUTPUT && \
@@ -66,13 +67,10 @@ $reorderRenderByContentScript  && \
 	log_status "$tdir" INPUT && \
 	log_status "$gtbasedir" OUTPUT && \
 	dvar montagebasedir tdirroot tdir gtbasedir gtdir && \
-	echo "Cleanup montage dir before albumming" && rm -rf $tdir/L && \
-	echo "------------TABARNAK -------------------__" && \
-	echo $galleryMaker $tdir $gtdir "$cdirbasename" "$footertext" "$cdirbasenameo" && \
-	echo "------------DE CALISSs------------------" && \
+	echo "Cleanup montage dir before albumming" && if [ "$tdir/L" != "/L" ] ; then rm -rf $tdir/L;fi && \ 
+	echo $galleryMaker $tdir $gtdir "$cdirbasename" "$footertext" "$cdirbasenameo" && \ 
 	sleep 2 && \
-	pwd && $binroot/gallery_html_maker2.sh $tdir $gtdir  "$cdirbasename" "$footertext" "$cdirbasenameo" && \
-	echo "-----------SACREMENT tu compute tu criss ------------ " && \
+	$binroot/gallery_html_maker2.sh $tdir $gtdir  "$cdirbasename" "$footertext" "$cdirbasenameo" && \ 
 	log_status "GalleryMaker" COMPLETED && \
 	log_info "Ready for distribution into out cloud storage" && \
 	log_debug "Now in: $(pwd)" && \
