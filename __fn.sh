@@ -383,6 +383,8 @@ stripof () {
 # make_dirns /c/tmp/mydir 3 r "--" = mydir-tmp--c
 
 
+fwd() { echo "$(pwd)/$1" ;}
+
 ## @fn mkdirns()
 ## @ingroup fs FS
 ## @brief Make nice output of folder structure
