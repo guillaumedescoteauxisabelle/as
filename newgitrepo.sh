@@ -25,7 +25,7 @@ git remote add origin $clonelink
 git push origin master
 echo "Cleaning up"
 cd ..
-rm -rf $repo
+if [ "$repo" != "/" ]; then rm -rf $repo ; fi
 
 echo "---------------------$1-------------------------"
 echo "-----All might be fine :)"
