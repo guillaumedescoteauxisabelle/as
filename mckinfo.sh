@@ -21,6 +21,8 @@ if [ "$1" == "--quiet" ] || [ "$2" == "--quiet" ] ||[ "$3" == "--quiet" ] ; then
 	export QUIET=1
 fi
 export model_basename="$1"
+#in case we dont have vars
+if [ "$modelroot" == "" ]; then export modelroot=/a/model/models ; fi
 
 #use of current dir as model to list
 if [ "$1" == "." ]; then export model_basename="$(basename $(pwd))" ; fi
@@ -84,7 +86,7 @@ chkdir=checkpoint_long
 if [ "$2" == "--p" ] || [ "$2" == "-p" ] ; then
 	chkdir=checkpoint
 fi
-
+#if [ "$modelroot" == "" ]; then export modelroot=/a/model/models ; fi
 chklist=$(cd $modelroot;cd $model_basename/$chkdir;du -a | grep data | tr "/" " " | tr "." " " | awk '// { print $3 }' |tr "-" " " | awk '// { print $2}'| sort --numeric-sort)
 if [ "$2" == "--no-filter" ]; then #we dont filter
 	export CHKLIST="$chklist"
