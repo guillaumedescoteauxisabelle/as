@@ -173,19 +173,23 @@ sedescaping() {
 
 	local REPLACE="$1"
 
-	local KEYWORD="$2"
-
+	local KEYWORDUNESCAPED="$2"
+	local KEYWORD=$(printf '%s\n' "$KEYWORDUNESCAPED" | sed -e 's/[\/&]/\\&/g')
+	
 	local FILE="$3"
 	
 	ESCAPED_REPLACE=$(printf '%s\n' "$REPLACE" | sed -e 's/[\/&]/\\&/g')
-	echo "$ESCAPED_REPLACE"
+	#echo "REPLACE: $1"
+	#echo "ESCAPED: $ESCAPED_REPLACE"
+	#echo "by: $KEYWORK"
+	#echo "file: $FILE"
 	# Now you can use ESCAPED_REPLACE in the original sed statement
 	if [ -e "$FILE" ] ; then 
-		echo "Working on file"
-		echo sed -i 's/KEYWORD/'"$ESCAPED_REPLACE"'/g' $FILE
+		#echo "Working on file : $FILE"
+		#echo sed -i 's/KEYWORD/'"$ESCAPED_REPLACE"'/g' $FILE
 		sed -i 's/'"$KEYWORD"'/'"$ESCAPED_REPLACE"'/g' $FILE
 	else #normal replace
-		echo "Regular work"
+		#echo "Regular work"
 		sed "s/KEYWORD/$ESCAPED_REPLACE/g"
 	fi
 
