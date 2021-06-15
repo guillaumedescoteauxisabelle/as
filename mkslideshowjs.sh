@@ -17,10 +17,11 @@ dirns=$(mkdirns . -3)
 sdir=$binroot/templates/jsslideshow
 c=0
 wdir=$TMP/build_astia_autosliding
-rm -rf $wdir &> /dev/null
+
 
 ddir=$cdir/dist
-rm -rf $wdir $ddir &>/dev/null
+if [ "$wdir" != "/" ] ; then rm -rf $wdir  &>/dev/null ; fi
+if [ "$ddir" != "/" ] ; then rm -rf $ddir &>/dev/null ; fi
 mkdir -p $wdir $ddir &>/dev/null
 
 #@a Cleanup the spacing in files which phoque everything 
