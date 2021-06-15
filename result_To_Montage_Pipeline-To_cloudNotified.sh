@@ -49,7 +49,7 @@ $reorderRenderByContentScript  && \
 	log_success "Content reordered in : $reorderRenderByContentReorderedTargetDir" && \
 	cd $reorderRenderByContentReorderedTargetDir && \
 	cdir=$(pwd) && cdirbasename=$(basename $cdir) && \
-	montagebasedir='_montage-'$cdirbasename && \ 
+	montagebasedir='_montage-'$cdirbasename && \
 	tdirroot=$(cd $cdir/..; pwd) && \
 	tdir=$tdirroot/$montagebasedir && \
 	if [ "$tdir" != "/" ]; then rm -rf $tdir;fi && \
@@ -67,10 +67,10 @@ $reorderRenderByContentScript  && \
 	log_status "$tdir" INPUT && \
 	log_status "$gtbasedir" OUTPUT && \
 	dvar montagebasedir tdirroot tdir gtbasedir gtdir && \
-	echo "Cleanup montage dir before albumming" && if [ "$tdir/L" != "/L" ] ; then rm -rf $tdir/L;fi && \ 
-	echo $galleryMaker $tdir $gtdir "$cdirbasename" "$footertext" "$cdirbasenameo" && \ 
+	echo "Cleanup montage dir before albumming" && if [ "$tdir/L" != "/L" ]; then rm -rf $tdir/L ; fi && \
+	echo $galleryMaker $tdir $gtdir "$cdirbasename" "$footertext" "$cdirbasenameo" && \
 	sleep 2 && \
-	$binroot/gallery_html_maker2.sh $tdir $gtdir  "$cdirbasename" "$footertext" "$cdirbasenameo" && \ 
+	$binroot/gallery_html_maker2.sh $tdir $gtdir  "$cdirbasename" "$footertext" "$cdirbasenameo" && \
 	log_status "GalleryMaker" COMPLETED && \
 	log_info "Ready for distribution into out cloud storage" && \
 	log_debug "Now in: $(pwd)" && \

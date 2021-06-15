@@ -32,6 +32,7 @@ models="model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-135ik \
 	model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-210ik \
 	model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-225ik \
 	model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-60ik \
+	model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-315ik \
 	model_gia-ds-DavidBouchardGagnon-v01b-210510-864_new-45ik" 
 tdrox=/model/models/dbg
 modelroot=/a/model/models
@@ -52,6 +53,10 @@ models="model_gia-ds-pierret_ds_210512-864-v02-210527-864_new-150ik \
 
 
 tdrox=/model/models/pik
-models="model_gia-young-picasso-v02b-201210-864_new-120ik"
+models="model_gia-young-picasso-v02b-201210-864_new-120ik \
+	model_gia-young-picasso-v02b-201210-864_new-375ik \
+	model_gia-young-picasso-v02b-201210-864_new-15ik"
+
+
 
 
