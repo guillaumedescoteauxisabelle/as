@@ -392,7 +392,7 @@ stripof () {
 ## @param string (Optional (suffix)).
 mkdirns () {
 	local topdir="$1"
-	if [ "$1" == "." ]; then 	topdir="$(pwd $1)" ; fi
+	if [ "$1" == "." ] || [ "$1" == "" ] ; then 	topdir="$(pwd $1)" ; fi
 	
 	local levelup1=2 #default
 	 #clean negative val
