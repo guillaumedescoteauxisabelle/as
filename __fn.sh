@@ -384,6 +384,8 @@ stripof () {
 
 
 fwd() { echo "$(pwd)/$1" ;}
+#Add alias
+fwp() { echo "$(pwd)/$1" ;}
 
 ## @fn mkdirns()
 ## @ingroup fs FS
