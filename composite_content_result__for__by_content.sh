@@ -21,7 +21,31 @@ for d in * ; do
 		cd $d 
 		#Get out content file which _result_by_content.sh should have put in ..
                 fcontentname=$(basename $(pwd))'.'$ext
+		
                 fcontentpath=../$fcontentname
+		if [ ! -e "$fcontentpath" ]; then #might be a png
+			fcontentname=$(basename $(pwd))'.png'
+			fcontentpath=../$fcontentname
+		fi
+	 	if [ ! -e "$fcontentpath" ]; then #might be a tif maybe
+                        fcontentname=$(basename $(pwd))'.tif'
+			fcontentpath=../$fcontentname
+                fi
+
+                if [ ! -e "$fcontentpath" ]; then #might be a jpeg maybe
+                        fcontentname=$(basename $(pwd))'.jpeg'
+			fcontentpath=../$fcontentname
+                fi
+
+
+                if [ ! -e "$fcontentpath" ]; then #might be a jpeg maybe
+                        fcontentname=$(basename $(pwd))'.JPG'
+                        fcontentpath=../$fcontentname
+                fi
+
+
+
+
 		for f in *.$ext ; do
 	
 			# We make a copy to the same level to fix some unknown issue
