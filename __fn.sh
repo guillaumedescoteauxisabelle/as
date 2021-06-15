@@ -221,8 +221,7 @@ replacetextbypath() {
 
 isnotnumberexit() {
 	re='^[0-9]+$'
-	local showmsg="$2"
-#	echo "number being checked: $1"
+	local showmsg="$2" 
 
 	if ! [[ $1 =~ $re ]] ; then
 		local msgtxt="error: Argument Not a number "
