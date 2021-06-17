@@ -19,7 +19,8 @@ if [ -e $binroot/__fn.sh ]; then
 fi
 
 source $SDIR/_env.sh
-source /home/jgi/.bash_env_$HOSTNAME &> /dev/null
+
+source $HOME/.bash_env_$HOSTNAME &> /dev/null
 
 
 LOG_FILE="$logdir/dns-update-$(date +"%y-%m").log"
@@ -27,10 +28,6 @@ LOG_ENABLED=y
 
 
 mkdir -p $logdir || (echo "Logdir ($logdir) could not be created " && exit 1)
-
-
-
-
 
 
 export urlcall="https://directnic.com/dns/gateway/$dnstoken/?data="
@@ -55,5 +52,7 @@ log_info $"(cd /tmp;wget "$urlfullcall")" && msg_success "IP updated to $current
 
 chown 1000.1000 "$logfile" &> /dev/null
 
+#apiastiatoken=74e9be959e282c5c5744bf8cf8be1b5e9e464a7b783612bf2b02ac6dfdc219f5
+#svrastiatoken=eb9cfd71ebffa0ddc8e187642bc4ff71cb94717ba56ab5fe874d12259c594acb
 
-# a very long line with dns in it and also   23: tt=$(echo "$ll" | cut -c2-6)omethinoeuteh # oethuteouhtnsomethinoeuteh # oethuteouhtns ethinoeuteh # oethuteouhtnsoehutneh utnhoeu ehotnsu oetnuh tnethinoeuteh # oethuteouhtnsoehutneh utnhoeu ehotnsu oetnuh tnethinoeuteh # oethuteouhtnsoehutneh utnhoeu ehotnsu oetnuh tn
+
