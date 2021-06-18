@@ -30,7 +30,7 @@ responseFile=/tmp/catter/sshiphore_response.json
 #cat - >>$1
 # contentImage=$(cat -)
 
-echo -n "{\"contentImage\": \"$(cat -)\"}" > $requestFileContentImage  \
+echo -n "{\"contentImage\":\"$(cat -)\"}" > $requestFileContentImage  \
 	&& log_success "content received by pipe to  $requestFileContentImage" \
        && log_info "modelid:$1"	\
 	|| log_failed "content not received by pipe"
@@ -81,17 +81,43 @@ savebase="$savedir/cf_$dttag"
 log_info "Saving base: $savebase"
 saveresponsefile="$savebase.response.json"
 log_info "Save response file in : $saveresponsefile"
-
+saverequestfile="$savedir/cf_$dttag.request.json"
+cp $requestFile $saverequestfile &
 log_status "Calling the service" 10
-curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl  --silent | sed -e 's/data:image\/jpeg;base64,//g' 
-#curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl  --silent | sed -e 's/data:image\/jpeg;base64,//g' | tee "$saveresponsefile" \
-#	&& log_success "Succesfully called the service" \
-#	|| log_failed "Calling the service failed"
-
+#curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl  --silent | sed -e 's/data:image\/jpeg;base64,//g' 
+. /a/bin/catter.sh-finish &> /tmp/logcat &
+#exit
+curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl  --silent | sed -e 's/data:image\/jpeg;base64,//g' | tee "$saveresponsefile" \
+	&& log_success "Succesfully called the service" \
+	|| log_failed "Calling the service failed"
+#. /a/bin/catter.sh-finish &
+exit
 #Curl to an output file will cat later
-#curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl --output $responseFile --silent | sed -e 's/data:image\/jpeg;base64,//g'
+#echo $responseFile
+#curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl --output $saveresponsefile --silent | sed -e 's/data:image\/jpeg;base64,//g'
 #ref   --output $responseFile --silent  responseFile=
 #cat $responseFile - | sed -e 's/data:image\/jpeg;base64,//g'
+#exit
+
+
+
+# IT WONT WORK IF YOU TRY TO DO SOMETHING WITH THE REST
+# IT WONT WORK IF YOU TRY TO DO SOMETHING WITH THE REST
+# IT WONT WORK IF YOU TRY TO DO SOMETHING WITH THE REST
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 #@STCGoal I can know what I did : ContentFile, X1,X2,X3 and model port
 #@a A json file with metadata, A content jpg image of the content
@@ -108,11 +134,12 @@ gia-ast-response-stylizedImage2file  $requestFile "$targetcontentfile" "contentI
         || log_failed "Restored $targetcontentfile failed" &
 
 targetstylizedfile="$savebase"'__'"stylized.jpg"
-gia-ast-response-stylizedImage2file $saveresponsefile "$targetstylizedfile" \
+gia-ast-response-stylizedImage2file  $saveresponsefile "$targetstylizedfile" \
 	&& log_success "response-stylizedImage2file $targetstylizedfile created" \
 	|| log_failed "response-stylizedImage2file $targetstylizedfile failed" &
-sleep 1
+#sleep 1
 #cp $requestFile 
 
 cd $cdir
 
+cat $responseFile - | sed -e 's/data:image\/jpeg;base64,//g'
