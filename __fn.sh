@@ -675,7 +675,7 @@ grepsearcher()
 					green=`tput setaf 2` #green var for terminal color change
 					reset=`tput sgr0` #reset var for terminal color change
 					pl=4
-					lapadded=`printf %0${pl}d $la` #pad var from a number var
+					lapadded=`printf %0${pl}d $la||printf %0${pl}d 0` #pad var from a number var
 					clen=${#la}
 					clenm=$(expr $pl - $clen)
 					
@@ -823,12 +823,11 @@ makecheckpointfile(){
 	astia_server_file_location='/tmp/astiatmp'
 	msg_info "Making $astia_server_file_location"
 	mkdir -p $astia_server_file_location \
-		&& msg_error "Created Dir: $astia_server_file_location, IS THAT WHAT FUCKS ???" \
 		|| (msg_critical "creating temp failed ($astia_server_file_location)" && exit 1)
-	sleep 1
+
 	mcheckpointfilepath=$astia_server_file_location'/'$modelname'_checkpoint_'$checkpointno
-	echo "mcheckpointfilepath=$mcheckpointfilepath"
-	sleep 1
+#	echo "mcheckpointfilepath=$mcheckpointfilepath"
+#	sleep 1
 	mindexfile=$checkpointbasefilename$mfilepresuffix$mindex
 	mmetafile=$checkpointbasefilename$mfilepresuffix$mmeta
 	mdatafile=$checkpointbasefilename$mfilepresuffix$mdata
@@ -836,23 +835,23 @@ makecheckpointfile(){
 	testing=0
 	if [ "$testing" == "1" ]; then
 
-	echo "-----------------------------------------------Tests: "
-	#echo "- tmpmodelfilename=$tmpmodelfilename"
-	#echo "- replstring=$replstring"
-	#echo "- checkpointbasefilename=$checkpointbasefilename"
-	#echo "- mcheckpointfilecontent=$mcheckpointfilecontent"
-	#echo "- remove : $replstring in $tmpmodelfilename and use to construct the checkpoint file"
-	#echo "-- it gives: $tmpbasename"
-	echo "-- So the checkpoint file content is >>"
-	echo "$mcheckpointfilecontentline1"
-	echo "$mcheckpointfilecontentline2"
-	echo "<<"
-	#echo "- checkpointbasefilename=$checkpointbasefilename"
-	#echo "- mfilepresuffix=$mfilepresuffix"
-	#echo "- mfilesuffix=$mfilesuffix"
-	echo "- mindexfile=$mindexfile"
-	echo "- mmetafile=$mmetafile"
-	echo "- mdatafile=$mdatafile"
+		echo "-----------------------------------------------Tests: "
+		#echo "- tmpmodelfilename=$tmpmodelfilename"
+		#echo "- replstring=$replstring"
+		#echo "- checkpointbasefilename=$checkpointbasefilename"
+		#echo "- mcheckpointfilecontent=$mcheckpointfilecontent"
+		#echo "- remove : $replstring in $tmpmodelfilename and use to construct the checkpoint file"
+		#echo "-- it gives: $tmpbasename"
+		echo "-- So the checkpoint file content is >>"
+		echo "$mcheckpointfilecontentline1"
+		echo "$mcheckpointfilecontentline2"
+		echo "<<"
+		#echo "- checkpointbasefilename=$checkpointbasefilename"
+		#echo "- mfilepresuffix=$mfilepresuffix"
+		#echo "- mfilesuffix=$mfilesuffix"
+		echo "- mindexfile=$mindexfile"
+		echo "- mmetafile=$mmetafile"
+		echo "- mdatafile=$mdatafile"
 	fi
 	# Making the local checkpoint we will mount
 	filecontent="$mcheckpointfilecontentline1"$'\n'"$mcheckpointfilecontentline2"
@@ -878,7 +877,7 @@ makecheckpointfile(){
 	export MCHECKPOINTCONTENT=$filecontent
 	d "------------ or use : \$MCHECKPOINTFILEPATH"
 	d "------------ or use : \$MCHECKPOINTCONTENT"
-	DEBUG=0
+	
 }
 
 
