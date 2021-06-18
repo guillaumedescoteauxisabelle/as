@@ -1,0 +1,75 @@
+    1  apt install gnupg pbuilder ubuntu-dev-tools apt-file -y
+    2  df -h
+    3  apt install gnupg pbuilder ubuntu-dev-tools apt-file -y
+    4  apt update
+    5  ls 
+    6  npm install drox --g
+    7  npm install droxul --g
+    8  npm install thumbsup --g
+    9  apt install node-gyp -y
+   10  npm install node-gyp --g
+   11  npm install thumbsup --g
+   12  apt remove nodejs
+   13  curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh
+   14  sudo bash nodesource_setup.sh
+   15  sudo apt install nodejs
+   16  sudo apt install nodejs -y
+   17  node --version
+   18  npm --version
+   19  npm i npm --g
+   20  npm --version
+   21  npm install thumbsup --g
+   22  npm install gia-ast-util gia-ast --g
+   23  cd /var/lib/docker/
+   24  ls
+   25  du -ksh *
+   26  top -i
+   27  vi .ssh/authorized_keys 
+   28  mv .ssh/authorized_keys  .
+   29  mkdir zold
+   30  mv authorized_keys  zold/
+   31  cp /home/ubuntu/.ssh/authorized_keys  .ssh/
+   32  ls -l .ssh
+   33  cat .ssh/authorized_keys 
+   34  ssh-keygen 
+   35  vi /etc/ssh/sshd_config
+   36  sudo service sshd restart
+   37  docker pull guillaumeai/server:httpd
+   38  id ubuntu
+   39  docker ps
+   40  docker stats
+   41  cdr
+   42  cd /a/lib/results/ds-DavidBouchardGagnon-v01b-210510-864/_montage-dbg_v01b_osiris-300_by_content__gal
+   43  http-server -p 80
+   44  http-server -p 80 .
+   45  docker ps
+   46  docker stats
+   47  ps -aef
+   48  ps -aef | grep ubuntu
+   49  sudo apt install samba -y
+   50  sudo systemctl status smbd
+   51  cp /etc/samba/smb.conf{,.backup}
+   52  vi /etc/samba/smb.conf
+   53  service smbd restart
+   54  ls -ltr
+   55  vi /etc/hosts
+   56  nslookup osiris.astia.xyzf
+   57  nslookup osiris.astia.xyz
+   58  fg
+   59  vi /etc/hosts
+   60  vi /etc/samba/smb.conf
+   61  ip addr | grep eth
+   62  ip addr | grep eth0
+   63  ip addr
+   64  fg
+   65  ping osiris.astia.xyz
+   66  fg
+   67  service smbd restart
+   68  vi /etc/passwd
+   69  cd /home/
+   70  umount /home/jgi/astiapreviz 
+   71  mv jgi jgi.good
+   72  mv jgi.good jgi
+   73  history
+   74  cd
+   75  history > /a/bin/setup/osiris.root.history.txt
