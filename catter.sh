@@ -30,7 +30,7 @@ responseFile=/tmp/catter/sshiphore_response.json
 #cat - >>$1
 # contentImage=$(cat -)
 
-echo -n "{\"contentImage\": \"$(cat -)\"}" > $requestFileContentImage  \
+echo -n "{\"contentImage\":\"$(cat -)\"}" > $requestFileContentImage  \
 	&& log_success "content received by pipe to  $requestFileContentImage" \
        && log_info "modelid:$1"	\
 	|| log_failed "content not received by pipe"
@@ -84,6 +84,8 @@ log_info "Save response file in : $saveresponsefile"
 
 log_status "Calling the service" 10
 curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl  --silent | sed -e 's/data:image\/jpeg;base64,//g' 
+
+
 #curl -vs --header  "$callContentType"  --request POST   --data @$requestFile  $callurl  --silent | sed -e 's/data:image\/jpeg;base64,//g' | tee "$saveresponsefile" \
 #	&& log_success "Succesfully called the service" \
 #	|| log_failed "Calling the service failed"
