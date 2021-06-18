@@ -106,6 +106,7 @@ targetcontentfile="$savebase"'__'"content.jpg"
 gia-ast-response-stylizedImage2file  $requestFile "$targetcontentfile" "contentImage" &> /dev/null \
 	&& log_success "Restored $targetcontentfile created" \
         || log_failed "Restored $targetcontentfile failed" &
+
 targetstylizedfile="$savebase"'__'"stylized.jpg"
 gia-ast-response-stylizedImage2file $saveresponsefile "$targetstylizedfile" \
 	&& log_success "response-stylizedImage2file $targetstylizedfile created" \
