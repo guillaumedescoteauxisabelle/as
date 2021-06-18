@@ -1,0 +1,8 @@
+
+
+if [ "$HOSTNAME" != "osiris" ] ; then 
+	sudo cp /etc/hostname{,.bak}
+	echo "osiris.astia.xyz"  > /tmp/hostname
+	sudo mv /tmp/hostname /etc/hostname
+	sudo reboot
+fi
