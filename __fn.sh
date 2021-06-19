@@ -859,8 +859,8 @@ makecheckpointfile(){
 		#ls $mcheckpointfilepath
 		rmdir $mcheckpointfilepath || sudo rmdir $mcheckpointfilepath
 	fi
-	echo "$mcheckpointfilecontentline1" > $mcheckpointfilepath
-	echo "$mcheckpointfilecontentline2" >> $mcheckpointfilepath
+	sudo echo "$mcheckpointfilecontentline1" > $mcheckpointfilepath
+	sudo echo "$mcheckpointfilecontentline2" >> $mcheckpointfilepath
 	# Making path to mount from local to the docker host foreach of the 3 files
 	##modelmountpoint modellocalpoint
 	export modelmountpointmeta=$modelmountpoint/$mmetafile
