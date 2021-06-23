@@ -1,4 +1,5 @@
-cdrw ; . _env.sh
+proxycontainertag=guillaumeai/server:sslproxy
+
 tdomain=as.guillaumeisabelle.com
 tport=22
 sport=22
