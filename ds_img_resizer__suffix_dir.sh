@@ -1,13 +1,22 @@
 #!/bin/bash
 
 
-# Resize in a subdir created with above res suffix
-resolution=864
-tsize=$resolution'x'
-if [ "$1" != "" ]; then # We have specified a different res 
-	tsize=$(echo "$1" | sed -e 's/x//')'x'
+if [ "$1" == "--help" ]; then 
+	echo "Usage: $0 [resized res]"
+	exit 1
 fi
 
+# Resize in a subdir created with above res suffix
+resolution=864
+
+if [ "$1" != "" ]; then # We have specified a different res 
+	resolution=$(echo "$1" | sed -e 's/x//')
+	echo "Custom resolution specified: $resolution"
+	sleep 1
+
+fi
+
+tsize=$resolution'x'
 
 tdir=$(pwd)'-'$tsize
 mkdir -p $tdir
@@ -37,8 +46,11 @@ for f in *.jpg *.png ; do
 
 		#@a If one of the two resolution are higher that the desired resolutio, we resize
 		if [ $rx -gt $resolution ]  ||  [ $ry -gt $resolution ]; then 
-			#convert -quality $tqual -resize $res $f $targetfilepath && echo -n "." || echo "Error with $f"
-			dsresizer $tqual $res "$f" "$targetfilepath" 
+			#convert -quality $tqual -resize $res $f $targetfilepath && echo -n "." || echo "Error with $f" 
+			dsresizer $tqual $res "$f" "$targetfilepath" && \
+			echo "Changed resolution of $f" || \
+			echo "Failed changing resolution of $f"
+			
 		else
 			#a Plain copy as the resolution is ok how it is
 			#@STCIssue Might be interesting to enhance resolution to desired using neural net
