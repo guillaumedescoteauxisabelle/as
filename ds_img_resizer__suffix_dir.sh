@@ -47,6 +47,7 @@ for f in *.jpg *.png ; do
 		#@a If one of the two resolution are higher that the desired resolutio, we resize
 		if [ $rx -gt $resolution ]  ||  [ $ry -gt $resolution ]; then 
 			#convert -quality $tqual -resize $res $f $targetfilepath && echo -n "." || echo "Error with $f"
+			echo "Changing resolution of $f"
 			dsresizer $tqual $res "$f" "$targetfilepath" 
 		else
 			#a Plain copy as the resolution is ok how it is
