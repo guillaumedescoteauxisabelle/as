@@ -1,5 +1,5 @@
 #!/bin/bash
-
+chks=$1
 # Split into dir all CHKS
 export basedir=chks
 mkdir -p $basedir
