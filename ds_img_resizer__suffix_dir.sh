@@ -8,11 +8,15 @@ fi
 
 # Resize in a subdir created with above res suffix
 resolution=864
-tsize=$resolution'x'
+
 if [ "$1" != "" ]; then # We have specified a different res 
-	tsize=$(echo "$1" | sed -e 's/x//')'x'
+	resolution=$(echo "$1" | sed -e 's/x//')
+	echo "Custom resolution specified: $resolution"
+	sleep 1
+
 fi
 
+tsize=$resolution'x'
 
 tdir=$(pwd)'-'$tsize
 mkdir -p $tdir
