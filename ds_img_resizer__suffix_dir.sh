@@ -1,6 +1,11 @@
 #!/bin/bash
 
 
+if [ "$1" == "--help" ]; then 
+	echo "Usage: $0 [resized res]"
+	exit 1
+fi
+
 # Resize in a subdir created with above res suffix
 resolution=864
 tsize=$resolution'x'
