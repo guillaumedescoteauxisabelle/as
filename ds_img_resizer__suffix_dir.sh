@@ -46,9 +46,11 @@ for f in *.jpg *.png ; do
 
 		#@a If one of the two resolution are higher that the desired resolutio, we resize
 		if [ $rx -gt $resolution ]  ||  [ $ry -gt $resolution ]; then 
-			#convert -quality $tqual -resize $res $f $targetfilepath && echo -n "." || echo "Error with $f"
-			echo "Changing resolution of $f"
-			dsresizer $tqual $res "$f" "$targetfilepath" 
+			#convert -quality $tqual -resize $res $f $targetfilepath && echo -n "." || echo "Error with $f" 
+			dsresizer $tqual $res "$f" "$targetfilepath" && \
+			echo "Changed resolution of $f" || \
+			echo "Failed changing resolution of $f"
+			
 		else
 			#a Plain copy as the resolution is ok how it is
 			#@STCIssue Might be interesting to enhance resolution to desired using neural net
