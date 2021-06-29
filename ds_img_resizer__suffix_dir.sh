@@ -43,13 +43,19 @@ for f in *.jpg *.png ; do
 
 		targetfilepath=$tdir/$ff.jpg
 		ff=${f%.*}
+		ext="${f##*.}"
 
 		#@a If one of the two resolution are higher that the desired resolutio, we resize
-		if [ $rx -gt $resolution ]  ||  [ $ry -gt $resolution ]; then 
+		if [ $rx -gt $resolution ]  ||  [ $ry -gt $resolution ] || [ "$ext" != "jpg" ]; then 
 			#convert -quality $tqual -resize $res $f $targetfilepath && echo -n "." || echo "Error with $f" 
+
+			#conditional message - resolution changes or format changes
+			msg="Resized $f done"
+			if  [ "$ext" != "jpg" ]; then msg="Format changed for $f" ; fi
+
 			dsresizer $tqual $res "$f" "$targetfilepath" && \
-			echo "Changed resolution of $f" || \
-			echo "Failed changing resolution of $f"
+			echo "$msg" || \
+			echo "Failed processing $f"
 			
 		else
 			#a Plain copy as the resolution is ok how it is
