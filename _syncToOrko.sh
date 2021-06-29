@@ -17,4 +17,4 @@ if [ "$1" == " " ]; then # Need an argi
 	echo "usage:  $0 <modelname>"
 	exit 1
 fi
-rsync -aP $localmodelpath jgi@orko:$remotemodelpath/
+rsync -aP $localmodelpath jgi@orko:$remotemodelroot/
