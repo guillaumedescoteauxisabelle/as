@@ -1,4 +1,4 @@
-pbase=36
+pbase=41
 
 thost=svr.astia.xyz
 tdomain=proxy.astia.xyz
