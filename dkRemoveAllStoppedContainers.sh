@@ -92,7 +92,9 @@ dowork "MSGWHENWEGO"
 #log_info "#@STCIssue Stopped container remains"
 ###################################
 #@a##>>>>>######################################CODE HERE >>>>>
-docker rm $(docker ps --filter "status=exited" -q)
+echo -n "Starting to do the work"
+
+docker rm $(docker ps --filter "status=exited" -q) &> /dev/null && echo "Done the work" || echo "There might have nothing to cleanup"
 
 #@end##<<<<##########END CODING HERE and define EXIT CODE <<<<<<<
 EXIT_CODE=0 #Define exit code
