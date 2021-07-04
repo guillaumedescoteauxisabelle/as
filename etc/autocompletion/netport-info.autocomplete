@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+#@STCGoal Know what is hapenning in the netwokr
+#@STCIssue Getting port info is not obvious
+# Echoing the goal and issue it transcend
+alias stcgoal_netport-info='echo @STCGoal Know what is hapenning in the netwokr\necho @STCIssue Getting port info is not obvious'
+
+###-begin-netport-info-completions-###
+#
+alias netport-info="$binroot/netport-info.sh "
+
+_netport-info_completions()
+{
+    local cur_word args type_list
+
+    cur_word="${COMP_WORDS[COMP_CWORD]}"
+    args=("${COMP_WORDS[@]}")
+
+    # ask yargs to generate completions.
+    type_list=$(netport-info --get-completions "${args[@]}")
+    #echo "$type_list"
+    COMPREPLY=( $(compgen -W "${type_list}" -- ${cur_word}) )
+
+    # if no match was found, fall back to filename completion
+    if [ ${#COMPREPLY[@]} -eq 0 ]; then
+      COMPREPLY=()
+    fi
+
+    return 0
+}
+
+complete -o default -F _netport-info_completions netport-info
+complete -o default -F _netport-info_completions $binroot/netport-info.sh
+
+###-end-netport-info-completions-###
+
