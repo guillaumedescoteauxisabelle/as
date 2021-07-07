@@ -11,13 +11,18 @@ f="$1"
 f2="$2"
 tdir="$3"
 
+if [ "$tdir" == "" ]; then # output in ./out of the second file if no output dir spec
+	tdir=$(dirname $(realpath $f2))/out
+fi
+
 tdir=$(mkdir -p $tdir;cd $tdir;pwd) || (echo "Could not create or access $tdir" ;exit 1)
 outL=$tdir/L
 mkdir -p $outL
 
 pointsize=48
 labelheight=$(expr $pointsize + 25)
-tfont=Helvetica
+#tfont=Helvetica
+tfont=Arial
 bgcolor='#000000'
 fillcolor='gray'
 fb=$(basename $f)
