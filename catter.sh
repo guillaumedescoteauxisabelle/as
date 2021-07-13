@@ -40,7 +40,7 @@ echo -n "{\"contentImage\":\"$(cat -)\"}" > $requestFileContentImage  \
 modelid=$1
 callhost=localhost
 #callhost=orko.guillaumeisabelle.com
-callurl=http://$callhost:90$modelid/stylize
+callurl=http://$callhost:$modelid/stylize
 
 
 #export req_p1='{"x1":'$2',"x2":'$3',"x3":'$4','

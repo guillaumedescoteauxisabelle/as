@@ -11,13 +11,18 @@ f="$1"
 f2="$2"
 tdir="$3"
 
+if [ "$tdir" == "" ]; then # output in ./out of the second file if no output dir spec
+	tdir=$(dirname $(realpath $f2))/out
+fi
+
 tdir=$(mkdir -p $tdir;cd $tdir;pwd) || (echo "Could not create or access $tdir" ;exit 1)
 outL=$tdir/L
 mkdir -p $outL
 
 pointsize=48
 labelheight=$(expr $pointsize + 25)
-tfont=Helvetica
+#tfont=Helvetica
+tfont=Arial
 bgcolor='#000000'
 fillcolor='gray'
 fb=$(basename $f)
@@ -56,7 +61,7 @@ tmpcontent=$TMP/$f2
 #@a The original is resized by a  factor, then a montage with the result image is then receiving an underlying label.
 convert -quality $tqual -resize $res $f $tmpcontent && \
 montage $tmpcontent $f2  -geometry +$pointsize+$pointsize  -background "$bgcolor" -fill "$fillcolor" $out && \
-montage -label "$fl2" -font $tfont -pointsize $pointsize -geometry +0+$labelheight -background "$bgcolor" -fill "$fillcolor" $out $outm && \
+montage -label "$fl2"  -pointsize $pointsize -geometry +0+$labelheight -background "$bgcolor" -fill "$fillcolor" $out $outm && \
  exiftool -overwrite_original -copyright="$copyright" -E $outm && \
 	echo "Suceeded creating $outm" || \
 	echo "Failed creating $outm"
