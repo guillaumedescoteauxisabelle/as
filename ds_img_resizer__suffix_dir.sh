@@ -41,8 +41,8 @@ for f in *.jpg *.png ; do
 		rx=$($binroot/imgGetResolution.sh $f x)
 		ry=$($binroot/imgGetResolution.sh $f y)
 
-		targetfilepath=$tdir/$ff.jpg
 		ff=${f%.*}
+		targetfilepath=$tdir/$ff.jpg
 		ext="${f##*.}"
 
 		#@a If one of the two resolution are higher that the desired resolutio, we resize
