@@ -22,10 +22,7 @@ for t in $th; do
 		if [ "$t" == "$r" ] ; then isdone="1" ; fi
 
 	done
-	if [ "$isdone" == "1" ] ; then 
-		#o+=" $t" 
-		#echo "$t is done"
-	else
+	if [ "$isdone" != "1" ] ; then 
 		#echo "$t isn't"
 		o="$o $t"
 	fi
