@@ -10,6 +10,9 @@ contentscalefactor=2
 f="$1"
 f2="$2"
 tdir="$3"
+if [ "$1" == "" ] || [ "$2" == "" ] ; then
+	echo "Usage: $0 <imgfile left> <imgfile right> <target dir>"
+else # All is probably file, so lets do the work
 
 if [ "$tdir" == "" ]; then # output in ./out of the second file if no output dir spec
 	tdir=$(dirname $(realpath $f2))/out
@@ -67,3 +70,7 @@ montage -label "$fl2"  -pointsize $pointsize -geometry +0+$labelheight -backgrou
 	echo "Failed creating $outm"
 rm $tmpcontent
 #feh -F $out
+
+
+fi # We are done doing the job if all params ok
+
