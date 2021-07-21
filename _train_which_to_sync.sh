@@ -13,7 +13,7 @@ th=$(ssh $thn "cd /a/bin;./mckinfo.sh $m")
 #echo $th
 #echo "$rh" | sed -e 's/'"$th"'//g'
 
-o=" "
+export o=""
 for t in $th; do 
 	#echo -n "entering : $t..."
 	isdone="0"
@@ -30,6 +30,8 @@ for t in $th; do
 done; 
 #echo "$th"
 #echo "-----------What needs to be sync -------------"
-echo "$o"
+if [ "$o" != " " ] || [ "$o" != "" ]|| [ "$o" != "  " ];then 
+	echo "$o"
+fi
 
 fi
