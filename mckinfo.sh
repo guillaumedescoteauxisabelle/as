@@ -94,4 +94,10 @@ if [ "$2" == "--no-filter" ]; then #we dont filter
 else #we remove zeros
 	export CHKLIST="$(echo $chklist | sed -e 's/000//g')"
 fi
-echo "$CHKLIST" | tr ' ' '\n' | sort -u | tr '\n' ' '
+#Clean duplicate and sort
+for c in $CHKLIST ; do 
+	chks+="$c"$'\n'
+done
+echo "$chks" | tr ' ' '\n' | sort -u | sort -n | tr '\n' ' ' 
+echo ' '
+
