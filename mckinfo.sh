@@ -95,3 +95,4 @@ else #we remove zeros
 	export CHKLIST="$(echo $chklist | sed -e 's/000//g')"
 fi
 echo "$CHKLIST" | tr ' ' '\n' | sort -u | tr '\n' ' '
+echo ' '
