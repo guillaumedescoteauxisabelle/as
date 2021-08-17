@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-if [ -e "$1" ] || [ "$1" == "" ] ; then # 
+if [ "$1" == "" ] ; then # 
 	echo "Usage: $0 <file> <target dir>"
 else 
 
