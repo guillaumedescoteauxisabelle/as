@@ -5,6 +5,13 @@ if [ "$1" == "" ] ; then #
 	echo "Usage: $0 <file> <target dir>"
 else 
 
+
+#Loading functions
+if [ -e $binroot/__fn.sh ]; then
+                source $binroot/__fn.sh $@
+fi
+
+
 f="$1"
 tdir="$2"
 mkdir -p $tdir
