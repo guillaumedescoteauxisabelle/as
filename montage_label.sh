@@ -1,6 +1,10 @@
 #!/bin/bash
 
 
+if [ -e "$1" ] || [ "$1" == "" ] ; then # 
+	echo "Usage: $0 <file> <target dir>"
+else 
+
 f="$1"
 tdir="$2"
 mkdir -p $tdir
@@ -24,5 +28,7 @@ dvar f fn fl r out tdir
 
 montage -verbose -label "$fl" -font $tfont -pointsize $pointsize -geometry $rval -background "$bgcolor" -fill "$fillcolor" $f $out; 
 
+
+fi
 
 #feh -F $out
