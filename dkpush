@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+. .env &> /dev/null || . _env.sh &> /dev/null
+
+if [ "$dockertag" == "" ] ; then 
+echo "Please define dockertag in .env"
+else
+docker push $dockertag
+fi
