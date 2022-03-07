@@ -1,0 +1,43 @@
+#!/bin/bash
+goon=0
+if [ -f ".env" ]; then 
+	. .env && goon=1
+	else
+	if [ -f "_env" ]; then
+	        . _env.sh && goon=1
+	else
+		echo "No env detected. We wont go further."
+		echo "Please define it in .env or _env.sh"
+	fi
+		
+fi
+# ENV Is Set or not.
+
+if [ "$goon" == 1 ]; then
+	goon=1
+	tag="$containertag"
+	if [ "$containertag" == "" ] ; then  
+		tag="$dockertag"
+		if [ "$dockertag" == "" ] ; then	
+			echo "Please define dockertag or containertag"
+			goon=0
+		fi
+	fi
+fi
+if [ "$goon" == 1 ]; then
+	#finally we do it ;)  Because alll is great
+	dockerfilepath="$1"
+	if [ -f "Dockerfile" ] ; then 
+		dockerfilepath=.
+	else
+		if [ -f "$dockerfilepath/Dockerfile" ];
+		then 
+			docker build -t $tag $dockerfilepath
+		else
+			echo "Could not find Dockerfile in path : $dockerfilepath"
+		fi
+	fi
+
+
+fi
+
