@@ -7,7 +7,7 @@ if [ "$goon" == 1 ]; then
 	if [ "$containername" == "" ]; then
 		dknamearg=""
 	fi
-echo "Running container : $dockertag"
+echo "Running container : $dockertag $dknamearg"
 docker run -it --rm $dknamearg \
 	-v $(pwd):/work \
 	-v $binroot:/a/bin \
