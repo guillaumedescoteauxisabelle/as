@@ -1,6 +1,6 @@
 #!/bin/bash
 
-(. .env &> /dev/null || . _env.sh &> /dev/null)\
+(. .env &> /dev/null || . _env.sh &> /dev/null) && \
 docker run -it --rm \
 	-v $(pwd):/work \
 	-v $binroot:/a/bin \
