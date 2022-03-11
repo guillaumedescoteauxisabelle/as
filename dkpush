@@ -2,6 +2,7 @@
 
 
 . .env &> /dev/null || . _env.sh &> /dev/null
+
 if [ "$dockertag" == "" ] ; then
 	export dockertag="$containertag"
 fi
