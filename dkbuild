@@ -3,7 +3,7 @@ goon=0
 if [ -f ".env" ]; then 
 	. .env && goon=1
 	else
-	if [ -f "_env" ]; then
+	if [ -f "_env.sh" ]; then
 	        . _env.sh && goon=1
 	else
 		echo "No env detected. We wont go further."
@@ -29,15 +29,14 @@ if [ "$goon" == 1 ]; then
 	dockerfilepath="$1"
 	if [ -f "Dockerfile" ] ; then 
 		dockerfilepath=.
-	else
-		if [ -f "$dockerfilepath/Dockerfile" ];
+	fi
+	if [ -f "$dockerfilepath/Dockerfile" ];
 		then 
 			docker build -t $tag $dockerfilepath
 		else
 			echo "Could not find Dockerfile in path : $dockerfilepath"
-		fi
 	fi
-
-
 fi
+
+
 
