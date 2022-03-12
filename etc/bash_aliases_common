@@ -1,0 +1,12 @@
+#
+
+alias dkbuild="$binroot/dkbuild"
+alias dkpush="$binroot/dkpush"
+alias dkrun="$binroot/dkrun"
+alias dkps="$binroot/dkps"
+alias dkinfo="$binroot/dkinfo"
+
+alias dkrun-ubuncompiler="docker run -it --rm -v $(pwd):/work jgwill/ubuntu:compiler bash"1~
+
+export caishenroot="/c/Caishen/Caishen"
+alias cdspider="cd $caishenroot/src/Caishen/Databases/SpiderDbDatabase/gia-mssql"
