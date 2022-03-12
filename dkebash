@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+
+. _env.sh &> /dev/null || . .env &> /dev/null
+
+
+if [ "$containername" == "" ]; then
+	echo "Please define \$containername in .env or _env.sh"
+else
+	echo "Running bash to Container/docker name : $containername"
+	docker exec $containername bash
+
+
+
+
+fi
