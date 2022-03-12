@@ -1,0 +1,6 @@
+#!/bin/bash
+
+. _env.sh &> /dev/null || . .env &> /dev/null
+
+
+echo "Container/docker tag : $containertag $dockertag"
