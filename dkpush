@@ -1,8 +1,13 @@
 #!/bin/bash
 
 
-(. .env &> /dev/null  && . _env.sh &> /dev/null ) || (. .env &> /dev/null || . _env.sh &> /dev/null)
+export goon=0
+if [ -f ".env" ] && [ -f "_env.sh" ]; then
+	        . _env.sh && . .env && goon=1
+	else
+		. .env &> /dev/null || . _env.sh &> /dev/null
 
+fi
 
 if [ "$dockertag" == "" ] ; then
 	export dockertag="$containertag"
