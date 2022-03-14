@@ -3,12 +3,13 @@
 
 (. .env &> /dev/null  && . _env.sh &> /dev/null ) || (. .env &> /dev/null || . _env.sh &> /dev/null)
 
+
 if [ "$dockertag" == "" ] ; then
 	export dockertag="$containertag"
 fi
 
 if [ "$dockertag" == "" ] ; then 
-echo "Please define dockertag in .env or _env.sh"
+	echo "Please define dockertag in .env or _env.sh"
 else
-docker push $dockertag
+	docker push $dockertag
 fi
