@@ -5,6 +5,8 @@ alias dkpush="$binroot/dkpush"
 alias dkrun="$binroot/dkrun"
 alias dkps="$binroot/dkps"
 alias dkinfo="$binroot/dkinfo"
+alias dkebash="$binroot/dkebash"
+alias dkcrm="$binroot/dkcRemove.sh"
 
 alias dkrun-ubuncompiler="docker run -it --rm -v $(pwd):/work jgwill/ubuntu:compiler bash"1~
 
