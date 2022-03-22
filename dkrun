@@ -7,10 +7,14 @@ if [ "$goon" == 1 ]; then
 	if [ "$containername" == "" ]; then
 		dknamearg=""
 	fi
-
+export pwdmountpath=/work
+if [ "$custompwdmountpath" == "" ] ; then echo "No special mount path"
+else
+	pwdmountpath=$custompwdmountpath
+fi
 echo "Running container : $dockertag $dknamearg"
 docker run -it --rm $dknamearg $dkextra \
-	-v $(pwd):/work \
+	-v $(pwd):/$pwdmountpath \
 	-v $binroot:/a/bin \
 	-e DISPLAY=$DISPLAY \
 	$dockertag $1 
