@@ -11,7 +11,10 @@ if [ "$1" == "" ]; then echo "usage: $0 <volumename> [--tlid] (add tlid to tarbz
 else
 	. .env &> /dev/null || . _env.sh &> /dev/null
 	subfold="$giavolbaksubfolder"
-	if [ "$subfold" == "" ] ; then subfold="." ; fi
+	if [ "$subfold" == "" ] ; then subfold="." 
+	else
+		mkdir -p $subfold ||  { echo >&2 "Could not make folder $subfold Aborting."; exit 1; }
+	fi
 
 	export fnb="$1.$giavolbak"
 	export volumename="$1"
