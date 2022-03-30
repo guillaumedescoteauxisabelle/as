@@ -7,8 +7,17 @@ alias dkps="$binroot/dkps"
 alias dkinfo="$binroot/dkinfo"
 alias dkebash="$binroot/dkebash"
 alias dkcrm="$binroot/dkcRemove.sh"
+alias dkcls="echo Running container;$binroot/dkcList.sh"
+alias dkclsstopped="echo Stopped container;$binroot/dkcListStopped.sh"
+alias dkvolbak="$binroot/gia-volbak.sh "
 
 alias dkrun-ubuncompiler="docker run -it --rm -v $(pwd):/work jgwill/ubuntu:compiler bash"1~
 
 export caishenroot="/c/Caishen/Caishen"
 alias cdspider="cd $caishenroot/src/Caishen/Databases/SpiderDbDatabase/gia-mssql"
+alias cdcaishenbin="cd $caishenroot/binDebug;ls -ltr"
+
+alias vialias="vi $binroot/etc/bash_aliases_common;(cd $binroot;git commit etc -m chg:etc;git push)"
+alias editalias=vialias
+
+alias cdrw="cd $srcroot/rwml__adaptive_style_transfer"
