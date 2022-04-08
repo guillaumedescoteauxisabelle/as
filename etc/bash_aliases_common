@@ -22,7 +22,7 @@ alias cdcaishenbin="cd $caishenroot/binDebug;ls -ltr"
 
 # COMMON
 alias vialias="vi $binroot/etc/bash_aliases_common;(cd $binroot;git commit etc -m chg:etc-alias;git push);. $binroot/etc/bash_aliases_common"
-alias vifn="vi $binroot/__fn.sh;(cd $binroot;git commit __fn.sh -m chg:fn;git push)"
+alias vifn="vi $binroot/__fn.sh;(cd $binroot;git commit __fn.sh -m chg:fn;git push);. $binroot/__fn.sh"
 alias vienv="vi $binroot/etc/bash_env_common;(cd $binroot;git commit etc -m chg:etc-env;git push);. $binroot/etc/bash_env_common"
 alias editalias=vialias
 alias bvi="$binroot/bvi.sh "
