@@ -573,11 +573,17 @@ ifneecho() {
 		local _str="$1"
 		if [ "$_str" != "" ]; then echo "$_str";fi
 	}
-
+ifneechon() {
+		local _str="$1"
+		if [ "$_str" != "" ]; then echo -n "$_str";fi
+	}
 ifnotemptyecho() {
 		ifneecho "$1"
 	}
 
+ifnotemptyechon() {
+		ifneechon "$1"
+	}
 echoifnotquiet() {
 	# lookquiet "$@"
 
@@ -920,7 +926,7 @@ containerstarterinstaller() {
 	if ! [[ "$_action" =~ ^(start|stop|remove)$ ]]; then echo "$_usage"; return;fi
 
 	#if [ "$_title" != "" ]; then echo "$_title"; fi
-	ifneecho "$_title"
+	ifneechon "$_title"
 
 	#local _optionalmsgsuccess="$3"
 	#local _optionalmsgfailed="$4"
