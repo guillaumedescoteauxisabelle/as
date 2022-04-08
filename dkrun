@@ -17,10 +17,13 @@ if [ "$dkport" != "" ]; then _dkport=" -p $dkport "; fi
 
 if [ "$dkport2" != "" ]; then _dkport2=" -p $dkport2 "; fi
 
-echo "Running container : $dockertag $dknamearg $dkextra $dkport $dkport2"
-cmd="docker run -it --rm $dknamearg $dkextra $dkport $dkport2 \
+
+if [ "$xmount" != "" ]; then _xmount=" -v $xmount "; fi
+
+if [ "$xmount2" != "" ]; then _xmount2=" -v $xmount2 "; fi
+echo "Running container : $dockertag $dknamearg $dkextra $_dkport $_dkport2 $_xmount $_xmount2"
+cmd="docker run -it --rm $dknamearg $dkextra $_dkport $_dkport2 $_xmount $_xmount2\
 	-v $(pwd):/$pwdmountpath \
-	-v /home/jgi:/home/jgi \
 	-v $binroot:/a/bin \
 	-e DISPLAY=$DISPLAY \
 	$dockertag $1 "
