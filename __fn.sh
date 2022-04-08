@@ -901,6 +901,52 @@ makecheckpointfile(){
 }
 
 
+
+## @fn containerstarterinstaller()
+## @ingroup astutil
+## @brief start,stop, install container and meta server
+## @param string _action start|stop|remove
+## @param string _containername Name of the container
+## @param string title (optional)
+## @param string _installcmd Install cmd for the container if not installed (optional)
+containerstarterinstaller() {
+	local _action="$1"
+	local _containername="$2"
+	local _title="$3"
+	local _installcmd="$4"
+	local _usage="Usage: containerstarterinstaller <start|stop|remove> <containername> [title] [installcmd]"
+	#if [ "$_action" == "" ] ; then echo "$_usage"; return;fi
+	#check if first argument is an action
+	if ! [[ "$_action" =~ ^(start|stop|remove)$ ]]; then echo "$_usage"; return;fi
+
+	#if [ "$_title" != "" ]; then echo "$_title"; fi
+	ifneecho "$_title"
+
+	#local _optionalmsgsuccess="$3"
+	#local _optionalmsgfailed="$4"
+	if [ "$_action" == "start" ]; then
+
+		local _tst=$(docker ps -a --filter "name=$_containername" | awk '/'"$_containername"'/')
+	
+		if [ "$_tst" == "" ]; then
+			echo "$_containername not installed"
+			#chk if inst cmd supplied
+			if [ "$_installcmd" == "" ]; then echo "Must supply install cmd  (ex: . install-http-meta.sh, s1-inst \$m \$port \$ckp)"; return;fi
+#install
+			$_installcmd &> /dev/null && echo "$_containername Installed" || echo "Failed to install $_containername"
+		else
+			echo "$_containername Sounds great" 
+		
+			#make sure its started
+			docker start $_containername &> /dev/null  #...and dont botther with errors
+		fi
+	else
+		if [ "$_action" == "stop" ]; then 
+			docker stop $_containername &> /dev/null && echo "Stopped $_containername"
+		fi
+	fi
+}
+
 ## @fn dst()
 ## @ingroup giafl
 ## @brief Diplay status if any
