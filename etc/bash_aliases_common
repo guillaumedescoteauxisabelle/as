@@ -21,4 +21,4 @@ alias vialias="vi $binroot/etc/bash_aliases_common;(cd $binroot;git commit etc -
 alias editalias=vialias
 
 alias cdrw="cd $srcroot/rwml__adaptive_style_transfer"
-alias mckinfo="$srcroot/rwml__adaptive_style_transfer/mckinfoAll.sh "
+alias mckinfo="$binroot/mckinfo.sh"
