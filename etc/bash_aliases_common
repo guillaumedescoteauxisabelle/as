@@ -17,7 +17,8 @@ export caishenroot="/c/Caishen/Caishen"
 alias cdspider="cd $caishenroot/src/Caishen/Databases/SpiderDbDatabase/gia-mssql"
 alias cdcaishenbin="cd $caishenroot/binDebug;ls -ltr"
 
-alias vialias="vi $binroot/etc/bash_aliases_common;(cd $binroot;git commit etc -m chg:etc;git push)"
+alias vialias="vi $binroot/etc/bash_aliases_common;(cd $binroot;git commit etc -m chg:etc-alias;git push)"
+alias vienv="vi $binroot/etc/bash_env_common;(cd $binroot;git commit etc -m chg:etc-env;git push)"
 alias editalias=vialias
 
 alias cdrw="cd $srcroot/rwml__adaptive_style_transfer"
