@@ -22,3 +22,5 @@ alias editalias=vialias
 
 alias cdrw="cd $srcroot/rwml__adaptive_style_transfer"
 alias mckinfo="$binroot/mckinfo.sh"
+
+alias greps="$binroot/grepSearch.sh "
