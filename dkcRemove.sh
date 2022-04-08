@@ -34,6 +34,8 @@ echo "Deregistering $port"
 export globallocationpath=/home/jgi/astiapreviz
 export gtpath=$globallocationpath/svr/$HOSTNAME
 
+if [ "$metaglobalregistryfeature" == "1" ] ; then 
+
 if [ -e "$gtpath/$port.json" ] ; then
         echo -n "Cleaning up $port in $gtpath"
         rm $gtpath/$port.json && echo "..done" || echo "failed to cleanup :( "
@@ -42,6 +44,21 @@ if [ -e "$gtpath/$port.json" ] ; then
 else
         echo "No registration found for port:$port in registry path:$gtpath"
 fi
+else echo "global registration/deregistration disabled"
+fi #global disable
+
+#clean WWW Meta Svr
+##httpserverserverhtdocs
+
+if [ -e "$httpserverserverhtdocs/$port.json" ] ; then
+        echo -n "Cleaning up Meta Svr $port in $httpserverserverhtdocs"
+	rm $httpserverserverhtdocs/$port.json && echo "..done" || echo "failed to cleanup meta :( "
+
+        (cd $httpserverserverhtdocs && ls *json > list.txt) &
+	else
+				        echo "No registration found for port:$port in registry path:$gtpath"
+fi
+
 
 #@a do the work
 if [ "$QUIET" == "1" ]; then

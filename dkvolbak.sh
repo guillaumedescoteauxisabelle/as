@@ -16,13 +16,17 @@ else
 		mkdir -p $subfold ||  { echo >&2 "Could not make folder $subfold Aborting."; exit 1; }
 	fi
 
-	export fnb="$1.$giavolbak"
+	export fnb="$1.$extprefix"
 	export volumename="$1"
 	if [ "$2" == "--tlid" ]; then fnb="$fnb.$(tlid)" ; fi
+
 	export fn="$fnb.tar.bz2"
 	export tfile="$subfold/$fn"
 	echo "Backing up volume: $1 to file: $tfile" ; sleep 1
-	docker run -v $volumename:/volume --rm --log-driver none $dockertag backup - > $tfile
+	cmd="docker run -v $volumename:/volume -v $(pwd)/$subfold:/backup --rm --log-driver none $dockertag backup - > $tfile"
+	echo "$cmd"
+	#cmd="docker run -v $"
+
 fi
 
-
+#docker run -v myvol:/volume -v $(pwd)/bak:/backup --rm loomchild/volume-backup backup myvol.tar.bz2
