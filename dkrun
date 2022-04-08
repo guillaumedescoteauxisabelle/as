@@ -18,12 +18,15 @@ _dkport2="$dkport2"
 if [ "$_dkport2" != "" ]; then _dkport2=" -p $dkport2 "; fi
 
 echo "Running container : $dockertag $dknamearg $dkextra $dkport $dkport2"
-docker run -it --rm $dknamearg $dkextra $dkport $dkport2 \
+cmd="docker run -it --rm $dknamearg $dkextra $dkport $dkport2 \
 	-v $(pwd):/$pwdmountpath \
-	#-v /home/jgi:/home/jgi \
+	-v /home/jgi:/home/jgi \
 	-v $binroot:/a/bin \
 	-e DISPLAY=$DISPLAY \
-	$dockertag $1 
+	$dockertag $1 "
+echo "$cmd"
+sleep 1 
+$cmd
 else	
 echo "Please define dockertag in .env"
 fi
