@@ -649,11 +649,21 @@ grepsearcher()
 
 	f=$2
 	pattern="$1"
-
-	if [ -d "${f}" ] ; then
-		d "$f is a directory"
-	else
-		if [ -f "${f}" ]; then #echo $f is a file
+	validfile="1"
+	if [ -d "${f}" ] ; then validfile="0"; fi
+	if [ -f "${f}" ]; then 
+		 fe="${f##*.}"
+		 
+		 validfile="1"
+		 if [ "$fe" == "swp" ] ; then 
+			# echo "Invalid SWP Skipped"
+			 validfile="0" 
+		 fi
+	 fi
+	#if [ -d "${f}" ] ; then
+	#	d "$f is a directory"
+	
+	if [ "$validfile" == "1" ]; then #echo $f is a file
 
 
 			r=$(cat "$f" | grep -n "$pattern" )
@@ -728,10 +738,10 @@ grepsearcher()
 		
 
 				
-		 else
-			echo "${f} is not valid";
+		# else
+		#	echo "${f} is not valid";
 		# 	exit 1
-		fi
+		#fi
 	fi
 }
 
