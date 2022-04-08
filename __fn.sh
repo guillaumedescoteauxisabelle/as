@@ -568,6 +568,16 @@ echoifnoval() {
 	return $RES
 }
 
+
+ifneecho() {
+		local _str="$1"
+		if [ "$_str" != "" ]; then echo "$_str";fi
+	}
+
+ifnotemptyecho() {
+		ifneecho "$1"
+	}
+
 echoifnotquiet() {
 	# lookquiet "$@"
 
