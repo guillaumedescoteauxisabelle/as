@@ -12,10 +12,10 @@ if [ "$custompwdmountpath" == "" ] ; then echo "No special mount path"
 else
 	pwdmountpath=$custompwdmountpath
 fi
-_dkport="$dkport"
-if [ "$_dkport" != "" ]; then _dkport=" -p $dkport "; fi
-_dkport2="$dkport2"
-if [ "$_dkport2" != "" ]; then _dkport2=" -p $dkport2 "; fi
+
+if [ "$dkport" != "" ]; then _dkport=" -p $dkport "; fi
+
+if [ "$dkport2" != "" ]; then _dkport2=" -p $dkport2 "; fi
 
 echo "Running container : $dockertag $dknamearg $dkextra $dkport $dkport2"
 cmd="docker run -it --rm $dknamearg $dkextra $dkport $dkport2 \
