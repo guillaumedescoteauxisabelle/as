@@ -926,7 +926,7 @@ containerstarterinstaller() {
 	if ! [[ "$_action" =~ ^(start|stop|remove)$ ]]; then echo "$_usage"; return;fi
 
 	#if [ "$_title" != "" ]; then echo "$_title"; fi
-	ifneechon "$_title"
+	ifneechon "$_title   "
 
 	#local _optionalmsgsuccess="$3"
 	#local _optionalmsgfailed="$4"
