@@ -12,14 +12,17 @@
 #		convert "$f" -resize $_tres'x' -quality $_tqual "$_tdir/$f"
 #	done
 #}
-CDIR=$(cd "$(dirname "$0" &> /dev/null)" && pwd) &> /dev/null
-if [ "$FNLOADED" == "" ]; then. $CDIR/__fn.sh; fi
+SDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+if [ "$FNLOADED" == "" ]; then . $SDIR/__fn.sh; fi
 
 
 # Normal
 tres=600
 tqual=100
-tdir=mn;mkdir -p $tdir
+tdir=mn
+
+mkdir -p $tdir
 for f in *jpg; do 
 	convert "$f" -resize $tres'x' -quality $tqual "$tdir/$f"
 done
