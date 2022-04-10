@@ -5,6 +5,7 @@
 alias dkbuild="$binroot/dkbuild"
 alias dkpush="$binroot/dkpush"
 alias dkrun="$binroot/dkrun"
+alias dksvc="$binroot/dkcSvc.sh "
 alias dkps="$binroot/dkps"
 alias dkinfo="$binroot/dkinfo"
 alias dkebash="$binroot/dkebash"
