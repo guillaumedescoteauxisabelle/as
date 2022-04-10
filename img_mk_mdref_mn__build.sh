@@ -23,6 +23,8 @@ buildmn() {
 	(if [ "$_disabledcommit" == "" ] ; then git add $wdir/mn/*jpg $wdir/mncc/*jpg $wdir/*jpg &> /dev/null ;git commit $bdir.md $wdir/mn/*jpg $wdir/mncc/*jpg $wdir/*jpg -m rebuilt:$bdir ;git push ;fi ))
 }
 
+buildmn "$1" "$2" "$3"
+
 # export bdir=acrylics-painting
 #buildmn acrylics-painting
 #buildmn ai-painting-collab
