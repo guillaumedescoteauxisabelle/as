@@ -1,6 +1,6 @@
 mnresizer() {
-	local _tres=$1
-	local _tdir="$2"
+	local _tres="$2"
+	local _tdir=$1
 
 	local _tqual="$3"
 	if [ "$_tqual" == "" ]; then _tqual=100; fi
@@ -22,7 +22,7 @@ for f in *jpg; do
 done
 
 # tn
-mnresizer  tn 150 80
+mnresizer tn 150 80
 
 # Center cropped
 tdir=mncc;mkdir -p $tdir
