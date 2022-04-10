@@ -1,0 +1,11 @@
+{
+	"ImageId": "ami-02874ab3d4e381783",
+	"KeyName": "gaia2_2101080136",
+	"SecurityGroupIds": [ "sg-0a5bfc93111f15907" ],
+	"InstanceType": "t2.xlarge",
+	"SubnetId": "subnet-e9a3edb5",
+	"IamInstanceProfile": {
+			"Arn": "arn:aws:iam::781156931785:role/aws-ec2-spot-fleet-tagging-role"
+	}
+	
+}

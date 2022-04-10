@@ -1,0 +1,36 @@
+{
+    "SpotInstanceRequests": [
+        {
+            "CreateTime": "2022-04-06T12:57:19.000Z",
+            "LaunchSpecification": {
+                "SecurityGroups": [
+                    {
+                        "GroupName": "Astia__SG2106171438___HTTP_HTTPS__SSH__9000-9200",
+                        "GroupId": "sg-0a5bfc93111f15907"
+                    }
+                ],
+                "ImageId": "ami-02874ab3d4e381783",
+                "InstanceType": "t2.xlarge",
+                "KeyName": "gaia2_2101080136",
+                "Placement": {
+                    "AvailabilityZone": "ca-central-1d"
+                },
+                "SubnetId": "subnet-e9a3edb5",
+                "Monitoring": {
+                    "Enabled": false
+                }
+            },
+            "ProductDescription": "Linux/UNIX",
+            "SpotInstanceRequestId": "sir-nfsy8tcn",
+            "SpotPrice": "0.230000",
+            "State": "open",
+            "Status": {
+                "Code": "pending-evaluation",
+                "Message": "Your Spot request has been submitted for review, and is pending evaluation.",
+                "UpdateTime": "2022-04-06T12:57:19.000Z"
+            },
+            "Type": "one-time",
+            "InstanceInterruptionBehavior": "terminate"
+        }
+    ]
+}

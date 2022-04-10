@@ -1,0 +1,127 @@
+{
+    "IamFleetRole": "arn:aws:iam::781156931785:role/aws-ec2-spot-fleet-tagging-role",
+    "AllocationStrategy": "capacityOptimized",
+    "OnDemandAllocationStrategy": "lowestPrice",
+    "TargetCapacity": 1,
+    "ValidFrom": "2022-04-06T12:06:06Z",
+    "ValidUntil": "2023-04-06T12:06:06Z",
+    "TerminateInstancesWithExpiration": true,
+    "LaunchSpecifications": [],
+    "Type": "request",
+    "LaunchTemplateConfigs": [
+        {
+            "LaunchTemplateSpecification": {
+                "LaunchTemplateId": "lt-0edfe7ade94e04e38",
+                "Version": "1"
+            },
+            "Overrides": [
+                {
+                    "InstanceType": "c5.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-02fa666a"
+                },
+                {
+                    "InstanceType": "c5.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-f747ee8d"
+                },
+                {
+                    "InstanceType": "c5.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-e9a3edb5"
+                },
+                {
+                    "InstanceType": "c5a.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-02fa666a"
+                },
+                {
+                    "InstanceType": "c5a.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-f747ee8d"
+                },
+                {
+                    "InstanceType": "c5a.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-e9a3edb5"
+                },
+                {
+                    "InstanceType": "c5d.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-02fa666a"
+                },
+                {
+                    "InstanceType": "c5d.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-f747ee8d"
+                },
+                {
+                    "InstanceType": "c5d.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-e9a3edb5"
+                },
+                {
+                    "InstanceType": "c5n.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-02fa666a"
+                },
+                {
+                    "InstanceType": "c5n.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-f747ee8d"
+                },
+                {
+                    "InstanceType": "c5n.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-e9a3edb5"
+                },
+                {
+                    "InstanceType": "m4.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-02fa666a"
+                },
+                {
+                    "InstanceType": "m4.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-f747ee8d"
+                },
+                {
+                    "InstanceType": "m4.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-e9a3edb5"
+                },
+                {
+                    "InstanceType": "t3.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-02fa666a"
+                },
+                {
+                    "InstanceType": "t3.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-f747ee8d"
+                },
+                {
+                    "InstanceType": "t3.large",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-e9a3edb5"
+                },
+                {
+                    "InstanceType": "c4.2xlarge",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-02fa666a"
+                },
+                {
+                    "InstanceType": "c4.2xlarge",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-f747ee8d"
+                },
+                {
+                    "InstanceType": "c4.2xlarge",
+                    "WeightedCapacity": 1,
+                    "SubnetId": "subnet-e9a3edb5"
+                }
+            ]
+        }
+    ],
+    "SpotMaxTotalPrice": "0.4"
+}

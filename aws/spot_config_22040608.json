@@ -1,0 +1,145 @@
+{
+    "IamFleetRole": "arn:aws:iam::781156931785:role/aws-ec2-spot-fleet-tagging-role",
+    "AllocationStrategy": "capacityOptimized",
+    "TargetCapacity": 1,
+    "ValidFrom": "2022-04-06T12:06:06Z",
+    "ValidUntil": "2023-04-06T12:06:06Z",
+    "SpotPrice": "0.438",
+    "TerminateInstancesWithExpiration": true,
+    "LaunchSpecifications": [
+        {
+            "ImageId": "ami-0cfc8f6b6d827ff08",
+            "InstanceType": "c5.large",
+            "SubnetId": "subnet-02fa666a, subnet-f747ee8d, subnet-e9a3edb5",
+            "KeyName": "gaia2_2101080136",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/xvda",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-002dcf384facde5c0",
+                        "VolumeSize": 8,
+                        "Encrypted": false,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ],
+            "SpotPrice": "0.093"
+        },
+        {
+            "ImageId": "ami-0cfc8f6b6d827ff08",
+            "InstanceType": "c5a.large",
+            "SubnetId": "subnet-02fa666a, subnet-f747ee8d, subnet-e9a3edb5",
+            "KeyName": "gaia2_2101080136",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/xvda",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-002dcf384facde5c0",
+                        "VolumeSize": 8,
+                        "Encrypted": false,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ],
+            "SpotPrice": "0.084"
+        },
+        {
+            "ImageId": "ami-0cfc8f6b6d827ff08",
+            "InstanceType": "c5d.large",
+            "SubnetId": "subnet-02fa666a, subnet-f747ee8d, subnet-e9a3edb5",
+            "KeyName": "gaia2_2101080136",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/xvda",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-002dcf384facde5c0",
+                        "VolumeSize": 8,
+                        "Encrypted": false,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ],
+            "SpotPrice": "0.106"
+        },
+        {
+            "ImageId": "ami-0cfc8f6b6d827ff08",
+            "InstanceType": "c5n.large",
+            "SubnetId": "subnet-02fa666a, subnet-f747ee8d, subnet-e9a3edb5",
+            "KeyName": "gaia2_2101080136",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/xvda",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-002dcf384facde5c0",
+                        "VolumeSize": 8,
+                        "Encrypted": false,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ],
+            "SpotPrice": "0.118"
+        },
+        {
+            "ImageId": "ami-0cfc8f6b6d827ff08",
+            "InstanceType": "m4.large",
+            "SubnetId": "subnet-02fa666a, subnet-f747ee8d, subnet-e9a3edb5",
+            "KeyName": "gaia2_2101080136",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/xvda",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-002dcf384facde5c0",
+                        "VolumeSize": 8,
+                        "Encrypted": false,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ],
+            "SpotPrice": "0.111"
+        },
+        {
+            "ImageId": "ami-0cfc8f6b6d827ff08",
+            "InstanceType": "t3.large",
+            "SubnetId": "subnet-02fa666a, subnet-f747ee8d, subnet-e9a3edb5",
+            "KeyName": "gaia2_2101080136",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/xvda",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-002dcf384facde5c0",
+                        "VolumeSize": 8,
+                        "Encrypted": false,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ],
+            "SpotPrice": "0.0928"
+        },
+        {
+            "ImageId": "ami-0cfc8f6b6d827ff08",
+            "InstanceType": "c4.2xlarge",
+            "SubnetId": "subnet-02fa666a, subnet-f747ee8d, subnet-e9a3edb5",
+            "KeyName": "gaia2_2101080136",
+            "BlockDeviceMappings": [
+                {
+                    "DeviceName": "/dev/xvda",
+                    "Ebs": {
+                        "DeleteOnTermination": true,
+                        "SnapshotId": "snap-002dcf384facde5c0",
+                        "VolumeSize": 8,
+                        "Encrypted": false,
+                        "VolumeType": "gp2"
+                    }
+                }
+            ],
+            "SpotPrice": "0.438"
+        }
+    ],
+    "Type": "request"
+}
