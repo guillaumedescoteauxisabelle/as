@@ -9,7 +9,7 @@
 if [ "$1" == "" ]; then echo "Usage: $0 <start|stop>";
 else
 	_action="start"
-	 local _tst=$(docker ps -a --filter "name=$containername" | awk '/'"$containername"'/')      
+	_tst=$(docker ps -a --filter "name=$containername" | awk '/'"$containername"'/')      
 
 	if [ "$_tst" == "" ]; then echo "Must install container $containername"
 	else
