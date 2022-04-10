@@ -35,7 +35,10 @@ alias bvi="$binroot/bvi.sh "
 alias cdrw="cd $srcroot/rwml__adaptive_style_transfer"
 alias mckinfo="$binroot/mckinfo.sh"
 
+# Mk Md, Web
+alias mkimgmdmm="$binroot/img_mk_mdref_mn__build.sh"
 
+#
 #Common
 alias greps="$binroot/grepSearch.sh "
 
