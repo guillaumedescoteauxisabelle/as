@@ -3,17 +3,17 @@
 
 . .env &>/dev/null || . _env.sh || (echo "Could not load env (create .env or/and _env.sh" && exit)
 
-#@STCGoal Okni 2204 AICollaborator service management script
+#@STCGoal DKSvc start|stop for env
 #@STCStatus creating it....
 
-if [ "$2" == "" ]; then echo "Usage: $0 <containername> <start|stop>";
+if [ "$1" == "" ]; then echo "Usage: $0 <start|stop>";
 else
 	_action="start"
-	 local _tst=$(docker ps -a --filter "name=$_containername" | awk '/'"$_containername"'/')      
+	 local _tst=$(docker ps -a --filter "name=$containername" | awk '/'"$containername"'/')      
 
-	if [ "$_tst" == "" ]; then echo "Must install container $1"
+	if [ "$_tst" == "" ]; then echo "Must install container $containername"
 	else
-	docker $_action $1
+		docker $_action $containername
 	fi
 
 
