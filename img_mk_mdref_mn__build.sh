@@ -20,7 +20,7 @@ buildmn() {
 	. $binroot/_img_mk_mn_resizer.sh && \
 	cd $cdir && \
 	. $binroot/_img_mk_mdref_sheet.sh && echo "Rebuilted" && \
-	(if [ "$_disabledcommit" == "" ] ; then git add $wdir/mn/*jpg $wdir/mncc/*jpg $wdir/*jpg &> /dev/null ;git commit $bdir.md $wdir/mn/*jpg $wdir/mncc/*jpg $wdir/*jpg -m rebuilt:$bdir ;git push ;fi ))
+	(if [ "$_disabledcommit" == "" ] ; then git add $wdir/mn/*jpg $wdir/mncc/*jpg $wdir/*jpg &> /dev/null ;git add $bdir.md &> /dev/null;git commit $bdir.md $wdir/mn/*jpg $wdir/mncc/*jpg $wdir/*jpg -m rebuilt:$bdir ;git push ;fi ))
 }
 
 buildmn "$1" "$2" "$3"
