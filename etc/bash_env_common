@@ -2,4 +2,4 @@
 
 export hostdns=localhost
 
-
+shopt -s direxpand
