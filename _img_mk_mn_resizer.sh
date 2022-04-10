@@ -1,17 +1,20 @@
-mnresizer() {
-	local _tres="$2"
-	local _tdir=$1
+#mnresizer() {
+#	local _tres="$2"
+#	local _tdir=$1
 
-	local _tqual="$3"
-	if [ "$_tqual" == "" ]; then _tqual=100; fi
-	mkdir -p $tdir
-	for f in *jpg; do
-		 convert "$f" -resize $_tres'x' -quality $_tqual "$_tdir/$f"
-	done
-	for f in *png; do 
-		convert "$f" -resize $_tres'x' -quality $_tqual "$_tdir/$f"
-	done
-}
+#	local _tqual=100
+#	if [ "$3" != "" ]; then _tqual=$3; fi
+#	mkdir -p $tdir
+#	for f in *jpg; do
+#		 convert "$f" -resize $_tres'x' -quality $_tqual "$_tdir/$f"
+#	done
+#	for f in *png; do 
+#		convert "$f" -resize $_tres'x' -quality $_tqual "$_tdir/$f"
+#	done
+#}
+CDIR=$(cd "$(dirname "$0" &> /dev/null)" && pwd) &> /dev/null
+if [ "$FNLOADED" == "" ]; then. $CDIR/__fn.sh; fi
+
 
 # Normal
 tres=600
