@@ -16,10 +16,13 @@ else #Normal run
 
 # do the work
 if [ "$goon" == 1 ]; then
-	dknamearg="--name $containername"
-	if [ "$containername" == "" ]; then
-		dknamearg=""
-	fi
+	
+dknamearg="--name $containername"
+if [ "$containername" == "" ]; then
+	dknamearg=""
+fi
+echo "dknamearg=$dknamearg"
+
 export pwdmountpath=work
 if [ "$custompwdmountpath" == "" ] ; then echo "No special mount path"
 else
@@ -43,6 +46,7 @@ if [ "$dkrestarttype" == "" ] ; then _dkrestarttype="unless-stopped"; else _dkre
 if [ "$dkrestart" == "" ] ; then _dkrestart="--restart"; else _dkrestart="$dkrestart";fi
 if [ "$dkrunmode" == "bg" ];then _dkrunmode="-d";_dkrmstop="$_dkrestart $_dkrestarttype";else _dkrunmode="-it";fi
 if [ "$dkrmstop" == "" ];then _dkrmstop="--rm $_dkrmstop";else _dkrmstop="$dkrmstop";fi
+if [ "$dkhostname" == "" ];then _dkhostname="";else _dkhostname="-h $dkhostname";fi
 
 #docker volume inspect hello2 &> /dev/null && echo "great" || echo "nahh"
 if [ "$dkvolume" == "" ]; then _dkvolume="";else 
@@ -62,7 +66,7 @@ fi
 _dkcommand="$dkcommand"
 if [ "$dkcommand" == "" ] ; then _dkcommand="$1" ;fi 
 
-cmd="docker run $_dkrunmode $_dkrmstop $_dknamearg $dkextra $_dkport $_dkport2 $_dkvolume $_xmount $_xmount2\
+cmd="docker run $_dkrunmode $_dkrmstop $dknamearg $_dkhostname $dkextra $_dkport $_dkport2 $_dkvolume $_xmount $_xmount2\
 	-v $(pwd):/$pwdmountpath \
 	-v $binroot:/a/bin \
 	-e DISPLAY=$DISPLAY \

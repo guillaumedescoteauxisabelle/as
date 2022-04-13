@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#@STCGoal 
+#@STCGoal Start a container
 
 if [ -e $binroot/__fn.sh ]; then 
         source $binroot/__fn.sh $@
@@ -10,18 +10,18 @@ envif $@
 
 DEBUG=0
 lookquiet $@
-startapp "Docker Utilities - Container Stopper" \
+startapp "Docker Utilities - Container Start" \
         "Guillaume Descoteaux-Isabelle" \
         2021 \
         " 
-Usage dkcrm <container name> 
-	Stop a container" \
+Usage dkstart <container name> 
+	Start a container" \
         $1 #--quiet watch 
 
 #exitifnoval "$appusage" $1
 
 
-dowork $1 "Stopping  $1" 
+dowork $1 "Starting  $1" 
 
 
 if [ "$QUIET" == "1" ]; then

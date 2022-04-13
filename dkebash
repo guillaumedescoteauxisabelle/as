@@ -8,8 +8,11 @@
 if [ "$containername" == "" ]; then
 	echo "Please define \$containername in .env or _env.sh"
 else
+	cmd=bash
+	if [ "$1" != "" ]; then cmd="$1";fi
+
 	echo "Running bash to Container/docker name : $containername"
-	docker exec -it $containername bash
+	docker exec -it $containername $cmd
 
 
 
