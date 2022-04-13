@@ -1,0 +1,2 @@
+FROM __DOCKERTAG__
+RUN useradd -rm -d /home/DKUSERNAME -s /bin/bash -g root -G sudo -u DKUID DKUSERNAME
