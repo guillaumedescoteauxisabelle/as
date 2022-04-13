@@ -7,7 +7,7 @@ if [ "$goon" == 1 ]; then
 	if [ "$containername" == "" ]; then
 		dknamearg=""
 	fi
-export pwdmountpath=/work
+export pwdmountpath=work
 if [ "$custompwdmountpath" == "" ] ; then echo "No special mount path"
 else
 	pwdmountpath=$custompwdmountpath
@@ -22,14 +22,80 @@ if [ "$xmount" != "" ]; then _xmount=" -v $xmount "; fi
 
 if [ "$xmount2" != "" ]; then _xmount2=" -v $xmount2 "; fi
 echo "Running container : $dockertag $dknamearg $dkextra $_dkport $_dkport2 $_xmount $_xmount2"
-cmd="docker run -it --rm $dknamearg $dkextra $_dkport $_dkport2 $_xmount $_xmount2\
+
+_dkrmstop="--rm"
+#dkrmstop dkrestarttype dkrestart dkrunmode dkrmstop [dkvolume volname:mountpath]
+
+if [ "$dkrestarttype" == "" ] ; then _dkrestarttype="unless-stopped"; else _dkrestarttype="$dkrestarttype";fi
+if [ "$dkrestart" == "" ] ; then _dkrestart="--restart"; else _dkrestart="$dkrestart";fi
+if [ "$dkrunmode" == "bg" ];then _dkrunmode="-d";_dkrmstop="$_dkrestart $_dkrestarttype";else _dkrunmode="-it";fi
+if [ "$dkrmstop" == "" ];then _dkrmstop="--rm $_dkrmstop";else _dkrmstop="$dkrmstop";fi
+
+#docker volume inspect hello2 &> /dev/null && echo "great" || echo "nahh"
+if [ "$dkvolume" == "" ]; then _dkvolume="";else 
+	_dkvolume="-v $dkvolume"
+	export _vname=$(echo "$dkvolume" | tr ":" " " | awk '// { print $1}')
+	_vmountpath=$(echo "$dkvolume" | tr ":" " " | awk '// { print $2 }')
+
+	#TODO create it if not exist
+	docker volume inspect $_vname &> /dev/null && \
+		(echo "Volume $_vname Exist, mounting it") || \
+		(echo "Creating volume $_vname" && \
+			docker volume create $_vname && \
+				echo "Volume created" || \
+				echo "Failed to create volume")
+fi
+
+_dkcommand="$dkcommand"
+if [ "$dkcommand" == "" ] ; then _dkcommand="$1" ;fi 
+
+cmd="docker run $_dkrunmode $_dkrmstop $_dknamearg $dkextra $_dkport $_dkport2 $_dkvolume $_xmount $_xmount2\
 	-v $(pwd):/$pwdmountpath \
 	-v $binroot:/a/bin \
 	-e DISPLAY=$DISPLAY \
-	$dockertag $1 "
+	$dockertag $_dkcommand "
 echo "$cmd"
-sleep 1 
-$cmd
+sleep 1
+if [ "$dkecho" == "1" ] || [ "$dkecho" == "true" ]; then echo "----------------------------------------------------------";echo "$cmd";echo "----------------------------------------------------"
+else # Execute it
+	$cmd
+fi
+
+#Else of not defined ENV
 else	
-echo "Please define dockertag in .env"
+echo "#Please define dockertag in .env.  Consider creating a --create --guided to $0"
+echo "Example of   _env.sh or .env)"
+echo "------------------------------------------ "
+
+_env_sample='dockertag=jgwill/node:16.14.0-angular
+containername=ngcaishen
+#dkrunmode="bg" #default fg
+#dkrestart="--restart" #default
+#dkrestarttype="unless-stopped" #default
+dkport=4000:4000
+dkvolume="myvolname220413:/app" #create or use existing one
+#dkvolume="$containername:/app" #create with containername name
+#dkecho=true #just echo the docker run
+dkcommand=bash #command to execute (default is the one in the dockerfile)
+#dkextra="MY EXTRA ARGS"
+#xmount=/tmp:/a/tmp
+#xmount2=/var:/a/var
+'
+if [ "$2" == "" ]; then _envfn="_env.sh"; else _envfn="$2";fi
+
+if [ "$1" == "--create" ] ;then 
+	if [ -e "$_envfn" ] ; then 
+		echo "FILE EXIST" ; 
+	else 
+		echo "$_env_sample" > $_envfn && echo "$_envfn created.  vi $_envfn"
+	fi
+else 
+	echo "$_env_sample"
+	echo "example to create it if dont exist: "
+	echo " $0 --create"
+	echo " $0 --create .env"
+
+fi
+
+
 fi
