@@ -24,12 +24,15 @@ if [ "$(uname -s)" == "Linux" ]; then echo "Creating User based image"
 	_gitusername="RUN git config --global user.name \"$DKUSERNAME\""
 	cd $wdir && \
 		echo "FROM $dockertag" >> Dockerfile && \
-		echo "RUN useradd -rm -d /home/$DKUSERNAME -s /bin/bash -g root -G sudo -u $DKUID $DKUSERNAME" >> Dockerfile && \
+		echo "RUN useradd -rm -d /home/$DKUSERNAME -s /bin/bash -g root -G sudo -u $DKUID $DKUSERNAME " >> Dockerfile && \
+		echo "RUN adduser $DKUSERNAME sudo" >> Dockerfile && \
+		echo "RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers" >> Dockerfile && \
 		echo "$_dkusehomedir " >> Dockerfile && \
+		echo "ENV TZ=\"America/New_York\"" >> Dockerfile && \
 		echo "$_dkuserchg "  >> Dockerfile && \
 		echo "$_gituseremail " >> Dockerfile && \
 		echo "$_gitusername "  >> Dockerfile && \
-		echo "Created Dockerfile" && \
+		echo "Created Dockerfile" && cat Dockerfile && \
 		docker build -t $dockertaguser . && docker push $dockertaguser && rm -rf $wdir && echo "Created image : $dockertaguser" && echo "All done and cleanup" || \
 			echo "FAILED SOMEWHOW"
 		#cp $binroot/templates/Dockerfile-user Dockerfile && \

@@ -65,10 +65,13 @@ fi
 
 _dkcommand="$dkcommand"
 if [ "$dkcommand" == "" ] ; then _dkcommand="$1" ;fi 
+_TZ="$TZ"
+if [ "$TZ" == "" ] ; then _TZ="America/New_York";fi
 
 cmd="docker run $_dkrunmode $_dkrmstop $dknamearg $_dkhostname $dkextra $_dkport $_dkport2 $_dkvolume $_xmount $_xmount2\
 	-v $(pwd):/$pwdmountpath \
 	-v $binroot:/a/bin \
+	-e TZ="$_TZ" \
 	-e DISPLAY=$DISPLAY \
 	$dockertag $_dkcommand "
 echo "$cmd"
