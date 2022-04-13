@@ -1,5 +1,6 @@
 #!/bin/bash
 
 export hostdns=localhost
+export TZ="America/New_York"
 
 shopt -s direxpand
