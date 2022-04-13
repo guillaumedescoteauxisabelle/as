@@ -1,7 +1,20 @@
 #!/bin/bash
+_defaultwsldistro="Ubuntu-20.04"
 goon=1
-. .env &> /dev/null || . _env.sh &> /dev/null || goon=0
+. _env.sh  &> /dev/null && . .env &> /dev/null || . _env.sh &> /dev/null && goon=1 || goon=0
+if [ "$dockertag" == "" ]; then goon=0;fi #tmp fix
 
+# Support running on MIGMW, starting on this script on WSL
+#wsl -d "Ubuntu-20.04" --cd  "$(pwd)" dkrunner
+#if [ "$(uname -s | tr "6" " " | awk '// {print $1}')" == "MINGW" ]; then echo "WSL";fi
+if [ "$(uname -s)" != "Linux" ]; then
+	echo "Running container using the WSL distro"
+	if [ "$dkdistro" == "" ]; then _dkdistro="$_defaultwsldistro";else _dkdistro="$dkdistro";fi
+	wsl -d "$_dkdistro" --cd  "$(pwd)" dkrunner
+else #Normal run
+
+
+# do the work
 if [ "$goon" == 1 ]; then
 	dknamearg="--name $containername"
 	if [ "$containername" == "" ]; then
@@ -23,7 +36,7 @@ if [ "$xmount" != "" ]; then _xmount=" -v $xmount "; fi
 if [ "$xmount2" != "" ]; then _xmount2=" -v $xmount2 "; fi
 echo "Running container : $dockertag $dknamearg $dkextra $_dkport $_dkport2 $_xmount $_xmount2"
 
-_dkrmstop="--rm"
+
 #dkrmstop dkrestarttype dkrestart dkrunmode dkrmstop [dkvolume volname:mountpath]
 
 if [ "$dkrestarttype" == "" ] ; then _dkrestarttype="unless-stopped"; else _dkrestarttype="$dkrestarttype";fi
@@ -99,3 +112,5 @@ fi
 
 
 fi
+
+fi #end of the else system which runs WSL on MIGMW
