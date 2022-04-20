@@ -1,0 +1,1 @@
+for i in {1..3333} ; do rsync -aP "jgi@as:/a/lib/results/dbginko_v03_cs/out" "/c/Users/jeang/Dropbox/lib/samples/redraw/dbginko_v03/" ;rsync -aP "jgi@as:/a/lib/results/dbginko_v03_cs/dist" "/c/Users/jeang/Dropbox/lib/samples/redraw/dbginko_v03/"; sleep 44; done
