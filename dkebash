@@ -1,13 +1,15 @@
 #!/bin/bash
 
-
-
 . _env.sh &> /dev/null || . .env &> /dev/null
 
-
 if [ "$containername" == "" ]; then
-	echo "Please define \$containername in .env or _env.sh"
-else
+	export containername=$(echo "$dockertag" | sed -e 's/\//_/' | sed -e 's/\:/_/' | sed -e 's/\./_/g')
+	echo "Container was named automatically to : $containername"
+	#echo "Please define \$containername in .env or _env.sh"
+fi
+
+if [ "$containername" != "" ] ; then
+
 	cmd=bash
 	if [ "$1" != "" ]; then cmd="$1";fi
 
