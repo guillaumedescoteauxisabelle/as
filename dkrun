@@ -115,7 +115,12 @@ else # Execute it after testing if installed already
 				echo "Removal $containername CANCELED"
 			then
 				echo "-------------------------------------rm..."
-				 $binroot/dkcRemove.sh $containername
+				if [ -f "$binroot/dkcRemove.sh" ] ; then 
+				 	$binroot/dkcRemove.sh $containername
+				else #wsl path stuff fix
+					/c/Users/jeang/Dropbox/lib/bin/dkcRemove.sh $containername
+				fi
+
 				 echo "---------------------------------...rm"
 			fi
 		else 
