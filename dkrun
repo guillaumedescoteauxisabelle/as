@@ -1,6 +1,10 @@
 #!/bin/bash
 _defaultwsldistro="Ubuntu-20.04"
 goon=1
+
+if [ -e "_env.sh" ] ; then dos2unix _env.sh  &> /dev/null; fi
+if [ -e ".env" ] ; then dos2unix .env  &> /dev/null;fi
+
 . _env.sh  &> /dev/null && . .env &> /dev/null || . _env.sh &> /dev/null && goon=1 || goon=0
 if [ "$dockertag" == "" ]; then goon=0;fi #tmp fix
 if [ "$1" == "--create" ] ;then goon=0;fi #passing to --create part
@@ -33,10 +37,10 @@ else
 	pwdmountpath=$custompwdmountpath
 fi
 
-if [ "$dkport" != "" ]; then _dkport="-p $dkport"; fi
+if [ "$dkport" != "" ]; then _dkport=" -p $dkport "; fi
 
-if [ "$dkport2" != "" ]; then _dkport2="-p $dkport2"; fi
-if [ "$dkport3" != "" ]; then _dkport3="-p $dkport3"; fi
+if [ "$dkport2" != "" ]; then _dkport2=" -p $dkport2 "; fi
+if [ "$dkport3" != "" ]; then _dkport3=" -p $dkport3 "; fi
 
 
 if [ "$xmount" != "" ]; then _xmount=" -v $xmount "; fi
@@ -77,27 +81,44 @@ _TZ="$TZ"
 if [ "$TZ" == "" ] ; then _TZ="America/New_York";fi
 
 _dkmounthome=""
-if [ "$dkmounthome" == "true" ]; then _dkmounthome="-v $HOME:/home/$(whoami)";fi
-_xtraargs=$(echo "$_dkrunmode $_dkrmstop $dknamearg $_dkhostname $dkextra $_dkport $_dkport2 $_dkport3 $_dkvolume $_xmount $_xmount2 $_dkmounthome" | sed -e 's/   / /' | sed -e 's/  / /')
+if [ "$dkmounthome" == "true" ]; then _dkmounthome=" -v $HOME:/home/$(whoami)";fi
+#_xtraargs=$(echo "$_dkrunmode $_dkrmstop $dknamearg $_dkhostname $dkextra $_dkport $_dkport2 $_dkport3 $_dkvolume $_xmount $_xmount2 $_dkmounthome" | sed -e 's/   / /' | sed -e 's/  / /')
 
-cmd="docker run $_xtraargs \
+#debug
+#echo "_dkrunmode=$_dkrunmode"
+#echo "_dkrmstop=$_dkrmstop"
+
+_xtraargs="$_dkrunmode $_dkrmstop $dknamearg $_dkhostname $dkextra $_dkport $_dkport2 $_dkport3 $_dkvolume $_xmount $_xmount2 $_dkmounthome"
+
+#echo "------------------------------2204"
+#echo "_xtraargs=$_xtraargs"
+#echo "------------------------------2204"
+
+#DISPLAY
+_display="-e DISPLAY=$DISPLAY"
+if [ "$DISPLAY" == "" ] || [ "$DISPLAY" == "needs-to-be-defined" ]; then _display=""; fi
+
+cmd="docker run $_xtraargs $_display \
 	-v $(pwd):/$pwdmountpath \
 	-v $binroot:/a/bin \
 	-e TZ="$_TZ" \
 	--cap-add SYS_TIME \
-	-e DISPLAY=$DISPLAY \
 	$dockertag $_dkcommand "
-#echo "$cmd"
-#sleep 1
+
+echo "$cmd"
+sleep 1
 if [ "$dkecho" == "1" ] || [ "$dkecho" == "true" ]; then echo "----------------------------------------------------------";echo "$cmd";echo "----------------------------------------------------"
 else # Execute it after testing if installed already
-	
+if [ ! -d "$binroot" ] ; then export binroot=/c/Users/jeang/Dropbox/lib/bin;fi #@STCIssue Fix binroot not found manually
+
 	_tst=$(docker ps -a --filter "name=$containername" | awk '/'"$containername"'/')      
 
 	if [ "$_tst" == "" ]; then 
 		# It is not installed already
 		$cmd
-		if [ "$dkrunmode" == "bg" ];then echo "use :   dkebash   to connect"; echo "Trying it..."; $binroot/dkebash;fi
+		if [ "$dkrunmode" == "bg" ];then echo "use :   dkebash   to connect"; echo "-------------"
+				$binroot/dkebash
+			fi
 	else
 		echo "DKRun will default to opening a Bash to $containername";
 		if [ "$1" == "rm" ]; then  		
