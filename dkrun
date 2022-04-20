@@ -6,6 +6,8 @@ if [ -e "_env.sh" ] ; then dos2unix _env.sh  &> /dev/null; fi
 if [ -e ".env" ] ; then dos2unix .env  &> /dev/null;fi
 
 . _env.sh  &> /dev/null && . .env &> /dev/null || . _env.sh &> /dev/null && goon=1 || goon=0
+if [ "$binroot" == "" ] ; then export binroot=/c/Users/jeang/Dropbox/lib/bin;fi
+
 if [ "$dockertag" == "" ]; then goon=0;fi #tmp fix
 if [ "$1" == "--create" ] ;then goon=0;fi #passing to --create part
 
