@@ -121,7 +121,7 @@ else # Execute it after testing if installed already
 			echo "----------------------------------------"
 			#@STCIssue Container might be stopped,
 			#@STCGoal Container is running 
-			_tstexited=$(echo $_tst | grep awk '/Exited/')
+			_tstexited=$(echo $_tst | awk '/Exited/')
 			if [ "$_tstexited" != "" ] ; then #@s the container was exited
 				#@a Start it
 				docker start $containername &> /dev/null && echo "Container $containername started"
