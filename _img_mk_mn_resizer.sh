@@ -31,7 +31,9 @@ done
 mnresizer tn 150 80
 
 # Center cropped
-tdir=mncc;mkdir -p $tdir
+tdir=mncc
+mkdir -p $tdir
 for f in *jpg; do 
 	convert "$f" -resize $tres'x'$tres\! -quality $tqual "$tdir/$f"
 done
+

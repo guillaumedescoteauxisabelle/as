@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-. .env &>/dev/null || . _env.sh || (echo "Could not load env (create .env or/and _env.sh" && exit)
+. .env &>/dev/null && . _env.sh &>/dev/null|| . .env &>/dev/null || . _env.sh&>/dev/null || (echo "Could not load env (create .env or/and _env.sh" && exit)
 
 #@STCGoal DKSvc start|stop for env
 #@STCStatus creating it....

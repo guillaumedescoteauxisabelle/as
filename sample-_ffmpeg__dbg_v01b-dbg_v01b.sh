@@ -5,6 +5,7 @@
 if [ -e $binroot/__fn.sh ] && [ "$FNLOADED" == "" ]; then
    source $binroot/__fn.sh $@
 fi
+#sudo mkdir -p /var/log/gia
 LOG_FILE=/var/log/gia/ffmpeg_montage.txt; LOG_ENABLED=y
 DEBUG=1
 
@@ -20,7 +21,7 @@ sleep 1
 
 
 
-for d in *x; do
+for d in s; do
 	dn=$(echo "$d" | tr "/" "_")
 	df=$(cd $d;pwd)
 	export tmplabeled2=$df'-labeled'
@@ -40,7 +41,7 @@ for d in *x; do
 	sleep 1
 	DEBUG=0
 	sn=0
-	for f in *.jpg; do 
+	for f in $(ls -tr *.jpg); do 
 		#we will export a padded sequence for the jpegtran (as they were labeled alneady)
 		snpadded=`printf %05d $sn` 
 		

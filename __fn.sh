@@ -976,11 +976,10 @@ mnresizer() {
         local _tqual=100
         if [ "$3" != "" ]; then _tqual=$3; fi
 				
-        mkdir -p $_tdir
-        for f in *jpg; do
+        mkdir -p $_tdir && echo "Created dir : $_tdir" || echo "Failed creating dir $_tdir"
+
+        for f in *jpg ; do
                  convert "$f" -resize $_tres'x' -quality $_tqual "$_tdir/$f"
         done
-        for f in *png; do
-                convert "$f" -resize $_tres'x' -quality $_tqual "$_tdir/$f"
-        done
+        (for f in *png ; do   convert "$f" -resize $_tres'x' -quality $_tqual "$_tdir/$f";done ) &> /dev/null
 }
