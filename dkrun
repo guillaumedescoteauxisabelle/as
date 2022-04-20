@@ -33,9 +33,10 @@ else
 	pwdmountpath=$custompwdmountpath
 fi
 
-if [ "$dkport" != "" ]; then _dkport=" -p $dkport "; fi
+if [ "$dkport" != "" ]; then _dkport="-p $dkport"; fi
 
-if [ "$dkport2" != "" ]; then _dkport2=" -p $dkport2 "; fi
+if [ "$dkport2" != "" ]; then _dkport2="-p $dkport2"; fi
+if [ "$dkport3" != "" ]; then _dkport3="-p $dkport3"; fi
 
 
 if [ "$xmount" != "" ]; then _xmount=" -v $xmount "; fi
@@ -77,7 +78,7 @@ if [ "$TZ" == "" ] ; then _TZ="America/New_York";fi
 
 _dkmounthome=""
 if [ "$dkmounthome" == "true" ]; then _dkmounthome="-v $HOME:/home/$(whoami)";fi
-_xtraargs=$(echo "$_dkrunmode $_dkrmstop $dknamearg $_dkhostname $dkextra $_dkport $_dkport2 $_dkvolume $_xmount $_xmount2 $_dkmounthome" | sed -e 's/   / /' | sed -e 's/  / /')
+_xtraargs=$(echo "$_dkrunmode $_dkrmstop $dknamearg $_dkhostname $dkextra $_dkport $_dkport2 $_dkport3 $_dkvolume $_xmount $_xmount2 $_dkmounthome" | sed -e 's/   / /' | sed -e 's/  / /')
 
 cmd="docker run $_xtraargs \
 	-v $(pwd):/$pwdmountpath \
