@@ -7,6 +7,11 @@ if [ -e ".env" ] ; then dos2unix .env  &> /dev/null;fi
 
 . _env.sh  &> /dev/null && . .env &> /dev/null || . _env.sh &> /dev/null && goon=1 || goon=0
 if [ "$binroot" == "" ] ; then export binroot=/c/Users/jeang/Dropbox/lib/bin;fi
+if [ "$containername" == "" ]; then
+        export containername=$(echo "$dockertag" | sed -e 's/\//_/' | sed -e 's/\:/_/' | sed -e 's/\./_/g')
+        echo "Container was named automatically to : $containername"
+        #echo "Please define \$containername in .env or _env.sh"
+fi
 
 if [ "$dockertag" == "" ]; then goon=0;fi #tmp fix
 if [ "$1" == "--create" ] ;then goon=0;fi #passing to --create part
