@@ -1,5 +1,44 @@
 #!/bin/bash
 goon=0
+
+#@STCStatus We might have an addon structure
+if [ -f "Dockerfile.addon" ]; then #@STCGoal Create an added on to ../_env.sh$dockertag with cdir basename
+
+	if [ -f "Dockerfile" ] ; then _bakfile="Dockerfile.$(tlid)" && echo "Dockerfile backup $_bakfile" && mv Dockerfile $_bakfile || echo "FAILED TO BACKUP Dockerfile, assuming that is alright to overrite ;)";fi #@s Backed up the existing dockerfile
+
+	if [ -e "../_env.sh"] ; then __env=../_env.sh;else if [ -e "../../_env.sh"] ; then __env=../../_env.sh;fi;fi
+	#@STCStatus we got a dockertag to add on
+	#@STCGoal A rebuild of our envs
+	. $__env
+	dockertagroot=$dockertag
+	cname=$(basename $(pwd))
+	dockertag=$dockertagroot"--"$cname
+	containername=$containername"--"$cname
+
+	#Make the Dockerfile using the root dockertag and the addon the build it.
+	if [ ! -f "_env.sh" ] ; then #create the non existing _env.sh to further run the thing
+		_envfn=_env.sh
+		echo ". $__env" > $_envfn
+		echo "dockertagroot=\$dockertag" >> $_envfn
+		echo "cname=\$(basename \$(pwd))"  >> $_envfn
+		echo "dockertag=\$dockertagroot\"--\"\$cname"  >> $_envfn
+		echo "containername=\$containername\"--\"\$cname"  >> $_envfn
+		echo "Created $_envfn"
+	fi #@s Our _env.sh is created
+	#@v Dockerfile created
+	echo "FROM $dockertag" > Dockerfile && \
+		cat Dockerfile.addon >> Dockerfile && \
+		echo "Created Dockerfile using addon" || \
+		echo "FAILED CREATING Dockerfile"
+	echo "Ready to do normal building ;)"
+
+
+		
+
+fi #@STCStatus Ready to Normal build from Added on (the dir should look like the usual docker build dir
+
+
+#Valid our ENV
 if [ -f ".env" ] && [ -f "_env.sh" ]; then
 	. _env.sh && . .env && goon=1
 fi
@@ -30,41 +69,7 @@ fi
 if [ "$goon" == 1 ]; then
 	#finally we do it ;)  Because alll is great
 	dockerfilepath="$1"
-	if [ -f "Dockerfile.addon" ]; then #@STCGoal Create an added on to ../_env.sh$dockertag with cdir basename
-
-		if [ -f "Dockerfile" ] ; then _bakfile="Dockerfile.$(tlid)" && echo "Dockerfile backup $_bakfile" && mv Dockerfile $_bakfile || echo "FAILED TO BACKUP Dockerfile, assuming that is alright to overrite ;)";fi #@s Backed up the existing dockerfile
-
-		if [ -e "../_env.sh"] ; then __env=../_env.sh;else if [ -e "../../_env.sh"] ; then __env=../../_env.sh;fi;fi
-		#@STCStatus we got a dockertag to add on
-		#@STCGoal A rebuild of our envs
-		. $__env
-		dockertagroot=$dockertag
-		cname=$(basename $(pwd))
-		dockertag=$dockertagroot"--"$cname
-		containername=$containername"--"$cname
-
-		#Make the Dockerfile using the root dockertag and the addon the build it.
-		if [ ! -f "_env.sh" ] ; then #create the non existing _env.sh to further run the thing
-			_envfn=_env.sh
-			echo ". $__env" > $_envfn
-			echo "dockertagroot=\$dockertag" >> $_envfn
-			echo "cname=\$(basename \$(pwd))"  >> $_envfn
-			echo "dockertag=\$dockertagroot\"--\"\$cname"  >> $_envfn
-			echo "containername=\$containername\"--\"\$cname"  >> $_envfn
-			echo "Created $_envfn"
-		fi #@s Our _env.sh is created
-		#@v Dockerfile created
-		echo "FROM $dockertag" > Dockerfile && \
-			cat Dockerfile.addon >> Dockerfile && \
-			echo "Created Dockerfile using addon" || \
-			echo "FAILED CREATING Dockerfile"
-		echo "Ready to do normal building ;)"
-
-
-			
-
-	fi #@STCState Ready to Normal build from Added on (the dir should look like the usual docker build dir
-
+	
 
 	if [ -f "Dockerfile" ] ; then 
 		dockerfilepath=.
