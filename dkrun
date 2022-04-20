@@ -98,12 +98,13 @@ echo "------------------------------------------ "
 
 _env_sample='dockertag=jgwill/node:16.14.0-angular
 containername=ngcaishen
+dkhostname=\$containername
 #dkrunmode="bg" #default fg
 #dkrestart="--restart" #default
 #dkrestarttype="unless-stopped" #default
 dkport=4000:4000
-dkvolume="myvolname220413:/app" #create or use existing one
-#dkvolume="$containername:/app" #create with containername name
+#dkvolume="myvolname220413:/app" #create or use existing one
+dkvolume="$containername:/app" #create with containername name
 #dkecho=true #just echo the docker run
 dkcommand=bash #command to execute (default is the one in the dockerfile)
 #dkextra="MY EXTRA ARGS"
