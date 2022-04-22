@@ -44,7 +44,7 @@ alias gs="git status"
 alias gd="git diff "
 alias gdb="git diff -b "
 add_commit_push() { 
-	local _msg="$1";shift 1;git add $@ &> /dev/null ; git commit $@ -m "$_msg"; git push &>/dev/null
+	local _msg="$1";shift 1;f="$1";if [ "$f" == "" ]; then f=".";else f="";fi;git add $f $@ &> /dev/null ; git commit $f $@ -m "$_msg"; git push &>/dev/null
 }
 alias gcp="add_commit_push "
 
