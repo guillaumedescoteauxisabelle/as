@@ -41,6 +41,8 @@ alias mkimgmdmm="$binroot/img_mk_mdref_mn__build.sh"
 
 #git
 alias gs="git status"
+alias gd="git diff "
+alias gdb="git diff -b "
 #alias gcp="'add_commit_push() { local _msg=\"$1\";shift 1;git add \"$@\" &> /dev/null ; git commit \"$@\" -m $_msg; git push &>/dev/null;}';add_commit_push "
 
 #
