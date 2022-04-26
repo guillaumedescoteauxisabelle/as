@@ -59,6 +59,7 @@ alias gcp="add_commit_push "
 
 #
 #Common
+alias ext2lowerallsamename="$binroot/ext2lowerallsamename"
 alias greps="$binroot/grepSearch.sh "
 
 alias echomdtableheader='echo "|       |       |       |
