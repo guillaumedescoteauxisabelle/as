@@ -43,7 +43,10 @@ alias cdrw="cd $srcroot/rwml__adaptive_style_transfer"
 alias mckinfo="$binroot/mckinfo.sh"
 
 # Mk Md, Web
-alias mkimgmdmm="$binroot/img_mk_mdref_mn__build.sh"
+alias mkimgmdmm="$binroot/img_mk_mdref_mn__build.sh" && \
+	alias imgmdmm="mkimgmdmm"
+alias mkimgmn="$binroot/_img_mk_mn_resizer.sh" && \
+	alias imgmn="mkimgmn"
 
 #git
 alias gs="git status"
