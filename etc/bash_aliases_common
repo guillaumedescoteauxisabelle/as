@@ -23,6 +23,8 @@ alias dkrun-ubuncompiler="docker run -it --rm -v $(pwd):/work jgwill/ubuntu:comp
 #HDR Maybe just linux
 alias hdrmerge="/home/jgi/programs/hdrmerge/hdrmerge"
 
+#Ubuntu linux/util
+alias whoamibyuid="$binroot/whoamibyuid"
 
 # CD to dir
 export caishenroot="/c/Caishen/Caishen"
