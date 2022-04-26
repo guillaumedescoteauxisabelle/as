@@ -35,6 +35,7 @@ if [ "$(uname -s)" == "Linux" ]; then echo "Creating User based image"
 
 	cd $wdir && \
 		echo "FROM $dockertag" >> Dockerfile && \
+		echo "USER root" >> Dockerfile && \
 		echo "RUN useradd -rm -d /home/$DKUSERNAME -s /bin/bash -g root -G sudo -u $DKUID $DKUSERNAME || sudo useradd -rm -d /home/$DKUSERNAME -s /bin/bash -g root -G sudo -u $DKUID $DKUSERNAME" >> Dockerfile && \
 		echo "RUN adduser $DKUSERNAME sudo || sudo adduser $DKUSERNAME sudo " >> Dockerfile && \
 		echo "RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers || sudo echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers" >> Dockerfile && \
