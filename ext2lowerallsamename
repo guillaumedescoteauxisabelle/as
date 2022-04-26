@@ -14,5 +14,7 @@ for f in *$ext; do
 	echo "mv $f $tmpfn"
 	echo "mv $tmpfn $nfn"
 	#sleep 5 #for dropbox stuff
+done
+
 
 fi
