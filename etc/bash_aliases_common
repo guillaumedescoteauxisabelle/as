@@ -20,6 +20,10 @@ alias dkvolbak="$binroot/dkvolbak.sh "
 
 alias dkrun-ubuncompiler="docker run -it --rm -v $(pwd):/work jgwill/ubuntu:compiler bash"1~
 
+#HDR Maybe just linux
+alias hdrmerge="/home/jgi/programs/hdrmerge/hdrmerge"
+
+
 # CD to dir
 export caishenroot="/c/Caishen/Caishen"
 alias cdspider="cd $caishenroot/src/Caishen/Databases/SpiderDbDatabase/gia-mssql"
