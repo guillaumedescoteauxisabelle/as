@@ -22,7 +22,7 @@ if [ "$(uname -s)" == "Linux" ]; then echo "Creating User based image"
 	#@STCGoal change back to another existing user
 	if [ "$dkchguser" != "" ] ; then _dkuserchg="USER $dkchguser";fi #USER chg to defined one
 
-
+	# Make the workdir the user home ??
 	if [ "$dkusehomedir" == "" ] ||  [ "$dkusehomedir" == "false" ] ; then _dkusehomedir="";fi
 
 
@@ -46,7 +46,7 @@ if [ "$(uname -s)" == "Linux" ]; then echo "Creating User based image"
 		if [ -e "$_vscodetar" ]; then  cp $cdir/$_vscodetar $wdir;fi && \
 		echo "$_vscodeservercp " >> Dockerfile && \ 
 		echo "$_vscodeserverinstall " >> Dockerfile && \
-		echo "$_dkuserchg "  >> Dockerfile && \ 
+		echo "$_dkuserchg "  >> Dockerfile && \
 		echo "$_gituseremail " >> Dockerfile && \
 		echo "$_gitusername "  >> Dockerfile && \
 		if [ -f "../.dkbuildx" ]; then cat ../.dkbuildx >> Dockerfile ; fi && \
