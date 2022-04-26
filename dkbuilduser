@@ -41,12 +41,12 @@ if [ "$(uname -s)" == "Linux" ]; then echo "Creating User based image"
 		echo "RUN useradd -rm -d /home/$DKUSERNAME -s /bin/bash -g root -G sudo -u $DKUID $DKUSERNAME || sudo useradd -rm -d /home/$DKUSERNAME -s /bin/bash -g root -G sudo -u $DKUID $DKUSERNAME" >> Dockerfile && \
 		echo "RUN adduser $DKUSERNAME sudo || sudo adduser $DKUSERNAME sudo " >> Dockerfile && \
 		echo "RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers || sudo echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers" >> Dockerfile && \
-		echo "$_dkusehomedir " >> Dockerfile && \
 		echo "#ENV TZ=\"America/New_York\"" >> Dockerfile && \
 		if [ -e "$_vscodetar" ]; then  cp $cdir/$_vscodetar $wdir;fi && \
 		echo "$_vscodeservercp " >> Dockerfile && \ 
 		echo "$_vscodeserverinstall " >> Dockerfile && \
 		echo "$_dkuserchg "  >> Dockerfile && \
+		echo "$_dkusehomedir " >> Dockerfile && \
 		echo "$_gituseremail " >> Dockerfile && \
 		echo "$_gitusername "  >> Dockerfile && \
 		if [ -f "../.dkbuildx" ]; then cat ../.dkbuildx >> Dockerfile ; fi && \
