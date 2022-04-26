@@ -9,7 +9,7 @@ if [ "$(uname -s)" == "Linux" ]; then echo "Creating User based image"
 	dockertaguser=$dockertag"-"$_cuser
 	cdir="$(pwd)"
 	wdir="$cdir/build_user__"$(tlid)
-	if [ -e "$wdir" ] ; then echo "Hum... $wdir exist already"
+	if [ -e "$wdir" ] ; then echo "Hum... $wdir exist already" && rm -rf $wdir && echo "Cleaned up ok.  Rerun this"
 	else
 
 	mkdir -p $wdir
