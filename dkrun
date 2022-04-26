@@ -202,6 +202,12 @@ dkcommand=bash #command to execute (default is the one in the dockerfile)
 
 #xmount=/tmp:/a/tmp
 #xmount2=/var:/a/var
+
+#####################################
+#Build related
+#
+##chg back to that user
+#dkchguser=vscode
 '
 
 # creates the ENV using --create and default env
