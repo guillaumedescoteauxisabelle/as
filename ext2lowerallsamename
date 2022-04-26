@@ -1,19 +1,21 @@
 #!/bin/bash
 
-ext=".$1"
+
 if [ "$1" == "" ] ; then 
 	echo "Usage $0 <ext>"
 else
-
-for f in *$ext; do 
+	ext="$1"
+for f in *.$ext; do 
 #filename=$(basename -- "$f")
-	extension="${f##*.}"
-	lext=$(echo $extension | tr '[:upper:]' '[:lower:]')
-	filename="${f%.*}"
-	nfn="$filename.$lext"
-	tmpfn="/tmp/$nfn"
-	echo "mv $f $tmpfn"
-	echo "mv $tmpfn $nfn"
+	if [ -f "$f" ]; then 
+		extension="${f##*.}"
+		lext=$(echo $extension | tr '[:upper:]' '[:lower:]')
+		filename="${f%.*}"
+		nfn="$filename.$lext"
+		tmpfn="/tmp/$nfn"
+		echo "mv $f $tmpfn"
+		echo "mv $tmpfn $nfn"
+	fi
 	#sleep 5 #for dropbox stuff
 done
 
