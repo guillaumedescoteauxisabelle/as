@@ -1,4 +1,4 @@
 #!/bin/bash
 #@STCGoal Whoami by User ID (UID)
-sudo cat /etc/passwd |tr ":" " "| awk '/'"$UID"'/ { print $1 } '
+sudo cat /etc/passwd | grep ":$UID:" |tr ":" " "| awk '/'"$UID"'/ { print $1 } '
 
