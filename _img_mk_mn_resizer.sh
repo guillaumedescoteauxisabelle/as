@@ -30,6 +30,10 @@ done
 # tn
 mnresizer tn 150 80
 
+# HD
+if [ "$renderhd" == "true" ] || [ "$1" == "hd" ] ; then mnresizer hd 1920 ;fi
+if [ "$renderhdy" == "true" ] || [ "$1" == "hdy" ] || [ "$1" == "hd_y" ]; then mnresizer hd_y 1080 ;fi
+
 # Center cropped
 tdir=mncc
 mkdir -p $tdir
