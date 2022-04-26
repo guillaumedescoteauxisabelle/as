@@ -66,6 +66,11 @@ QUIET=""
 ## Value: 1 or 0
 declare -x DEBUG="0"
 
+## @var BDIR
+## @brief ref script
+## @details usage in function and other script to ref the binroot or where this is
+## Value: binroot dir
+BDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 
 if [ -e "$binroot/_env.sh" ] && [ "$BINENVLOADED" == "" ]; then 
