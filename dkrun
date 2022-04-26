@@ -116,7 +116,7 @@ if [ "$1" == "--user" ] ;then
 		dockertag="$dockertag-$dkrunwhoami"
 		#@STCIssue If image does not exist ??
 		echo " Testing if image: $dockertagroot"
-		docker inspect $dockertagroot && \
+		docker inspect $dockertagroot &>/dev/null && \
 			echo "Root Tag Exist" && \
 			echo "Dockertag now : $dockertag" || \
 			(echo "DKBuildUser Required" i&& \
