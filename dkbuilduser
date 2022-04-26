@@ -17,9 +17,11 @@ if [ "$(uname -s)" == "Linux" ]; then echo "Creating User based image"
 	DKUID=$_uid
 	_dkusehomedir="WORKDIR /home/$DKUSERNAME"
 	_dkuserchg="USER $DKUSERNAME"
-	if [ "$dknouserchg" != "" ]; then _dkuserchg="";fi
+	if [ "$dknouserchg" != "" ]; then _dkuserchg="";fi #No USER change
+
 	#@STCGoal change back to another existing user
-	if [ "$dkchguser" != "" ] ; then _dkuserchg="USER $dkchguser";fi
+	if [ "$dkchguser" != "" ] ; then _dkuserchg="USER $dkchguser";fi #USER chg to defined one
+
 
 	if [ "$dkusehomedir" == "" ] ||  [ "$dkusehomedir" == "false" ] ; then _dkusehomedir="";fi
 
