@@ -2,7 +2,7 @@
 
 
 if [ "$1" == "" ] ; then 
-	echo "Usage $0 <ext>"
+	echo "Usage $0 <ext> [mover (ex. git)]"
 else
 	ext="$1"
 for f in *.$ext; do 
@@ -14,7 +14,9 @@ for f in *.$ext; do
 		nfn="$filename.$lext"
 		tmpfn="/tmp/$nfn"
 		echo "mv $f $tmpfn"
+		$2 mv $f $tmpfn
 		echo "mv $tmpfn $nfn"
+		$2 mv $tmpfn $nfn
 	fi
 	#sleep 5 #for dropbox stuff
 done
