@@ -15,7 +15,7 @@ if [ "$(uname -s)" == "Linux" ]; then echo "Creating User based image"
 	mkdir -p $wdir
 	DKUSERNAME=$_cuser
 	DKUID=$_uid
-	_dkusehomedir="WORKDIR /home/$DKUSERNAME"
+	_dkusehomedir="WORKDIR ${HOME}"
 	_dkuserchg="USER $DKUSERNAME"
 	if [ "$dknouserchg" != "" ]; then _dkuserchg="";fi #No USER change
 
@@ -23,6 +23,8 @@ if [ "$(uname -s)" == "Linux" ]; then echo "Creating User based image"
 	if [ "$dkchguser" != "" ] ; then _dkuserchg="USER $dkchguser";fi #USER chg to defined one
 
 	# Make the workdir the user home ??
+	#echo "$_dkusehomedir" && exit 1
+
 	if [ "$dkusehomedir" == "" ] ||  [ "$dkusehomedir" == "false" ] ; then _dkusehomedir="";fi
 
 
@@ -31,14 +33,20 @@ if [ "$(uname -s)" == "Linux" ]; then echo "Creating User based image"
 	_vscodetarpath="$cdir/$_vscodetar"
 	#if [ -e "$_vscodetar" ]; then  _vscodeservercp="COPY $_vscodetar .";_vscodeserverinstall="RUN tar xzf $_vscodetar && mv .vscode-server .gitconfig /home/$DKUSERNAME && rm $_vscodetar && chown -R $DKUSERNAME /home/$DKUSERNAME";fi
 
+#dk user added to group
+dkusergroup=root
+_dkenvuser="ENV USER $DKUSERNAME"
+_dkenvhome='ENV HOME /home/${USER}'
 #
 	_gituseremail="RUN git config --global user.email \"$useremail\""
 	_gitusername="RUN git config --global user.name \"$DKUSERNAME\""
 
 	cd $wdir && \
 		echo "FROM $dockertag" >> Dockerfile && \
+		echo "$_dkenvuser" >> Dockerfile && \
+		echo "$_dkenvhome" >> Dockerfile && \
 		echo "USER root" >> Dockerfile && \
-		echo "RUN useradd -rm -d /home/$DKUSERNAME -s /bin/bash -g root -G sudo -u $DKUID $DKUSERNAME || sudo useradd -rm -d /home/$DKUSERNAME -s /bin/bash -g root -G sudo -u $DKUID $DKUSERNAME" >> Dockerfile && \
+		echo "RUN useradd -rm -d \${HOME} -s /bin/bash -g $dkusergroup -G sudo -u $DKUID $DKUSERNAME || sudo useradd -rm -d \${HOME} -s /bin/bash -g $dkusergroup -G sudo -u $DKUID $DKUSERNAME" >> Dockerfile && \
 		echo "RUN adduser $DKUSERNAME sudo || sudo adduser $DKUSERNAME sudo " >> Dockerfile && \
 		echo "RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers || sudo echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers" >> Dockerfile && \
 		echo "#ENV TZ=\"America/New_York\"" >> Dockerfile && \
