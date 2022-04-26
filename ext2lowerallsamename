@@ -2,7 +2,7 @@
 
 ext=".$1"
 if [ "$1" == "" ] ; then 
-	echo "$0 <ext>"
+	echo "Usage $0 <ext>"
 else
 
 for f in *$ext; do 
