@@ -1,5 +1,3 @@
 #!/bin/bash
-find . -name '*.*' -exec sh -c '
-a=$(echo "$0" | sed -r "s/([^.]*)\$/\L\1/");
-[ "$a" != "$0" ] && mv "$0" "$a" ' {} \;
+find . -name '*.*' -type f -exec bash -c 'base=${0%.*} ext=${0##*.} a=$base.${ext,,}; [ "$a" != "$0" ] && mv -- "$0" "$a"' {} \;
 
