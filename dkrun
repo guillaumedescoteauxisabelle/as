@@ -87,7 +87,7 @@ if [ "$dkvolume" == "" ]; then _dkvolume="";else
 fi
 
 _dkcommand="$dkcommand"
-if [ "$dkcommand" == "" ] ; then _dkcommand="$1" ;fi 
+if [ "$dkcommand" == "" ] && [ "$1" != "--user" ] ; then _dkcommand="$1" ;fi 
 if [ "$dkrunmode" == "bg" ];then _dkcommand="sleep 65000d";fi #Ya, the container will stop in a while ;)
 
 _TZ="$TZ"
@@ -118,7 +118,7 @@ if [ "$1" == "--user" ] ;then
 		echo " Testing if image: $dockertagroot"
 		docker inspect $dockertagroot &>/dev/null && \
 			echo "Root Tag Exist" && \
-			shift && \
+			shift 1 && \
 			echo "Dockertag now : $dockertag" || \
 			(echo "DKBuildUser Required" i&& \
 			echo "$BDIR/dkbuilduser" && \
