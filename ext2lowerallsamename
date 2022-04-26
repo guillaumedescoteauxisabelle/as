@@ -1,0 +1,18 @@
+#!/bin/bash
+
+ext=".$1"
+if [ "$1" == "" ] ; then echo "$0 <ext>"
+else
+
+for f in *$ext; do 
+#filename=$(basename -- "$f")
+	extension="${f##*.}"
+	lext=$(echo $extension | tr '[:upper:]' '[:lower:]')
+	filename="${f%.*}"
+	nfn=$filename.$lext
+	tmpfn=/tmp/$nfn
+	echo "mv $f $tmpfn"
+	echo "mv $tmpfn $nfn"
+	#sleep 5 #for dropbox stuff
+
+fi
