@@ -2,6 +2,8 @@
 #
 # AST
 alias cdast="cd $srcroot/gix-adaptive-style-transfer-2201/bin-gpu;ls -ltr"
+alias mkcinfo="$binroot/mckinfo.sh "
+
 
 #DK Related
 alias dkbuild="$binroot/dkbuild"
