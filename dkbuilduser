@@ -41,6 +41,16 @@ _dkenvhome='ENV HOME /home/${USER}'
 	_gituseremail="RUN git config --global user.email \"$useremail\""
 	_gitusername="RUN git config --global user.name \"$DKUSERNAME\""
 
+#FUTUR Upgrade for SUDO (or debug)
+##  Add new user docker to sudo group
+#RUN adduser docker sudo
+
+# Ensure sudo group users are not 
+# asked for a password when using 
+# sudo command by ammending sudoers file
+#RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+
 	cd $wdir && \
 		echo "FROM $dockertag" >> Dockerfile && \
 		echo "$_dkenvuser" >> Dockerfile && \
