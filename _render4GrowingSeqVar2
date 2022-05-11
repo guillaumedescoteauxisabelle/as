@@ -1,0 +1,40 @@
+#!/bin/bash
+. .env &>/dev/null
+
+# @STCGoal Downsize Resize the Original Image to have a larger image at the end
+
+_usage() {
+	echo "Usage: $0 <img> <astport> [baseres]"
+}
+
+ps="$2"
+pe="$2"
+if [ "$2" == "" ] ; then _usage
+else
+
+
+#for f in IMG_7110_crp__71_dbginko_v03_900x-1-s1__465k__71.jpg Articol_no1a__60_dbginko_v03_900x900-s1__300k__60.jpg ; do 
+f="$1"
+if [ -f "$f" ]; then
+startres=128
+res=2600
+res0=900
+framestep=8
+scriptmontage="$binroot/_renderMontageCP-220424Var2"
+
+ii=1
+for ((i=128; i<=2600; i++))
+do
+	res="$i"
+	echo . $scriptmontage $f $ps $pe $res -1
+	i=$(($i+$framestep))
+	ii=$(($ii+1))
+	# Unix command here #
+	echo "#---------------$ii:$i-----------------------"
+done
+
+else
+	_usage
+fi
+fi
+
