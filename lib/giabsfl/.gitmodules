@@ -1,3 +1,0 @@
-[submodule "doc/bash-doxygen"]
-	path = doc/bash-doxygen
-	url = https://github.com/Anvil/bash-doxygen.git
