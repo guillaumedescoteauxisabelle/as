@@ -5,6 +5,7 @@ alias cdast="cd $srcroot/gix-adaptive-style-transfer-2201/bin-gpu;ls -ltr"
 alias mkcinfo="$binroot/mckinfo.sh "
 
 alias cdl="cd $d/lib"
+alias cdma="cd /a/model/models;ls -ltr;echo models in a"
 
 
 #DK Related
