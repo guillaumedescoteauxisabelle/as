@@ -63,6 +63,7 @@ add_commit_push() {
 	local _msg="$1";shift 1;f="$1";if [ "$f" == "" ]; then f=".";else f="";fi;git add $f $@ &> /dev/null ; git commit $f $@ -m "$_msg"; git push &>/dev/null
 }
 alias gcp="add_commit_push "
+alias gcln="git commit . -m clean"
 
 #
 #Common
