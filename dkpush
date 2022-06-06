@@ -16,5 +16,6 @@ fi
 if [ "$dockertag" == "" ] ; then 
 	echo "Please define dockertag in .env or _env.sh"
 else
-	docker push $dockertag
+	echo "Pushing $dockertag"
+	docker push $dockertag && echo "Pushed:  $dockertag"
 fi
