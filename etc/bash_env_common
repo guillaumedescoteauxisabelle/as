@@ -4,3 +4,6 @@ export hostdns=localhost
 #export TZ="America/New_York"
 export rwroot=$srcroot/rwml__adaptive_style_transfer
 shopt -s direxpand
+
+export zeusdata="/mnt/c/Caishen/Caishen/src/Caishen/Databases/SpiderDbDatabase/gia-mssql/data"
+export zeuzdata="/mnt/c/var/lib/mssql/data"
