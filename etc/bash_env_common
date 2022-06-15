@@ -2,5 +2,5 @@
 
 export hostdns=localhost
 #export TZ="America/New_York"
-
+export rwroot=$srcroot/rwml__adaptive_style_transfer
 shopt -s direxpand
