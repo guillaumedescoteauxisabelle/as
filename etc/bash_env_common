@@ -7,3 +7,17 @@ shopt -s direxpand
 
 export zeusdata="/mnt/c/Caishen/Caishen/src/Caishen/Databases/SpiderDbDatabase/gia-mssql/data"
 export zeuzdata="/mnt/c/var/lib/mssql/data"
+
+export sysdrive="/c"
+export AppSuiteName="Caishen"
+if [ "$sysuname" == "" ];then  export sysuname="$(uname)";fi
+if [ "$sysuname" == "Linux" ];then export sysdrive="/mnt/c";fi #different mount point on WSL
+export WINHOMEROOT=$sysdrive/Users
+export WINUSER=jeang
+export USERWINHOME=$WINHOMEROOT/$WINUSER
+
+export AppSuiteRootPath=$USERWINHOME/AppData/Local/$AppSuiteName
+export AppSuiteConfigRootPath=$AppSuiteRootPath/config
+export AppSuiteDataRootPath=$AppSuiteRootPath/data
+
+
