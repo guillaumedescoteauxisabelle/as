@@ -57,8 +57,10 @@ alias mkimgmn="$binroot/_img_mk_mn_resizer.sh" && \
 
 #git
 alias gs="git status"
+alias gsp="gs ."
 alias gd="git diff "
 alias gdb="git diff -b "
+alias gdp="gdb ."
 add_commit_push() { 
 	local _msg="$1";shift 1;f="$1";if [ "$f" == "" ]; then f=".";else f="";fi;git add $f $@ &> /dev/null ; git commit $f $@ -m "$_msg"; git push &>/dev/null
 }
