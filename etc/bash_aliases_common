@@ -75,3 +75,7 @@ alias echomdtableheader='echo "|       |       |       |
 "'
 
 
+# WSL and related Admin (as ref or to run in an admin priviledged
+
+## Optimize and compact the WSL VHD
+alias wslvhdoptimize="cd $HOME/AppData/Local/Docker/wsl/data && optimize-vhd -Path ext4.vhdx -Mode full"
