@@ -79,7 +79,8 @@ e() {
 	if [ "$(uname)" == "Linux" ];then _ecmd="explorer.exe ";fi #Yes on WSL you can interface with Windows explorer 
 	export ecmd="$_ecmd"
 	# Run the editing
-	$ecmd $1
+	echo "Opening $1 :)"
+	$ecmd "$1"
 	}
 
 #alias e="e"
