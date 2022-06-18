@@ -36,7 +36,7 @@ export caishenroot="/c/Caishen/Caishen"
 alias cdspider="cd $caishenroot/src/Caishen/Databases/SpiderDbDatabase/gia-mssql"
 alias cdcaishenbin="cd $caishenroot/binDebug;ls -ltr"
 alias cdcaishenwiki="cd $caishenroot/../wiki;ls -ltr"
-alias cdzeus="cd $caishenroot/src/Caishen/Databases/SpiderDbDatabase/gia-mssql"
+alias cdzeus="cd $caishenroot/src/Caishen/Databases/SpiderDbDatabase/gia-mssql/ZEUS"
 
 # COMMON
 alias vialias="vi $binroot/etc/bash_aliases_common && . $binroot/etc/bash_aliases_common && (cd $binroot;git commit etc -m chg:etc-alias &>/dev/null && git push&>/dev/null)"
