@@ -73,6 +73,17 @@ alias gcln="git commit . -m clean"
 alias ext2lowerallsamename="$binroot/ext2lowerallsamename"
 alias greps="$binroot/grepSearch.sh "
 
+## --@STCGoal One operation CLI to edit document from anywhere(OS Context)
+e() {
+	local _ecmd="code "
+	if [ "$(uname)" == "Linux" ];then _ecmd="explorer.exe ";fi #Yes on WSL you can interface with Windows explorer 
+	export ecmd="$_ecmd"
+	# Run the editing
+	$ecmd $1
+	}
+
+#alias e="e"
+
 alias echomdtableheader='echo "|       |       |       |
 |  ---  |  ---  |  ---  |
 "'
