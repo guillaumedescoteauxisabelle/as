@@ -42,14 +42,17 @@ f=$1
 if [ "$1" == "" ]; then
 	echo "Usage: $0 <file> <startport> <endport> [resolution 1] [resolution 2] [resolution 3]"
 else
+#echo "$0 $1 $2 $3 $4 $5 $6 $7"
+
+#echo $compositeresultcmd $c $r  
 
 cp $f out
 for i in $(seq $2 $3); do 
  		$astcmd $f $i $x1 $x2 $x3 -a > _out && \
 		echo -n "Content of _out : " && cat _out && \
-		r=$(cat _out | awk '/feh/ { print $2}') && \
-		c=$(cat _out | awk '/port/ { print $2}') && \
-		$compositeresultcmd $c $r  && \
+		export r=$(cat _out | awk '/feh/ { print $2}') && \
+		export c=$(cat _out | awk '/port/ { print $2}') && \
+	  $compositeresultcmd $c $r  && \
 		$cmdecho rm _out && \
 		$cmdecho cp $r out && \
 		echo "Composite Done" || echo "Something failed for iteration $i"
