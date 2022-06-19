@@ -19,5 +19,5 @@ export USERWINHOME=$WINHOMEROOT/$WINUSER
 export AppSuiteRootPath=$USERWINHOME/AppData/Local/$AppSuiteName
 export AppSuiteConfigRootPath=$AppSuiteRootPath/config
 export AppSuiteDataRootPath=$AppSuiteRootPath/data
-
+export DataCsvRepoRelativePath=$caishenroot/src/Caishen/PDSP/DataCsv 
 
