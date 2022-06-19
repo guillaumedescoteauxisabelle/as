@@ -63,7 +63,7 @@ fi
 #@a do the work
 if [ "$QUIET" == "1" ]; then
 docker stop -t 1 $1  > /dev/null 2>&1 && \
-        docker rm $1   > /dev/null 2>&1 && \
+        docker rm -v $1   > /dev/null 2>&1 && \
         donework "SUCCESS" "$2" "$3" && exit 0 || \
         einq "FAILED" $2 && exit 1
 else
