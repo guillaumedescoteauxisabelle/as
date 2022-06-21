@@ -37,6 +37,7 @@ alias cdspider="cd $caishenroot/src/Caishen/Databases/SpiderDbDatabase/gia-mssql
 alias cdmldata="cd /c/var/lib/mssql/data"
 alias cdcaishenbin="cd $caishenroot/binDebug;ls -ltr"
 alias cdcaishenwiki="cd $caishenroot/../wiki;ls -ltr"
+alias zeuzisbash="docker exec -it zeuzis bash"
 alias cdzeus="cd $caishenroot/src/Caishen/Databases/SpiderDbDatabase/gia-mssql/ZEUS"
 
 # COMMON
