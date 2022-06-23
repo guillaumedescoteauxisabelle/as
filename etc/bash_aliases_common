@@ -33,6 +33,7 @@ alias whoamibyuid="$binroot/whoamibyuid"
 
 # CD to dir
 export caishenroot="/c/Caishen/Caishen"
+alias cdcaishen="cd cd $caishenroot/src/Caishen"
 alias cdspider="cd $caishenroot/src/Caishen/Databases/SpiderDbDatabase/gia-mssql"
 alias cdmldata="cd /c/var/lib/mssql/data"
 alias cdcaishenbin="cd $caishenroot/binDebug;ls -ltr"
