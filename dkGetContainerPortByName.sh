@@ -11,5 +11,8 @@ if [ "$rcontainer" == "" ] ; then
         echo "TODO get from  stopped and start it maybe"
         #slister=dkcListStopped.sh
 else # Print it out
-        echo $rcontainer
+	if [ "$2" == "" ]; then
+        	echo $rcontainer
+	else 
+		echo $rcontainer | sed -e 's/90//'
 fi
