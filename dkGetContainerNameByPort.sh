@@ -2,6 +2,7 @@
 
 
 slister=dkcListPort.sh
-
-$binroot/$slister | tr ":" " " | awk '/90'$1'/ { print $2 }'
+cmds=$binroot/$slister
+echo $cmds
+$cmds | tr ":" " " | awk '/'$1'/ { print $2 }'
 
