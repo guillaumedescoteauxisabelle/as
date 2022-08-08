@@ -1,7 +1,11 @@
 #!/bin/bash
 if [ ! -e "/a/.flag" ];then 
 	echo "/a Does not seem to me mounted, mounting it..."
-	sudo mount -t drvfs a: /mnt/a  && echo "/a Mounted" || echo "Error mouting /a"
+	if [ "$sysuname" == "Linux" ];then 
+		sudo mount -t drvfs a: /mnt/a  && echo "/a Mounted" || echo "Error mouting /a"
+	else
+		echo "OS in not WSL/Linux, can not do much"
+	fi
 fi
 
 export hostdns=localhost
