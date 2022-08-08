@@ -15,4 +15,5 @@ else # Print it out
         	echo $rcontainer
 	else 
 		echo $rcontainer | sed -e 's/90//'
+	fi
 fi
