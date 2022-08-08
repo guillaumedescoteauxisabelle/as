@@ -23,6 +23,7 @@ alias dkclsport="echo Running container;$binroot/dkcListPort.sh"
 alias dkclsportquiet=$binroot/'dkcListPort.sh | tr ":" " "'
 alias dkclsstopped="echo Stopped container;$binroot/dkcListStopped.sh"
 alias dkGetContainerNameByPort="$binroot/dkGetContainerNameByPort.sh "
+alias dkGetContainerPortByName="$binroot/dkGetContainerPortByName.sh "
 alias dkvolbak="$binroot/dkvolbak.sh "
 
 alias dkrun-ubuncompiler="docker run -it --rm -v $(pwd):/work jgwill/ubuntu:compiler bash"1~
