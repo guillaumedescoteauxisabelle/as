@@ -1,4 +1,8 @@
 #!/bin/bash
+if [ ! -e "/a/.flag" ];then 
+	echo "/a Does not seem to me mounted, mounting it..."
+	sudo mount -t drvfs a: /mnt/a  && echo "/a Mounted" || echo "Error mouting /a"
+fi
 
 export hostdns=localhost
 #export TZ="America/New_York"
@@ -23,4 +27,6 @@ export DataCsvRepoRelativePath=$caishenroot/src/Caishen/PDSP/DataCsv
 
 # Relative to working and latest
 export ailatesttag=sc220807
+
+
 
