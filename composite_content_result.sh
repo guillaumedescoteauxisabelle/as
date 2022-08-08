@@ -26,6 +26,7 @@ fi
 
 export tdir=$(mkdir -p $tdir;cd $tdir;pwd) || (echo "Could not create or access $tdir" ;exit 1)
 outL=$tdir/L
+echo "Creating outdir L :  $outL"
 mkdir -p $outL
 
 pointsize=48
@@ -65,15 +66,21 @@ if [ "$rx" -lt 600 ] ; then loweringfactor=22 ;fi
 tmppointsize=$(expr $pointsize - $loweringfactor)
 pointsize=$tmppointsize
 #@state Our pointsize got adjusted, hopefully more pleasant
-copyright="Guillaume Descoteaux-Isabelle &copy;2021"
+copyright="Guillaume Descoteaux-Isabelle &copy;2022"
 tmpcontent=$TMP/$f2
 #@a The original is resized by a  factor, then a montage with the result image is then receiving an underlying label.
+echo  "Converting : $f $tmpcontent"
+#echo " -quality $tqual -resize $res"
+echo "Montage :  $tmpcontent $f2"
+#echo "  -geometry +$pointsize+$pointsize  -background $bgcolor -fill $fillcolor $out"
+#echo "exiftool -overwrite_original -copyright=$copyright -E $outm"
+
 convert -quality $tqual -resize $res $f $tmpcontent && \
 montage $tmpcontent $f2  -geometry +$pointsize+$pointsize  -background "$bgcolor" -fill "$fillcolor" $out && \
 montage -label "$fl2"  -pointsize $pointsize -geometry +0+$labelheight -background "$bgcolor" -fill "$fillcolor" $out $outm && \
- exiftool -overwrite_original -copyright="$copyright" -E $outm && \
+exiftool -overwrite_original -copyright="$copyright" -E $outm && \
 	echo "Suceeded creating $outm" || \
-	echo "Failed creating $outm"
+	echo "Failed creating output : $outm  <--"
 rm $tmpcontent
 #feh -F $out
 
