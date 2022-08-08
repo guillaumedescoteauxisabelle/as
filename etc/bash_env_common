@@ -21,3 +21,6 @@ export AppSuiteConfigRootPath=$AppSuiteRootPath/config
 export AppSuiteDataRootPath=$AppSuiteRootPath/data
 export DataCsvRepoRelativePath=$caishenroot/src/Caishen/PDSP/DataCsv 
 
+# Relative to working and latest
+export ailatesttag=sc220807
+
