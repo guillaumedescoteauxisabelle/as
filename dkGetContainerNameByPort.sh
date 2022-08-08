@@ -3,6 +3,6 @@
 
 slister=dkcListPort.sh
 cmds=$binroot/$slister
-echo $cmds
+#echo $cmds
 $cmds | tr ":" " " | awk '/'$1'/ { print $2 }'
 
