@@ -29,6 +29,9 @@ export AppSuiteConfigRootPath=$AppSuiteRootPath/config
 export AppSuiteDataRootPath=$AppSuiteRootPath/data
 export DataCsvRepoRelativePath=$caishenroot/src/Caishen/PDSP/DataCsv 
 
+#StrategyRunner requires access to a folder where we store up to date strategies
+#CaishenSolutionDir
+export CaishenStrategyRunnerLib=$CaishenSolutionDir/Lib
 # Relative to working and latest
 export ailatesttag=sc220807
 
