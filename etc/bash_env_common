@@ -14,13 +14,14 @@ export rwroot=$srcroot/rwml__adaptive_style_transfer
 shopt -s direxpand
 
 #export zeusdata="/mnt/c/Caishen/Caishen/src/Caishen/Databases/SpiderDbDatabase/gia-mssql/data"
-export zeuzdata="/mnt/c/var/lib/mssql/data"
+
 
 export sysdrive="/c"
 export AppSuiteName="Caishen"
 if [ "$sysuname" == "" ];then  export sysuname="$(uname)";fi
 if [ "$sysuname" == "Linux" ];then export sysdrive="/mnt/c";fi #different mount point on WSL
 
+export zeuzdata="$sysdrive/var/lib/mssql/data"
 export caishenroot="$sysdrive/Caishen/Caishen"
 export caishensolutiondir="$caishenroot/src/Caishen"
 export CaishenSolutionDir="$caishensolutiondir"
