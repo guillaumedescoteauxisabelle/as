@@ -20,6 +20,12 @@ export sysdrive="/c"
 export AppSuiteName="Caishen"
 if [ "$sysuname" == "" ];then  export sysuname="$(uname)";fi
 if [ "$sysuname" == "Linux" ];then export sysdrive="/mnt/c";fi #different mount point on WSL
+
+export caishenroot="$sysdrive/Caishen/Caishen"
+export caishensolutiondir="$caishenroot/src/Caishen"
+export CaishenSolutionDir="$caishensolutiondir"
+
+
 export WINHOMEROOT=$sysdrive/Users
 export WINUSER=jeang
 export USERWINHOME=$WINHOMEROOT/$WINUSER
