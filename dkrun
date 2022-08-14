@@ -130,13 +130,12 @@ fi
 #DISPLAY
 _display="-e DISPLAY=$DISPLAY"
 if [ "$DISPLAY" == "" ] || [ "$DISPLAY" == "needs-to-be-defined" ]; then _display=""; fi
-__TZ_arg="-e TZ=\"$_TZ\""
+__TZ_arg="-e TZ=\"$_TZ\" --cap-add SYS_TIME "
 if [ "$DK_TZ" == "" ] ; then __TZ_arg="" ; fi
 
 cmd="docker run $_xtraargs $_display \
 	-v $(pwd):/$pwdmountpath \
 	-v $binroot:/a/bin  $__TZ_arg \
-	--cap-add SYS_TIME \
 	$dockertag $_dkcommand "
 
 echo "$cmd"
