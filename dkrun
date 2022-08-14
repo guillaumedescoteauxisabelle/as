@@ -130,11 +130,12 @@ fi
 #DISPLAY
 _display="-e DISPLAY=$DISPLAY"
 if [ "$DISPLAY" == "" ] || [ "$DISPLAY" == "needs-to-be-defined" ]; then _display=""; fi
+__TZ_arg="-e TZ=\"$_TZ\""
+if [ "$DK_TZ" == "" ] ; then __TZ_arg="" ; fi
 
 cmd="docker run $_xtraargs $_display \
 	-v $(pwd):/$pwdmountpath \
-	-v $binroot:/a/bin \
-	-e TZ="$_TZ" \
+	-v $binroot:/a/bin  $__TZ_arg \
 	--cap-add SYS_TIME \
 	$dockertag $_dkcommand "
 
@@ -209,12 +210,10 @@ _env_sample='dockertag=jgwill/node:16.14.0-angular
 containername=ngcaishen
 dkhostname=$containername
 
-#dkrunmode="bg" #default fg
-#dkrestart="--restart" #default
-#dkrestarttype="unless-stopped" #default
+# PORT
+#dkport=4000:4000
 
-dkport=4000:4000
-
+# VOLUMES
 #dkvolume="myvolname220413:/app" #create or use existing one
 dkvolume="$containername:/app" #create with containername name
 
@@ -228,6 +227,15 @@ dkcommand=bash #command to execute (default is the one in the dockerfile)
 
 #xmount=/tmp:/a/tmp
 #xmount2=/var:/a/var
+
+# Use TZ
+#DK_TZ=1
+
+# RUN MODE
+#dkrunmode="bg" #default fg
+#dkrestart="--restart" #default
+#dkrestarttype="unless-stopped" #default
+
 
 #####################################
 #Build related
