@@ -28,6 +28,8 @@ export zeuscsvpath="$zeusdata/exports/csv"
 export caishenroot="$sysdrive/Caishen/Caishen"
 export caishensolutiondir="$caishenroot/src/Caishen"
 export CaishenSolutionDir="$caishensolutiondir"
+export CaishenIndicoreIndicatorsDir=$CaishenSolutionDir/Lib/indicators
+export CaishenIndicoreStrategiesDir=$CaishenSolutionDir/Lib/strategies
 
 
 export WINHOMEROOT=$sysdrive/Users
