@@ -13,7 +13,7 @@ export hostdns=localhost
 export rwroot=$srcroot/rwml__adaptive_style_transfer
 shopt -s direxpand
 
-export zeusdata="/mnt/c/Caishen/Caishen/src/Caishen/Databases/SpiderDbDatabase/gia-mssql/data"
+#export zeusdata="/mnt/c/Caishen/Caishen/src/Caishen/Databases/SpiderDbDatabase/gia-mssql/data"
 export zeuzdata="/mnt/c/var/lib/mssql/data"
 
 export sysdrive="/c"
