@@ -21,7 +21,9 @@ export AppSuiteName="Caishen"
 if [ "$sysuname" == "" ];then  export sysuname="$(uname)";fi
 if [ "$sysuname" == "Linux" ];then export sysdrive="/mnt/c";fi #different mount point on WSL
 
-export zeuzdata="$sysdrive/var/lib/mssql/data"
+export zeusdata="$sysdrive/var/lib/mssql/data"
+export zeuzdata="$zeusdata"
+
 export caishenroot="$sysdrive/Caishen/Caishen"
 export caishensolutiondir="$caishenroot/src/Caishen"
 export CaishenSolutionDir="$caishensolutiondir"
