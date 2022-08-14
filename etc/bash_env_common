@@ -23,6 +23,7 @@ if [ "$sysuname" == "Linux" ];then export sysdrive="/mnt/c";fi #different mount 
 
 export zeusdata="$sysdrive/var/lib/mssql/data"
 export zeuzdata="$zeusdata"
+export zeuscsvpath="$zeusdata/exports/csv"
 
 export caishenroot="$sysdrive/Caishen/Caishen"
 export caishensolutiondir="$caishenroot/src/Caishen"
