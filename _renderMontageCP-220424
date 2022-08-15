@@ -43,10 +43,12 @@ if [ "$1" == "" ]; then
 	echo "Usage: $0 <file> <startport> <endport> [resolution 1] [resolution 2] [resolution 3]"
 else
 #echo "$0 $1 $2 $3 $4 $5 $6 $7"
-
+echo "-----------------------------------------------$(date)----------------------"
 #echo $compositeresultcmd $c $r  
+#echo " $astcmd $f $i $x1 $x2 $x3 -a"
+#echo "  $compositeresultcmd $c $r"
 
-cp $f out
+cp "$f" out
 for i in $(seq $2 $3); do 
  		$astcmd $f $i $x1 $x2 $x3 -a > _out && \
 		echo -n "Content of _out : " && cat _out && \
@@ -56,6 +58,18 @@ for i in $(seq $2 $3); do
 		$cmdecho rm _out && \
 		$cmdecho cp $r out && \
 		echo "Composite Done" || echo "Something failed for iteration $i"
+		if [ "$classbymodel" == "true" ]; then
+			echo "Classing render of port : $i by model..."
+			bport=$((i+9000))
+			murl="http://localhost:8999/$bport.json"
+			echo "$murl"
+			curl $murl --output _out.json && cat _out.json | json2bash - > _out.sh && \
+				echo -n "Classifying :" && . _out.sh && echo "$fname + $checkpointno" && \
+				export tdirclassed="$fname/$checkpointno" && mkdir -p "$tdirclassed" && echo "Classed will be stored in : $tdirclassed" && \
+				cp *"$fname"*__"$checkpointno"* $tdirclassed
+
+		fi
+
 done
 
 fi
