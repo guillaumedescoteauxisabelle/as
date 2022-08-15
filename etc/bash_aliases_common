@@ -105,3 +105,7 @@ alias echomdtableheader='echo "|       |       |       |
 
 ## Optimize and compact the WSL VHD
 alias wslvhdoptimize="cd $HOME/AppData/Local/Docker/wsl/data && optimize-vhd -Path ext4.vhdx -Mode full"
+
+
+alias odin="ssh odinadmin@odin.jgwill.com"
+
