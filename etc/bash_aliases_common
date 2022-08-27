@@ -109,3 +109,6 @@ alias wslvhdoptimize="cd $HOME/AppData/Local/Docker/wsl/data && optimize-vhd -Pa
 
 alias odin="ssh odinadmin@odin.jgwill.com"
 
+#FXPY
+alias fxpyrun="cd /c/Caishen/Caishen/src/Caishen/fxpy;dkrun"
+
