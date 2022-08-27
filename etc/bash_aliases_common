@@ -111,5 +111,5 @@ alias odin="ssh odinadmin@odin.jgwill.com"
 
 #FXPY
 alias fxpyrun="cd /c/Caishen/Caishen/src/Caishen/fxpy;echo \"Run: . _WF220808.sh\";dkrun"
-alias fxpyrunIndicatorNPrediction="cd /c/Caishen/Caishen/src/Caishen/fxpy;echo \"Running _WF220808.sh\";dkrun \"bash _WF220808.sh\""
+alias fxpyrunIndicatorNPrediction="cd /c/Caishen/Caishen/src/Caishen/fxpy;echo \"Running _WF220808.sh\";dkrun \"bash /work/_WF220808.sh\""
 
