@@ -87,7 +87,7 @@ if [ "$dkvolume" == "" ]; then _dkvolume="";else
 fi
 
 _dkcommand="$dkcommand"
-if [ "$dkcommand" == "" ] && [ "$1" != "--user" ] ; then _dkcommand="$1" ;fi 
+if [ "$dkcommand" == "" ] && [ "$1" != "--user" ] ; then _dkcommand="$@" ;fi 
 if [ "$dkrunmode" == "bg" ];then _dkcommand="sleep 65000d";fi #Ya, the container will stop in a while ;)
 
 _TZ="$TZ"
