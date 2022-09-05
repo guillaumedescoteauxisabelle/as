@@ -49,5 +49,9 @@ export CaishenIndicoreStrategiesDir=$CaishenSolutionDir/Lib/strategies
 # Relative to working and latest
 export ailatesttag=sc220807
 
-
-
+if [ "$sysuname" == "Linux" ];then
+	if [ -d "/a/forexconnectapi" ] ; then 
+		export FOREXCONNECT_ROOT=/a/forexconnectapi
+		export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$FOREXCONNECT_ROOT/lib
+	fi
+fi
