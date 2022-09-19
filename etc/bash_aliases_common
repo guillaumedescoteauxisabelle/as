@@ -112,7 +112,7 @@ alias odin="ssh odin.jgwill.com"
 #FXPY
 export fxpyroot=/c/Caishen/Caishen/src/Caishen/fxpy
 export dworoot=/c/Users/jeang/Dropbox/w/o
-export pysroot=$dwo/pys
+export pysroot=$dworoot/pys
 alias cdpys="cd $pysroot;pwd"
 alias cdfxpy="cd $fxpyroot;pwd"
 alias fxpyrun="cd $fxpyroot;echo \"Run: . _WF220808.sh\";dkrun"
