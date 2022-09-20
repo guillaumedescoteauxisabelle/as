@@ -118,4 +118,4 @@ alias cdpys="cd $pysroot;pwd"
 alias cdfxpy="cd $fxpyroot;pwd"
 alias fxpyrun="cd $fxpyroot;echo \"Run: . WF220808.sh\";dkrun"
 alias fxpyrunIndicatorNPrediction="cd $fxpyroot;echo \"Running WF220808.sh\";dkrun bash /work/WF220808.sh"
-
+alias cdcsv="cdmldata;cd exports/csv;pwd"
