@@ -100,3 +100,10 @@ fi
 
 fi 
 # We are doing the whole work
+
+# Run post build hooks
+
+if [ -e "_dk-post-build.sh" ] ; then 
+	. _dk-post-build.sh
+fi
+
