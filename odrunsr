@@ -1,0 +1,21 @@
+#!/bin/bash
+confdir=/work/conf
+srpath=/opt/StrategyRunner
+# run strategy on Odin SR container
+if [ "$1" == "" ]; then echo "Usage: $0 <ini file onli>(assumes in /work/conf)"
+else 
+	inifile=$1
+	cd $srpath
+	logfn=$inifile.log
+	logfile=$confdir/logs/$logfn
+	if [ "$2" == "bg" ] ; then
+		./StrategyRunner $confdir/$inifile $logfile &
+		echo "tail -f $logfile"
+		echo "OR:  tail -f conf/logs/$logfn"
+		
+		(cd /work;echo 'alias tlog="tail -f '$logfile'"' >> .bash_aliases;echo "added an alias: tlog")
+	else
+		./StrategyRunner $confdir/$inifile
+	fi
+
+fi

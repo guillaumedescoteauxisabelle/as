@@ -1,0 +1,20 @@
+#!/bin/bash
+
+confdir=/work/conf
+srpath=/opt/StrategyRunner
+# run strategy on Odin SR container
+if [ "$1" == "" ]; then echo "Usage: $0 <ini file onli> [bg]"
+	echo "<ini> (assumes in $confdir)"
+	echo "[bg] created a log in $confdir/logs"
+else 
+	inifile=$1
+#	cd $srpath
+#	logfile=$confdir/logs/$inifile.log
+	echo "Trying to run SR on the docker container"
+	if [ "$2" == "bg" ] ; then
+		docker exec sr bash /a/bin/odrunsr $inifile bg 
+	else
+		docker exec -it sr  bash /a/bin/odrunsr $inifile
+	fi
+
+fi
