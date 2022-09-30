@@ -58,7 +58,7 @@ alias bvi="$binroot/bvi.sh "
 # RW Related
 alias cdrw="cd $srcroot/rwml__adaptive_style_transfer"
 alias mckinfo="$binroot/mckinfo.sh"
-alias cdai="cd /c/Users/jeang/Dropbox/w/ds.guillaumeai/creation"
+alias cdai="cd $d/w/ds.guillaumeai/creation"
 alias cdailatest="cdai;cd $ailatesttag;pwd"
 
 # Mk Md, Web
@@ -123,4 +123,4 @@ alias cdfxpy="cd $fxpyroot;pwd"
 alias fxpyrun="cd $fxpyroot;echo \"Run: . WF220808.sh\";dkrun"
 alias fxpyrunIndicatorNPrediction="cd $fxpyroot;echo \"Running WF220808.sh\";dkrun bash /work/WF220808.sh"
 alias cdcsv="cdmldata;cd exports/csv;pwd"
-alias cdsdsodin="cd /mnt/c/Caishen/Caishen/src/Caishen/SDS/OdinStrategyRunner/v2/prod"
+alias cdsdsodin="cd /c/Caishen/Caishen/src/Caishen/SDS/OdinStrategyRunner/v2/prod"
