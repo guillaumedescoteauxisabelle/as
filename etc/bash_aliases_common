@@ -109,13 +109,18 @@ alias wslvhdoptimize="cd $HOME/AppData/Local/Docker/wsl/data && optimize-vhd -Pa
 
 alias odin="ssh odin.jgwill.com"
 
-#FXPY
-export fxpyroot=/c/Caishen/Caishen/src/Caishen/fxpy
-export dworoot=/c/Users/jeang/Dropbox/w/o
-export pysroot=$dworoot/pys
+#MIGRATED
+#export fxpyrootold=/c/Caishen/Caishen/src/Caishen/fxpy
+#export dworoot=/c/Users/jeang/Dropbox/w/o
+#export fxpyroot=$dworoot/pys
+#export pysroot=$dworoot/pys
+
+
+
 alias cdo="cd $dworoot;pwd"
 alias cdpys="cd $pysroot;pwd"
 alias cdfxpy="cd $fxpyroot;pwd"
 alias fxpyrun="cd $fxpyroot;echo \"Run: . WF220808.sh\";dkrun"
 alias fxpyrunIndicatorNPrediction="cd $fxpyroot;echo \"Running WF220808.sh\";dkrun bash /work/WF220808.sh"
 alias cdcsv="cdmldata;cd exports/csv;pwd"
+alias cdsdsodin="cd /mnt/c/Caishen/Caishen/src/Caishen/SDS/OdinStrategyRunner/v2/prod"

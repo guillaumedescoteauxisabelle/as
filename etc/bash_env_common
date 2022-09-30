@@ -29,6 +29,10 @@ export caishenroot="$sysdrive/Caishen/Caishen"
 export caishensolutiondir="$caishenroot/src/Caishen"
 export CaishenSolutionDir="$caishensolutiondir"
 
+export fxpyrootold=$CaishenSolutionDir/fxpy
+export dworoot=$d/w/o
+export fxpyroot=$dworoot/pys
+export pysroot=$dworoot/pys
 
 
 export WINHOMEROOT=$sysdrive/Users
@@ -44,7 +48,10 @@ export DataCsvRepoRelativePath=$caishenroot/src/Caishen/PDSP/DataCsv
 #CaishenSolutionDir
 export CaishenStrategyRunnerLib=$CaishenSolutionDir/Lib
 export CaishenIndicoreIndicatorsDir=$CaishenSolutionDir/Lib/indicators
-export CaishenIndicoreStrategiesDir=$CaishenSolutionDir/Lib/strategies
+export CaishenIndicoreIndicatorsDir=$dworoot/indicators
+#export CaishenIndicoreStrategiesDir=$CaishenSolutionDir/Lib/strategies
+export CaishenIndicoreStrategiesDir=$dworoot/Lib/strategies
+#/c/Users/jeang/Dropbox/w/o/strategies
 
 # Relative to working and latest
 export ailatesttag=sc220807
