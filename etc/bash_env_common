@@ -47,10 +47,10 @@ export DataCsvRepoRelativePath=$caishenroot/src/Caishen/PDSP/DataCsv
 #StrategyRunner requires access to a folder where we store up to date strategies
 #CaishenSolutionDir
 export CaishenStrategyRunnerLib=$CaishenSolutionDir/Lib
-export CaishenIndicoreIndicatorsDir=$CaishenSolutionDir/Lib/indicators
+#export CaishenIndicoreIndicatorsDir=$CaishenSolutionDir/Lib/indicators
 export CaishenIndicoreIndicatorsDir=$dworoot/indicators
 #export CaishenIndicoreStrategiesDir=$CaishenSolutionDir/Lib/strategies
-export CaishenIndicoreStrategiesDir=$dworoot/Lib/strategies
+export CaishenIndicoreStrategiesDir=$dworoot/strategies
 #/c/Users/jeang/Dropbox/w/o/strategies
 
 # Relative to working and latest
