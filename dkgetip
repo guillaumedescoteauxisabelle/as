@@ -4,7 +4,11 @@
 tst=$(uname)
 
 if [ "$tst" == "Linux" ] ; then 
-docker inspect -f '{{.Name}} - {{.NetworkSettings.IPAddress }}' $(docker ps -aq)
+	if [ "$1" == "" ]; then
+	docker inspect -f '{{.Name}} - {{.NetworkSettings.IPAddress }}' $(docker ps -aq)
+else 
+	docker inspect -f '{{.Name}} - {{.NetworkSettings.IPAddress }}' $(docker ps -aq)| awk '/'$1'/ { print $3 }'
+	fi
 else
 	echo "Use WSL to run this"
 fi
