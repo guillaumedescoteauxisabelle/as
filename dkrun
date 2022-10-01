@@ -89,7 +89,14 @@ fi
 _dkcommand="$dkcommand"
 #if [ "$dkcommand" == "" ] && [ "$1" != "--user" ] && [ "$1" != "" ]; then _dkcommand="$@" ;fi 
 if [  "$1" != "--user" ] && [ "$1" != "" ]; then _dkcommand="$@" ;fi 
-if [ "$1" == "+" ] ; then shift;_dkcommand="$dkcommand $@" ;fi
+if [ "$1" == "+" ] ; then 
+	shift
+	_dkcommand="$dkcommand "
+	for a in "$@"
+	do
+		_dkcommand="$_dkcommand \"$a\""
+	done	
+fi
 
 if [ "$dkrunmode" == "bg" ];then _dkcommand="sleep 65000d";fi #Ya, the container will stop in a while ;)
 
