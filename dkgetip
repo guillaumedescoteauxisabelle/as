@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+tst=$(uname)
+
+if [ "$tst" == "Linux" ] ; then 
+docker inspect -f '{{.Name}} - {{.NetworkSettings.IPAddress }}' $(docker ps -aq)
+else
+	echo "Use WSL to run this"
+fi
+
