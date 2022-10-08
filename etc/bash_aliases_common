@@ -125,3 +125,5 @@ alias fxpyrun="cd $fxpyroot;echo \"Run: . WF220808.sh\";dkrun"
 alias fxpyrunIndicatorNPrediction="cd $fxpyroot;echo \"Running WF220808.sh\";dkrun bash /work/WF220808.sh"
 alias cdcsv="cdmldata;cd exports/csv;pwd"
 alias cdsdsodin="cd /c/Caishen/Caishen/src/Caishen/SDS/OdinStrategyRunner/v2/prod"
+#odin
+alias odr="$binroot/odrunsr "
