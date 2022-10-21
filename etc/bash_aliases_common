@@ -127,3 +127,7 @@ alias cdcsv="cdmldata;cd exports/csv;pwd"
 alias cdsdsodin="cd /c/Caishen/Caishen/src/Caishen/SDS/OdinStrategyRunner/v2/prod"
 #odin
 alias odr="$binroot/odrunsr "
+export srcnfroot=/work/conf;alias lscnf="ls $srcnfroot"
+alias cdcnf="cd $srcnfroot"
+alias ljl="cd /a/repos/pys;. LAUNCH_JUPYTER_LAB_ALLIP.sh&"
+alias ljl="jupyter lab --allow-root --ip=0.0.0.0 --no-browser --port=8888"
