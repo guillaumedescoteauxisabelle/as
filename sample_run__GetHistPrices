@@ -1,0 +1,2 @@
+. .env
+./GetHistPrices.exe  --login "$FXLOGIN" --password "$FXPASSWORD" --url "http://demo.fxcorporate.com/Hosts.jsp" -i "EUR/USD" --timeframe "H4" --datefrom "12.12.2021 01:01:01" --dateto "01.01.2022 01:01:01" --connection Demo
