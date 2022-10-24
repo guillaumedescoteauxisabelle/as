@@ -9,10 +9,20 @@ if [ "$(uname -s)" == "Linux" ]; then echo "Creating User based image"
 	dockertaguser=$dockertag"-"$_cuser
 	cdir="$(pwd)"
 	wdir="$cdir/build_user__"$(tlid)
-	if [ -e "$wdir" ] ; then echo "Hum... $wdir exist already" && rm -rf $wdir && echo "Cleaned up ok.  Rerun this"
+	if [ -e "$wdir" ] ; then 
+		echo "Hum... $wdir exist already" && rm -rf $wdir && echo "Cleaned up ok.  Rerun this"
 	else
 
 	mkdir -p $wdir
+
+	#Possible Extension of the DKbuilduser with a bash script in build dir called: .dkbuilduser.sh
+	if [ -e "$cdir/.dkbuilduser.sh" ]; then
+	  echo "--------------.dkbuilduser.sh-----------------"
+		(echo "Found a file :.dkbuilduser.sh (Running it in $cdir)";cp $cdir/.dkbuilduser.sh $wdir && cd $wdir &&echo "Running it in $(pwd)" && . .dkbuilduser.sh && echo ".dkbuilduser.sh RAN with success" || echo ".dkbuilduser.sh RAN with Error :(" && sleep 3)
+	else
+		echo "No custom .dkbuilduser.sh found"
+	fi
+
 	DKUSERNAME=$_cuser
 	DKUID=$_uid
 	_dkusehomedir="WORKDIR ${HOME}"
@@ -67,14 +77,14 @@ _dkenvhome='ENV HOME /home/${USER}'
 		echo "$_dkusehomedir " >> Dockerfile && \
 		echo "$_gituseremail " >> Dockerfile && \
 		echo "$_gitusername "  >> Dockerfile && \
-		if [ -f "../.dkbuildx" ]; then cat ../.dkbuildx >> Dockerfile ; fi && \
 		echo "$dkbuildmorerun " >> Dockerfile && \
 		echo "$dkbuildmorerun2 " >> Dockerfile && \
 		echo "$dkbuildmorerun3 " >> Dockerfile && \
+		if [ -f "../.dkbuildx" ]; then cat ../.dkbuildx >> Dockerfile ; fi && \
 		echo "Created Dockerfile" && cat Dockerfile && \
 		docker build -t $dockertaguser . && \
 			if [ -e "$_vscodetar" ]; then  rm $wdir/$_vscodetar;fi && \
-			docker push $dockertaguser && rm -rf $wdir && echo "Created image : $dockertaguser" && echo "All done and cleanup" || \
+			echo "docker push $dockertaguser" && rm -rf $wdir && echo "Created image : $dockertaguser" && echo "All done and cleanup" || \
 			echo "FAILED SOMEWHOW"
 		#cp $binroot/templates/Dockerfile-user Dockerfile && \
 
